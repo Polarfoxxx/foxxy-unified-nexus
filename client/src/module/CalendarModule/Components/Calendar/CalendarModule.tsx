@@ -1,4 +1,5 @@
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import "./style/calendarModule_style.css"
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -40,7 +41,7 @@ const events = [
     end: new Date(2021, 6, 23),
   },
 ];
-const MyCalendar = () => {
+function CalendarModule(): JSX.Element {
   const [newEvent, setNewEvent] = React.useState<any>({ title: "", start: "", end: "" });
   const [startDate, setStartDate] = React.useState<any>(new Date());
   const [allEvents, setAllEvents] = React.useState(events);
@@ -49,7 +50,7 @@ const MyCalendar = () => {
   const handleSelectSlot = (slotInfo: { start: Date, end: Date }) => {
     // slotInfo obsahuje informácie o vybranom dátume
     console.log('Vybraný deň:', slotInfo.start);
-    
+
     // Tu môžete vykonať ďalšie akcie na základe kliknutia na deň v kalendári
   };
 
@@ -57,13 +58,26 @@ const MyCalendar = () => {
   return (
     <div>
       <div>
-        <input type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-        <DatePicker placeholderText="Start Date" selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-        <DatePicker placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
-        <button style={{ marginTop: "10px" }}>
+        <input
+          type="text"
+          placeholder="Add Title"
+          style={{ width: "20%", marginRight: "10px" }}
+          value={newEvent.title}
+          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+        <DatePicker
+          placeholderText="Start Date"
+          selected={newEvent.start}
+          onChange={(start) => setNewEvent({ ...newEvent, start })} />
+        <DatePicker
+          placeholderText="End Date"
+          selected={newEvent.end}
+          onChange={(end) => setNewEvent({ ...newEvent, end })} />
+        <button
+          style={{ marginTop: "10px" }}>
           Add Event
         </button>
       </div>
+      
       <Calendar
         localizer={localizer}
         startAccessor="start"
@@ -79,4 +93,4 @@ const MyCalendar = () => {
 
 }
 
-export default MyCalendar
+export default CalendarModule;

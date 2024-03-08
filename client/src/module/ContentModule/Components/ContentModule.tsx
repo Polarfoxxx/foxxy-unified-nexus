@@ -1,7 +1,9 @@
 import React from "react";
 import { HeaderModule } from "../../HeaderModule";
 import { TittleBarModule } from "../../TittleBarModule";
-import MyCalendar from "../../CalendarModule/Components/CalendarModule";
+import { CalendarModule } from "../../CalendarModule";
+import { MessageList } from "../../MessageModule";
+
 function ContentModule(): JSX.Element {
 
 
@@ -24,12 +26,12 @@ function ContentModule(): JSX.Element {
             <article className=" w-full h-2/3  bg-amber-200">
                 <div>
                     <h1>article</h1>
-                    <MyCalendar/>
+                    <CalendarModule/>
                 </div>
             </article>
             <footer className=" w-full h-1/6 bg-green-600">
                 <div>
-                    <h1>footer</h1>
+                <MessageList/>
                 </div>
             </footer>
         </div>
