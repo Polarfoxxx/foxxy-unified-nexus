@@ -17,17 +17,19 @@ app.use(cors())
   /* --------------------------------------------------- */
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/contacts', { useNewUrlParser: true })
+    .connect('mongodb://127.0.0.1:27017/messages', { useNewUrlParser: true })
         .then(() => console.log("connect to mongoo"))
         .catch(() => console.log("no connect"))
 /* --------------------------------------------------- */
-const conatctSchema = new mongoose.Schema({
-    firstName : String,
-    lastName : String,
-    tel : Number,
+const messageSchema = new mongoose.Schema({
+    tittle : String,
+    allDay : Boolean,
+    start : Date,
+    end: Date
 });
+
 /* --------------------------------------------------- */
-const Contact = mongoose.model("Contact" , conatctSchema);
+const Messages = mongoose.model("Message" , messageSchema);
 
 
 /* --------------------------------------------------- */
@@ -35,7 +37,13 @@ const Contact = mongoose.model("Contact" , conatctSchema);
 /* --------------------------------------------------- */
 /* API RestFull--------------------------------------- */
 /* cerate new object conatct method Post */
-app.post("/api/add/contact" , (req, res) => {
+app.post("/api/add/messsage" , (req, res) => {
+    const newsContakt = Joi.object({
+        firstName : Joi.string().min(3).required(),
+        lastName : Joi.string().min(3).required(),
+        tel : Joi.number().min(3).required()
+    });
+
 const {err} = newsContakt.validate(req.body);
     if(err) {
         res.status(400).send(error.details[0].message);
@@ -46,51 +54,4 @@ const {err} = newsContakt.validate(req.body);
  }
     })
 
-    const newsContakt = Joi.object({
-        firstName : Joi.string().min(3).required(),
-        lastName : Joi.string().min(3).required(),
-        tel : Joi.number().min(3).required()
-    })
 
-/* --------------------------------------------------- */
-/* load all constact GET method */
- app.get("/api/all/contact" , (req, res) => {
-    Contact.find()
-        .then((contt) => { res.json(contt) })
-        .catch(() => { res.send("errrr") })
-    })
- 
-     
-/* --------------------------------------------------- */
-/* delete method delete contact */
-app.delete('/api/delete/:id', (req, res) => {
-    Contact.findByIdAndDelete(req.params.id)
-        .then(result => {
-            if (result)
-                res.json(result);
-            else
-                res.status(404).send("kontakt nebol najdeny!");
-        })
-        .catch(err => { res.send("chyba pri mazani filmu!") });
-});
-/* --------------------------------------------------- */
-/* find contact by first name */
-app.get('/api/search/:name', (req, res) => {
-    const name = String(req.params.name);
-        Contact.find({ lastName: name })
-            .then((contt) => { res.json(contt) })
-            .catch((errrr) => { res.send(errrr) })
-    }) 
-
-/* --------------------------------------------------- */
-/* update contact by first name */
-app.put('/api/update/:id', (req, res) => {
-    const { error } = newsContakt.validate(req.body, false);
-    if (error) {
-        res.status(400).send(error.details[0].message);
-    } else {
-         Contact.findByIdAndUpdate(req.params.id, req.body)
-            .then(result => { res.json(result) })
-            .catch(err => { res.send("Nepodařilo se uložit contact!") });
-        }
-    });
