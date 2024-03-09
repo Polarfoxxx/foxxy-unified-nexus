@@ -2,3 +2,10 @@
 #root > div > div > article > div > div > div.rbc-calendar > div.rbc-month-view{
     cursor: pointer;
 }
+
+/* CSS štýly pre hover efekt */
+.rbc-day-bg:hover {
+    background-color: lightgray; /* Zmena farby pozadia po najazdení myšou */
+    cursor: pointer; /* Zmena kurzora po najazdení myšou */
+  }
+  

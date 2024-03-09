@@ -7,7 +7,7 @@ import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import skSK from "./cal"
 import React from 'react'
-import DatePicker from "react-datepicker";
+import NewEvent from '../NewEvent/NewEvent';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -42,50 +42,32 @@ const events = [
   },
 ];
 function CalendarModule(): JSX.Element {
-  const [newEvent, setNewEvent] = React.useState<any>({ title: "", start: "", end: "" });
-  const [startDate, setStartDate] = React.useState<any>(new Date());
-  const [allEvents, setAllEvents] = React.useState(events);
+
+  const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
 
 
   const handleSelectSlot = (slotInfo: { start: Date, end: Date }) => {
     // slotInfo obsahuje informácie o vybranom dátume
     console.log('Vybraný deň:', slotInfo.start);
 
+    setNewEventContent(<NewEvent slotInfo={slotInfo} setNewEventContent= {setNewEventContent} />)
     // Tu môžete vykonať ďalšie akcie na základe kliknutia na deň v kalendári
   };
 
 
   return (
-    <div>
-      <div>
-        <input
-          type="text"
-          placeholder="Add Title"
-          style={{ width: "20%", marginRight: "10px" }}
-          value={newEvent.title}
-          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-        <DatePicker
-          placeholderText="Start Date"
-          selected={newEvent.start}
-          onChange={(start) => setNewEvent({ ...newEvent, start })} />
-        <DatePicker
-          placeholderText="End Date"
-          selected={newEvent.end}
-          onChange={(end) => setNewEvent({ ...newEvent, end })} />
-        <button
-          style={{ marginTop: "10px" }}>
-          Add Event
-        </button>
-      </div>
-      
+    <div className=' w-full h-full flex items-center justify-center relative'>
+      {newEventContent}
       <Calendar
         localizer={localizer}
         startAccessor="start"
         endAccessor="end"
         events={events}
-        style={{ height: 500 }}
+        style={{ height: 400, width: "90%" }}
         selectable
         onSelectSlot={handleSelectSlot}
+        className="hover-effect-calendar"
+
       />
     </div>
 

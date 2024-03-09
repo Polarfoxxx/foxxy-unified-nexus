@@ -23,7 +23,7 @@ function ContentModule(): JSX.Element {
                     <h3>podnadpis</h3>
                 </div>
             </header>
-            <article className=" w-full h-2/3  bg-amber-200">
+            <article className=" w-full h-2/3  bg-slate-500">
                 <div>
                     <h1>article</h1>
                     <CalendarModule/>

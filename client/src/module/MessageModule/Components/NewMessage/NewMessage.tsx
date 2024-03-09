@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+import React from 'react';
 
 
 type Type_forNewMessageProps = {
@@ -5,15 +7,40 @@ type Type_forNewMessageProps = {
 }
 
 function NewMessage(props: Type_forNewMessageProps): JSX.Element {
+    const [createDate, setCreateDate] = React.useState("");
 
     const handleClickCreateMessage = (): void => {
-        props.setNewMessageContent(null)
+        props.setNewMessageContent(null);
+    }
+
+    const handleFocus = (): void => {
+        const currentDate = new Date();
+        const formattedDate = format(currentDate, 'dd.MM.yyyy HH:mm:ss');
+        setCreateDate(formattedDate)
+
     }
 
     return (
-        <div>
-            <form action="">
-                <input type="text" />
+        <div className=' w-full'>
+            <form >
+                <div>
+                    <input
+                    className=' border border-black'
+                        type="text"
+                        onFocus={handleFocus}
+                        placeholder='nameMessage' />
+                </div>
+                <div>
+                    <input
+                        value={createDate}
+                        type="text" />
+                </div>
+                <div>
+                    <input type="text" />
+                </div>
+                <div>
+                    <textarea name="" id="" cols={30} rows={10}></textarea>
+                </div>
                 <button
                     onClick={handleClickCreateMessage}
                 >create</button>
