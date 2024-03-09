@@ -35,9 +35,11 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
     const [selectDate, setSelectDate] = React.useState<number>();
     const [startDate, setStartDate] = React.useState<any>(new Date());
     const [allEvents, setAllEvents] = React.useState(events);
-    const divRef = React.useRef<HTMLDivElement | null>(null)
+const { handleSubmit, reset } = useInputValue()
 
-
+  const submit = (v: TypeForInputsObject["v"]): void => {
+    console.log(v);
+  };
     React.useEffect(() => {
         console.log(props.slotInfo.start.toLocaleDateString());
         setSelectDate(props.slotInfo.start.getTimezoneOffset())
@@ -49,48 +51,40 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
             props.setNewEventContent(null);
         }
     }
-
+const hadleCreateNewEvent = () => {
+    
+}
     return (
         <div
-            id="divs"
-            ref={divRef}
-            onClick={(e) => handleClickRemoveWindowEvent(e)}
-            className=" absolute w-screen h-screen bg-black bg-opacity-20 z-40 ">
-            <div className=" w-4/6 h-72 absolute rounded-3xl overflow-hidden m-auto left-0 right-0 top-0 bottom-0 bg-black z-50">
-                <div className=" w-full h-1/6 bg-slate-200 flex justify-center items-center ">
-                    <div>
-                        <h1 className=" text-4xl">New event</h1>
-                    </div>
-                    <div>
-
-                        <button onClick={(e) => handleClickRemoveWindowEvent(e)}><FontAwesomeIcon icon={faCircleXmark} /></button>
-                    </div>
-                </div>
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Add Title"
-                        style={{ width: "20%", marginRight: "10px" }}
-                        value={newEvent.title}
-                        onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                    <DatePicker
-                        value={props.slotInfo.start.toLocaleDateString()}
-                        placeholderText="Start Date"
-                        selected={newEvent.start}
-                        onChange={(start) => setNewEvent({ ...newEvent, start })} />
-                    <DatePicker
-                        value={props.slotInfo.end.toLocaleDateString()}
-                        placeholderText="End Date"
-                        selected={newEvent.end}
-                        onChange={(end) => setNewEvent({ ...newEvent, end })} />
-                    <h1>{selectDate}</h1>
-                    <button
-
-                        style={{ marginTop: "10px" }}>
-                        Add Event
-                    </button>
-                </div>
-            </div>
+            onClick={handleClickRemoveWindowEvent}
+            className=" fixed w-screen h-screen bg-black bg-opacity-20 z-40 ">
+            <form 
+                onSubmit={(e) => handleSubmit(e, submit)}
+                className=" w-4/6 h-72 absolute rounded-3xl m-auto left-0 right-0 top-0 bottom-0 bg-black z-50">
+                <input
+                    name="tittle"
+                    type="text"
+                    placeholder="Add Title"
+                    style={{ width: "20%", marginRight: "10px" }}
+                    value={newEvent.title}
+                    onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+                <DatePicker
+                    name="startDate"
+                    placeholderText="Start Date"
+                    selected={newEvent.start}
+                    onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                <DatePicker
+                    name="endDate"
+                    placeholderText="End Date"
+                    selected={newEvent.end}
+                    onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                <h1>{selectDate}</h1>
+                <button
+                    onClick={submit}
+                    style={{ marginTop: "10px" }}>
+                    Add Event
+                </button>
+            </form>
         </div>
 
     );
