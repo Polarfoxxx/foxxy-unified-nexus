@@ -1,39 +1,50 @@
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import { Calendar, dateFnsLocalizer, DateLocalizer,Event } from 'react-big-calendar';
+import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./style/calendarModule_style.css"
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
-import "react-big-calendar/lib/css/react-big-calendar.css";
 import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
-import skSK from "./cal"
 import React from 'react'
 import NewEvent from '../NewEvent/NewEvent';
+import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
 
-import "react-datepicker/dist/react-datepicker.css";
 
-const locales = {
-  'sk-SK': skSK, // slovenčina (Slovensko)
-  // prípadne ďalšie lokality
+
+
+interface MyEvent extends Event {
+  title: string;
+  start: Date;
+  end: Date;
 }
 
-const localizer = dateFnsLocalizer({
+const locales = {
+  'sk': skSK, // Použití slovenské lokalizace
+};
+
+
+let formats = {
+  timeGutterFormat: 'HH:mm',
+}
+
+const localizer: DateLocalizer = dateFnsLocalizer({
   format,
   parse,
   startOfWeek,
   getDay,
   locales,
-})
-const events = [
+});
+
+const events: MyEvent[] = [
   {
-    title: "Big Meeting",
-    allDay: true,
-    start: new Date(2024, 3, 3),
-    end: new Date(2024, 3, 30),
+    title: "Important Appointment",
+    start: new Date(2024, 2, 11, 14, 30), // 10. března 2024 v 14:30
+    end: new Date(2024, 2, 14, 15, 30),   // 10. března 2024 v 15:30
   },
   {
-    title: "Vacation",
-    start: new Date(2021, 6, 7),
-    end: new Date(2021, 6, 10),
+    title: "kjbjkbkbkj",
+    start: new Date(2024, 2, 11, 16, 30), // 10. března 2024 v 14:30
+    end: new Date(2024, 2, 11, 18, 30),   // 10. března 2024 v 15:30
   },
   {
     title: "Conference",
@@ -42,33 +53,33 @@ const events = [
   },
 ];
 function CalendarModule(): JSX.Element {
-
+  const [date, setDate] = React.useState<Date>();
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
 
 
-  const handleSelectSlot = (slotInfo: { start: Date, end: Date }) => {
-    // slotInfo obsahuje informácie o vybranom dátume
-    console.log('Vybraný deň:', slotInfo.start);
 
-    setNewEventContent(<NewEvent slotInfo={slotInfo} setNewEventContent= {setNewEventContent} />)
-    // Tu môžete vykonať ďalšie akcie na základe kliknutia na deň v kalendári
-  };
 
+  const handleEventClick = (event: MyEvent) => {
+console.log(event);
+
+  }
 
   return (
     <div className=' w-full h-full flex items-center justify-center relative'>
       {newEventContent}
       <Calendar
+        formats={formats}
         localizer={localizer}
         startAccessor="start"
         endAccessor="end"
         events={events}
-        style={{ height: 400, width: "90%" }}
-        selectable
-        onSelectSlot={handleSelectSlot}
-        className="hover-effect-calendar"
-
-      />
+        style={{ height: 600, width: "90%" }}
+        className="hover-effect-calendar" 
+        onSelectEvent={handleEventClick}
+        onNavigate={date => {
+          setDate(date);
+        }}
+        />
     </div>
 
   )
