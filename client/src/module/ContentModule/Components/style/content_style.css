@@ -1,0 +1,11 @@
+
+div[data-theme="light"] {
+    /* buttonStyle */
+    --background_button: rgb(245, 245, 245);
+}
+
+
+div[data-theme="dark"] {
+    /* buttonStyle */
+    --background_button: rgb(161, 161, 161);
+}

@@ -25,7 +25,6 @@ const events = [
 type Type_for_slotInfo = { start: Date, end: Date }
 
 type Type_for_NewEvent = {
-    slotInfo: Type_for_slotInfo,
     setNewEventContent: React.Dispatch<React.SetStateAction<JSX.Element | null>>
 }
 
@@ -35,11 +34,6 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
     const [startDate, setStartDate] = React.useState<any>(new Date());
     const [allEvents, setAllEvents] = React.useState(events);
 
-    React.useEffect(() => {
-        console.log(props.slotInfo.start.toLocaleDateString());
-        setSelectDate(props.slotInfo.start.getTimezoneOffset())
-
-    }, [props.slotInfo])
 
     const handleClickRemoveWindowEvent = (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>): void => {
         if (e.target === e.currentTarget) {

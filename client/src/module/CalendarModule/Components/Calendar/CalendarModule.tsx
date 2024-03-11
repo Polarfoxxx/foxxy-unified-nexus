@@ -1,4 +1,4 @@
-import { Calendar, dateFnsLocalizer, DateLocalizer,Event } from 'react-big-calendar';
+import { Calendar, dateFnsLocalizer, DateLocalizer, Event } from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./style/calendarModule_style.css"
 import format from 'date-fns/format'
@@ -57,29 +57,36 @@ function CalendarModule(): JSX.Element {
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
 
 
-
-
   const handleEventClick = (event: MyEvent) => {
-console.log(event);
+    console.log(event);
 
   }
 
+  const handleClickNewEvent = () => {
+    setNewEventContent(<NewEvent setNewEventContent={setNewEventContent} />)
+  }
+
+
+
   return (
-    <div className=' w-full h-full flex items-center justify-center relative'>
-      {newEventContent}
+    <div className=' w-full h-full flex items-center justify-center relative flex-col gap-5'>
+      <div className=' w-full h-7 flex justify-end items-center '>
+        <button 
+        className=' w-48 h-7 bg-thems-background_button flex justify-center items-center hover:bg-slate-200'
+        onClick={handleClickNewEvent}>New eveent</button>
+      </div>
       <Calendar
         formats={formats}
         localizer={localizer}
         startAccessor="start"
         endAccessor="end"
         events={events}
-        style={{ height: 600, width: "90%" }}
-        className="hover-effect-calendar" 
-        onSelectEvent={handleEventClick}
-        onNavigate={date => {
-          setDate(date);
-        }}
-        />
+        style={{ height: 650, width: "90%" }}
+        className="hover-effect-calendar"
+        onSelectEvent={handleEventClick}/>
+      {/* -------- */}
+      {newEventContent}
+      {/* -------- */}
     </div>
 
   )
