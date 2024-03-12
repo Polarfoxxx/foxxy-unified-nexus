@@ -2,10 +2,12 @@
 div[data-theme="light"] {
     /* buttonStyle */
     --background_button: rgb(245, 245, 245);
+    --color_button: rgb(0, 0, 0);
 }
 
 
 div[data-theme="dark"] {
     /* buttonStyle */
     --background_button: rgb(161, 161, 161);
+    --color_button: rgb(245, 245, 245);
 }

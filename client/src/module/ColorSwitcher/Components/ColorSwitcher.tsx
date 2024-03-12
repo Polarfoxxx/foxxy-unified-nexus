@@ -6,9 +6,18 @@ type Type_for_colorSwitcher = {
 
 function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
 
+    /* nacitanie nstavej farby z db */
+    React.useEffect(() => {
+        const LOAD_THEME = ""
+        props.themedDivRef.current?.setAttribute("data-theme", LOAD_THEME);
+    });
+
     const handleColorChange = (selectTheme: string) => {
         props.themedDivRef.current?.setAttribute("data-theme", selectTheme);
     };
+
+
+
 
     return (
         <div className=' w-full h-full'>

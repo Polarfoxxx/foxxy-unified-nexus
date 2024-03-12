@@ -14,3 +14,7 @@ function App() {
 }
 
 export default App;
+<Routes>
+<Route path="LoginPage" element={<LoginPage />} />
+<Route path="Content/*" element={<ContentModule />} />
+</Routes>

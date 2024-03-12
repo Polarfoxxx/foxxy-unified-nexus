@@ -72,7 +72,7 @@ function CalendarModule(): JSX.Element {
     <div className=' w-full h-full flex items-center justify-center relative flex-col gap-5'>
       <div className=' w-full h-7 flex justify-end items-center '>
         <button 
-        className=' w-48 h-7 bg-thems-background_button flex justify-center items-center hover:bg-slate-200'
+        className=' w-48 h-7 text-thems-color_button bg-thems-background_button flex justify-center items-center hover:bg-slate-200'
         onClick={handleClickNewEvent}>New eveent</button>
       </div>
       <Calendar

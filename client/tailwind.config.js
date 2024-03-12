@@ -1,18 +1,19 @@
 module.exports = {
   content: ["./src/**/*.{html,js,ts,tsx}"],
-    theme: {
-      extend: {
-        fontFamily: {
-          'sans': ['Anta', 'sans-serif'],
-        },
-        colors: {
-          thems: {
-            background_button: 'var(--background_button)',
-            DEFAULT: '#FF6347', // Výchozí barva
-            dark: '#CD5C5C',
-          },
+  theme: {
+    extend: {
+      fontFamily: {
+        'sans': ['Anta', 'sans-serif'],
+      },
+      colors: {
+        thems: {
+          /* buttonStyle*/
+          background_button: 'var(--background_button)',
+          color_button: 'var(--color_button)',
+          dark: '#CD5C5C',
         },
       },
+    },
   },
   plugins: [],
 }

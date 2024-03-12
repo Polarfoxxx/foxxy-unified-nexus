@@ -7,7 +7,7 @@ import { MessageList } from "../../MessageModule";
 import { ColorSwitcher } from "../../ColorSwitcher";
 
 function ContentModule(): JSX.Element {
-const themedDivRef = React.useRef<HTMLDivElement | null>(null)
+const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
 
     return (
