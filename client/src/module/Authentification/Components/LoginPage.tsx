@@ -1,28 +1,52 @@
 import React from "react";
 import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
-
+import { AUTHENTIFICATION_API } from "../../apis/index.";
 
 
 function LoginPage(): JSX.Element {
     const { handleSubmit, reset } = useInputValue()
-
     const submit = (v: TypeForInputsObject["v"]): void => {
-      console.log(v);
+        const LOGIN_DATA = {
+            userName: v[0].inputValues.toString(),
+            password: v[1].inputValues.toString()
+        }
+        /* reset(); */
+        LoginUser(LOGIN_DATA);
     };
+
+    async function LoginUser(loginData: { userName: string, password: string }) {
+        try {
+            const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
+            console.log(LOGIN);
+            
+        }
+        catch (error) {
+            console.log(error);
+
+        };
+    };
+
+
+
+
     return (
         <div>
-            <form   onSubmit={(e) => handleSubmit(e, submit)}>
+            <form onSubmit={(e) => handleSubmit(e, submit)}>
                 <div>
-                    <input 
-                    name="user"
-                    type="text" />
+                    <input
+                        name="user"
+                        type="text" />
                 </div>
                 <div>
                     <input
-                    name="password"
-                    type="text" />
+                        name="password"
+                        type="text" />
                 </div>
+                <button
+                    type='submit'>
+                    click me
+                </button>
             </form>
         </div>
     );

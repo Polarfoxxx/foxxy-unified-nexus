@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../mongooseDB/mongooseDB");
-const bcrypt = require('bcrypt');
 const Joi = require("joi");
 
 router.post('/newUser', async (req, res) => {
@@ -14,8 +13,6 @@ router.post('/newUser', async (req, res) => {
             return res.status(400).json({ message: 'User existing' });
         } else {
             // Hashovanie hesla
-            const hashedPassword = await bcrypt.hash(password, 10);
-            // Validácia dát pomocou Joi
             const validateUser = Joi.object({
                 username: Joi.string().min(3).required(),
                 password: Joi.string().min(4).required(),
@@ -27,8 +24,8 @@ router.post('/newUser', async (req, res) => {
             } else {
                 // Vytvorte nového používateľa
                 const newUser = {
-                    username,
-                    password: hashedPassword,
+                    username: username,
+                    password: password,
                     custom: {
                         theme: ""
                     },

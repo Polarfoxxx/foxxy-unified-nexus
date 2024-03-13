@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const mongo = "mongodb://127.0.0.1:27017/messages";
+const mongo = "mongodb://127.0.0.1:27017/Calendar";
 
 
 mongoose
