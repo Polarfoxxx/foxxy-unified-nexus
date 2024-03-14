@@ -38,7 +38,8 @@ export default AUTHENTIFICATION_API;
     } */
 
 /* --------------------------------------------------------------------------------------- */
-async function loginUser_API(loginData:{userName: string, password: string}): Promise<any | undefined> {
+async function loginUser_API(loginData:{userName: string, password: string}): Promise<{status: number,
+    message: string,} | undefined> {
     const LOGIN_DATA = {
         username: loginData.userName,
         password: loginData.password
@@ -50,11 +51,10 @@ async function loginUser_API(loginData:{userName: string, password: string}): Pr
                 "Content-Type": "application/json",
             },
         });
-        console.log(RESPO_DATA);
         
         return {
             status: RESPO_DATA.status,
-            message: RESPO_DATA.data.message,
+            message: RESPO_DATA.data.status,
         };
     } catch (error) {
         console.log(error);

@@ -2,9 +2,10 @@ import React from "react";
 import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { AUTHENTIFICATION_API } from "../../apis/index.";
-
+import { useNavigate } from "react-router-dom";
 
 function LoginPage(): JSX.Element {
+    const NAVIGATE = useNavigate()
     const { handleSubmit, reset } = useInputValue()
     const submit = (v: TypeForInputsObject["v"]): void => {
         const LOGIN_DATA = {
@@ -19,6 +20,10 @@ function LoginPage(): JSX.Element {
         try {
             const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
             console.log(LOGIN);
+            
+            if(LOGIN?.message === "log") {
+                NAVIGATE("/Content")
+            }
             
         }
         catch (error) {
