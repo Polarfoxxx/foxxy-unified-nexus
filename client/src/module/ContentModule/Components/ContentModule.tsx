@@ -1,5 +1,6 @@
 import React from "react";
 import "./style/content_style.css";
+import { useNavigate } from "react-router-dom";
 import { HeaderModule } from "../../HeaderModule";
 import { TittleBarModule } from "../../TittleBarModule";
 import { CalendarModule } from "../../CalendarModule";
@@ -7,8 +8,13 @@ import { MessageList } from "../../MessageModule";
 import { ColorSwitcher } from "../../ColorSwitcher";
 
 function ContentModule(): JSX.Element {
+    const NAVIGATE = useNavigate();
 const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
+React.useEffect(() => {
+ const KEY = sessionStorage.getItem("key");
+ KEY ?  NAVIGATE("/Content") : NAVIGATE("/LoginPage")
+},[])
 
     return (
         <div 

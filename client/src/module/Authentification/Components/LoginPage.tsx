@@ -22,6 +22,7 @@ function LoginPage(): JSX.Element {
             console.log(LOGIN);
             
             if(LOGIN?.message === "log") {
+            sessionStorage.setItem("key", LOGIN.message)
                 NAVIGATE("/Content")
             }
             
