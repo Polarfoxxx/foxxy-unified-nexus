@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 router.post("/user", async (req, res) => {
     const { usernames, password } = req.body;
+        
     try {
         /* hladanie uzivatela*/
         const user = await User.findOne({ username: usernames });
@@ -27,4 +28,3 @@ router.post("/user", async (req, res) => {
 });
 
 module.exports = router;
-

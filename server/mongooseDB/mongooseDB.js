@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 /* const mongo = "mongodb://127.0.0.1:27017/Calendar"; */
-const mongo = "mongodb+srv://suchovskymichal:z1PzyPDoR80XCXKN@cluster0.jhfpd8u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mongo = "mongodb+srv://suchovskymichal:z1PzyPDoR80XCXKN@cluster0.jhfpd8u.mongodb.net/Calendar?retryWrites=true&w=majority&appName=Cluster0";
 
 
 mongoose
@@ -18,18 +18,18 @@ const userSchema = new mongoose.Schema({
         events: [
             {
                 title: String,
-                start: Date | undefined,
-                end: Date | undefined
+                start: Date,
+                end: Date
             },
         ],
         messages: [
             {
-                date_create: Date | undefined,
+                date_create: Date,
                 message_content: String
             },
         ],
     }
-});
+}, { collection: 'users' });
 
 const User = mongoose.model('User', userSchema);
 

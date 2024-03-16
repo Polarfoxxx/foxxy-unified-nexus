@@ -1,6 +1,6 @@
 
 const post_Login = require('./CRUD/post_login');
-
+const post_Register = require("./CRUD/post_register");
 
 const express = require("express");
 const app = express();
@@ -11,6 +11,8 @@ app.listen(Port, () => console.log(`connect to port ${Port}`));
 app.use(cors());
 
 /* ---------------------------------------------------------------------------- */
+/* register POST method --------------------------------*/
+app.use('/register', post_Register);
 /* Login GET method ------------------------------------*/
 app.use('/login', post_Login);
 /* save GET method -------------------------------------*/
