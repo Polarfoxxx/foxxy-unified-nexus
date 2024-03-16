@@ -21,10 +21,13 @@ function ContentModule(): JSX.Element {
         };
     }, [NAVIGATE]);
 
+
+
+
     return (
         <div
             ref={themedDivRef}
-            data-theme="light"
+            data-theme=""
             className=" w-full h-full bg-slate-300 flex flex-col justify-center items-center">
             <header className=" w-full h-1/6 bg-slate-500 flex flex-col">
                 <div className=" w-full h-1/2 flex flex-row">

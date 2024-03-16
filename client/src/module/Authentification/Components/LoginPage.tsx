@@ -20,7 +20,8 @@ function LoginPage(): JSX.Element {
         try {
             const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
             if(LOGIN?.jwt) {
-            sessionStorage.setItem("jwt", LOGIN.jwt)
+            sessionStorage.setItem("jwt", LOGIN.jwt);
+            sessionStorage.setItem("theme", LOGIN.theme)
                 NAVIGATE("/Content")
             }
             

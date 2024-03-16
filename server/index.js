@@ -1,6 +1,7 @@
 
 const post_Login = require('./CRUD/post_login');
 const post_Register = require("./CRUD/post_register");
+const post_saveData = require("./CRUD/post_saveData");
 
 const express = require("express");
 const app = express();
@@ -16,4 +17,5 @@ app.use('/register', post_Register);
 /* Login GET method ------------------------------------*/
 app.use('/login', post_Login);
 /* save GET method -------------------------------------*/
+app.use('/save', post_saveData);
 
