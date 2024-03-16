@@ -19,12 +19,17 @@ function LoginPage(): JSX.Element {
     async function LoginUser(loginData: { userNames: string, password: string }) {
         try {
             const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
-            if(LOGIN?.jwt) {
-            sessionStorage.setItem("jwt", LOGIN.jwt);
-            sessionStorage.setItem("theme", LOGIN.theme)
+            if (LOGIN?.jwt) {
+                const DATA_FOR_SESSIONSTORAGE = {
+                    userName: LOGIN.userName,
+                    jwt: LOGIN.jwt,
+                    theme: LOGIN.theme
+                };
+                const STRING_TO_DATA = JSON.stringify(DATA_FOR_SESSIONSTORAGE)
+                sessionStorage.setItem("userDATA", STRING_TO_DATA);
                 NAVIGATE("/Content")
             }
-            
+
         }
         catch (error) {
             console.log(error);

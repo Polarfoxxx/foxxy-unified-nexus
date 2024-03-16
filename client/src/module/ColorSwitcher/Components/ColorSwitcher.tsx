@@ -11,10 +11,11 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
 
     /* nacitanie nstavej farby z db */
     React.useEffect(() => {
-        const LOAD_THEME = sessionStorage.getItem("theme")
+        const LOAD_THEME = sessionStorage.getItem("userDATA")
         if (LOAD_THEME !== null) {
-            props.themedDivRef.current?.setAttribute("data-theme", LOAD_THEME);
-            setApp_theme(LOAD_THEME)
+            const DATAS = JSON.parse(LOAD_THEME)
+            props.themedDivRef.current?.setAttribute("data-theme", DATAS.theme);
+            setApp_theme(DATAS.theme)
         }
     }, []);
 
@@ -25,21 +26,27 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
     };
 
     async function save_theme(selectTheme: string) {
-        // Volanie funkcie
-        const user = 'polarFoxx';
-        const customData = {
-            custom: {
-                theme: selectTheme
+        const Uer = sessionStorage.getItem("userDATA")
+
+        if (Uer !== null) {
+            const ff = JSON.parse(Uer)
+            // Volanie funkcie
+            const user = ff.userName;
+            const customData = {
+                custom: {
+                    theme: selectTheme
+                }
+            };
+
+
+            try {
+                const result = await AUTHENTIFICATION_API.saveData_API(user, customData);
+                console.log('Result:', result);
+            } catch (error) {
+                console.error('Error:', error);
             }
-        };
-
-
-        try {
-            const result = await AUTHENTIFICATION_API.saveData_API(user, customData);
-            console.log('Result:', result);
-        } catch (error) {
-            console.error('Error:', error);
         }
+
     }
 
 

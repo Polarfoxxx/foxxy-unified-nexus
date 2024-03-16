@@ -23,7 +23,7 @@ async function registerNewUser_API() {
 };
 
 /* --------------------------------------------------------------------------------------- */
-async function loginUser_API(loginData: { userNames: string, password: string }): Promise<{ status: number, jwt: string, theme:string} | undefined> {
+async function loginUser_API(loginData: { userNames: string, password: string }): Promise<{userName: string, status: number, jwt: string, theme:string} | undefined> {
   const LOGIN_DATA = {
     usernames: loginData.userNames,
     password: loginData.password
@@ -38,6 +38,7 @@ async function loginUser_API(loginData: { userNames: string, password: string })
     console.log(RESPO_DATA);
     
     return {
+      userName: RESPO_DATA.data.user_name,
       status: RESPO_DATA.status,
       jwt: RESPO_DATA.data.token,
       theme: RESPO_DATA.data.returned_theme

@@ -13,9 +13,10 @@ function ContentModule(): JSX.Element {
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
     React.useEffect(() => {
-        const JWT = sessionStorage.getItem("jwt");
+        const JWT = sessionStorage.getItem("userDATA");
         if (JWT !== null) {
-            servicesJWTdecodeAndValidity(JWT) ? NAVIGATE("/Content") : NAVIGATE("/LoginPage")
+            const DATA_ONOBJEKT = JSON.parse(JWT)
+            servicesJWTdecodeAndValidity(DATA_ONOBJEKT.jwt) ? NAVIGATE("/Content") : NAVIGATE("/LoginPage")
         } else {
             NAVIGATE("/LoginPage")
         };
