@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../mongooseDB/mongooseDB")
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
 
 router.post("/user", async (req, res) => {
     const { usernames, password } = req.body;
@@ -11,7 +13,7 @@ router.post("/user", async (req, res) => {
         const user = await User.findOne({ username: usernames });
         /* kontrola existencie uzivatela*/
         if (user) {
-            if (user.password === password) {
+            if (await bcrypt.compare(password, user.password)) {
                 // Generovanie JWT s časovou expiráciou
                 const token = jwt.sign({ usernames }, "secret", { expiresIn: "2h" });
                 res.status(200).json({ usernames, token });

@@ -2,11 +2,14 @@ const express = require('express');
 const router = express.Router();
 const User = require("../mongooseDB/mongooseDB");
 const Joi = require("joi");
+const bcrypt = require("bcrypt");
+
 
 router.post('/newUser', async (req, res) => {
   const {username , password} = req.body;
     try {
         // Hashovanie hesla
+      const hashedPassword = await bcrypt.hash(password, 10);
         const validateUser = Joi.object({
             username: Joi.string().min(3).required(),
             password: Joi.string().min(4).required(),
@@ -19,7 +22,7 @@ router.post('/newUser', async (req, res) => {
         // Vytvorte nového používateľa
         const newUser = {
             username: username,
-            password: password,
+            password: hashedPassword,
             custom: {
                 theme: ""
             },
