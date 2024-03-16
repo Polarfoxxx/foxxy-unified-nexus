@@ -6,16 +6,11 @@ const AUTHENTIFICATION_API = {
 };
 export default AUTHENTIFICATION_API;
 
+registerNewUser_API()
 
-
-/*   async function registerNewUser_API(props: Type_forAuthentication_API): Promise<Type_forRespo_objekt | undefined> {
-      const RESGISTER_DATA = {
-        username: props.emailValue,
-        password: props.passwordValue,
-      };
-    
+  async function registerNewUser_API(): Promise<any | undefined> {
       try {
-        const RESPO_DATA = await axios.post("http://localhost:4000/register/newUser", RESGISTER_DATA, {
+        const RESPO_DATA = await axios.post("http://localhost:4000/register/newUser", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -35,13 +30,12 @@ export default AUTHENTIFICATION_API;
           }
         }
       }
-    } */
+    } 
 
 /* --------------------------------------------------------------------------------------- */
-async function loginUser_API(loginData:{userName: string, password: string}): Promise<{status: number,
-    message: string,} | undefined> {
+async function loginUser_API(loginData:{userNames: string, password: string}): Promise<{status: number, jwt: string} | undefined> {
     const LOGIN_DATA = {
-        username: loginData.userName,
+        usernames: loginData.userNames,
         password: loginData.password
     };
 
@@ -51,10 +45,10 @@ async function loginUser_API(loginData:{userName: string, password: string}): Pr
                 "Content-Type": "application/json",
             },
         });
-        
         return {
             status: RESPO_DATA.status,
-            message: RESPO_DATA.data.status,
+            jwt: RESPO_DATA.data.token,
+
         };
     } catch (error) {
         console.log(error);

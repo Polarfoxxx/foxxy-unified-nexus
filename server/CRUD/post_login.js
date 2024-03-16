@@ -1,20 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../mongooseDB/mongooseDB")
-
+const jwt = require("jsonwebtoken");
 
 router.post("/user", async (req, res) => {
-    const { username, password } = req.body;
-
+    const { usernames, password } = req.body;
     try {
         /* hladanie uzivatela*/
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ username: usernames });
         /* kontrola existencie uzivatela*/
         if (user) {
             if (user.password === password) {
-                const status = "log"
                 // Generovanie JWT s časovou expiráciou
-                res.status(200).json({ user, username, status });
+                const token = jwt.sign({ usernames }, "secret", { expiresIn: "2h" });
+                res.status(200).json({ usernames, token });
             } else {
                 res.status(401).json({ message: "Incorrect password" });
             };
@@ -28,3 +27,4 @@ router.post("/user", async (req, res) => {
 });
 
 module.exports = router;
+

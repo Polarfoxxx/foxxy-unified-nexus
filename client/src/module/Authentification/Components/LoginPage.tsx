@@ -9,20 +9,18 @@ function LoginPage(): JSX.Element {
     const { handleSubmit, reset } = useInputValue()
     const submit = (v: TypeForInputsObject["v"]): void => {
         const LOGIN_DATA = {
-            userName: v[0].inputValues.toString(),
+            userNames: v[0].inputValues.toString(),
             password: v[1].inputValues.toString()
         }
         /* reset(); */
         LoginUser(LOGIN_DATA);
     };
 
-    async function LoginUser(loginData: { userName: string, password: string }) {
+    async function LoginUser(loginData: { userNames: string, password: string }) {
         try {
             const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
-            console.log(LOGIN);
-            
-            if(LOGIN?.message === "log") {
-            sessionStorage.setItem("key", LOGIN.message)
+            if(LOGIN?.jwt) {
+            sessionStorage.setItem("jwt", LOGIN.jwt)
                 NAVIGATE("/Content")
             }
             

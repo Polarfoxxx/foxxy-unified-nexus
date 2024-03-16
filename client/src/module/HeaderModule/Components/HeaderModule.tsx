@@ -5,7 +5,7 @@ function HeaderModule(): JSX.Element {
 const NAVIGATE = useNavigate();
 
 const handleClickLogOut = () => {
-    sessionStorage.removeItem("key")
+    sessionStorage.removeItem("jwt")
 NAVIGATE("/LoginPage")
 }
 

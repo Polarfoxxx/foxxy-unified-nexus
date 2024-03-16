@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.2.21",
     "axios": "^1.6.7",
     "foxxy_input_value": "^1.1.6",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-big-calendar": "^1.11.1",
     "react-datepicker": "^6.2.0",
