@@ -13,16 +13,13 @@ function ContentModule(): JSX.Element {
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
     React.useEffect(() => {
-        const JWT = sessionStorage.getItem("userDATA");
+        const JWT = sessionStorage.getItem("JWT");
         if (JWT !== null) {
-            const DATA_ONOBJEKT = JSON.parse(JWT)
-            servicesJWTdecodeAndValidity(DATA_ONOBJEKT.jwt) ? NAVIGATE("/Content") : NAVIGATE("/LoginPage")
+            servicesJWTdecodeAndValidity(JWT) ? NAVIGATE("/Content") : NAVIGATE("/LoginPage")
         } else {
             NAVIGATE("/LoginPage")
         };
     }, [NAVIGATE]);
-
-
 
 
     return (
@@ -30,15 +27,15 @@ function ContentModule(): JSX.Element {
             ref={themedDivRef}
             data-theme=""
             className=" w-full h-full bg-slate-300 flex flex-col justify-center items-center">
-            <header className=" w-full h-1/6 bg-slate-500 flex flex-col">
+            <header className=" w-full h-1/6 bg-thems-background_header flex flex-col">
                 <div className=" w-full h-1/2 flex flex-row">
-                    <div className=" w-full h-full">
+                    <div className=" w-full  min-w-64 h-full flex items-center justify-center ">
                         <HeaderModule />
                     </div>
-                    <div className=" min-w-64 h-full flex">
+                    <div className="w-full min-w-64 h-full flex items-center justify-center bg-white">
                         <TittleBarModule />
                     </div>
-                    <div className=" min-w-64 h-full flex">
+                    <div className="w-full min-w-64 h-full flex items-center justify-center bg-zinc-100">
                         <ColorSwitcher themedDivRef={themedDivRef} />
                     </div>
                 </div>

@@ -3,11 +3,20 @@ div[data-theme="light"] {
     /* buttonStyle */
     --background_button: rgb(245, 245, 245);
     --color_button: rgb(0, 0, 0);
+    /* appBackGround */
+    --background_header: white;
+    /* textColor */
+    --defaultTextColor: rgb(0, 0, 0);
+
 }
 
 
 div[data-theme="dark"] {
     /* buttonStyle */
-    --background_button: rgb(161, 161, 161);
-    --color_button: rgb(245, 245, 245);
+    --background_button: rgb(194, 86, 8);
+    --color_button: rgb(255, 255, 255);
+    /* appBackGround */
+    --background_header: rgb(30, 30, 30);
+    /* textColor */
+    --defaultTextColor: rgb(192, 192, 192);
 }

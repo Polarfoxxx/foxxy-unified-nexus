@@ -3,9 +3,11 @@ import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { AUTHENTIFICATION_API } from "../../apis/index.";
 import { useNavigate } from "react-router-dom";
+import { Container } from "../../Container";
 
 function LoginPage(): JSX.Element {
-    const NAVIGATE = useNavigate()
+    const NAVIGATE = useNavigate();
+    const { setAppData } = React.useContext(Container.Context);
     const { handleSubmit, reset } = useInputValue()
     const submit = (v: TypeForInputsObject["v"]): void => {
         const LOGIN_DATA = {
@@ -15,19 +17,19 @@ function LoginPage(): JSX.Element {
         /* reset(); */
         LoginUser(LOGIN_DATA);
     };
-
     async function LoginUser(loginData: { userNames: string, password: string }) {
         try {
             const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
             if (LOGIN?.jwt) {
                 const DATA_FOR_SESSIONSTORAGE = {
                     userName: LOGIN.userName,
-                    jwt: LOGIN.jwt,
-                    theme: LOGIN.theme
+                    appTheme: LOGIN.theme
                 };
-                const STRING_TO_DATA = JSON.stringify(DATA_FOR_SESSIONSTORAGE)
-                sessionStorage.setItem("userDATA", STRING_TO_DATA);
-                NAVIGATE("/Content")
+                setAppData({
+                    userLogData: DATA_FOR_SESSIONSTORAGE
+                });
+                sessionStorage.setItem("JWT", LOGIN.jwt);
+                NAVIGATE("/Content");
             }
 
         }

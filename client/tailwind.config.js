@@ -11,6 +11,11 @@ module.exports = {
           background_button: 'var(--background_button)',
           color_button: 'var(--color_button)',
           dark: '#CD5C5C',
+          /* appBackGround */
+          background_header: 'var(--background_header)',
+          /* textColor */
+          defaultTextColor: 'var(--defaultTextColor)',
+
         },
       },
     },

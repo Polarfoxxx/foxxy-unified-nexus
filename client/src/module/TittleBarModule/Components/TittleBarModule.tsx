@@ -6,10 +6,8 @@ function TittleBarModule(): JSX.Element {
 
 
     return (
-        <div className="w-full h-full flex flex-row justify-center items-center  ">
-            <div className="w-full h-full flex flex-row justify-center items-center">
-           
-            </div>
+        <div className="w-full h-full flex justify-center items-center bg-thems-background_header ">
+            <h1>dfsfdsfs</h1>
         </div>
     );
 };
