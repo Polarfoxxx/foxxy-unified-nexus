@@ -43,23 +43,44 @@ function LoginPage(): JSX.Element {
 
 
     return (
-        <div>
-            <form onSubmit={(e) => handleSubmit(e, submit)}>
-                <div>
-                    <input
-                        name="user"
-                        type="text" />
+        <div className=" w-full h-screen  flex flex-col bg-loginBackg">
+            <div className=" w-full h-1/4">
+            </div>
+            <div className="w-full h-full flex justify-center items-center">
+                <div className=" min-w-80 w-2/6  h-72 p-2 border-black border flex justify-center items-center flex-col bg-opacity-45 bg-slate-100"  >
+                    <div className=" w-full h-24 flex justify-center items-center">
+                        <h1 className=" text-4xl font-anta">
+                            Sign in
+                        </h1>
+                    </div>
+                    <form
+                        className="w-full h-full p-2 flex justify-center items-center  
+                                    flex-col gap-2 "
+                        onSubmit={(e) => handleSubmit(e, submit)}>
+                        <div className="w-full h-10">
+                            <input
+                                placeholder="user name"
+                                className=" w-full h-10 text-center pl-2"
+                                name="user"
+                                type="text" />
+                        </div>
+                        <div className="w-full h-10">
+                            <input
+                                placeholder="password"
+                                className=" w-full h-10 text-center pl-2"
+                                name="password"
+                                type="text" />
+                        </div>
+                        <button
+                            className=" w-24 h-8 mt-4 font-bold text-xl hover:text-blue-700"
+                            type='submit'>
+                            Sign in
+                        </button>
+                    </form>
                 </div>
-                <div>
-                    <input
-                        name="password"
-                        type="text" />
-                </div>
-                <button
-                    type='submit'>
-                    click me
-                </button>
-            </form>
+
+            </div>
+
         </div>
     );
 };

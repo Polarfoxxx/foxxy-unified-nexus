@@ -1,6 +1,6 @@
 import React from 'react';
-import { AUTHENTIFICATION_API } from '../../apis/index.';
-import { Container } from '../../Container';
+import { AUTHENTIFICATION_API } from '../../../apis/index.';
+import { Container } from '../../../Container';
 
 type Type_for_colorSwitcher = {
     themedDivRef: React.MutableRefObject<HTMLDivElement | null>
@@ -21,7 +21,7 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
     const handleColorChange = (selectTheme: string) => {
         props.themedDivRef.current?.setAttribute("data-theme", selectTheme);
         setApp_theme(selectTheme);
-     /*    save_theme(selectTheme); */
+        /*    save_theme(selectTheme); */
     };
 
     async function save_theme(selectTheme: string) {
@@ -47,9 +47,12 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
 
 
     return (
-        <div className=' w-full h-full flex items-center justify-end p-2'>
+        <div className=' w-full h-full flex flex-row items-center gap-3 justify-end p-2 pr-8 bg-thems-background_header'>
             <label
-                htmlFor="colorSwitcher">Vyberte barvu:</label>
+                className=' text-thems-defaultTextColor'
+                htmlFor="colorSwitcher">
+                Color theme:
+            </label>
             <select
                 id="colorSwitcher"
                 value={app_theme}

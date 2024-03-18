@@ -2,11 +2,11 @@ import React from "react";
 import "./style/content_style.css";
 import { servicesJWTdecodeAndValidity } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import { HeaderModule } from "../../HeaderModule";
-import { TittleBarModule } from "../../TittleBarModule";
+import { LogOutModule } from "../../HeaderModule/LogOutModule";
+import { TittleBarModule } from "../../HeaderModule/TittleBarModule";
 import { CalendarModule } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
-import { ColorSwitcher } from "../../ColorSwitcher";
+import { ColorSwitcher } from "../../HeaderModule/ColorSwitcher";
 
 function ContentModule(): JSX.Element {
     const NAVIGATE = useNavigate();
@@ -29,13 +29,13 @@ function ContentModule(): JSX.Element {
             className=" w-full h-full bg-slate-300 flex flex-col justify-center items-center">
             <header className=" w-full h-1/6 bg-thems-background_header flex flex-col">
                 <div className=" w-full h-1/2 flex flex-row">
-                    <div className=" w-full  min-w-64 h-full flex items-center justify-center ">
-                        <HeaderModule />
+                    <div className=" w-full  min-w-64 min-h-full flex items-center justify-center ">
+                        <LogOutModule />
                     </div>
-                    <div className="w-full min-w-64 h-full flex items-center justify-center bg-white">
+                    <div className=" w-2/4 min-w-64 min-h-full flex items-center justify-center ">
                         <TittleBarModule />
                     </div>
-                    <div className="w-full min-w-64 h-full flex items-center justify-center bg-zinc-100">
+                    <div className="w-full min-w-64 min-h-full flex items-center justify-center">
                         <ColorSwitcher themedDivRef={themedDivRef} />
                     </div>
                 </div>

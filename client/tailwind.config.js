@@ -2,8 +2,11 @@ module.exports = {
   content: ["./src/**/*.{html,js,ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'loginBackg': "url('/public/image/loginimg.jpg')",
+      },
       fontFamily: {
-        'sans': ['Anta', 'sans-serif'],
+        'anta': ['Anta', 'sans-serif'],
       },
       colors: {
         thems: {
