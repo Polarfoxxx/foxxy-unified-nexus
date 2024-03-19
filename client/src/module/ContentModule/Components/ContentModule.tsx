@@ -7,6 +7,7 @@ import { TittleBarModule } from "../../HeaderModule/TittleBarModule";
 import { CalendarModule } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
 import { ColorSwitcher } from "../../HeaderModule/ColorSwitcher";
+import { SubtitleModule } from "../../SubtitleModile";
 
 function ContentModule(): JSX.Element {
     const NAVIGATE = useNavigate();
@@ -26,10 +27,10 @@ function ContentModule(): JSX.Element {
         <div
             ref={themedDivRef}
             data-theme=""
-            className=" w-full h-full bg-slate-300 flex flex-col justify-center items-center">
-            <header className=" w-full h-1/6 bg-thems-background_header flex flex-col">
-                <div className=" w-full h-1/2 flex flex-row">
-                    <div className=" w-full  min-w-64 min-h-full flex items-center justify-center ">
+            className=" w-full h-full flex flex-col justify-center items-center">
+            <header className=" w-full h-28  bg-thems-background_header flex flex-col justify-center items-center">
+                <div className=" w-full h-full flex flex-row border border-red-600">
+                    <div className=" w-full min-w-64 h-full flex items-center justify-center ">
                         <LogOutModule />
                     </div>
                     <div className=" w-2/4 min-w-64 min-h-full flex items-center justify-center ">
@@ -39,24 +40,23 @@ function ContentModule(): JSX.Element {
                         <ColorSwitcher themedDivRef={themedDivRef} />
                     </div>
                 </div>
-                <div className="w-full h-1/2 bg-orange-100">
-                    <h3>podnadpis</h3>
+                <div className="w-full h-1/2 bg-orange-100 border border-red-100">
+                    <SubtitleModule />
                 </div>
             </header>
-            <article className=" w-full h-auto p-5  bg-slate-500">
+            <article className=" w-full h-auto p-5 bg-thems-background_content">
                 <div>
-                    <h1>article</h1>
                     <CalendarModule />
                 </div>
             </article>
-            <footer className=" w-full h-1/6 bg-green-600">
+            <footer className=" w-full h-auto bg-green-600">
                 <div>
                     <MessageList />
                 </div>
             </footer>
         </div>
-
     )
-}
+};
 
 export default ContentModule;
+

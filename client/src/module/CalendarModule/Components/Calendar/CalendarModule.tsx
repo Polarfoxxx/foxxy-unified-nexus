@@ -71,9 +71,9 @@ function CalendarModule(): JSX.Element {
   return (
     <div className=' w-full h-full flex items-center justify-center relative flex-col gap-5'>
       <div className=' w-full h-7 flex justify-end items-center '>
-        <button 
-        className=' w-48 h-7 text-thems-color_button bg-thems-background_button flex justify-center items-center hover:bg-slate-200'
-        onClick={handleClickNewEvent}>New eveent</button>
+        <button
+          className=' w-48 h-7 text-thems-color_button bg-thems-background_button flex justify-center items-center hover:bg-slate-200'
+          onClick={handleClickNewEvent}>New eveent</button>
       </div>
       <Calendar
         formats={formats}
@@ -83,7 +83,7 @@ function CalendarModule(): JSX.Element {
         events={events}
         style={{ height: 650, width: "90%" }}
         className="hover-effect-calendar"
-        onSelectEvent={handleEventClick}/>
+        onSelectEvent={handleEventClick} />
       {/* -------- */}
       {newEventContent}
       {/* -------- */}

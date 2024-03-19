@@ -16,6 +16,7 @@ module.exports = {
           dark: '#CD5C5C',
           /* appBackGround */
           background_header: 'var(--background_header)',
+          background_content: 'var(--background_content)',
           /* textColor */
           defaultTextColor: 'var(--defaultTextColor)',
 
