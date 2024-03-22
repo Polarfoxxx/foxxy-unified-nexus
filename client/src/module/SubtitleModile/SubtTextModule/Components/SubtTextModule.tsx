@@ -1,5 +1,5 @@
 
-function SubtitleModule(): JSX.Element {
+function SubtTextModule(): JSX.Element {
     return (
         <div className=" w-full h-full bg-thems-background_header"> 
             <h3 className=" text-thems-defaultTextColor">
@@ -9,4 +9,4 @@ function SubtitleModule(): JSX.Element {
     );
 };
 
-export default SubtitleModule;
+export default SubtTextModule;

@@ -1,0 +1,1 @@
+export { default as SubtTextModule } from "./Components/SubtTextModule";

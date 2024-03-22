@@ -7,7 +7,8 @@ import { TittleBarModule } from "../../HeaderModule/TittleBarModule";
 import { CalendarModule } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
 import { ColorSwitcher } from "../../HeaderModule/ColorSwitcher";
-import { SubtitleModule } from "../../SubtitleModile";
+import { SubtTextModule } from "../../SubtitleModile";
+import { ClockModule } from "../../SubtitleModile";
 
 function ContentModule(): JSX.Element {
     const NAVIGATE = useNavigate();
@@ -28,8 +29,8 @@ function ContentModule(): JSX.Element {
             ref={themedDivRef}
             data-theme=""
             className=" w-full h-full flex flex-col justify-center items-center">
-            <header className=" w-full h-28  bg-thems-background_header flex flex-col justify-center items-center">
-                <div className=" w-full h-full flex flex-row border border-red-600">
+            <header className=" w-full h-28  bg-thems-background_header border-b-2 border-blue-500 flex flex-col justify-center items-center">
+                <div className=" w-full h-full flex flex-row border ">
                     <div className=" w-full min-w-64 h-full flex items-center justify-center ">
                         <LogOutModule />
                     </div>
@@ -40,8 +41,13 @@ function ContentModule(): JSX.Element {
                         <ColorSwitcher themedDivRef={themedDivRef} />
                     </div>
                 </div>
-                <div className="w-full h-1/2 bg-orange-100 border border-red-100">
-                    <SubtitleModule />
+                <div className="w-full h-1/2 flex flex-row justify-between items-center pl-6 pr-6">
+                    <div className=" w-full h-full flex justify-center items-center">
+                        <SubtTextModule />
+                    </div>
+                    <div className=" w-full h-full flex justify-end items-center">
+                        <ClockModule />
+                    </div>
                 </div>
             </header>
             <article className=" w-full h-auto p-5 bg-thems-background_content">

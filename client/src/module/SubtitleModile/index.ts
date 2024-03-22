@@ -1,1 +1,2 @@
-export { default as SubtitleModule } from "./Components/SubtitleModule"; 
+export * from "./ClockModule"
+export * from "./SubtTextModule"

@@ -10,8 +10,6 @@ import NewEvent from '../NewEvent/NewEvent';
 import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
 
 
-
-
 interface MyEvent extends Event {
   title: string;
   start: Date;
