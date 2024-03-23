@@ -30,7 +30,7 @@ function ContentModule(): JSX.Element {
             data-theme=""
             className=" w-full h-full flex flex-col justify-center items-center">
             <header className=" w-full h-28  bg-thems-background_header border-b-2 border-blue-500 flex flex-col justify-center items-center">
-                <div className=" w-full h-full flex flex-row border ">
+                <div className=" w-full h-full flex flex-row  border-b-2">
                     <div className=" w-full min-w-64 h-full flex items-center justify-center ">
                         <LogOutModule />
                     </div>

@@ -1,10 +1,10 @@
 
 function SubtTextModule(): JSX.Element {
     return (
-        <div className=" w-full h-full bg-thems-background_header"> 
+        <div className=" w-full h-full bg-thems-background_header flex items-center justify-center">
             <h3 className=" text-thems-defaultTextColor">
-                Set your event..
-                </h3>
+                Hi. welcome back how can I help you ?
+            </h3>
         </div>
     );
 };

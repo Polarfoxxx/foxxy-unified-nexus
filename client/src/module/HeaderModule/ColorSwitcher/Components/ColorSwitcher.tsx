@@ -25,9 +25,9 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
     };
 
     async function save_theme(selectTheme: string) {
-        const Uer = sessionStorage.getItem("userDATA")
-        if (Uer !== null) {
-            const ff = JSON.parse(Uer)
+        const USER = sessionStorage.getItem("userDATA")
+        if (USER !== null) {
+            const ff = JSON.parse(USER)
             // Volanie funkcie
             const user = ff.userName;
             const customData = {
@@ -54,10 +54,11 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
                 Color theme:
             </label>
             <select
+            className=' w-16 text-center rounded-md cursor-pointer'
                 id="colorSwitcher"
                 value={app_theme}
                 onChange={(e) => handleColorChange(e.target.value)}>
-                <option value="light">light</option>
+                <option  value="light">light</option>
                 <option value="dark">dark</option>
             </select>
         </div>

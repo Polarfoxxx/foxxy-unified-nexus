@@ -16,7 +16,7 @@ function LogOutModule(): JSX.Element {
         <div className=" w-full h-full flex items-center justify-start  p-2 pl-8 ">
             <div>
                 <button
-                    className=" w-20 h-8 text-thems-color_button bg-thems-background_button hover:bg-slate-400"
+                    className=" w-20 h-8 text-thems-color_button bg-thems-background_button hover:bg-thems-background_button_hover rounded-md"
                     onClick={handleClickLogOut}>
                     Log out
                 </button>
