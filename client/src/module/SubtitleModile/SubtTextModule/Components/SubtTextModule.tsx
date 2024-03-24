@@ -1,8 +1,8 @@
 
 function SubtTextModule(): JSX.Element {
     return (
-        <div className=" w-full h-full bg-thems-background_header flex items-center justify-center">
-            <h3 className=" text-thems-defaultTextColor">
+        <div className=" w-full h-full flex items-center justify-end">
+            <h3 className=" text-thems-defaultTextColorDark">
                 Hi. welcome back how can I help you ?
             </h3>
         </div>

@@ -8,7 +8,8 @@ import { Container } from "../../Container";
 function LoginPage(): JSX.Element {
     const NAVIGATE = useNavigate();
     const { setAppData } = React.useContext(Container.Context);
-    const { handleSubmit, reset } = useInputValue()
+    const { handleSubmit, reset } = useInputValue();
+
     const submit = (v: TypeForInputsObject["v"]): void => {
         const LOGIN_DATA = {
             userNames: v[0].inputValues.toString(),
@@ -17,6 +18,7 @@ function LoginPage(): JSX.Element {
         /* reset(); */
         LoginUser(LOGIN_DATA);
     };
+
     async function LoginUser(loginData: { userNames: string, password: string }) {
         try {
             const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
@@ -30,17 +32,12 @@ function LoginPage(): JSX.Element {
                 });
                 sessionStorage.setItem("JWT", LOGIN.jwt);
                 NAVIGATE("/Content");
-            }
-
+            };
         }
         catch (error) {
             console.log(error);
-
         };
     };
-
-
-
 
     return (
         <div className=" w-full h-screen  flex flex-col bg-loginBackg">

@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
         events: [
             {
                 title: String,
+                comment: String,
                 start: Date,
                 end: Date
             },

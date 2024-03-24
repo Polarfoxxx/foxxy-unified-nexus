@@ -50,7 +50,7 @@ async function loginUser_API(loginData: { userNames: string, password: string })
 };
 
 /* --------------------------------------------------------------------------------------- */
-async function saveData_API(user: string, saveData: { custom?: { theme?: string }, data?: { events?: [], messages?: [] } }): Promise<{ status: number } | undefined> {
+async function saveData_API(user: string, saveData: any): Promise<{ status: number } | undefined> {
 
   if (saveData.custom) {
     const DATA_FORAPI = {

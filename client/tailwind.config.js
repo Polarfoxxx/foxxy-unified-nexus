@@ -3,8 +3,17 @@ module.exports = {
     "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js"],
   theme: {
     extend: {
+      backgroundSize: {
+        'auto': 'auto',
+        'cover': 'cover',
+        'contain': 'contain',
+        'fullNewEvent': '1000px',
+        "fullApp": "1920px",
+      },
       backgroundImage: {
         'loginBackg': "url('/public/image/loginimg.jpg')",
+        'background_newEventContent': "var(--background_newEventContent)",
+        'background_App': "var(--background_App)",
       },
       fontFamily: {
         'anta': ['Anta', 'sans-serif'],
@@ -15,14 +24,11 @@ module.exports = {
           background_button: 'var(--background_button)',
           color_button: 'var(--color_button)',
           background_button_hover: "var(--background_button_hover)",
-          /* appBackGround */
-          background_header: 'var(--background_header)',
-          background_content: 'var(--background_content)',
-          background_newEvent: 'var(--background_newEvent)',
-          background_newEventContent: "var(--background_newEventContent)",
-          background_newEventHeader: "var(--background_newEventHeader)",
           /* textColor */
           defaultTextColor: 'var(--defaultTextColor)',
+          defaultTextColorDark: 'var(--defaultTextColorDark)',
+          /* inputStyle */
+          inputBorder: "var(--inputBorder)",
 
         },
       },

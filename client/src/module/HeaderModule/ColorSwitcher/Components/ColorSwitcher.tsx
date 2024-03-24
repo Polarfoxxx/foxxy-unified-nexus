@@ -25,31 +25,27 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
     };
 
     async function save_theme(selectTheme: string) {
-        const USER = sessionStorage.getItem("userDATA")
-        if (USER !== null) {
-            const ff = JSON.parse(USER)
-            // Volanie funkcie
-            const user = ff.userName;
-            const customData = {
+            const USER = appData.userLogData.userName
+            const CUSTOM_DATA = {
                 custom: {
                     theme: selectTheme
-                }
+                },
             };
             try {
-                const result = await AUTHENTIFICATION_API.saveData_API(user, customData);
+                const result = await AUTHENTIFICATION_API.saveData_API(USER, CUSTOM_DATA);
                 console.log('Result:', result);
             } catch (error) {
                 console.error('Error:', error);
             };
         };
-    };
+    
 
 
 
     return (
-        <div className=' w-full h-full flex flex-row items-center gap-3 justify-end p-2 pr-8 bg-thems-background_header'>
+        <div className=' w-full h-full flex flex-row items-center gap-3 justify-end p-2 pr-8 bg-transparent'>
             <label
-                className=' text-thems-defaultTextColor'
+                className=' text-thems-defaultTextColorDark'
                 htmlFor="colorSwitcher">
                 Color theme:
             </label>

@@ -28,29 +28,29 @@ function ContentModule(): JSX.Element {
         <div
             ref={themedDivRef}
             data-theme=""
-            className=" w-full h-full flex flex-col justify-center items-center">
-            <header className=" w-full h-28  bg-thems-background_header border-b-2 border-blue-500 flex flex-col justify-center items-center">
-                <div className=" w-full h-full flex flex-row  border-b-2">
+            className=" w-full h-full flex flex-col justify-center items-center bg-background_App bg-fullApp">
+            <header className=" w-full h-28  bg-transparent flex flex-col justify-center items-center ">
+                <div className=" w-full h-full flex flex-row ">
                     <div className=" w-full min-w-64 h-full flex items-center justify-center ">
                         <LogOutModule />
                     </div>
-                    <div className=" w-2/4 min-w-64 min-h-full flex items-center justify-center ">
+                    <div className=" w-[30%] min-w-[300px] min-h-full flex items-center justify-center ">
                         <TittleBarModule />
                     </div>
-                    <div className="w-full min-w-64 min-h-full flex items-center justify-center">
+                    <div className="w-[30%] min-w-64 min-h-full flex items-center justify-center">
                         <ColorSwitcher themedDivRef={themedDivRef} />
                     </div>
                 </div>
-                <div className="w-full h-1/2 flex flex-row justify-between items-center pl-6 pr-6">
-                    <div className=" w-full h-full flex justify-center items-center">
+                <div className="w-full h-1/2 flex flex-row justify-between items-center pl-6 pr-6 ">
+                    <div className=" w-[100%] min-w-[300px] h-full flex justify-center items-center pr-4 ">
                         <SubtTextModule />
                     </div>
-                    <div className=" w-full h-full flex justify-end items-center">
+                    <div className=" w-[20%] min-w-[200px] h-full flex justify-end items-center  border-b-2 border-purple-300">
                         <ClockModule />
                     </div>
                 </div>
             </header>
-            <article className=" w-full h-auto p-5 bg-thems-background_content">
+            <article className=" w-full h-auto p-5 bg-transparent">
                 <div>
                     <CalendarModule />
                 </div>

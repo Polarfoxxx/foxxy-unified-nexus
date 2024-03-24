@@ -7,15 +7,15 @@ function ClockModule(): JSX.Element {
     React.useEffect(() => {
         setInterval(() => {
             const DATE = new Date();
-            const YEARS = DATE.getFullYear().toString();;
-            const MONTH = DATE.getMonth().toString();;
-            const DAY = DATE.getDay().toString();;
+            const YEARS = DATE.getFullYear().toString();
+            const MONTH = (DATE.getMonth() + 1).toString();
+            const DAY = DATE.getDate().toString();
             const HOURS = DATE.getHours().toString();
-            const MIN = DATE.getMinutes().toString();;
-            const SEC = DATE.getSeconds().toString();;
+            const MIN = DATE.getMinutes().toString();
+            const SEC = DATE.getSeconds().toString();
 
-            const TIME_PROD = `${+HOURS < 10 ? 0 + HOURS : HOURS}:${+MIN < 10 ? 0 + MIN : MIN}:${+SEC < 10 ? 0 + SEC : SEC}`
-            const DATE_PROD = `${DAY}.${MONTH} ${YEARS} `
+            const TIME_PROD = `${+HOURS < 10 ? 0 + HOURS : HOURS}:${+MIN < 10 ? 0 + MIN : MIN}:${+SEC < 10 ? 0 + SEC : SEC}`;
+            const DATE_PROD = `${DAY}.${MONTH} ${YEARS} `;
             setTime(TIME_PROD);
             setDate(DATE_PROD);
         }, 1000);

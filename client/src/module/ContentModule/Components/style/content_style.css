@@ -1,16 +1,17 @@
 div[data-theme="light"] {
     /* buttonStyle */
     --background_button: rgb(245, 245, 245);
-    --background_button_hover:rgb(195, 172, 208);
+    --background_button_hover: rgb(195, 172, 208);
     --color_button: rgb(0, 0, 0);
     /* appBackGround */
-    --background_header: rgb(119, 67, 219);
     --background_content: white;
-    --background_newEvent: rgb(119, 67, 219);
-    --background_newEventContent: rgb(127, 124, 134);
-    --background_newEventHeader: rgb(119, 67, 219);
+    --background_newEventContent: url('/public/image/nweEventBacgHeader.jpg');
+    --background_App: url('/public/image/lightAppBacgr.jpg');
     /* textColor */
     --defaultTextColor: rgb(248, 233, 255);
+    --defaultTextColorDark: rgb(0, 0, 0);
+    /* inputStyle */
+    --inputBorder: purple;
 }
 
 
@@ -22,11 +23,11 @@ div[data-theme="dark"] {
     /* appBackGround */
     --background_header: rgb(30, 30, 30);
     --background_content: rgb(0, 34, 77);
-    --background_newEvent: rgb(33, 33, 33);
     --background_newEventContent: rgb(65, 65, 65);
-    --background_newEventHeader: rgb(90, 84, 100);
     /* textColor */
     --defaultTextColor: rgb(192, 192, 192);
+    /* inputStyle */
+    --inputBorder: purple;
 
 }
 
