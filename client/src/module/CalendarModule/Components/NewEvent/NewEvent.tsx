@@ -1,17 +1,17 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import React, { useContext } from "react";
+import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightLong } from '@fortawesome/free-solid-svg-icons';
 import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
-import { AUTHENTIFICATION_API } from "../../../apis/index.";
+import { addEventAPI } from "../../../apis/index.";
 import { Type_for_NewEvent, Type_for_newEventData } from "./type";
 import { Container } from "../../../Container";
-
+import { NewRequest } from "../../../utils";
 
 function NewEvent(props: Type_for_NewEvent): JSX.Element {
-    const {appData} = useContext(Container.Context);
+    const { appData } = React.useContext(Container.Context);
     const [newEvent, setNewEvent] = React.useState<any>({ title: "", comment: "", start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
 
@@ -22,24 +22,31 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
         };
     };
 
-
     const submit = (v: TypeForInputsObject["v"]): void => {
-        const LOGIN_DATA: Type_for_newEventData = {
-            startDate: v[0].inputValues.toString(),
-            endDate: v[1].inputValues.toString(),
-            nameEvent: v[2].inputValues.toString(),
-            commentEvent: v[3].inputValues.toString(),
-        };
-        saveData(LOGIN_DATA);
-         reset();
+        const NEW_REQ = new NewRequest(
+            v[0].inputValues.toString(),
+            v[1].inputValues.toString(),
+            v[2].inputValues.toString(),
+            v[3].inputValues.toString(),
+        );
+        const SAVE_DATA: Type_for_newEventData | undefined = NEW_REQ.create();
+
+
+        SAVE_DATA &&
+            saveData(SAVE_DATA);
+        reset();
+        props.setNewEventContent(null);
     };
 
-    async function saveData(LOGIN_DATA: Type_for_newEventData) {
-        const USER = appData.userLogData.userName
+
+
+
+    async function saveData(SAVE_DATA: Type_for_newEventData) {
+        const USER = appData.userLogData.userName;
 
         try {
-            const SAVE = await AUTHENTIFICATION_API.saveData_API(USER, LOGIN_DATA)
-          
+            const SAVE = await addEventAPI(USER, SAVE_DATA);
+            console.log(SAVE);
         }
         catch (error) {
             console.log(error);
@@ -106,7 +113,6 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
                                 type="text"
                                 placeholder="Add Title"
                                 className=" w-56 h-7 rounded pl-3 pr-3 text-center  border border-thems-inputBorder"
-                                value={newEvent.title}
                             />
                         </div>
                         <div className="w-3/4 flex items-center justify-center flex-row gap-3">
@@ -118,7 +124,6 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
                                 type="text"
                                 placeholder="Comment"
                                 className=" w-3/4 h-7 rounded pl-3 pr-3 text-center  border border-thems-inputBorder"
-                                value={newEvent.comment}
                             />
                         </div>
                     </div>

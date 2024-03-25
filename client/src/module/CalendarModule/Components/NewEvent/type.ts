@@ -1,9 +1,11 @@
 
 export type Type_for_newEventData = {
-    startDate: string,
-    endDate: string,
-    nameEvent: string,
-    commentEvent: string,
+    event: {
+        startDate: string,
+        endDate: string,
+        nameEvent: string,
+        commentEvent: string,
+    }
 };
 
 

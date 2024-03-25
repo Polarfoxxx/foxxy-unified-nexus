@@ -1,6 +1,7 @@
 import React from 'react';
-import { AUTHENTIFICATION_API } from '../../../apis/index.';
+import { addEventAPI } from '../../../apis/index.';
 import { Container } from '../../../Container';
+import { Type_for_saveDataTheme } from './types';
 
 type Type_for_colorSwitcher = {
     themedDivRef: React.MutableRefObject<HTMLDivElement | null>
@@ -25,22 +26,19 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
     };
 
     async function save_theme(selectTheme: string) {
-            const USER = appData.userLogData.userName
-            const CUSTOM_DATA = {
-                custom: {
-                    theme: selectTheme
-                },
-            };
-            try {
-                const result = await AUTHENTIFICATION_API.saveData_API(USER, CUSTOM_DATA);
-                console.log('Result:', result);
-            } catch (error) {
-                console.error('Error:', error);
-            };
+        const USER = appData.userLogData.userName
+        const SAVE_DATA: Type_for_saveDataTheme = {
+            custom: {
+                theme: selectTheme
+            },
         };
-    
-
-
+        try {
+            const result = await addEventAPI(USER, SAVE_DATA);
+            console.log('Result:', result);
+        } catch (error) {
+            console.error('Error:', error);
+        };
+    };
 
     return (
         <div className=' w-full h-full flex flex-row items-center gap-3 justify-end p-2 pr-8 bg-transparent'>
@@ -50,11 +48,11 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
                 Color theme:
             </label>
             <select
-            className=' w-16 text-center rounded-md cursor-pointer'
+                className=' w-16 text-center rounded-md cursor-pointer'
                 id="colorSwitcher"
                 value={app_theme}
                 onChange={(e) => handleColorChange(e.target.value)}>
-                <option  value="light">light</option>
+                <option value="light">light</option>
                 <option value="dark">dark</option>
             </select>
         </div>

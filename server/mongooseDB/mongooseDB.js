@@ -17,15 +17,15 @@ const userSchema = new mongoose.Schema({
     data: {
         events: [
             {
-                title: String,
-                comment: String,
-                start: Date,
-                end: Date
+                startDate: String,
+                endDate: String,
+                nameEvent: String,
+                commentEvent: String
             },
         ],
         messages: [
             {
-                date_create: Date,
+                date_create: String,
                 message_content: String
             },
         ],
@@ -36,3 +36,4 @@ const User = mongoose.model('User', userSchema);
 
 
 module.exports = User;
+

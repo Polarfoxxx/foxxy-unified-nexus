@@ -3,7 +3,6 @@ import axios from "axios";
 
 const AUTHENTIFICATION_API = {
   loginUser_API,
-  saveData_API
 };
 export default AUTHENTIFICATION_API;
 
@@ -49,31 +48,5 @@ async function loginUser_API(loginData: { userNames: string, password: string })
   };
 };
 
-/* --------------------------------------------------------------------------------------- */
-async function saveData_API(user: string, saveData: any): Promise<{ status: number } | undefined> {
-
-  if (saveData.custom) {
-    const DATA_FORAPI = {
-      userName: user,
-      save_Data: {
-        custom: saveData.custom
-      }
-    }
-
-    try {
-      const RESPO_DATA = await axios.post("http://localhost:4000/save/data", DATA_FORAPI, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      return {
-        status: RESPO_DATA.status,
-
-      };
-    } catch (error) {
-      console.log(error);
-    };
-  };
-};
 
 

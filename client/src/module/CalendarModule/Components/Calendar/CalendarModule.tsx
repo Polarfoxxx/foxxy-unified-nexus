@@ -8,6 +8,8 @@ import getDay from 'date-fns/getDay'
 import React from 'react'
 import NewEvent from '../NewEvent/NewEvent';
 import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
+import { loadEvent_API } from '../../../apis/index.';
+import { Container } from '../../../Container';
 
 
 interface MyEvent extends Event {
@@ -51,9 +53,26 @@ const events: MyEvent[] = [
   },
 ];
 function CalendarModule(): JSX.Element {
+  const { appData } = React.useContext(Container.Context);
   const [date, setDate] = React.useState<Date>();
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
 
+
+  React.useEffect(() => {
+    loadEvents()
+  }, []);
+
+  async function loadEvents() {
+    const USER = appData.userLogData.userName;
+    try {
+      const LOAD = await loadEvent_API(USER);
+      console.log(LOAD);
+      
+    }
+    catch (error) {
+      console.log(error);
+    };
+  }
 
   const handleEventClick = (event: MyEvent) => {
     console.log(event);
