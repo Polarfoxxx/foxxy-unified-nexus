@@ -1,10 +1,7 @@
 import axios from "axios";
-import { Type_for_NewEvent } from "../../CalendarModule/Components/NewEvent/type";
+import { Type_from_loadEvent_API } from "./types";
 
-
-async function loadEvent_API(user: string): Promise<{ status: number, data: Type_for_NewEvent[] } | undefined> {
-    console.log(user);
-    
+async function loadEvent_API(user: string): Promise<Type_from_loadEvent_API | undefined> {
     try {
         const LOAD_DATA = await axios.get("http://localhost:4000/load/data", {
             params: {
@@ -18,7 +15,7 @@ async function loadEvent_API(user: string): Promise<{ status: number, data: Type
     } catch (error) {
         console.error(error);
         return undefined;
-    }
-}
+    };
+};
 
 export default loadEvent_API;

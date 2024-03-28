@@ -2,13 +2,10 @@ import React from "react";
 import "./style/content_style.css";
 import { servicesJWTdecodeAndValidity } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import { LogOutModule } from "../../HeaderModule/LogOutModule";
-import { TittleBarModule } from "../../HeaderModule/TittleBarModule";
+import { LogOutModule, ColorSwitcher, TittleBarModule } from "../../HeaderModule";
 import { CalendarModule } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
-import { ColorSwitcher } from "../../HeaderModule/ColorSwitcher";
-import { SubtTextModule } from "../../SubtitleModile";
-import { ClockModule } from "../../SubtitleModile";
+import { SubtTextModule, ClockModule } from "../../SubtitleModile";
 
 function ContentModule(): JSX.Element {
     const NAVIGATE = useNavigate();

@@ -11,7 +11,6 @@ const Context = React.createContext<Type_forContext>({
     setAppData: () => { },
 });
 
-
 function Provider({ children }: Type_forProvider): JSX.Element {
     const [appData, setAppData] = React.useState<{ userLogData: { userName: string, appTheme: string } }>({
         userLogData: {
@@ -19,7 +18,6 @@ function Provider({ children }: Type_forProvider): JSX.Element {
             appTheme: ""
         }
     });
-
 
     return (
         <Context.Provider value={{ appData, setAppData }}>

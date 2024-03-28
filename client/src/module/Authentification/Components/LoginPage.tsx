@@ -4,6 +4,7 @@ import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { AUTHENTIFICATION_API } from "../../apis/index.";
 import { useNavigate } from "react-router-dom";
 import { Container } from "../../Container";
+import { Type_for_LoginUser } from "./types";
 
 function LoginPage(): JSX.Element {
     const NAVIGATE = useNavigate();
@@ -15,11 +16,11 @@ function LoginPage(): JSX.Element {
             userNames: v[0].inputValues.toString(),
             password: v[1].inputValues.toString()
         }
-        /* reset(); */
+         reset();
         LoginUser(LOGIN_DATA);
     };
 
-    async function LoginUser(loginData: { userNames: string, password: string }) {
+    async function LoginUser(loginData: Type_for_LoginUser) {
         try {
             const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
             if (LOGIN?.jwt) {

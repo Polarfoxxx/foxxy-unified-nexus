@@ -17,8 +17,8 @@ const userSchema = new mongoose.Schema({
     data: {
         events: [
             {
-                startDate: String,
-                endDate: String,
+                startDate: Date,
+                endDate: Date,
                 nameEvent: String,
                 commentEvent: String
             },

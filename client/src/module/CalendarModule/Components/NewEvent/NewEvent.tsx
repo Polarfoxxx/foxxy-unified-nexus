@@ -6,7 +6,7 @@ import { faRightLong } from '@fortawesome/free-solid-svg-icons';
 import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { addEventAPI } from "../../../apis/index.";
-import { Type_for_NewEvent, Type_for_newEventData } from "./type";
+import { Type_for_NewEvent, Type_for_newEventFor_API } from "./type";
 import { Container } from "../../../Container";
 import { NewRequest } from "../../../utils";
 
@@ -29,23 +29,18 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
             v[2].inputValues.toString(),
             v[3].inputValues.toString(),
         );
-        const SAVE_DATA: Type_for_newEventData | undefined = NEW_REQ.create();
-
+        const SAVE_DATA: Type_for_newEventFor_API | undefined = NEW_REQ.create();
 
         SAVE_DATA &&
-            saveData(SAVE_DATA);
-        reset();
-        props.setNewEventContent(null);
+            saveData(SAVE_DATA); reset(); props.setNewEventContent(null);
     };
 
 
-
-
-    async function saveData(SAVE_DATA: Type_for_newEventData) {
+    async function saveData(SAVE_DATA: Type_for_newEventFor_API) {
         const USER = appData.userLogData.userName;
 
         try {
-            const SAVE = await addEventAPI(USER, SAVE_DATA);
+            const SAVE = await addEventAPI({USER, SAVE_DATA});
             console.log(SAVE);
         }
         catch (error) {

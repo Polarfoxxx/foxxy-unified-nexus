@@ -1,11 +1,8 @@
 import React from 'react';
 import { addEventAPI } from '../../../apis/index.';
 import { Container } from '../../../Container';
-import { Type_for_saveDataTheme } from './types';
+import { Type_for_saveDataTheme, Type_for_colorSwitcher} from './types';
 
-type Type_for_colorSwitcher = {
-    themedDivRef: React.MutableRefObject<HTMLDivElement | null>
-}
 
 function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
     const { appData } = React.useContext(Container.Context);
@@ -33,7 +30,7 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
             },
         };
         try {
-            const result = await addEventAPI(USER, SAVE_DATA);
+            const result = await addEventAPI({USER, SAVE_DATA});
             console.log('Result:', result);
         } catch (error) {
             console.error('Error:', error);

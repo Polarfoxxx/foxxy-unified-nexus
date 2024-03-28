@@ -11,7 +11,6 @@ import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
 import { loadEvent_API } from '../../../apis/index.';
 import { Container } from '../../../Container';
 
-
 interface MyEvent extends Event {
   title: string;
   start: Date;
@@ -40,38 +39,39 @@ const events: MyEvent[] = [
     title: "Important Appointment",
     start: new Date(2024, 2, 11, 14, 30), // 10. března 2024 v 14:30
     end: new Date(2024, 2, 14, 15, 30),   // 10. března 2024 v 15:30
-  },
-  {
-    title: "kjbjkbkbkj",
-    start: new Date(2024, 2, 11, 16, 30), // 10. března 2024 v 14:30
-    end: new Date(2024, 2, 11, 18, 30),   // 10. března 2024 v 15:30
-  },
-  {
-    title: "Conference",
-    start: new Date(2021, 6, 20),
-    end: new Date(2021, 6, 23),
-  },
+  }
 ];
+
+
 function CalendarModule(): JSX.Element {
   const { appData } = React.useContext(Container.Context);
-  const [date, setDate] = React.useState<Date>();
+  const [dateEvent, setDateEvent] = React.useState<any[]>();
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
-
+console.log("oks");
 
   React.useEffect(() => {
-    loadEvents()
+    loadEvents();
   }, []);
 
   async function loadEvents() {
     const USER = appData.userLogData.userName;
     try {
       const LOAD = await loadEvent_API(USER);
-      console.log(LOAD);
-      
+      if (LOAD && LOAD.data) {
+        const TRANSLATE_DATA = LOAD.data.map(item => {
+          const START_DATE = new Date(item.startDate);
+          const END_DATE = new Date(item.endDate);
+          return { start: START_DATE, end: END_DATE, title: item.nameEvent, comment: item.commentEvent };
+        });
+
+        setDateEvent(TRANSLATE_DATA);
+      } else {
+        console.log("Chyba: Neplatné údaje získané zo servera");
+      }
+    } catch (error) {
+      console.log("Chyba pri načítavaní udalostí:", error);
     }
-    catch (error) {
-      console.log(error);
-    };
+
   }
 
   const handleEventClick = (event: MyEvent) => {
@@ -82,7 +82,6 @@ function CalendarModule(): JSX.Element {
   const handleClickNewEvent = () => {
     setNewEventContent(<NewEvent setNewEventContent={setNewEventContent} />)
   }
-
 
 
   return (
@@ -97,7 +96,7 @@ function CalendarModule(): JSX.Element {
         localizer={localizer}
         startAccessor="start"
         endAccessor="end"
-        events={events}
+        events={dateEvent}
         style={{ height: 650, width: "90%" }}
         className="hover-effect-calendar"
         onSelectEvent={handleEventClick} />

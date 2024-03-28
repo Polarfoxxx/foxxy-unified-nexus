@@ -1,4 +1,4 @@
-
+import { type_for_loginUser_API, type_from_loginUser_API_returned } from "./types";
 import axios from "axios";
 
 const AUTHENTIFICATION_API = {
@@ -7,22 +7,20 @@ const AUTHENTIFICATION_API = {
 export default AUTHENTIFICATION_API;
 
 
-async function registerNewUser_API() {
+/* async function registerNewUser_API() {
   try {
     const RESPO_DATA = await axios.post("http://localhost:4000/register/newUser", {
       headers: {
         "Content-Type": "application/json",
       },
     });
-    console.log(RESPO_DATA);
-
   } catch (error) {
     console.log(error);
   };
 };
-
+ */
 /* --------------------------------------------------------------------------------------- */
-async function loginUser_API(loginData: { userNames: string, password: string }): Promise<{userName: string, status: number, jwt: string, theme:string} | undefined> {
+async function loginUser_API(loginData: type_for_loginUser_API): Promise<type_from_loginUser_API_returned | undefined> {
   const LOGIN_DATA = {
     usernames: loginData.userNames,
     password: loginData.password
@@ -34,14 +32,11 @@ async function loginUser_API(loginData: { userNames: string, password: string })
         "Content-Type": "application/json",
       },
     });
-    console.log(RESPO_DATA);
-    
     return {
       userName: RESPO_DATA.data.user_name,
       status: RESPO_DATA.status,
       jwt: RESPO_DATA.data.token,
       theme: RESPO_DATA.data.returned_theme
-
     };
   } catch (error) {
     console.log(error);

@@ -1,2 +1,1 @@
-export * from "./ClockModule"
-export * from "./SubtTextModule"
+export * from "./Components"
