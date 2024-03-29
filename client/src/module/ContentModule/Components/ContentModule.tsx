@@ -42,7 +42,7 @@ function ContentModule(): JSX.Element {
                     <div className=" w-[100%] min-w-[300px] h-full flex justify-center items-center pr-4 ">
                         <SubtTextModule />
                     </div>
-                    <div  className=" w-[5%] min-w-[200px] h-full flex justify-end items-center  border-b-2 border-purple-300 ">
+                    <div  className=" w-[5%] min-w-[200px] rounded-l-3xl h-full flex justify-end items-center  border-b-2 border-purple-300 ">
                         <CurrentAllEvent />
                     </div>
                     <div className=" w-[15%] min-w-[200px] h-full flex justify-end items-center  border-b-2 border-purple-300">

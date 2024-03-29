@@ -15,9 +15,6 @@ module.exports = {
         'background_newEventContent': "var(--background_newEventContent)",
         'background_App': "var(--background_App)",
       },
-      fontFamily: {
-        'anta': ['Anta', 'sans-serif'],
-      },
       colors: {
         thems: {
           /* buttonStyle*/
@@ -30,7 +27,9 @@ module.exports = {
           /* inputStyle */
           inputBorder: "var(--inputBorder)",
           /* backgroundCont */
-        minBackg_content: "var(--minBackg_content)",
+          blockBackground_hover: "car(--blockBackground_hover)",
+          eventBackground: "var(--eventBackground)",
+          minBackg_content: "var(--minBackg_content)",
 
 
         },

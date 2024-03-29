@@ -4,6 +4,8 @@ div[data-theme="light"] {
     --background_button_hover: rgb(195, 172, 208);
     --color_button: rgb(0, 0, 0);
     /* appBackGround */
+    --blockBackground_hover: black;
+    --eventBackground: rgba(188, 101, 247, 0.726);
     --minBackg_content: rgb(182, 50, 223);
     --background_content: white;
     --background_newEventContent: url('/public/image/nweEventBacgHeader.jpg');
