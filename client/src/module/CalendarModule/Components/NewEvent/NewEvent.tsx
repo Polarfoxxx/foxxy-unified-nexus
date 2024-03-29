@@ -11,7 +11,7 @@ import { Container } from "../../../Container";
 import { NewRequest } from "../../../utils";
 
 function NewEvent(props: Type_for_NewEvent): JSX.Element {
-    const { appData } = React.useContext(Container.Context);
+    const { appData, setAppData } = React.useContext(Container.Context);
     const [newEvent, setNewEvent] = React.useState<any>({ title: "", comment: "", start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
 
@@ -29,10 +29,17 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
             v[2].inputValues.toString(),
             v[3].inputValues.toString(),
         );
-        const SAVE_DATA: Type_for_newEventFor_API | undefined = NEW_REQ.create();
+        const SAVE_DATA: Type_for_newEventFor_API | string = NEW_REQ.create();
 
-        SAVE_DATA &&
+        if (typeof SAVE_DATA !== "string" && SAVE_DATA.event) {
             saveData(SAVE_DATA); reset(); props.setNewEventContent(null);
+            setAppData({
+                ...appData,
+                allEvents: [...appData.allEvents, SAVE_DATA.event]
+            });
+        } else {
+            alert(SAVE_DATA)
+        };
     };
 
 
@@ -40,7 +47,7 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
         const USER = appData.userLogData.userName;
 
         try {
-            const SAVE = await addEventAPI({USER, SAVE_DATA});
+            const SAVE = await addEventAPI({ USER, SAVE_DATA });
             console.log(SAVE);
         }
         catch (error) {
@@ -67,6 +74,7 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
                         <div className="w-full h-full flex justify-center items-center flex-row gap-3">
                             <h4>Set start event:</h4>
                             <DatePicker
+                                autoComplete="false"
                                 showTimeSelect
                                 timeFormat="HH:mm"
                                 timeIntervals={15}
@@ -86,6 +94,7 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
                                 Set end event:
                             </h4>
                             <DatePicker
+                                autoComplete="false"
                                 showTimeSelect
                                 timeFormat="HH:mm"
                                 timeIntervals={15}

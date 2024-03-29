@@ -1,18 +1,18 @@
 
 export type Type_for_newEventFor_API = {
     event: {
-        startDate: Date,
-        endDate: Date,
-        nameEvent: string,
-        commentEvent: string,
+        start: Date;
+        end: Date;
+        title: string;
+        comment: string;
     }
 };
 
 export type Type_for_newEventFrom_DB = {
-        startDate: Date,
-        endDate: Date,
-        nameEvent: string,
-        commentEvent: string,
+    start: Date;
+    end: Date;
+    title: string;
+    comment: string;
 };
 
 export type Type_for_NewEvent = {

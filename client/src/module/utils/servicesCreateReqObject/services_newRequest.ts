@@ -15,20 +15,34 @@ class NewRequest {
     this.commentEvent = commentEvent || '';
   };
 
-  create(): Type_for_newEventFor_API | undefined {
-    if (this.startDate && this.endDate && this.nameEvent && this.commentEvent) {
-      const RET_DATA = {
-        event: {
-          startDate: services_changeStringToDateFormat(this.startDate),
-          endDate: services_changeStringToDateFormat(this.endDate),
-          nameEvent: this.nameEvent,
-          commentEvent: this.commentEvent
-        }
-      };
-      return RET_DATA;
-    };
-    return undefined;
+  validate(): boolean {
+    const VALIDATE_DATE = services_changeStringToDateFormat(this.startDate) < services_changeStringToDateFormat(this.endDate);
+    const VALIDATE_SET_EVENT = services_changeStringToDateFormat(this.startDate) > new Date();
+    const VALIDATE_STRING = this.nameEvent.length > 3 && this.commentEvent.length > 3;
+    
+    if (VALIDATE_DATE && VALIDATE_STRING && VALIDATE_SET_EVENT) {
+      return true
+    } else
+      return false
   };
+
+  create(): Type_for_newEventFor_API | string {
+    if (this.startDate && this.endDate && this.nameEvent && this.commentEvent) {
+      if (this.validate()) {
+        const RET_DATA = {
+          event: {
+            start: services_changeStringToDateFormat(this.startDate),
+            end: services_changeStringToDateFormat(this.endDate),
+            title: this.nameEvent,
+            comment: this.commentEvent
+          }
+        };
+        return RET_DATA;
+      };
+      return "The error the validate data";
+    };
+    return "The"
+  }
 };
 
 export default NewRequest;

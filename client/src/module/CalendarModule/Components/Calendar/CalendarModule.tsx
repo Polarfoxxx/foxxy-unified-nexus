@@ -10,6 +10,7 @@ import NewEvent from '../NewEvent/NewEvent';
 import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
 import { loadEvent_API } from '../../../apis/index.';
 import { Container } from '../../../Container';
+import { Type_for_newEventFrom_DB } from '../NewEvent/type';
 
 interface MyEvent extends Event {
   title: string;
@@ -44,10 +45,9 @@ const events: MyEvent[] = [
 
 
 function CalendarModule(): JSX.Element {
-  const { appData } = React.useContext(Container.Context);
-  const [dateEvent, setDateEvent] = React.useState<any[]>();
+  const { appData, setAppData } = React.useContext(Container.Context);
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
-console.log("oks");
+  console.log("oks");
 
   React.useEffect(() => {
     loadEvents();
@@ -58,13 +58,17 @@ console.log("oks");
     try {
       const LOAD = await loadEvent_API(USER);
       if (LOAD && LOAD.data) {
-        const TRANSLATE_DATA = LOAD.data.map(item => {
-          const START_DATE = new Date(item.startDate);
-          const END_DATE = new Date(item.endDate);
-          return { start: START_DATE, end: END_DATE, title: item.nameEvent, comment: item.commentEvent };
+        const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = LOAD.data.map(item => {
+          const START_DATE = new Date(item.start);
+          const END_DATE = new Date(item.end);
+          return { start: START_DATE, end: END_DATE, title: item.title, comment: item.comment };
         });
 
-        setDateEvent(TRANSLATE_DATA);
+        setAppData({
+          ...appData,
+          allEvents: TRANSLATE_DATA
+        });
+
       } else {
         console.log("Chyba: Neplatné údaje získané zo servera");
       }
@@ -96,7 +100,7 @@ console.log("oks");
         localizer={localizer}
         startAccessor="start"
         endAccessor="end"
-        events={dateEvent}
+        events={appData.allEvents}
         style={{ height: 650, width: "90%" }}
         className="hover-effect-calendar"
         onSelectEvent={handleEventClick} />

@@ -17,10 +17,10 @@ const userSchema = new mongoose.Schema({
     data: {
         events: [
             {
-                startDate: Date,
-                endDate: Date,
-                nameEvent: String,
-                commentEvent: String
+                start: Date,
+                end: Date,
+                title: String,
+                comment: String
             },
         ],
         messages: [

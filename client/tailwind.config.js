@@ -29,6 +29,9 @@ module.exports = {
           defaultTextColorDark: 'var(--defaultTextColorDark)',
           /* inputStyle */
           inputBorder: "var(--inputBorder)",
+          /* backgroundCont */
+        minBackg_content: "var(--minBackg_content)",
+
 
         },
       },

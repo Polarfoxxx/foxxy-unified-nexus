@@ -8,7 +8,7 @@ import { Type_for_LoginUser } from "./types";
 
 function LoginPage(): JSX.Element {
     const NAVIGATE = useNavigate();
-    const { setAppData } = React.useContext(Container.Context);
+    const { appData, setAppData } = React.useContext(Container.Context);
     const { handleSubmit, reset } = useInputValue();
 
     const submit = (v: TypeForInputsObject["v"]): void => {
@@ -29,6 +29,7 @@ function LoginPage(): JSX.Element {
                     appTheme: LOGIN.theme
                 };
                 setAppData({
+                    ...appData,
                     userLogData: DATA_FOR_SESSIONSTORAGE
                 });
                 sessionStorage.setItem("JWT", LOGIN.jwt);

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { LogOutModule, ColorSwitcher, TittleBarModule } from "../../HeaderModule";
 import { CalendarModule } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
-import { SubtTextModule, ClockModule } from "../../SubtitleModile";
+import { SubtTextModule, ClockModule, CurrentAllEvent } from "../../SubtitleModile";
 
 function ContentModule(): JSX.Element {
     const NAVIGATE = useNavigate();
@@ -42,7 +42,10 @@ function ContentModule(): JSX.Element {
                     <div className=" w-[100%] min-w-[300px] h-full flex justify-center items-center pr-4 ">
                         <SubtTextModule />
                     </div>
-                    <div className=" w-[20%] min-w-[200px] h-full flex justify-end items-center  border-b-2 border-purple-300">
+                    <div  className=" w-[5%] min-w-[200px] h-full flex justify-end items-center  border-b-2 border-purple-300 ">
+                        <CurrentAllEvent />
+                    </div>
+                    <div className=" w-[15%] min-w-[200px] h-full flex justify-end items-center  border-b-2 border-purple-300">
                         <ClockModule />
                     </div>
                 </div>
