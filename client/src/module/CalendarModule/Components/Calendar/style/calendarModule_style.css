@@ -40,10 +40,17 @@
     align-items: center;
     justify-content: start;
     padding-left: 25px;
-    background-color: var(--eventBackground);
     border-radius: 3px;
+    border: none;
+    background-color: transparent;
+}
+.rbc-event{
+    background-color: var(--eventBackground);
 }
 
+.rbc-event.rbc-selected{
+    background-color: #265985;
+}
 /* button navigacia */
 .rbc-btn-group>button {
     background-color: var(--background_button);
@@ -69,4 +76,10 @@
 .rbc-time-header.rbc-overflowing,
 .rbc-row.rbc-month-header {
     background-color: var(--background_content);
+}
+
+/* aktualny den */
+.rbc-day-bg.rbc-today {
+background-color: rgb(0, 169, 255);
+
 }

@@ -47,7 +47,6 @@ const events: MyEvent[] = [
 function CalendarModule(): JSX.Element {
   const { appData, setAppData } = React.useContext(Container.Context);
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
-  console.log("oks");
 
   React.useEffect(() => {
     loadEvents();
@@ -74,19 +73,16 @@ function CalendarModule(): JSX.Element {
       }
     } catch (error) {
       console.log("Chyba pri načítavaní udalostí:", error);
-    }
-
-  }
+    };
+  };
 
   const handleEventClick = (event: MyEvent) => {
     console.log(event);
-
-  }
+  };
 
   const handleClickNewEvent = () => {
-    setNewEventContent(<NewEvent setNewEventContent={setNewEventContent} />)
-  }
-
+    setNewEventContent(<NewEvent setNewEventContent={setNewEventContent} />);
+  };
 
   return (
     <div className=' w-full h-full flex items-center justify-center relative flex-col gap-5'>
