@@ -24,12 +24,16 @@ module.exports = {
           /* textColor */
           defaultTextColor: 'var(--defaultTextColor)',
           defaultTextColorDark: 'var(--defaultTextColorDark)',
+          current_day: "var(--current_day)",
           /* inputStyle */
           inputBorder: "var(--inputBorder)",
           /* backgroundCont */
-          blockBackground_hover: "car(--blockBackground_hover)",
+          dayBackground_hover: "var(--dayBackground_hover)",
           eventBackground: "var(--eventBackground)",
           minBackg_content: "var(--minBackg_content)",
+          dayBackground_header: "var(--dayBackground_header)",
+          eventBackground_selected: "var(--eventBackground_selected)",
+          current_time_line: "var(--current_time_line)"
 
 
         },

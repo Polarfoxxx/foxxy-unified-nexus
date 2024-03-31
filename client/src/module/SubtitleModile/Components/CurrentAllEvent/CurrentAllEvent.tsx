@@ -18,7 +18,7 @@ function CurrentAllEvent(): JSX.Element {
                     </h3>
                 </div>
                 <div className="w-[30%] h-full flex justify-center items-center">
-                <h3 className=" text-thems-defaultTextColor font-bold">
+                <h3 className=" text-thems-defaultTextColor">
                         {eventCounter}
                     </h3>
                 </div>
