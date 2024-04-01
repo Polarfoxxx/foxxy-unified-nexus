@@ -11,6 +11,8 @@ import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
 import { loadEvent_API } from '../../../apis/index.';
 import { Container } from '../../../Container';
 import { Type_for_newEventFrom_DB } from '../NewEvent/type';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface MyEvent extends Event {
   title: string;
@@ -104,6 +106,7 @@ function CalendarModule(): JSX.Element {
         onSelectEvent={handleEventClick} />
       {/* -------- */}
       {newEventContent}
+      <ToastContainer />
       {/* -------- */}
     </div>
 
