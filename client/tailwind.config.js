@@ -33,7 +33,8 @@ module.exports = {
           minBackg_content: "var(--minBackg_content)",
           dayBackground_header: "var(--dayBackground_header)",
           eventBackground_selected: "var(--eventBackground_selected)",
-          current_time_line: "var(--current_time_line)"
+          current_time_line: "var(--current_time_line)",
+          minBackg_Two_content: "var(--minBackg_Two_content)"
 
 
         },

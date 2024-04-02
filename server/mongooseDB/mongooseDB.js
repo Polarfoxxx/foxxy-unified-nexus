@@ -25,8 +25,10 @@ const userSchema = new mongoose.Schema({
         ],
         messages: [
             {
-                date_create: String,
-                message_content: String
+                start_message: Date,
+                end_message: Date,
+                title_message: String,
+                content_message: String
             },
         ],
     }

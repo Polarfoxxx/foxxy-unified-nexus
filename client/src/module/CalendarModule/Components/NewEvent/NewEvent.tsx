@@ -7,6 +7,7 @@ import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { addEventAPI } from "../../../apis/index.";
 import { Type_for_NewEvent, Type_for_newEventFor_API } from "./type";
+import { Type_for_newMessageFor_API } from "../../../MessageModule";
 import { Container } from "../../../Container";
 import { NewRequest } from "../../../utils";
 
@@ -23,15 +24,16 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
     };
 
     const submit = (v: TypeForInputsObject["v"]): void => {
-        const NEW_REQ = new NewRequest(
-            v[0].inputValues.toString(),
-            v[1].inputValues.toString(),
-            v[2].inputValues.toString(),
-            v[3].inputValues.toString(),
-        );
-        const SAVE_DATA: Type_for_newEventFor_API | string = NEW_REQ.create();
+        const NEW_REQ = new NewRequest({
+            startDate_event: v[0].inputValues.toString(),
+            endDate_event: v[1].inputValues.toString(),
+            name_Event: v[2].inputValues.toString(),
+            comment_Event: v[3].inputValues.toString(),
+        });
+        
+        const SAVE_DATA: Type_for_newMessageFor_API| Type_for_newEventFor_API | string = NEW_REQ.create();
 
-        if (typeof SAVE_DATA !== "string" && SAVE_DATA.event) {
+        if (typeof SAVE_DATA !== "string" && "event" in SAVE_DATA) {
             saveData(SAVE_DATA); reset(); props.setNewEventContent(null);
             setAppData({
                 ...appData,

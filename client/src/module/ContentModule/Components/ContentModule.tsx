@@ -55,8 +55,8 @@ function ContentModule(): JSX.Element {
                     <CalendarModule />
                 </div>
             </article>
-            <footer className=" w-full h-auto bg-green-600">
-                <div>
+            <footer className=" w-full h-auto bg-green-600 flex justify-center items-center p-5">
+                <div  className=" w-[95%] min-h-[600px] bg-slate-400 flex justify-center items-center">
                     <MessageList />
                 </div>
             </footer>

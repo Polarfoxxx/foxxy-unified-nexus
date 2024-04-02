@@ -1,4 +1,5 @@
 import { Type_for_newEventFrom_DB } from "../../CalendarModule";
+import { Type_for_newMesssageFrom_DB } from "../../MessageModule";
 
 export type Type_forProvider = {
     children: JSX.Element | JSX.Element[]
@@ -9,7 +10,8 @@ export type Type_for_appDataFromProvider = {
         userName: string,
         appTheme: string
     },
-    allEvents: Type_for_newEventFrom_DB[]
+    allEvents: Type_for_newEventFrom_DB[],
+    allMessage: Type_for_newMesssageFrom_DB[]
 };
 
 export type Type_forContext = {

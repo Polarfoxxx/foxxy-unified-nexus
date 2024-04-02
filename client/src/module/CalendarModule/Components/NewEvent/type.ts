@@ -1,4 +1,4 @@
-
+/* event */
 export type Type_for_newEventFor_API = {
     event: {
         start: Date;
@@ -18,3 +18,4 @@ export type Type_for_newEventFrom_DB = {
 export type Type_for_NewEvent = {
     setNewEventContent: React.Dispatch<React.SetStateAction<JSX.Element | null>>
 };
+

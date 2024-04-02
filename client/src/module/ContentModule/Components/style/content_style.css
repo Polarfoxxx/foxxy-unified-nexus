@@ -6,10 +6,11 @@ div[data-theme="light"] {
     /* appBackGround */
     --dayBackground_hover: black;
     --dayBackground_header: rgb(40, 40, 40);
-    --current_time_line: blue;
+    --current_time_line: rgb(255, 0, 0);
     --eventBackground: rgb(49, 162, 34);
     --eventBackground_selected: rgb(12, 100, 0);
     --minBackg_content: rgb(182, 50, 223);
+    --minBackg_Two_content: rgb(195, 121, 230);
     --background_content: white;
     --background_newEventContent: url('/public/image/nweEventBacgHeader.jpg');
     --background_App: url('/public/image/lightAppBacgr.jpg');

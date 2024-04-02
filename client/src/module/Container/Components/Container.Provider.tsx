@@ -7,7 +7,8 @@ const Context = React.createContext<Type_forContext>({
             userName: "",
             appTheme: ""
         },
-        allEvents: []
+        allEvents: [],
+        allMessage:[]
     },
     setAppData: () => { },
 });
@@ -18,7 +19,8 @@ function Provider({ children }: Type_forProvider): JSX.Element {
             userName: "",
             appTheme: ""
         },
-        allEvents: []
+        allEvents: [],
+        allMessage: []
     });
 
     return (

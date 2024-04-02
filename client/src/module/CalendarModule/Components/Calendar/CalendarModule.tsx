@@ -86,14 +86,40 @@ function CalendarModule(): JSX.Element {
     setNewEventContent(<NewEvent setNewEventContent={setNewEventContent} />);
   };
 
+  React.useEffect(() => {
+    let timeInterval = setInterval(() => {
+      const ALL_EVENTS = appData.allEvents;
+      const CURRENT_TIME = new Date();
+
+      ALL_EVENTS.forEach((item) => {
+        const staet = item.start
+        if (staet.getFullYear() === CURRENT_TIME.getFullYear() &&
+          staet.getMonth() === CURRENT_TIME.getMonth() &&
+          staet.getDate() === CURRENT_TIME.getDate() &&
+          staet.getHours() === CURRENT_TIME.getHours() &&
+          staet.getMinutes() === CURRENT_TIME.getMinutes()) {
+          console.log("event alert");
+          toast(`Event time ${item.title} comment ${item.comment} at ${item.start.getHours()}`);
+        }
+      });
+    }, 60000);
+
+    return (() => {
+      clearInterval(timeInterval)
+    })
+  }, [appData.allEvents.length]);
+
+
   return (
     <div className=' w-full h-full flex items-center justify-center relative flex-col gap-5'>
-      <div className=' w-full h-7 flex justify-end items-center '>
-        <button
-          className=' w-48 h-7 text-thems-color_button border border-slate-400 bg-thems-background_button flex justify-center items-center hover:bg-thems-background_button_hover rounded-md'
-          onClick={handleClickNewEvent}>
-          New eveent
-        </button>
+      <div className='sticky top-3 w-full h-9 flex justify-end items-center  z-50'>
+        <div className=' bg-thems-minBackg_content w-[250px] h-full flex justify-center items-center rounded-[25px]'>
+          <button
+            className=' w-48 h-[25px] text-thems-color_button border border-slate-400 bg-thems-background_button flex justify-center items-center hover:bg-thems-background_button_hover rounded-[20px]'
+            onClick={handleClickNewEvent}>
+            New event
+          </button>
+        </div>
       </div>
       <Calendar
         formats={formats}
@@ -106,7 +132,16 @@ function CalendarModule(): JSX.Element {
         onSelectEvent={handleEventClick} />
       {/* -------- */}
       {newEventContent}
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={60000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light" />
       {/* -------- */}
     </div>
 

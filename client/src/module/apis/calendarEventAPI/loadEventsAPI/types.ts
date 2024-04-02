@@ -1,4 +1,4 @@
-import { Type_for_newEventFrom_DB } from "../../CalendarModule";
+import { Type_for_newEventFrom_DB } from "../../../CalendarModule";
 
 export type Type_from_loadEvent_API = {
     status: number,
