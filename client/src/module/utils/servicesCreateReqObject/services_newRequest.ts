@@ -7,7 +7,7 @@ type Type_for_Constructor = {
     endDate_event?: string;
     name_Event?: string;
     comment_Event?: string;
-    startDate_message?: string;
+    startDate_message?: Date;
     title_message?: string;
     content_Message?: string;
     endDate_message?: string;
@@ -18,7 +18,7 @@ class NewRequest {
     endDate_event?: string;
     name_Event?: string;
     comment_Event?: string;
-    startDate_message?: string;
+    startDate_message?: Date;
     title_message?: string;
     content_Message?: string;
     endDate_message?: string;
@@ -39,8 +39,8 @@ class NewRequest {
                 return false;
             }
         } else {
-            const VALIDATE_DATE = services_changeStringToDateFormat(this.startDate_message!) < services_changeStringToDateFormat(this.endDate_message!);
-            const VALIDATE_SET_EVENT = services_changeStringToDateFormat(this.startDate_message!) > new Date();
+            const VALIDATE_DATE = true
+            const VALIDATE_SET_EVENT = true;
             const VALIDATE_STRING = this.content_Message!.length > 3 && this.title_message!.length > 3;
 
             if (VALIDATE_DATE && VALIDATE_STRING && VALIDATE_SET_EVENT) {
@@ -69,7 +69,7 @@ class NewRequest {
             if (this.validate("message")) {
                 const RET_DATA: Type_for_newMessageFor_API = {
                     message: {
-                        start_message: services_changeStringToDateFormat(this.startDate_message),
+                        start_message: (this.startDate_message),
                         end_message: services_changeStringToDateFormat(this.endDate_message),
                         title_message: this.title_message,
                         content_message: this.content_Message // Použití správné vlastnosti

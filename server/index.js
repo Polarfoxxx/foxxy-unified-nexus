@@ -3,6 +3,7 @@ const post_Login = require('./CRUD/post_login');
 const post_Register = require("./CRUD/post_register");
 const post_saveData = require("./CRUD/post_saveData");
 const get_loadEvents = require("./CRUD/get_loadEvents");
+const get_loadMessages = require("./CRUD/get_loadMessages");
 
 const express = require("express");
 const app = express();
@@ -19,5 +20,7 @@ app.use('/register', post_Register);
 app.use('/login', post_Login);
 /* save GET method -------------------------------------*/
 app.use('/save', post_saveData);
-/* save GET method -------------------------------------*/
+/* load GET method -------------------------------------*/
 app.use('/load', get_loadEvents);
+/* load GET method -------------------------------------*/
+app.use('/load', get_loadMessages);

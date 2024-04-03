@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Type_for_newMessageFor_API } from "./types";
 import { Type_for_newEventFor_API } from "../../../CalendarModule";
+import { loadMessage_API } from "../../../apis/messageAPI";
 
 function MessageList(): JSX.Element {
     const [messageList, setMessageList] = React.useState<any[]>([]);
@@ -15,17 +16,36 @@ function MessageList(): JSX.Element {
     const { handleSubmit, reset } = useInputValue();
     const { appData, setAppData } = React.useContext(Container.Context);
 
+    React.useEffect(() => {
+        loadMessageAPI()
+    }, [])
+
+    async function loadMessageAPI() {
+        const USER = appData.userLogData.userName;
+        try {
+            const LOAD = await loadMessage_API(USER);
+console.log(LOAD);
+
+            setAppData({
+                ...appData,
+                allMessage: LOAD.data
+            });
+
+        } catch (error) {
+            console.log("Chyba pri načítavaní udalostí:", error);
+        };
+    }
+
+
+
     const submit = (v: TypeForInputsObject["v"]): void => {
         const NEW_REQ = new NewRequest({
-            startDate_message: v[0].inputValues.toString(),
-            title_message: v[1].inputValues.toString(),
-            content_Message: v[2].inputValues.toString(),
-            endDate_message: v[3].inputValues.toString()
+            startDate_message: new Date(),
+            title_message: v[0].inputValues.toString(),
+            content_Message: v[1].inputValues.toString(),
+            endDate_message: v[2].inputValues.toString()
         });
-
         const SAVE_DATA: Type_for_newEventFor_API | Type_for_newMessageFor_API | string = NEW_REQ.create();
-        console.log(SAVE_DATA);
-
         if (typeof SAVE_DATA !== "string" && "message" in SAVE_DATA) {
             saveData(SAVE_DATA); reset();
             setAppData({
@@ -83,8 +103,9 @@ function MessageList(): JSX.Element {
             </div>
             <div className=" w-full h-[100%] flex items-center justify-center bg-white" >
                 {
-                    messageList.map((item, key) =>
+                    appData.allMessage.map((item, key) =>
                         <div key={key}>
+                            {item.content_message}
                         </div>
                     )
                 }
