@@ -8,6 +8,8 @@ async function loadEvent_API(user: string): Promise<Type_from_loadEvent_API | un
                 userName: user
             }
         });
+        console.log(LOAD_DATA.data);
+        
         return {
             status: LOAD_DATA.status,
             data: LOAD_DATA.data.message

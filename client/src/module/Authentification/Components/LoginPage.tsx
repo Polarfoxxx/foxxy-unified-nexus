@@ -3,7 +3,7 @@ import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { AUTHENTIFICATION_API } from "../../apis/index.";
 import { useNavigate } from "react-router-dom";
-import { Container } from "../../Container";
+import { Container } from "../../ContainerModule";
 import { Type_for_LoginUser } from "./types";
 
 function LoginPage(): JSX.Element {
@@ -28,10 +28,10 @@ function LoginPage(): JSX.Element {
                     userName: LOGIN.userName,
                     appTheme: LOGIN.theme
                 };
-                setAppData({
-                    ...appData,
+                setAppData(prevAppData => ({
+                    ...prevAppData,
                     userLogData: DATA_FOR_SESSIONSTORAGE
-                });
+                }));
                 sessionStorage.setItem("JWT", LOGIN.jwt);
                 NAVIGATE("/Content");
             };

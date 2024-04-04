@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Container } from "../../../Container";
+import { Container } from "../../../ContainerModule";
 
-function LogOutModule(): JSX.Element {
+function LogOut(): JSX.Element {
     const { appData } = React.useContext(Container.Context);
     const NAVIGATE = useNavigate();
 
@@ -26,4 +26,4 @@ function LogOutModule(): JSX.Element {
     );
 };
 
-export default LogOutModule;
+export default LogOut;

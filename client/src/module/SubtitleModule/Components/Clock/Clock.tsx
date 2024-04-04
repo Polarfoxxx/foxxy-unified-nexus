@@ -1,6 +1,6 @@
 import React from "react";
 
-function ClockModule(): JSX.Element {
+function Clock(): JSX.Element {
     const [time, setTime] = React.useState("");
     const [date, setDate] = React.useState("");
 
@@ -35,4 +35,4 @@ function ClockModule(): JSX.Element {
 
 };
 
-export default ClockModule;
+export default Clock;

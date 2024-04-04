@@ -1,10 +1,10 @@
 /* components */
 export {
     default as ClockModule
-} from "./ClockModule/ClockModule";
+} from "./Clock/Clock";
 export {
     default as SubtTextModule
-} from "./SubtTextModule/SubtTextModule";
+} from "./SubtText/SubtText";
 export {
     default as CurrentAllEvent
 } from "./CurrentAllEvent/CurrentAllEvent";

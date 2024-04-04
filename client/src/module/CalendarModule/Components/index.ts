@@ -1,7 +1,11 @@
 /* components */
 export {
-    default as CalendarModule
-} from "./Calendar/CalendarModule";
+    default as Calendar
+} from "./Calendar/Calendar";
+
+export {
+    default as NewEvent
+} from "./NewEvent/NewEvent";
 
 
 /* types */

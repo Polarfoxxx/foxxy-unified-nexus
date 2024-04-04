@@ -1,5 +1,5 @@
 import React from "react"
-import { Container } from "../../../Container"
+import { Container } from "../../../ContainerModule"
 
 function CurrentAllEvent(): JSX.Element {
     const { appData } = React.useContext(Container.Context);
@@ -27,4 +27,4 @@ function CurrentAllEvent(): JSX.Element {
     );
 };
 
-export default CurrentAllEvent
+export default CurrentAllEvent;

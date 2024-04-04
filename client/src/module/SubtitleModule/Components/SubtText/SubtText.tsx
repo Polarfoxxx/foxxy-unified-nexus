@@ -1,5 +1,5 @@
 
-function SubtTextModule(): JSX.Element {
+function SubtText(): JSX.Element {
     return (
         <div className=" w-full h-full flex items-center justify-end">
             <h3 className=" text-thems-defaultTextColorDark">
@@ -9,4 +9,4 @@ function SubtTextModule(): JSX.Element {
     );
 };
 
-export default SubtTextModule;
+export default SubtText;

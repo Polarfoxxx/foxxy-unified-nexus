@@ -8,7 +8,7 @@ import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { addEventAPI } from "../../../apis/index.";
 import { Type_for_NewEvent, Type_for_newEventFor_API } from "./type";
 import { Type_for_newMessageFor_API } from "../../../MessageModule";
-import { Container } from "../../../Container";
+import { Container } from "../../../ContainerModule";
 import { NewRequest } from "../../../utils";
 
 function NewEvent(props: Type_for_NewEvent): JSX.Element {
@@ -32,13 +32,12 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
         });
         
         const SAVE_DATA: Type_for_newMessageFor_API| Type_for_newEventFor_API | string = NEW_REQ.create();
-
         if (typeof SAVE_DATA !== "string" && "event" in SAVE_DATA) {
             saveData(SAVE_DATA); reset(); props.setNewEventContent(null);
-            setAppData({
-                ...appData,
+            setAppData(prevAppData => ({
+                ...prevAppData,
                 allEvents: [...appData.allEvents, SAVE_DATA.event]
-            });
+            }));
         } else {
             alert(SAVE_DATA)
         };
@@ -142,10 +141,8 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
                     </div>
                 </form>
             </div>
-
         </div>
-
     );
 };
 
-export default NewEvent
+export default NewEvent;

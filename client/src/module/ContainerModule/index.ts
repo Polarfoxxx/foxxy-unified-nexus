@@ -1,5 +1,7 @@
 /* components */
-export { default as Container } from "./Components/Container.Provider";
+export {
+    default as Container
+} from "./Components/Container.Provider";
 
 /* types */
 export type {

@@ -3,11 +3,11 @@ export {
     default as ColorSwitcher
 } from "./ColorSwitcher/ColorSwitcher";
 export {
-    default as LogOutModule
-} from "./LogOutModule/LogOutModule";
+    default as LogOut
+} from "./LogOut/LogOut";
 export {
-    default as TittleBarModule
-} from "./TittleBarModule/TittleBarModule"
+    default as TittleBar
+} from "./TittleBar/TittleBar"
 
 /* types */
 export type {

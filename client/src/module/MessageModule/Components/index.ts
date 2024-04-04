@@ -1,5 +1,11 @@
 /* components */
-export { default as MessageList } from "./MessageList/MessageList"
+export {
+    default as MessageList
+} from "./MessageList/MessageList";
+
+export {
+    default as NewMessage
+} from "./NewMessage/NewMessage";
 
 /* types */
 export type {

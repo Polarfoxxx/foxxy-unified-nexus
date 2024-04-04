@@ -1,6 +1,6 @@
 import React from 'react';
 import { addEventAPI } from '../../../apis/index.';
-import { Container } from '../../../Container';
+import { Container } from '../../../ContainerModule';
 import { Type_for_saveDataTheme, Type_for_colorSwitcher} from './types';
 
 

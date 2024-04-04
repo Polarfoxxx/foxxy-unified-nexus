@@ -1,6 +1,6 @@
 import { Calendar, dateFnsLocalizer, DateLocalizer, Event } from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "./style/calendarModule_style.css"
+import "./style/calendar_style.css"
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
@@ -9,7 +9,7 @@ import React from 'react'
 import NewEvent from '../NewEvent/NewEvent';
 import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
 import { loadEvent_API } from '../../../apis/index.';
-import { Container } from '../../../Container';
+import { Container } from '../../../ContainerModule';
 import { Type_for_newEventFrom_DB } from '../NewEvent/type';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,7 +46,7 @@ const events: MyEvent[] = [
 ];
 
 
-function CalendarModule(): JSX.Element {
+function CalendarMod(): JSX.Element {
   const { appData, setAppData } = React.useContext(Container.Context);
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
 
@@ -65,10 +65,10 @@ function CalendarModule(): JSX.Element {
           return { start: START_DATE, end: END_DATE, title: item.title, comment: item.comment };
         });
 
-        setAppData({
-          ...appData,
+        setAppData(prevAppData => ({
+          ...prevAppData,
           allEvents: TRANSLATE_DATA
-        });
+        }));
 
       } else {
         console.log("Chyba: Neplatné údaje získané zo servera");
@@ -86,21 +86,21 @@ function CalendarModule(): JSX.Element {
     setNewEventContent(<NewEvent setNewEventContent={setNewEventContent} />);
   };
 
+  /* casove overovanie platnosti udalosti a alert */
   React.useEffect(() => {
     let timeInterval = setInterval(() => {
       const ALL_EVENTS = appData.allEvents;
       const CURRENT_TIME = new Date();
 
       ALL_EVENTS.forEach((item) => {
-        const staet = item.start
-        if (staet.getFullYear() === CURRENT_TIME.getFullYear() &&
-          staet.getMonth() === CURRENT_TIME.getMonth() &&
-          staet.getDate() === CURRENT_TIME.getDate() &&
-          staet.getHours() === CURRENT_TIME.getHours() &&
-          staet.getMinutes() === CURRENT_TIME.getMinutes()) {
-          console.log("event alert");
+        const START_EVENT = item.start
+        if (START_EVENT.getFullYear() === CURRENT_TIME.getFullYear() &&
+        START_EVENT.getMonth() === CURRENT_TIME.getMonth() &&
+        START_EVENT.getDate() === CURRENT_TIME.getDate() &&
+        START_EVENT.getHours() === CURRENT_TIME.getHours() &&
+        START_EVENT.getMinutes() === CURRENT_TIME.getMinutes()) {
           toast(`Event time ${item.title} comment ${item.comment} at ${item.start.getHours()}`);
-        }
+        };
       });
     }, 60000);
 
@@ -149,4 +149,4 @@ function CalendarModule(): JSX.Element {
 
 }
 
-export default CalendarModule;
+export default CalendarMod;

@@ -3,7 +3,7 @@ import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { addMessage_API } from "../../../apis/messageAPI";
 import { NewRequest } from "../../../utils";
-import { Container } from "../../../Container";
+import { Container } from "../../../ContainerModule";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Type_for_newMessageFor_API } from "./types";
@@ -18,25 +18,20 @@ function MessageList(): JSX.Element {
 
     React.useEffect(() => {
         loadMessageAPI()
-    }, [])
+    }, []);
 
     async function loadMessageAPI() {
         const USER = appData.userLogData.userName;
         try {
             const LOAD = await loadMessage_API(USER);
-console.log(LOAD);
-
-            setAppData({
-                ...appData,
+            setAppData(prevAppData => ({
+                ...prevAppData,
                 allMessage: LOAD.data
-            });
-
+            }));
         } catch (error) {
             console.log("Chyba pri načítavaní udalostí:", error);
         };
-    }
-
-
+    };
 
     const submit = (v: TypeForInputsObject["v"]): void => {
         const NEW_REQ = new NewRequest({
@@ -48,10 +43,11 @@ console.log(LOAD);
         const SAVE_DATA: Type_for_newEventFor_API | Type_for_newMessageFor_API | string = NEW_REQ.create();
         if (typeof SAVE_DATA !== "string" && "message" in SAVE_DATA) {
             saveData(SAVE_DATA); reset();
-            setAppData({
-                ...appData,
-                allMessage: [...appData.allMessage, SAVE_DATA.message]
-            });
+            setAppData(prevAppData => ({
+                ...prevAppData,
+                allMessage: [...prevAppData.allMessage, SAVE_DATA.message]
+            }));
+            
         } else {
             alert(SAVE_DATA)
         };
@@ -71,7 +67,7 @@ console.log(LOAD);
     return (
         <div className="w-full h-[600px] flex items-center justify-center flex-col bg-amber-700">
             <div className=" w-full h-[10%] flex items-center justify-center">
-
+                <h2>Your message</h2>
             </div>
             <div className=" w-full h-[20%] flex items-center justify-center">
                 <form
@@ -102,13 +98,17 @@ console.log(LOAD);
                 </form>
             </div>
             <div className=" w-full h-[100%] flex items-center justify-center bg-white" >
-                {
-                    appData.allMessage.map((item, key) =>
-                        <div key={key}>
-                            {item.content_message}
-                        </div>
-                    )
-                }
+                <div className=" w-[90%] h-auto flex justify-center items-start gap-2 flex-col">
+                    {
+                        appData.allMessage.map((item, key) =>
+                            <div
+                                className=" w-[70%] h-[50px] bg-slate-300 "
+                                key={key}>
+                                {item.content_message}
+                            </div>
+                        )
+                    }
+                </div>
             </div>
         </div>
     );

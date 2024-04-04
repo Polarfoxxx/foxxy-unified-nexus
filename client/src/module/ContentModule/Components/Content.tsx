@@ -2,12 +2,12 @@ import React from "react";
 import "./style/content_style.css";
 import { servicesJWTdecodeAndValidity } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import { LogOutModule, ColorSwitcher, TittleBarModule } from "../../HeaderModule";
-import { CalendarModule } from "../../CalendarModule";
+import { LogOut, ColorSwitcher, TittleBar } from "../../HeaderModule";
+import { Calendar } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
-import { SubtTextModule, ClockModule, CurrentAllEvent } from "../../SubtitleModile";
+import { SubtTextModule, ClockModule, CurrentAllEvent } from "../../SubtitleModule";
 
-function ContentModule(): JSX.Element {
+function Content(): JSX.Element {
     const NAVIGATE = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -20,7 +20,6 @@ function ContentModule(): JSX.Element {
         };
     }, [NAVIGATE]);
 
-
     return (
         <div
             ref={themedDivRef}
@@ -29,10 +28,10 @@ function ContentModule(): JSX.Element {
             <header className=" w-full h-28  bg-transparent flex flex-col justify-center items-center ">
                 <div className=" w-full h-full flex flex-row ">
                     <div className=" w-full min-w-64 h-full flex items-center justify-center ">
-                        <LogOutModule />
+                        <LogOut />
                     </div>
                     <div className=" w-[30%] min-w-[300px] min-h-full flex items-center justify-center ">
-                        <TittleBarModule />
+                        <TittleBar />
                     </div>
                     <div className="w-[30%] min-w-64 min-h-full flex items-center justify-center">
                         <ColorSwitcher themedDivRef={themedDivRef} />
@@ -42,7 +41,7 @@ function ContentModule(): JSX.Element {
                     <div className=" w-[100%] min-w-[300px] h-full flex justify-center items-center pr-4 ">
                         <SubtTextModule />
                     </div>
-                    <div  className=" w-[5%] min-w-[200px] rounded-l-3xl h-full flex justify-end items-center  border-b-2 border-purple-300 ">
+                    <div className=" w-[5%] min-w-[200px] rounded-l-3xl h-full flex justify-end items-center  border-b-2 border-purple-300 ">
                         <CurrentAllEvent />
                     </div>
                     <div className=" w-[15%] min-w-[200px] h-full flex justify-end items-center  border-b-2 border-purple-300">
@@ -52,11 +51,11 @@ function ContentModule(): JSX.Element {
             </header>
             <article className=" w-full h-auto p-5 bg-transparent">
                 <div>
-                    <CalendarModule />
+                    <Calendar />
                 </div>
             </article>
             <footer className=" w-full h-auto bg-green-600 flex justify-center items-center p-5">
-                <div  className=" w-[95%] min-h-[600px] bg-slate-400 flex justify-center items-center">
+                <div className=" w-[95%] min-h-[600px] bg-slate-400 flex justify-center items-center">
                     <MessageList />
                 </div>
             </footer>
@@ -64,5 +63,5 @@ function ContentModule(): JSX.Element {
     )
 };
 
-export default ContentModule;
+export default Content;
 

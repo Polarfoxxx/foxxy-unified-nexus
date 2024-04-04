@@ -1,6 +1,6 @@
 import React from 'react';
 import "./App.css"
-import { Container, ContentModule } from './module';
+import { Container, Content } from './module';
 import { LoginPage } from './module/Authentification';
 import { Routes, Route, useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ function App() {
       <Container.Provider>
         <Routes>
           <Route path="LoginPage" element={<LoginPage />} />
-          <Route path="Content/*" element={<ContentModule />} />
+          <Route path="Content/*" element={<Content />} />
         </Routes>
       </Container.Provider>
     </div>

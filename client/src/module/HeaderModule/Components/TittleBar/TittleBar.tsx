@@ -1,8 +1,8 @@
 import React from "react";
-import { Container } from "../../../Container";
+import { Container } from "../../../ContainerModule";
 
 
-function TittleBarModule(): JSX.Element {
+function TittleBar(): JSX.Element {
     const { appData } = React.useContext(Container.Context);
 
     return (
@@ -16,4 +16,4 @@ function TittleBarModule(): JSX.Element {
     );
 };
 
-export default TittleBarModule;
+export default TittleBar;

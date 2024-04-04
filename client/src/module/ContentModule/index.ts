@@ -1,1 +1,3 @@
-export { default as ContentModule } from "./Components/ContentModule";
+export {
+    default as Content
+} from "./Components/Content";
