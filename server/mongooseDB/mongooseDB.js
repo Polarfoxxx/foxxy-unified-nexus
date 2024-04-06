@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
-/* const mongo = "mongodb://127.0.0.1:27017/Calendar"; */
-const mongo = "mongodb+srv://suchovskymichal:z1PzyPDoR80XCXKN@cluster0.jhfpd8u.mongodb.net/Calendar?retryWrites=true&w=majority&appName=Cluster0";
 
+// Pripojenie k databáze MongoDB Atlas
+const mongo = "mongodb+srv://suchovskymichal:z1PzyPDoR80XCXKN@cluster0.jhfpd8u.mongodb.net/Calendar?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
     .connect(mongo, { useNewUrlParser: true })
-    .then(() => console.log("connect to mongoo"))
-    .catch(() => console.log("no connect"))
-/* --------------------------------------------------- */
+    .then(() => console.log("Connected to MongoDB"))
+    .catch(error => console.error("Error connecting to MongoDB:", error));
+
 const userSchema = new mongoose.Schema({
     username: String,
     password: String,
@@ -36,6 +36,4 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-
 module.exports = User;
-
