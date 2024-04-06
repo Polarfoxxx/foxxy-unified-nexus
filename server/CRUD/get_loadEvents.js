@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const router = express.Router();
 const User = require("../mongooseDB/mongooseDB");
@@ -7,7 +5,6 @@ const User = require("../mongooseDB/mongooseDB");
 
 router.get('/events', async (req, res) => {
     const { userName } = req.query
-    console.log(userName);
     try {
         /* hladanie uzivatela*/
         const user = await User.findOne({ username: userName });

@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 
+// Nastavenie `strictQuery` na `false` v súlade s upozornením
+mongoose.set('strictQuery', false);
+
 // Pripojenie k databáze MongoDB Atlas
 const mongo = "mongodb+srv://suchovskymichal:z1PzyPDoR80XCXKN@cluster0.jhfpd8u.mongodb.net/Calendar?retryWrites=true&w=majority&appName=Cluster0";
 
