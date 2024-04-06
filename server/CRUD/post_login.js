@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../mongooseDB/mongooseDB");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 
 router.post("/user", async (req, res) => {
     const { username, password } = req.body;
@@ -13,8 +13,8 @@ router.post("/user", async (req, res) => {
             return res.status(401).json({ message: "Incorrect username or password" });
         }
 
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
+        const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+        if (hashedPassword !== user.password) {
             return res.status(401).json({ message: "Incorrect username or password" });
         }
 
