@@ -1,4 +1,3 @@
-
 const post_Login = require('./CRUD/post_login');
 const post_Register = require("./CRUD/post_register");
 const post_saveData = require("./CRUD/post_saveData");
@@ -9,8 +8,7 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const cors = require("cors");
-const Port = 4000;
-app.listen(Port, () => console.log(`connect to port ${Port}`));
+
 app.use(cors());
 
 /* ---------------------------------------------------------------------------- */
@@ -20,7 +18,7 @@ app.use('/register', post_Register);
 app.use('/login', post_Login);
 /* save GET method -------------------------------------*/
 app.use('/save', post_saveData);
-/* load GET method -------------------------------------*/
-app.use('/load', get_loadEvents);
-/* load GET method -------------------------------------*/
-app.use('/load', get_loadMessages);
+/* loadEvents GET method ------------------------------*/
+app.use('/loadEvents', get_loadEvents);
+/* loadMessages GET method ----------------------------*/
+app.use('/loadMessages', get_loadMessages);
