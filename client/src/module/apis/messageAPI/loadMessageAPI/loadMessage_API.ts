@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function loadMessage_API(user: string): Promise<any | undefined> {
     try {
-        const LOAD_DATA = await axios.get("http://localhost:4000/load/messages", {
+        const LOAD_DATA = await axios.get("http://localhost:5000/loadMessages/messages", {
             params: {
                 userName: user
             }
