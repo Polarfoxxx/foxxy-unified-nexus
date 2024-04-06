@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const User = require("../mongooseDB/mongooseDB");
 const Joi = require("joi");
-
+const crypto = require('crypto');
 
 router.post('/newUser', async (req, res) => {
-  const {username , password} = req.body;
+  const { username, password } = req.body;
     try {
-        // Hashovanie hesla
+        // Validácia vstupu
         const validateUser = Joi.object({
             username: Joi.string().min(3).required(),
             password: Joi.string().min(4).required(),
@@ -17,10 +17,13 @@ router.post('/newUser', async (req, res) => {
             return res.status(400).json({ message: "Registration error" });
         }
 
-        // Vytvorte nového používateľa
+        // Hashovanie hesla pomocou crypto modulu
+        const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+
+        // Vytvorenie nového používateľa s hashovaným heslom
         const newUser = {
             username: username,
-            password: password,
+            password: hashedPassword,
             custom: {
                 theme: ""
             },
@@ -30,6 +33,7 @@ router.post('/newUser', async (req, res) => {
             }
         };
 
+        // Uloženie používateľa do databázy
         await User.create(newUser);
         res.status(201).json({ message: "Registration successful" });
     } catch (error) {
