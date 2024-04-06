@@ -8,8 +8,10 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const cors = require("cors");
-
+const Port = 5000;
+app.listen(Port, () => console.log(`connect to port ${Port}`));
 app.use(cors());
+
 
 /* ---------------------------------------------------------------------------- */
 /* register POST method --------------------------------*/
