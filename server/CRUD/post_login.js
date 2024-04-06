@@ -1,34 +1,31 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../mongooseDB/mongooseDB")
+const User = require("../mongooseDB/mongooseDB");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-
 router.post("/user", async (req, res) => {
-    const { usernames, password } = req.body;
+    const { username, password } = req.body;
         
     try {
-        /* hladanie uzivatela*/
-        const user = await User.findOne({ username: usernames });
-        /* kontrola existencie uzivatela*/
-        if (user) {
-            if (await bcrypt.compare(password, user.password)) {
-                // Generovanie JWT s časovou expiráciou
-                const token = jwt.sign({ usernames }, "secret", { expiresIn: "2h" });
-                const returned_theme = user.custom.theme;
-                const user_name = user.username;
-                res.status(200).json({ user_name, token, returned_theme });
-            } else {
-                res.status(401).json({ message: "Incorrect password" });
-            };
-        } else {
-            res.status(401).json({ message: "The user does not exist" });
-        };
-    } catch
-    (error) {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).json({ message: "Incorrect username or password" });
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ message: "Incorrect username or password" });
+        }
+
+        const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: "2h" });
+        const returnedTheme = user.custom.theme;
+        const userName = user.username;
+        res.status(200).json({ userName, token, returnedTheme });
+    } catch (error) {
+        console.error("Error:", error);
         res.status(500).json({ message: "Internal Server Error" });
-    };
+    }
 });
 
 module.exports = router;
