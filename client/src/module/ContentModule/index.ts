@@ -1,3 +1,1 @@
-export {
-    default as Content
-} from "./Components/Content";
+export * from "./Components";

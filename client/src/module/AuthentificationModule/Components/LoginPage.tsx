@@ -16,7 +16,7 @@ function LoginPage(): JSX.Element {
             userNames: v[0].inputValues.toString(),
             password: v[1].inputValues.toString()
         }
-         reset();
+        reset();
         LoginUser(LOGIN_DATA);
     };
 
@@ -77,9 +77,7 @@ function LoginPage(): JSX.Element {
                         </button>
                     </form>
                 </div>
-
             </div>
-
         </div>
     );
 };
