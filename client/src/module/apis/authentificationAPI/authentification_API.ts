@@ -1,5 +1,6 @@
 import { type_for_loginUser_API, type_from_loginUser_API_returned } from "./types";
 import axios from "axios";
+import { BASE_URL } from "../BASE_URL";
 
 const AUTHENTIFICATION_API = {
   loginUser_API,
@@ -9,7 +10,7 @@ export default AUTHENTIFICATION_API;
 
 /* async function registerNewUser_API() {
   try {
-    const RESPO_DATA = await axios.post("http://localhost:4000/register/newUser", {
+    const RESPO_DATA = await axios.post(`${BASE_URL}register/newUser`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -27,7 +28,7 @@ async function loginUser_API(loginData: type_for_loginUser_API): Promise<type_fr
   };
 
   try {
-    const RESPO_DATA = await axios.post("http://localhost:5000/login/user", LOGIN_DATA, {
+    const RESPO_DATA = await axios.post(`${BASE_URL}login/user`, LOGIN_DATA, {
       headers: {
         "Content-Type": "application/json",
       },

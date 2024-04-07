@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Type_for_addMessage_API } from "./types";
+import { BASE_URL } from "../../BASE_URL";
 /* --------------------------------------------------------------------------------------- */
 async function addMessage_API(props: Type_for_addMessage_API): Promise<{ status: number } | undefined> {
     if (props.SAVE_DATA) {
@@ -8,7 +9,7 @@ async function addMessage_API(props: Type_for_addMessage_API): Promise<{ status:
             save_Data: props.SAVE_DATA,
         };
         try {
-            const RESPO_DATA = await axios.post("http://localhost:5000/save/data", DATA_FOR_API, {
+            const RESPO_DATA = await axios.post(`${BASE_URL}save/data`, DATA_FOR_API, {
                 headers: {
                     "Content-Type": "application/json",
                 },

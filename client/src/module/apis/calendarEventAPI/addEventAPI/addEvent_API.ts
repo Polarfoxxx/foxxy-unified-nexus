@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Type_for_addEvent_API } from "./types";
+import { BASE_URL } from "../../BASE_URL";
 
 /* --------------------------------------------------------------------------------------- */
 async function addEvent_API(props: Type_for_addEvent_API): Promise<{ status: number } | undefined> {
@@ -9,7 +10,7 @@ async function addEvent_API(props: Type_for_addEvent_API): Promise<{ status: num
             save_Data: props.SAVE_DATA,
         };
         try {
-            const RESPO_DATA = await axios.post("http://localhost:5000/save/data", DATA_FOR_API, {
+            const RESPO_DATA = await axios.post(`${BASE_URL}save/data`, DATA_FOR_API, {
                 headers: {
                     "Content-Type": "application/json",
                 },
