@@ -17,7 +17,7 @@ function MessageList(): JSX.Element {
     const { appData, setAppData } = React.useContext(Container.Context);
 
     React.useEffect(() => {
-        loadMessageAPI()
+         loadMessageAPI() 
     }, []);
 
     async function loadMessageAPI() {
@@ -100,7 +100,7 @@ function MessageList(): JSX.Element {
             <div className=" w-full h-[100%] flex items-center justify-center bg-white" >
                 <div className=" w-[90%] h-auto flex justify-center items-start gap-2 flex-col">
                     {
-                        appData.allMessage.map((item, key) =>
+                        appData.allMessage && appData.allMessage.map((item, key) =>
                             <div
                                 className=" w-[70%] h-[50px] bg-slate-300 "
                                 key={key}>

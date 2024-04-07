@@ -16,9 +16,9 @@ app.use(cors());
 /* ---------------------------------------------------------------------------- */
 /* register POST method --------------------------------*/
 app.use('/register', post_Register);
-/* Login GET method ------------------------------------*/
+/* Login POST method ------------------------------------*/
 app.use('/login', post_Login);
-/* save GET method -------------------------------------*/
+/* save POST method -------------------------------------*/
 app.use('/save', post_saveData);
 /* loadEvents GET method ------------------------------*/
 app.use('/loadEvents', get_loadEvents);

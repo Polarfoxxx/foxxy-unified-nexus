@@ -23,10 +23,9 @@ export default AUTHENTIFICATION_API;
 /* --------------------------------------------------------------------------------------- */
 async function loginUser_API(loginData: type_for_loginUser_API): Promise<type_from_loginUser_API_returned | undefined> {
   const LOGIN_DATA = {
-    usernames: loginData.userNames,
+    username: loginData.userNames,
     password: loginData.password
   };
-
   try {
     const RESPO_DATA = await axios.post(`${BASE_URL}login/user`, LOGIN_DATA, {
       headers: {
@@ -34,7 +33,7 @@ async function loginUser_API(loginData: type_for_loginUser_API): Promise<type_fr
       },
     });
     return {
-      userName: RESPO_DATA.data.user_name,
+      userName: RESPO_DATA.data.username,
       status: RESPO_DATA.status,
       jwt: RESPO_DATA.data.token,
       theme: RESPO_DATA.data.returned_theme

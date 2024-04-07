@@ -6,24 +6,25 @@ const crypto = require("crypto");
 
 router.post("/user", async (req, res) => {
     const { username, password } = req.body;
-        
     try {
+        /* Hľadanie používateľa */
         const user = await User.findOne({ username });
-        if (!user) {
-            return res.status(401).json({ message: "Incorrect username or password" });
+        /* Kontrola existencie používateľa */
+        if (user) {
+            // Hashovanie hesla pomocou crypto
+            const hash = crypto.createHash('sha256').update(password).digest('hex');
+            if (hash === user.password) {
+                // Generovanie JWT s časovou expiráciou
+                const token = jwt.sign({ username }, "secret", { expiresIn: "2h" });
+                const returned_theme = user.custom.theme;
+                res.status(200).json({ username, token, returned_theme });
+            } else {
+                res.status(401).json({ message: "Incorrect password" });
+            }
+        } else {
+            res.status(401).json({ message: "The user does not exist" });
         }
-
-        const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
-        if (hashedPassword !== user.password) {
-            return res.status(401).json({ message: "Incorrect username or password" });
-        }
-
-        const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: "2h" });
-        const returnedTheme = user.custom.theme;
-        const userName = user.username;
-        res.status(200).json({ userName, token, returnedTheme });
     } catch (error) {
-        console.error("Error:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });

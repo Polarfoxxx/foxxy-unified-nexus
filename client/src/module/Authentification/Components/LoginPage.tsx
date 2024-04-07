@@ -8,7 +8,7 @@ import { Type_for_LoginUser } from "./types";
 
 function LoginPage(): JSX.Element {
     const NAVIGATE = useNavigate();
-    const { appData, setAppData } = React.useContext(Container.Context);
+    const { setAppData } = React.useContext(Container.Context);
     const { handleSubmit, reset } = useInputValue();
 
     const submit = (v: TypeForInputsObject["v"]): void => {

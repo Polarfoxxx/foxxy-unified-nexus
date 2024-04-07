@@ -22,7 +22,6 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
             props.setNewEventContent(null);
         };
     };
-
     const submit = (v: TypeForInputsObject["v"]): void => {
         const NEW_REQ = new NewRequest({
             startDate_event: v[0].inputValues.toString(),
