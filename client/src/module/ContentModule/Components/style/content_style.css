@@ -12,10 +12,10 @@ div[data-theme="light"] {
     --minBackg_content: rgb(182, 50, 223);
     --minBackg_Two_content: rgb(195, 121, 230);
     --background_content: white;
-    --background_newEventContent: url('/public/image/nweEventBacgHeader.jpg');
+    --background_newEventContent: rgb(179, 179, 179);
     --background_App: url('/public/image/lightAppBacgr.jpg');
     /* textColor */
-    --defaultTextColor: rgb(248, 233, 255);
+    --defaultTextColor: rgb(255, 255, 255);
     --defaultTextColorDark: rgb(0, 0, 0);
     --current_day: rgb(157, 255, 46);
     /* inputStyle */

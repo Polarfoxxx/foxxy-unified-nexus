@@ -19,7 +19,7 @@ export const HTTPResponseText = {
     },
     201: {
         text: "Created",
-        jsx: null
+        jsx: <FontAwesomeIcon icon={faCircleCheck} bounce size="xl" />
     },
     202: {
         text: "Accepted",

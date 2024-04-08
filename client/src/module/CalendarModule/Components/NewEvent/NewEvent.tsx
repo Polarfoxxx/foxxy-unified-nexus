@@ -28,8 +28,8 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
             name_Event: v[2].inputValues.toString(),
             comment_Event: v[3].inputValues.toString(),
         });
-        
-        const SAVE_DATA: Type_for_newMessageFor_API| Type_for_newEventFor_API | string = NEW_REQ.create();
+
+        const SAVE_DATA: Type_for_newMessageFor_API | Type_for_newEventFor_API | string = NEW_REQ.create();
         if (typeof SAVE_DATA !== "string" && "event" in SAVE_DATA) {
             saveData(SAVE_DATA); reset(); props.setNewEventContent(null);
             setAppData(prevAppData => ({
@@ -56,20 +56,22 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
     return (
         <div
             onClick={handleClickRemoveWindowEvent}
-            className=" fixed w-[100vw] h-[100%] bg-white bg-opacity-60 z-40 top-0 left-0">
-            <div className=" w-[1000px] h-72 absolute rounded-3xl m-auto left-0 right-0 top-0 bottom-0 ">
+            className=" fixed w-[100vw] h-[100%] bg-white bg-opacity-90 z-40 top-0 left-0">
+            <div className=" w-[1000px] h-72 absolute border border-thems-inputBorder  rounded-3xl m-auto left-0 right-0 top-0 bottom-0 bg-thems-background_newEventContent overflow-hidden">
                 <form
                     onSubmit={(e) => handleSubmit(e, submit)}
-                    className=" w-full h-full flex justify-center items-center flex-col rounded-2xl  border border-thems-inputBorder overflow-hidden bg-background_newEventContent bg-bottom bg-fullNewEvent ">
+                    className=" w-full h-full flex justify-center items-center flex-col  ">
                     <label
-                        className=" w-full h-full flex justify-center items-center">
-                        <h2 className=" text-2xl font-bold text-thems-defaultTextColor">
-                            New event
+                        className=" w-full h-full flex justify-center items-center bg-thems-minBackg_content">
+                        <h2 className=" text-[22px] text-white ">
+                            Set new event
                         </h2>
                     </label>
                     <div className=" w-full h-full flex justify-around items-center flex-row border-t-2 ">
                         <div className="w-full h-full flex justify-center items-center flex-row gap-3">
-                            <h4>Set start event:</h4>
+                            <h4>
+                                Set start event:
+                            </h4>
                             <DatePicker
                                 autoComplete="false"
                                 showTimeSelect
@@ -87,9 +89,7 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
                             <FontAwesomeIcon size="2xl" icon={faRightLong} />
                         </div>
                         <div className="w-full h-full flex justify-center items-center flex-row gap-3">
-                            <h4>
-                                Set end event:
-                            </h4>
+
                             <DatePicker
                                 autoComplete="false"
                                 showTimeSelect
@@ -102,6 +102,9 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
                                 placeholderText="End Date"
                                 selected={newEvent.end}
                                 onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                            <h4>
+                                Set end event:
+                            </h4>
                         </div>
                     </div>
                     <div className=" w-full h-full flex flex-col justify-center items-center gap-5 p-3 border-t-2">

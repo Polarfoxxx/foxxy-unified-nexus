@@ -113,7 +113,7 @@ function CalendarMod(): JSX.Element {
   return (
     <div className=' w-full h-full flex items-center justify-center relative flex-col gap-5'>
       <div className='sticky top-3 w-full h-9 flex justify-end items-center  z-50'>
-        <div className=' bg-thems-minBackg_content w-[250px] h-full flex justify-center items-center rounded-[25px]'>
+        <div className='relative left-[90px] bg-thems-minBackg_content w-[250px] h-full flex justify-center items-center rounded-[25px]'>
           <button
             className=' w-48 h-[25px] text-thems-color_button border border-slate-400 bg-thems-background_button flex justify-center items-center hover:bg-thems-background_button_hover rounded-[20px]'
             onClick={handleClickNewEvent}>
@@ -127,7 +127,7 @@ function CalendarMod(): JSX.Element {
         startAccessor="start"
         endAccessor="end"
         events={appData.allEvents}
-        style={{ height: 650, width: "90%" }}
+        style={{ height: 650, width: "100%" }}
         className="hover-effect-calendar"
         onSelectEvent={handleEventClick} />
       {/* -------- */}

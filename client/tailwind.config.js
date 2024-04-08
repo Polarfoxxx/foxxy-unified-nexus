@@ -12,7 +12,6 @@ module.exports = {
       },
       backgroundImage: {
         'loginBackg': "url('/public/image/loginimg.jpg')",
-        'background_newEventContent': "var(--background_newEventContent)",
         'background_App': "var(--background_App)",
       },
       colors: {
@@ -34,7 +33,9 @@ module.exports = {
           dayBackground_header: "var(--dayBackground_header)",
           eventBackground_selected: "var(--eventBackground_selected)",
           current_time_line: "var(--current_time_line)",
-          minBackg_Two_content: "var(--minBackg_Two_content)"
+          minBackg_Two_content: "var(--minBackg_Two_content)",
+          background_newEventContent: "var(--background_newEventContent)",
+
 
 
         },

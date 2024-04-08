@@ -73,17 +73,17 @@ function LoginPage(): JSX.Element {
                         className="w-full h-full p-2 flex justify-center items-center  
                                     flex-col gap-2 "
                         onSubmit={(e) => handleSubmit(e, submit)}>
-                        <div className="w-full h-10">
+                        <div className="w-full h-10 flex items-center justify-center">
                             <input
                                 placeholder="user name"
-                                className=" w-full h-10 text-center pl-2 pr-2"
+                                className=" w-[80%] h-10 text-center pl-2 pr-2"
                                 name="user"
                                 type="text" />
                         </div>
-                        <div className="w-full h-10">
+                        <div className="w-full h-10 flex items-center justify-center">
                             <input
                                 placeholder="password"
-                                className=" w-full h-10 text-center pl-2 pr-2"
+                                className=" w-[80%] h-10 text-center pl-2 pr-2"
                                 name="password"
                                 type="password" />
                         </div>
