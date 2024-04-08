@@ -16,7 +16,6 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
     const [newEvent, setNewEvent] = React.useState<any>({ title: "", comment: "", start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
 
-
     const handleClickRemoveWindowEvent = (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>): void => {
         if (e.target === e.currentTarget) {
             props.setNewEventContent(null);
@@ -45,7 +44,6 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
 
     async function saveData(SAVE_DATA: Type_for_newEventFor_API) {
         const USER = appData.userLogData.userName;
-
         try {
             const SAVE = await addEventAPI({ USER, SAVE_DATA });
             console.log(SAVE);
@@ -53,13 +51,12 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
         catch (error) {
             console.log(error);
         };
-
     };
 
     return (
         <div
             onClick={handleClickRemoveWindowEvent}
-            className=" fixed w-screen h-screen bg-white bg-opacity-60 z-40 ">
+            className=" fixed w-[100vw] h-[100%] bg-white bg-opacity-60 z-40 top-0 left-0">
             <div className=" w-[1000px] h-72 absolute rounded-3xl m-auto left-0 right-0 top-0 bottom-0 ">
                 <form
                     onSubmit={(e) => handleSubmit(e, submit)}

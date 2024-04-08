@@ -40,6 +40,15 @@ async function loginUser_API(loginData: type_for_loginUser_API): Promise<type_fr
     };
   } catch (error) {
     console.log(error);
+    if (axios.isAxiosError(error) && error.response) {
+      console.log("Stavový kód chyby:", error.response.status);
+      return {
+        userName: "",
+        status: error.response.status,
+        jwt: "",
+        theme: ""
+      };
+    };
   };
 };
 
