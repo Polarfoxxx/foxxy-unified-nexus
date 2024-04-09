@@ -1,20 +1,23 @@
-
-
 const express = require('express');
 const router = express.Router();
 const User = require("../mongooseDB/mongooseDB");
 
 
-router.get('/messages', async (req, res) => {
+router.get('/data', async (req, res) => {
     const { userName } = req.query
+    console.log(userName);
     try {
         /* hladanie uzivatela*/
         const user = await User.findOne({ username: userName });
         if (!user) {
             return res.status(404).json({ message: 'Používateľ s daným emailName nebol nájdený.' });
         } else {
-            const data = user.data.messages
-            return res.status(201).json({ message: data })
+            const events = user.data.events
+            const messages = user.data.messages
+            return res.status(201).json({
+                events: events,
+                message: messages
+            })
         };
     } catch
     (error) {

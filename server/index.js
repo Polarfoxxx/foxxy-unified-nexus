@@ -1,8 +1,7 @@
 const post_Login = require('./CRUD/post_login');
 const post_Register = require("./CRUD/post_register");
-const post_saveData = require("./CRUD/post_saveData");
-const get_loadEvents = require("./CRUD/get_loadEvents");
-const get_loadMessages = require("./CRUD/get_loadMessages");
+const post_createData = require("./CRUD/post_createData");
+const get_readData = require("./CRUD/get_readData");
 
 const express = require("express");
 const app = express();
@@ -14,13 +13,11 @@ app.use(cors());
 
 
 /* ---------------------------------------------------------------------------- */
-/* register POST method --------------------------------*/
+/* register POST method ---------------------------------*/
 app.use('/register', post_Register);
 /* Login POST method ------------------------------------*/
 app.use('/login', post_Login);
 /* save POST method -------------------------------------*/
-app.use('/save', post_saveData);
-/* loadEvents GET method ------------------------------*/
-app.use('/loadEvents', get_loadEvents);
-/* loadMessages GET method ----------------------------*/
-app.use('/loadMessages', get_loadMessages);
+app.use('/create', post_createData);
+/* loadEvents GET method --------------------------------*/
+app.use('/readData', get_readData);

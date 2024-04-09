@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightLong } from '@fortawesome/free-solid-svg-icons';
 import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
-import { addEventAPI } from "../../../apis/index.";
+import { createData_API } from "../../../apis/crudApi";
 import { Type_for_NewEvent, Type_for_newEventFor_API } from "./type";
 import { Type_for_newMessageFor_API } from "../../../MessageModule";
 import { Container } from "../../../ContainerModule";
@@ -29,24 +29,23 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
             comment_Event: v[3].inputValues.toString(),
         });
 
-        const SAVE_DATA: Type_for_newMessageFor_API | Type_for_newEventFor_API | string = NEW_REQ.create();
-        if (typeof SAVE_DATA !== "string" && "event" in SAVE_DATA) {
-            saveData(SAVE_DATA); reset(); props.setNewEventContent(null);
+        const CREATE_DATA: Type_for_newMessageFor_API | Type_for_newEventFor_API | string = NEW_REQ.create();
+        if (typeof CREATE_DATA !== "string" && "event" in CREATE_DATA) {
+            createAsyncData(CREATE_DATA); reset(); props.setNewEventContent(null);
             setAppData(prevAppData => ({
                 ...prevAppData,
-                allEvents: [...appData.allEvents, SAVE_DATA.event]
+                allEvents: [...appData.allEvents, CREATE_DATA.event]
             }));
         } else {
-            alert(SAVE_DATA)
+            alert(CREATE_DATA)
         };
     };
 
 
-    async function saveData(SAVE_DATA: Type_for_newEventFor_API) {
-        const USER = appData.userLogData.userName;
+    async function createAsyncData(CREATE_DATA: Type_for_newEventFor_API) {
+        const USER_NAME = appData.userLogData.userName;
         try {
-            const SAVE = await addEventAPI({ USER, SAVE_DATA });
-            console.log(SAVE);
+            const CREATE = await createData_API({ USER_NAME, CREATE_DATA });
         }
         catch (error) {
             console.log(error);

@@ -6,10 +6,14 @@ import { LogOut, ColorSwitcher, TittleBar } from "../../HeaderModule";
 import { Calendar } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
 import { SubtText, Clock, CurrentAllEvent } from "../../SubtitleModule";
+import { Container } from "../../ContainerModule";
+import { readData_API } from "../../apis/index.";
 
 function Content(): JSX.Element {
+    const { appData, setAppData } = React.useContext(Container.Context)
     const NAVIGATE = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
+
 
     React.useEffect(() => {
         const JWT = sessionStorage.getItem("JWT");
@@ -19,6 +23,30 @@ function Content(): JSX.Element {
             NAVIGATE("/LoginPage")
         };
     }, [NAVIGATE]);
+
+
+    React.useEffect(() => {
+        loadDataAPI()
+    }, []);
+    
+    async function loadDataAPI() {
+        const USER_NAME = appData.userLogData.userName;
+        try {
+            const LOAD_DATA = await readData_API(USER_NAME);
+            if (LOAD_DATA) {
+                setAppData(prevAppData => ({
+                    ...prevAppData,
+                    allEvents: LOAD_DATA.data.events,
+                    allMessage: LOAD_DATA.data.messages
+                }));
+            };
+        } catch (error) {
+            console.log("Chyba pri načítavaní udalostí:", error);
+        };
+    };
+
+
+
 
     return (
         <div

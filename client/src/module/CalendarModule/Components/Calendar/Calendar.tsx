@@ -8,7 +8,6 @@ import getDay from 'date-fns/getDay'
 import React from 'react'
 import NewEvent from '../NewEvent/NewEvent';
 import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
-import { loadEvent_API } from '../../../apis/index.';
 import { Container } from '../../../ContainerModule';
 import { Type_for_newEventFrom_DB } from '../NewEvent/type';
 import { ToastContainer, toast } from 'react-toastify';
@@ -47,36 +46,21 @@ const events: MyEvent[] = [
 
 
 function CalendarMod(): JSX.Element {
-  const { appData, setAppData } = React.useContext(Container.Context);
+  const { appData } = React.useContext(Container.Context);
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
+  const [allEvents, setAllEvents] = React.useState<Type_for_newEventFrom_DB[]>([]);
 
   React.useEffect(() => {
-    loadEvents();
-  }, []);
-
-  async function loadEvents() {
-    const USER = appData.userLogData.userName;
-    try {
-      const LOAD = await loadEvent_API(USER);
-      if (LOAD && LOAD.data) {
-        const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = LOAD.data.map(item => {
-          const START_DATE = new Date(item.start);
-          const END_DATE = new Date(item.end);
-          return { start: START_DATE, end: END_DATE, title: item.title, comment: item.comment };
-        });
-
-        setAppData(prevAppData => ({
-          ...prevAppData,
-          allEvents: TRANSLATE_DATA
-        }));
-
-      } else {
-        console.log("Chyba: Neplatné údaje získané zo servera");
-      }
-    } catch (error) {
-      console.log("Chyba pri načítavaní udalostí:", error);
+    if (appData.allEvents.length > 0) {
+      const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = appData.allEvents.map(item => {
+        const START_DATE = new Date(item.start);
+        const END_DATE = new Date(item.end);
+        return { start: START_DATE, end: END_DATE, title: item.title, comment: item.comment };
+      });
+      setAllEvents(TRANSLATE_DATA)
     };
-  };
+  }, [JSON.stringify(appData.allEvents)]);
+
 
   const handleEventClick = (event: MyEvent) => {
     console.log(event);
@@ -95,10 +79,10 @@ function CalendarMod(): JSX.Element {
       ALL_EVENTS.forEach((item) => {
         const START_EVENT = item.start
         if (START_EVENT.getFullYear() === CURRENT_TIME.getFullYear() &&
-        START_EVENT.getMonth() === CURRENT_TIME.getMonth() &&
-        START_EVENT.getDate() === CURRENT_TIME.getDate() &&
-        START_EVENT.getHours() === CURRENT_TIME.getHours() &&
-        START_EVENT.getMinutes() === CURRENT_TIME.getMinutes()) {
+          START_EVENT.getMonth() === CURRENT_TIME.getMonth() &&
+          START_EVENT.getDate() === CURRENT_TIME.getDate() &&
+          START_EVENT.getHours() === CURRENT_TIME.getHours() &&
+          START_EVENT.getMinutes() === CURRENT_TIME.getMinutes()) {
           toast(`Event time ${item.title} comment ${item.comment} at ${item.start.getHours()}`);
         };
       });
@@ -126,7 +110,7 @@ function CalendarMod(): JSX.Element {
         localizer={localizer}
         startAccessor="start"
         endAccessor="end"
-        events={appData.allEvents}
+        events={allEvents}
         style={{ height: 650, width: "100%" }}
         className="hover-effect-calendar"
         onSelectEvent={handleEventClick} />

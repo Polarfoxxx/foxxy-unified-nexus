@@ -1,37 +1,26 @@
 import React from "react";
 import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
-import { addMessage_API } from "../../../apis/messageAPI";
+import { createData_API } from "../../../apis/index.";
 import { NewRequest } from "../../../utils";
 import { Container } from "../../../ContainerModule";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Type_for_newMessageFor_API } from "./types";
 import { Type_for_newEventFor_API } from "../../../CalendarModule";
-import { loadMessage_API } from "../../../apis/messageAPI";
+import { Type_for_newMesssageFrom_DB, Type_for_newMessageFor_API } from "./types";
 
 function MessageList(): JSX.Element {
-    const [messageList, setMessageList] = React.useState<any[]>([]);
+    const [messageList, setMessageList] = React.useState<Type_for_newMesssageFrom_DB[]>([]);
     const [newMessage, setNewMessage] = React.useState<any>({ start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
     const { appData, setAppData } = React.useContext(Container.Context);
 
     React.useEffect(() => {
-         loadMessageAPI() 
-    }, []);
-
-    async function loadMessageAPI() {
-        const USER = appData.userLogData.userName;
-        try {
-            const LOAD = await loadMessage_API(USER);
-            setAppData(prevAppData => ({
-                ...prevAppData,
-                allMessage: LOAD.data
-            }));
-        } catch (error) {
-            console.log("Chyba pri načítavaní udalostí:", error);
+        if (appData.allMessage.length > 0) {
+            setMessageList(appData.allMessage)
         };
-    };
+    }, [JSON.stringify(appData.allMessage)]);
+
 
     const submit = (v: TypeForInputsObject["v"]): void => {
         const NEW_REQ = new NewRequest({
@@ -40,24 +29,24 @@ function MessageList(): JSX.Element {
             content_Message: v[1].inputValues.toString(),
             endDate_message: v[2].inputValues.toString()
         });
-        const SAVE_DATA: Type_for_newEventFor_API | Type_for_newMessageFor_API | string = NEW_REQ.create();
-        if (typeof SAVE_DATA !== "string" && "message" in SAVE_DATA) {
-            saveData(SAVE_DATA); reset();
+        const CREATE_DATA: Type_for_newEventFor_API | Type_for_newMessageFor_API | string = NEW_REQ.create();
+        if (typeof CREATE_DATA !== "string" && "message" in CREATE_DATA) {
+            createAsyncData(CREATE_DATA); reset();
             setAppData(prevAppData => ({
                 ...prevAppData,
-                allMessage: [...prevAppData.allMessage, SAVE_DATA.message]
+                allMessage: [...prevAppData.allMessage, CREATE_DATA.message]
             }));
-            
+
         } else {
-            alert(SAVE_DATA)
+            alert(CREATE_DATA)
         };
     };
 
-    async function saveData(SAVE_DATA: Type_for_newMessageFor_API) {
-        const USER = appData.userLogData.userName;
+    async function createAsyncData(CREATE_DATA: Type_for_newMessageFor_API) {
+        const USER_NAME = appData.userLogData.userName;
         try {
-            const SAVE = await addMessage_API({ USER, SAVE_DATA });
-            console.log(SAVE);
+            const CREATE = await createData_API({ USER_NAME, CREATE_DATA });
+            console.log(CREATE);
         }
         catch (error) {
             console.log(error);
@@ -100,7 +89,7 @@ function MessageList(): JSX.Element {
             <div className=" w-full h-[100%] flex items-center justify-center bg-white" >
                 <div className=" w-[90%] h-auto flex justify-center items-start gap-2 flex-col">
                     {
-                        appData.allMessage && appData.allMessage.map((item, key) =>
+                        messageList.map((item, key) =>
                             <div
                                 className=" w-[70%] h-[50px] bg-slate-300 "
                                 key={key}>

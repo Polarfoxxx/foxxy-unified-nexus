@@ -7,9 +7,8 @@ router.post('/data', async (req, res) => {
     const { userName, save_Data } = req.body;
     console.log(save_Data);
     try {
-        /* hladanie uzivatela*/
+        // hladanie uzivatela
         const user = await User.findOne({ username: userName });
-
         if (!user) {
             return res.status(404).json({ message: 'Používateľ s daným emailName nebol nájdený.' });
         } else {

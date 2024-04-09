@@ -1,7 +1,7 @@
 import React from 'react';
-import { addEventAPI } from '../../../apis/index.';
+import { createData_API } from '../../../apis/index.';
 import { Container } from '../../../ContainerModule';
-import { Type_for_saveDataTheme, Type_for_colorSwitcher} from './types';
+import { Type_for_saveDataTheme, Type_for_colorSwitcher } from './types';
 
 
 function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
@@ -19,19 +19,19 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
     const handleColorChange = (selectTheme: string) => {
         props.themedDivRef.current?.setAttribute("data-theme", selectTheme);
         setApp_theme(selectTheme);
-        /*    save_theme(selectTheme); */
+        /*    createAsynctheme(selectTheme); */
     };
 
-    async function save_theme(selectTheme: string) {
-        const USER = appData.userLogData.userName
-        const SAVE_DATA: Type_for_saveDataTheme = {
+    async function createAsynctheme(selectTheme: string) {
+        const USER_NAME = appData.userLogData.userName
+        const CREATE_DATA: Type_for_saveDataTheme = {
             custom: {
                 theme: selectTheme
             },
         };
         try {
-            const result = await addEventAPI({USER, SAVE_DATA});
-            console.log('Result:', result);
+            const CREATE = await createData_API({ USER_NAME, CREATE_DATA });
+            console.log('Result:', CREATE);
         } catch (error) {
             console.error('Error:', error);
         };

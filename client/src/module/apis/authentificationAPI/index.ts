@@ -1,4 +1,4 @@
-/* components */
+/* apis */
 export {
     default as AUTHENTIFICATION_API
 } from "./authentification_API";
