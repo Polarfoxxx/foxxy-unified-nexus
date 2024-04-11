@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Type_for_newEventFor_API } from "../../../CalendarModule";
 import { Type_for_newMesssageFrom_DB, Type_for_newMessageFor_API } from "./types";
+import { ItemMessage } from "../ItemsMessage";
 
 function MessageList(): JSX.Element {
     const [messageList, setMessageList] = React.useState<Type_for_newMesssageFrom_DB[]>([]);
@@ -55,45 +56,55 @@ function MessageList(): JSX.Element {
 
     return (
         <div className="w-full h-[600px] flex items-center justify-center flex-col bg-amber-700">
-            <div className=" w-full h-[10%] flex items-center justify-center">
-                <h2>Your message</h2>
+            <div className=" w-full h-[10%] flex items-center justify-start bg-slate-300 pl-3 pr-3">
+                <h2 className=" text-[25px]">
+                    Message
+                </h2>
             </div>
             <div className=" w-full h-[20%] flex items-center justify-center">
                 <form
                     className="w-full h-full p-2 flex justify-center items-center flex-col gap-2 "
                     onSubmit={(e) => handleSubmit(e, submit)}>
-                    <input
-                        name="message"
-                        type="text" />
-                    <input
-                        name="message"
-                        type="text" />
-                    <DatePicker
-                        autoComplete="false"
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={15}
-                        timeCaption="Čas"
-                        dateFormat="dd.MM.yyyy HH:mm"
-                        name="startDate"
-                        className=" w-80 h-7 rounded pl-3 pr-3 text-center border border-thems-inputBorder "
-                        placeholderText="Start Date"
-                        selected={newMessage.start}
-                        onChange={(start) => setNewMessage({ ...newMessage, start })} />
-                    <button
-                        type="submit">
-                        Create new message
-                    </button>
+                    <div className="w-full h-full flex justify-center items-center flex-row gap-2 ">
+                        <input
+                            className=" w-[400px] h-[35px] text-center pl-2 pr-2 rounded-lg"
+                            placeholder="Title message"
+                            name="message"
+                            type="text" />
+                        <input
+                            className=" w-[600px] h-[35px] text-center pl-2 pr-2 rounded-lg"
+                            placeholder="Message"
+                            name="message"
+                            type="text" />
+                        <DatePicker
+                            autoComplete="false"
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={15}
+                            timeCaption="Čas"
+                            dateFormat="dd.MM.yyyy HH:mm"
+                            name="startDate"
+                            className=" w-[400px] h-[35px] rounded-lg pl-2 pr-2 text-center border border-thems-inputBorder "
+                            placeholderText="Due Date"
+                            selected={newMessage.start}
+                            onChange={(start) => setNewMessage({ ...newMessage, start })} />
+                    </div>
+                    <div className="w-full h-full flex justify-center items-center flex-row">
+                        <button
+                            type="submit">
+                            Create new message
+                        </button>
+                    </div>
                 </form>
             </div>
             <div className=" w-full h-[100%] flex items-center justify-center bg-white" >
-                <div className=" w-[90%] h-auto flex justify-center items-start gap-2 flex-col">
+                <div className=" w-[90%] h-auto flex justify-center items-center gap-2 flex-col">
                     {
                         messageList.map((item, key) =>
                             <div
-                                className=" w-[70%] h-[50px] bg-slate-300 "
+                                className=" w-[80%] h-[50px] bg-slate-300 cursor-pointer flex"
                                 key={key}>
-                                {item.content_message}
+                                <ItemMessage itemData={item} />
                             </div>
                         )
                     }

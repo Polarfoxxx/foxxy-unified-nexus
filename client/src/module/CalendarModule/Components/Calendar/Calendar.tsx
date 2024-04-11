@@ -71,7 +71,7 @@ function CalendarMod(): JSX.Element {
   };
 
   /* casove overovanie platnosti udalosti a alert */
-  React.useEffect(() => {
+/*   React.useEffect(() => {
     let timeInterval = setInterval(() => {
       const ALL_EVENTS = appData.allEvents;
       const CURRENT_TIME = new Date();
@@ -91,7 +91,7 @@ function CalendarMod(): JSX.Element {
     return (() => {
       clearInterval(timeInterval)
     })
-  }, [appData.allEvents.length]);
+  }, [appData.allEvents.length]); */
 
 
   return (
