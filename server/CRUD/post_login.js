@@ -17,8 +17,7 @@ router.post("/user", async (req, res) => {
                 if (hash === user.password) {
                     // Generovanie JWT s časovou expiráciou
                     const token = jwt.sign({ username }, "secret", { expiresIn: "2h" });
-                    const returned_theme = user.custom.theme;
-                    res.status(200).json({ username, token, returned_theme });
+                    res.status(200).json({ username, token });
                 } else {
                     res.status(401).json({ message: "Incorrect password" });
                 }

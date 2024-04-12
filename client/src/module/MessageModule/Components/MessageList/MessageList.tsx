@@ -55,15 +55,20 @@ function MessageList(): JSX.Element {
     }
 
     return (
-        <div className="w-full h-[600px] flex items-center justify-center flex-col bg-amber-700">
-            <div className=" w-full h-[10%] flex items-center justify-start bg-slate-300 pl-3 pr-3">
-                <h2 className=" text-[25px]">
-                    Message
-                </h2>
+        <div className="w-full h-[600px] flex items-center justify-center flex-col bg-thems-calendarContent_background">
+            <div className=" w-full h-[10%] flex items-center justify-between flex-row ">
+                <div className=" w-[100%] h-[100%] bg-thems-minBackg_content roud flex items-center justify-center rounded-r-[25px]">
+                    <h2 className=" text-[25px]">
+                        Message
+                    </h2>
+                </div>
+                <div className=" w-[60%] h-[100%] bg-white">
+                    {/* white style */}
+                </div>
             </div>
             <div className=" w-full h-[20%] flex items-center justify-center">
                 <form
-                    className="w-full h-full p-2 flex justify-center items-center flex-col gap-2 "
+                    className="w-full h-full p-2 flex justify-center items-center flex-col gap-2 bg-thems-InvalidDay_Background"
                     onSubmit={(e) => handleSubmit(e, submit)}>
                     <div className="w-full h-full flex justify-center items-center flex-row gap-2 ">
                         <input
@@ -97,7 +102,7 @@ function MessageList(): JSX.Element {
                     </div>
                 </form>
             </div>
-            <div className=" w-full h-[100%] flex items-center justify-center bg-white" >
+            <div className=" w-full h-[100%] flex items-center justify-center" >
                 <div className=" w-[90%] h-auto flex justify-center items-center gap-2 flex-col">
                     {
                         messageList.map((item, key) =>

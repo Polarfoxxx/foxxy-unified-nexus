@@ -12,11 +12,13 @@ router.get('/data', async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'Používateľ s daným emailName nebol nájdený.' });
         } else {
-            const events = user.data.events
-            const messages = user.data.messages
+            const events = user.data.events;
+            const messages = user.data.messages;
+            const theme = user.custom.theme;
             return res.status(201).json({
                 events: events,
-                message: messages
+                message: messages,
+                theme: theme
             })
         };
     } catch

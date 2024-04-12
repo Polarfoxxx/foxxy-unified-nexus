@@ -3,13 +3,20 @@ import "./App.css"
 import { Container, Content } from './module';
 import { LoginPage } from './module/AuthentificationModule';
 import { Routes, Route, useNavigate } from "react-router-dom";
-
+import { servicesJWTdecodeAndValidity } from './module/utils';
 
 function App() {
   const NAVIGATE = useNavigate();
+
   React.useEffect(() => {
-    NAVIGATE("/LoginPage")
-  }, [])
+    const JWT = localStorage.getItem("JWT");
+    if (JWT !== null) {
+        !servicesJWTdecodeAndValidity(JWT) && NAVIGATE("/LoginPage")
+    } else {
+        NAVIGATE("/LoginPage")
+    };
+}, [NAVIGATE]);
+
 
   return (
     <div className="w-full flex items-center justify-center h-auto bg-slate-500">

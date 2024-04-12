@@ -7,7 +7,8 @@ export type Type_for_readData_API = {
     status: number,
     data: {
         events: Type_for_newEventFrom_DB[],
-        messages: Type_for_newMesssageFrom_DB[]
+        messages: Type_for_newMesssageFrom_DB[],
+        theme: string
     }
 };
 
@@ -21,13 +22,12 @@ async function readData_API(user: string): Promise<Type_for_readData_API | undef
                 userName: user
             }
         });
-        console.log(LOAD_DATA.data);
-
         return {
             status: LOAD_DATA.status,
             data: {
                 events: LOAD_DATA.data.events,
-                messages: LOAD_DATA.data.message
+                messages: LOAD_DATA.data.message,
+                theme: LOAD_DATA.data.theme
             }
         };
     } catch (error) {

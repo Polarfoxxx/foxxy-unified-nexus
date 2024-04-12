@@ -10,11 +10,11 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
 
     /* nacitanie nstavej farby z db */
     React.useEffect(() => {
-        const LOAD_THEME = appData.userLogData.appTheme
+        const LOAD_THEME = appData.userLogData.appTheme;
         LOAD_THEME &&
             props.themedDivRef.current?.setAttribute("data-theme", LOAD_THEME);
         setApp_theme(LOAD_THEME)
-    }, []);
+    }, [appData.userLogData.appTheme]);
 
     const handleColorChange = (selectTheme: string) => {
         props.themedDivRef.current?.setAttribute("data-theme", selectTheme);

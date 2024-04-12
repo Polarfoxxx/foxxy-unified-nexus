@@ -7,7 +7,8 @@ function LogOut(): JSX.Element {
     const NAVIGATE = useNavigate();
 
     const handleClickLogOut = () => {
-        sessionStorage.removeItem("JWT")
+        localStorage.removeItem("JWT")
+        localStorage.removeItem("USER_NAME")
         NAVIGATE("/LoginPage");
     };
 

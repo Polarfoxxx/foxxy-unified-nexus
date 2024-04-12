@@ -1,10 +1,6 @@
-import { log } from "console";
 import { Type_for_newMesssageFrom_DB } from "../MessageList";
 import React from "react";
-
-export type Type_for_ItemMessage = {
-    itemData: Type_for_newMesssageFrom_DB
-};
+import { Type_for_ItemMessage, services_messageColorAlert } from "../";
 
 
 function ItemMessage(props: Type_for_ItemMessage): JSX.Element {
@@ -26,32 +22,14 @@ function ItemMessage(props: Type_for_ItemMessage): JSX.Element {
     React.useEffect(() => {
         const updateColorAlert = () => {
             if (itemMessageData) {
-                const CURRENT_TIME = new Date();
-                const endMessageCopy = new Date(itemMessageData.end_message);
-    
-                const ADD_6H = CURRENT_TIME.setHours(CURRENT_TIME.getHours() + 6);
-                const ADD_12H = CURRENT_TIME.setHours(CURRENT_TIME.getHours() + 6);
-                const ADD_24H = CURRENT_TIME.setHours(CURRENT_TIME.getHours() + 12);
-                const ADD_48H = CURRENT_TIME.setHours(CURRENT_TIME.getHours() + 24);
-    
-                if (new Date(ADD_6H) > endMessageCopy) {
-                    setColorAlert({ backgroundColor: "red" });
-                } else if (new Date(ADD_6H) < endMessageCopy && new Date(ADD_12H) > endMessageCopy) {
-                    setColorAlert({ backgroundColor: "yellow" });
-                } else if (new Date(ADD_12H) < endMessageCopy && new Date(ADD_24H) > endMessageCopy) {
-                    setColorAlert({ backgroundColor: "green" });
-                }
-            }
+                setColorAlert(services_messageColorAlert({ itemMessageData }))
+            };
         };
-    
-        // Spustíme funkci hned po načtení komponenty
         updateColorAlert();
-        // Nastavíme interval pro pravidelné spouštění funkce
-        const intervalId = setInterval(updateColorAlert, 60000);
-        // Ukončení intervalu při odstranění komponenty nebo změně end_message
+        const intervalId = setInterval(updateColorAlert, 1800000); /* polhodina */
         return () => clearInterval(intervalId);
     }, [itemMessageData?.end_message]);
-    
+
     return (
         <div
             style={colorAlert}

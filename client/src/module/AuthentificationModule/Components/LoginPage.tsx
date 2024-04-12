@@ -34,15 +34,15 @@ function LoginPage(): JSX.Element {
         try {
             const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
             if (LOGIN?.jwt) {
-                const DATA_FOR_SESSIONSTORAGE = {
-                    userName: LOGIN.userName,
-                    appTheme: LOGIN.theme
-                };
                 setAppData(prevAppData => ({
                     ...prevAppData,
-                    userLogData: DATA_FOR_SESSIONSTORAGE
+                    userLogData: {
+                        ...prevAppData.userLogData,
+                        userName: LOGIN.userName
+                    }
                 }));
-                sessionStorage.setItem("JWT", LOGIN.jwt);
+                localStorage.setItem("JWT", LOGIN.jwt);
+                localStorage.setItem("USER_NAME", LOGIN.userName);
                 NAVIGATE("/Content");
             };
             if (LOGIN?.status) {

@@ -14,11 +14,10 @@ function Content(): JSX.Element {
     const NAVIGATE = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
-
     React.useEffect(() => {
-        const JWT = sessionStorage.getItem("JWT");
+        const JWT = localStorage.getItem("JWT");
         if (JWT !== null) {
-            servicesJWTdecodeAndValidity(JWT) ? NAVIGATE("/Content") : NAVIGATE("/LoginPage")
+            !servicesJWTdecodeAndValidity(JWT) && NAVIGATE("/LoginPage")
         } else {
             NAVIGATE("/LoginPage")
         };
@@ -28,21 +27,27 @@ function Content(): JSX.Element {
     React.useEffect(() => {
         loadDataAPI()
     }, []);
-    
+
     async function loadDataAPI() {
-        const USER_NAME = appData.userLogData.userName;
-        try {
-            const LOAD_DATA = await readData_API(USER_NAME);
-            if (LOAD_DATA) {
-                setAppData(prevAppData => ({
-                    ...prevAppData,
-                    allEvents: LOAD_DATA.data.events,
-                    allMessage: LOAD_DATA.data.messages
-                }));
+        const USER_NAME = localStorage.getItem("USER_NAME");
+        if (USER_NAME !== null) {
+            try {
+                const LOAD_DATA = await readData_API(USER_NAME);
+                if (LOAD_DATA) {
+                    setAppData(prevAppData => ({
+                        ...prevAppData, 
+                        userLogData: {
+                            ...prevAppData.userLogData, 
+                            appTheme: LOAD_DATA.data.theme 
+                        },
+                        allEvents: LOAD_DATA.data.events, 
+                        allMessage: LOAD_DATA.data.messages 
+                    }));
+                };
+            } catch (error) {
+                console.log("Chyba pri načítavaní udalostí:", error);
             };
-        } catch (error) {
-            console.log("Chyba pri načítavaní udalostí:", error);
-        };
+        }
     };
 
 
@@ -52,7 +57,7 @@ function Content(): JSX.Element {
         <div
             ref={themedDivRef}
             data-theme=""
-            className=" w-full h-full flex flex-col justify-center items-center bg-background_App bg-fullApp">
+            className=" w-full h-full flex bg-white flex-col justify-center items-center bg-background_App bg-fullApp bg-no-repeat">
             <header className=" w-full h-28  bg-transparent flex flex-col justify-center items-center ">
                 <div className=" w-full h-full flex flex-row ">
                     <div className=" w-full min-w-64 h-full flex items-center justify-center ">
@@ -82,8 +87,8 @@ function Content(): JSX.Element {
                     <Calendar />
                 </div>
             </article>
-            <footer className=" w-full h-auto bg-green-600 flex justify-center items-center p-5">
-                <div className=" w-[90%] min-h-[600px] bg-slate-400 flex justify-center items-center">
+            <footer className=" w-full h-auto flex justify-center items-center p-5">
+                <div className=" w-[90%] min-h-[600px] flex justify-center items-center">
                     <MessageList />
                 </div>
             </footer>

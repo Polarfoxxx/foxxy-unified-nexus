@@ -27,6 +27,7 @@ module.exports = {
           /* inputStyle */
           inputBorder: "var(--inputBorder)",
           /* backgroundCont */
+          calendarContent_background: "var(--calendarContent_background)",
           dayBackground_hover: "var(--dayBackground_hover)",
           eventBackground: "var(--eventBackground)",
           minBackg_content: "var(--minBackg_content)",
@@ -35,6 +36,7 @@ module.exports = {
           current_time_line: "var(--current_time_line)",
           minBackg_Two_content: "var(--minBackg_Two_content)",
           background_newEventContent: "var(--background_newEventContent)",
+          InvalidDay_Background: "var(--InvalidDay_Background)",
 
 
 

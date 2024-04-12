@@ -11,12 +11,10 @@ function servicesJWTdecodeAndValidity(JWT_FROM_STORAGE: string): boolean {
         checkVerification = true
     } else {
         checkVerification = false;
-        localStorage.removeItem('jwt');
-
+        localStorage.removeItem('JWT');
+        localStorage.removeItem("USER_NAME")
     };
-
     return checkVerification
 };
-
 
 export default servicesJWTdecodeAndValidity;
