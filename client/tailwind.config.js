@@ -37,7 +37,8 @@ module.exports = {
           minBackg_Two_content: "var(--minBackg_Two_content)",
           background_newEventContent: "var(--background_newEventContent)",
           InvalidDay_Background: "var(--InvalidDay_Background)",
-
+          newMessageForm_Background: "var(--newMessageForm_Background)",
+          itemHeader_Background: "var(--itemHeader_Background)"
 
 
         },

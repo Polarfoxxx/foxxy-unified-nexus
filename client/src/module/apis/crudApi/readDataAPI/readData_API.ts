@@ -17,7 +17,7 @@ export type Type_for_readData_API = {
 async function readData_API(user: string): Promise<Type_for_readData_API | undefined> {
 
     try {
-        const LOAD_DATA = await axios.get(`${BASE_URL}readData/data`, {
+        const LOAD_DATA = await axios.get(`${BASE_URL}read/data`, {
             params: {
                 userName: user
             }

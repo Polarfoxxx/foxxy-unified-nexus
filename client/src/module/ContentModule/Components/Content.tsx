@@ -37,7 +37,7 @@ function Content(): JSX.Element {
                     setAppData(prevAppData => ({
                         ...prevAppData, 
                         userLogData: {
-                            ...prevAppData.userLogData, 
+                            userName: USER_NAME,
                             appTheme: LOAD_DATA.data.theme 
                         },
                         allEvents: LOAD_DATA.data.events, 
@@ -88,7 +88,7 @@ function Content(): JSX.Element {
                 </div>
             </article>
             <footer className=" w-full h-auto flex justify-center items-center p-5">
-                <div className=" w-[90%] min-h-[600px] flex justify-center items-center">
+                <div className=" w-[90%] h-auto min-h-[600px] flex justify-center items-center">
                     <MessageList />
                 </div>
             </footer>

@@ -2,6 +2,7 @@ const post_Login = require('./CRUD/post_login');
 const post_Register = require("./CRUD/post_register");
 const post_createData = require("./CRUD/post_createData");
 const get_readData = require("./CRUD/get_readData");
+const delete_deleteData = require("./CRUD/delete_deleteData");
 
 const express = require("express");
 const app = express();
@@ -12,12 +13,13 @@ app.listen(Port, () => console.log(`connect to port ${Port}`));
 app.use(cors());
 
 
-/* ---------------------------------------------------------------------------- */
 /* register POST method ---------------------------------*/
 app.use('/register', post_Register);
 /* Login POST method ------------------------------------*/
 app.use('/login', post_Login);
 /* save POST method -------------------------------------*/
 app.use('/create', post_createData);
-/* loadEvents GET method --------------------------------*/
-app.use('/readData', get_readData);
+/* readData GET method ----------------------------------*/
+app.use('/read', get_readData);
+/* deleteData DELETE method -----------------------------*/
+app.use('/delete', delete_deleteData);

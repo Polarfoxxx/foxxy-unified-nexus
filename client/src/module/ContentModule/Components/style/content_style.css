@@ -16,6 +16,8 @@ div[data-theme="light"] {
     --background_App: url('/public/image/lightAppBacgr.jpg');
     --calendarContent_background:  rgba(226, 226, 226, 0.568);
     --InvalidDay_Background: rgba(0, 0, 0, 0.507);
+    --newMessageForm_Background: rgb(185, 185, 185);
+    --itemHeader_Background: rgb(196, 131, 221);
     /* textColor */
     --defaultTextColor: rgb(255, 255, 255);
     --defaultTextColorDark: rgb(0, 0, 0);

@@ -5,7 +5,6 @@ const User = require("../mongooseDB/mongooseDB");
 
 router.post('/data', async (req, res) => {
     const { userName, save_Data } = req.body;
-    console.log(save_Data);
     try {
         // hladanie uzivatela
         const user = await User.findOne({ username: userName });

@@ -1,11 +1,9 @@
 import React from "react";
 import { servicesTypeResponseStatus, Type_for_LoadingFeedback } from "./";
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 
 function LoadingFeedback(props: Type_for_LoadingFeedback): JSX.Element {
     const { respo_status, loadON } = props.loadstatus;
+    const loadTimerRef = React.useRef<NodeJS.Timeout | undefined>(undefined);
     const [respoStatus, setRespoStatus] = React.useState<{ fontAwesome: null | JSX.Element, statusRespo: string, load_ON: boolean }>({
         fontAwesome: null,
         statusRespo: "",
@@ -14,17 +12,35 @@ function LoadingFeedback(props: Type_for_LoadingFeedback): JSX.Element {
 
     React.useEffect(() => {
         if (props.loadstatus.loadON) {
-            const { typeResponseText, fontAwensome } = servicesTypeResponseStatus({ respo_status })
+            const { typeResponseText, fontAwensome } = servicesTypeResponseStatus({ respo_status });
             setRespoStatus({
                 fontAwesome: fontAwensome,
                 statusRespo: typeResponseText,
-                load_ON: loadON
+                load_ON: true
             });
+            // Zrušit předchozí časovač, pokud existuje
+            if (loadTimerRef.current) {
+                clearTimeout(loadTimerRef.current);
+            }
+            // Vytvořit nový časovač
+            loadTimerRef.current = setTimeout(() => {
+                setRespoStatus(prevState => ({
+                    ...prevState,
+                    load_ON: false
+                }));
+            }, 3000);
+        } else {
+            // Pokud loadON není true, zrušit časovač, pokud existuje
+            if (loadTimerRef.current) {
+                clearTimeout(loadTimerRef.current);
+            };
         };
-    }, [JSON.stringify(props.loadstatus)]);
-
-    /*  */
-    /*  */
+        return () => {
+            if (loadTimerRef.current) {
+                clearTimeout(loadTimerRef.current);
+            };
+        };
+    }, [props.loadstatus]);
 
     return (
         <div className=" w-[220px] h-[100px] flex fixed items-center justify-center right-0">
