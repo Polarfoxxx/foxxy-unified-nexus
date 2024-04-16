@@ -53,12 +53,12 @@ function MessageList(): JSX.Element {
             console.log(error);
         };
     }
-console.log(appData.allMessage)
+    console.log(appData.allMessage)
 
     return (
-        <div className="w-full h-auto flex items-center justify-center flex-col ">
-            <div className=" w-full h-[10%] flex items-center justify-between flex-row ">
-                <div className=" w-[100%] h-[100%] bg-thems-minBackg_content roud flex items-center justify-center rounded-r-[25px]">
+        <div className="w-full h-auto flex items-center justify-center flex-col">
+            <div className=" w-full h-[10%] flex items-center justify-between flex-row">
+                <div className=" w-[100%] h-[100%] bg-thems-minBackg_content roud flex items-center justify-center rounded-tl-[10px] rounded-tr-[10px]">
                     <h2 className=" text-[25px] text-thems-defaultTextColor">
                         Message
                     </h2>
@@ -67,24 +67,24 @@ console.log(appData.allMessage)
                     {/* white style */}
                 </div>
             </div>
-            <div className=" w-full h-[20%] flex items-center justify-center">
+            <div className=" w-full h-[30%]  flex items-center justify-center">
                 <form
-                    className="w-full h-full p-2 flex justify-center items-center flex-col gap-2 bg-thems-newMessageForm_Background"
+                    className="w-full min-h-[130px] p-2 flex justify-center rounded-tr-[10px] items-center flex-col gap-5 bg-thems-newMessageForm_Background"
                     onSubmit={(e) => handleSubmit(e, submit)}>
                     <div className="w-full h-full flex justify-center items-center flex-row gap-2 ">
                         <div className="w-[300px] h-[100%] flex justify-center items-center flex-col">
                             <div className=" w-[100%] h-[20%] flex justify-center items-center">
                                 <h3>The title for new message</h3>
                             </div>
-                            <div className=" w-[100%] h-[100%] flex justify-center items-center">
+                            <div className=" w-[100%] h-[100%] flex justify-center items-center bg-slate-300">
                                 <input
-                                    className=" w-[100%] h-[35px] text-center pl-2 pr-2 rounded-lg"
+                                    className=" w-[300px] h-[35px] text-center pl-2 pr-2 rounded-lg"
                                     placeholder="Title message"
                                     name="message"
                                     type="text" />
                             </div>
                         </div>
-                        <div className="w-[800px] h-[100%] flex justify-center items-center flex-col">
+                        <div className="w-[850px] h-[100%] flex justify-center items-center flex-col">
                             <div className=" w-[100%] h-[20%] flex justify-center items-center">
                                 <h3>The content for new message</h3>
                             </div>
@@ -102,7 +102,7 @@ console.log(appData.allMessage)
                                     Last termin
                                 </h3>
                             </div>
-                            <div className=" w-[100%] h-[100%] flex justify-center items-center">
+                            <div className=" w-[100%] h-[100%] flex justify-center items-center bg-slate-400">
                                 <DatePicker
                                     autoComplete="false"
                                     showTimeSelect
@@ -111,7 +111,7 @@ console.log(appData.allMessage)
                                     timeCaption="Čas"
                                     dateFormat="dd.MM.yyyy HH:mm"
                                     name="startDate"
-                                    className=" w-[100%] h-[35px] rounded-lg pl-2 pr-2 text-center border border-thems-inputBorder "
+                                    className=" w-[300px] h-[35px] rounded-lg pl-2 pr-2 text-center border border-thems-inputBorder "
                                     placeholderText="Due Date"
                                     selected={newMessage.start}
                                     onChange={(start) => setNewMessage({ ...newMessage, start })} />
@@ -141,12 +141,13 @@ console.log(appData.allMessage)
                     </div>
                 </form>
             </div>
-            <div className=" w-full h-[100%] flex items-start justify-center p-3" >
-                <div className=" w-[100%] h-auto flex justify-center items-center gap-2 flex-col">
+            <div className=" w-full h-[700px] h-max-[700px] overflow-x-auto min-h-[500px] flex items-start justify-center" >
+                <div className=" w-[100%] h-auto flex  justify-center items-start gap-2 flex-col bg-thems-calendarContent_background p-6 rounded-br-[10px] rounded-bl-[10px]">
                     {
                         messageList.map((item, key) =>
                             <div
-                                className=" w-[100%] h-[70px] border border-black bg-slate-300 cursor-pointer overflow-hidden flex rounded-xl"
+                                style={key === 0 ? { borderRadius: "20px 20px 0 0" } : key === messageList.length - 1 ? { borderRadius: "0 0 20px 20px" } : { borderRadius: "0px" }}
+                                className=" w-[80%] h-[120px] rounded-tr-[0px] bg-thems-item_Background cursor-pointer overflow-hidden flex"
                                 key={key}>
                                 <ItemMessage
                                     keyType={key}

@@ -59,59 +59,57 @@ function ItemMessage(props: Type_for_ItemMessage): JSX.Element {
     return (
         <div
             key={props.keyType}
-            className=" w-[100%] h-[100%] flex justify-center items-center flex-row">
-            <div className="w-[20%] h-[100%] flex items-center justify-center flex-col">
-                <div className=" w-[100%] h-[100%] flex items-center justify-start pl-2 pr-2 bg-thems-itemHeader_Background">
+            className=" w-[100%] h-[100%] flex justify-center items-center flex-row ">
+            <div className=" w-[100%] h-[100%] flex items-center justify-center flex-col">
+                {/* tittle */}
+                <div className=" w-[100%] h-[30%] flex flex-row justify-start items-center">
+                    <div className="w-[10%] h-[100%] flex flex-row justify-center items-center">
+                        <h2>
+                            {props.keyType + 1}
+                        </h2>
+                    </div>
+                    <div className="w-[30%] h-[100%] flex flex-row justify-center items-center">
+                        <h2>
+                            {itemMessageData?.start_message.toLocaleString()}
+                        </h2>
+                    </div>
+                    <div className="w-[100%] h-[100%] flex flex-row justify-center items-center">
+                        <h2>
+                            {itemMessageData?.title_message}
+                        </h2>
+                    </div>
                 </div>
-                <div className=" w-[100%] h-[100%] flex items-center justify-center pl-2 pr-2">
-                    <h1>{props.keyType + 1}</h1>
-                </div>
-            </div>
-            <div className="w-[100%] h-[100%] flex items-center justify-center flex-col">
-                <div className=" w-[100%] h-[100%] flex items-center justify-start pl-2 pr-2 bg-thems-itemHeader_Background">
-                    <h1>Created</h1>
-                </div>
-                <div className=" w-[100%] h-[100%] flex items-center justify-center pl-2 pr-2">
-                    <h3>{itemMessageData?.start_message.toLocaleString()}</h3>
-                </div>
-            </div>
-            <div className="w-[100%] h-[100%] flex items-center justify-center flex-col">
-                <div className=" w-[100%] h-[100%] flex items-center justify-start pl-2 pr-2 bg-thems-itemHeader_Background">
-                    <h1>Title message</h1>
-                </div>
-                <div className=" w-[100%] h-[100%] flex items-center justify-center pl-2 pr-2">
-                    <h3>{itemMessageData?.title_message}</h3>
-                </div>
-            </div>
-            <div className="w-[100%] h-[100%] flex items-center justify-center flex-col">
-                <div className=" w-[100%] h-[100%] flex items-center justify-start pl-2 pr-2 bg-thems-itemHeader_Background">
-                    <h1>Content message</h1>
-                </div>
-                <div className=" w-[100%] h-[100%] flex items-center justify-center pl-2 pr-2">
-                    <h3>{itemMessageData?.content_message}</h3>
+                {/* content */}
+                <div className=" w-[100%] h-[100%] bg-white p-3 rounded-tr-[30px]">
+                    <p>
+                        {itemMessageData?.content_message}
+                    </p>
                 </div>
             </div>
-            <div className="w-[100%] h-[100%] flex items-center justify-center flex-col">
-                <div className=" w-[100%] h-[100%] flex items-center justify-start pl-2 pr-2 bg-thems-itemHeader_Background">
-                    <h1>Message termin</h1>
+            <div className=" w-[20%] h-[100%] flex items-center justify-center flex-col">
+                <div className=" w-[100%] h-[100%] flex items-center justify-center flex-row">
+                    <div className=" w-[100%] h-[100%] flex items-center justify-center ">
+                        <button onClick={handleClickDeleteItem}>
+                            delete
+                        </button>
+                    </div>
+                    <div className=" w-[100%] h-[100%] flex items-center justify-center">
+                        <button >
+                            complete
+                        </button>
+                    </div>
                 </div>
-                <div
-                    style={colorAlert}
-                    className=" w-[100%] h-[100%] flex items-center justify-center pl-2 pr-2">
-                    <h3>{itemMessageData?.end_message.toLocaleString()}</h3>
-                </div>
-            </div>
-            <div className="w-[60%] h-[100%] flex items-center justify-center">
-                < div className="w-[100%] h-[100%] flex items-center justify-center">
-                    <button
-                        onClick={handleClickDeleteItem}>
-                        Delete
-                    </button>
-                </div>
-                < div className="w-[100%] h-[100%] flex items-center justify-center">
-                    <button>
-                        Complete
-                    </button>
+                <div className=" w-[100%] h-[100%] flex items-center justify-center">
+                    <div
+                        className=" w-[100%] h-[100%] flex items-center justify-center">
+                        <div
+                            style={colorAlert}
+                            className=" w-[150px] h-[30px] flex items-center justify-center rounded-2xl">
+                            <h1>
+                                {itemMessageData?.end_message.toLocaleDateString()}
+                            </h1>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

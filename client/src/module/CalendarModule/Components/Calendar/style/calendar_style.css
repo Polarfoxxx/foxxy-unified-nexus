@@ -1,3 +1,9 @@
+
+.rbc-month-view, .rbc-time-view, .rbc-agenda-view {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
 /* bunka */
 .rbc-day-bg {
     cursor: pointer;

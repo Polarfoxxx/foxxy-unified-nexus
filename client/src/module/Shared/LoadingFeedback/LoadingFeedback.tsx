@@ -28,7 +28,7 @@ function LoadingFeedback(props: Type_for_LoadingFeedback): JSX.Element {
                     ...prevState,
                     load_ON: false
                 }));
-            }, 3000);
+            }, 4000);
         } else {
             // Pokud loadON není true, zrušit časovač, pokud existuje
             if (loadTimerRef.current) {

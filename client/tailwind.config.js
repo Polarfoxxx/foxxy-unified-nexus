@@ -38,7 +38,8 @@ module.exports = {
           background_newEventContent: "var(--background_newEventContent)",
           InvalidDay_Background: "var(--InvalidDay_Background)",
           newMessageForm_Background: "var(--newMessageForm_Background)",
-          itemHeader_Background: "var(--itemHeader_Background)"
+          itemHeader_Background: "var(--itemHeader_Background)",
+          item_Background: "var(--item_Background)",
 
 
         },

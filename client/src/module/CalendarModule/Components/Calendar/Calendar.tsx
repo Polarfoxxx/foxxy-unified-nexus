@@ -111,7 +111,7 @@ function CalendarMod(): JSX.Element {
         startAccessor="start"
         endAccessor="end"
         events={allEvents}
-        style={{ height: 650, width: "100%" }}
+        style={{ height: 650, width: "100%"}}
         className="hover-effect-calendar"
         onSelectEvent={handleEventClick} />
       {/* -------- */}
