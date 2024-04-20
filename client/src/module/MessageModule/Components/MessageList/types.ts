@@ -6,6 +6,7 @@ export type Type_for_newMessageFor_API = {
         end_message: Date;
         title_message: string;
         content_message: string;
+        status: boolean
     }
 };
 
@@ -14,4 +15,5 @@ export type Type_for_newMesssageFrom_DB = {
     end_message: Date;
     title_message: string;
     content_message: string;
+    status: boolean
 };

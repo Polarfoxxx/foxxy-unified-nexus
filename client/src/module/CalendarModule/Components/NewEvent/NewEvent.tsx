@@ -7,7 +7,7 @@ import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { createData_API } from "../../../apis/crudApi";
 import { Type_for_NewEvent, Type_for_newEventFor_API } from "./type";
-import { Type_for_newMessageFor_API } from "../../../MessageModule";
+import { Type_for_newMessageFor_API } from "../../../MessageModule/Components/MessageList/types";
 import { Container } from "../../../ContainerModule";
 import { NewRequest } from "../../../utils";
 

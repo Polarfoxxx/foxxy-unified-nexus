@@ -14,11 +14,12 @@ div[data-theme="light"] {
     --background_content: white;
     --background_newEventContent: rgb(179, 179, 179);
     --background_App: url('/public/image/appBcgLight.jpg');
-    --calendarContent_background:  rgba(187, 162, 226, 0.966);
+    --calendarContent_background:  rgba(57, 40, 185, 0.712);
     --InvalidDay_Background: rgba(0, 0, 0, 0.507);
     --newMessageForm_Background: rgb(143, 142, 142);
     --item_Background: rgb(221, 221, 221);
     --itemHeader_Background: rgb(179, 95, 218);
+    --currentMessCount_Background: rgba(70, 70, 70, 0.507);
     /* textColor */
     --defaultTextColor: rgb(255, 255, 255);
     --defaultTextColorDark: rgb(0, 0, 0);

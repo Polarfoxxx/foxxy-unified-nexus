@@ -1,6 +1,6 @@
 import services_changeStringToDateFormat from "../servicesChangeStringToDateFormat/services_chengeStringToDateFormat";
 import { Type_for_newEventFor_API } from "../../CalendarModule";
-import { Type_for_newMessageFor_API } from "../../MessageModule";
+import { Type_for_newMessageFor_API } from "../../MessageModule/Components/MessageList/types";
 
 type Type_for_Constructor = {
     startDate_event?: string;
@@ -72,7 +72,8 @@ class NewRequest {
                         start_message: (this.startDate_message),
                         end_message: services_changeStringToDateFormat(this.endDate_message),
                         title_message: this.title_message,
-                        content_message: this.content_Message // Použití správné vlastnosti
+                        content_message: this.content_Message,
+                        status: true
                     }
                 };
                 return RET_DATA;

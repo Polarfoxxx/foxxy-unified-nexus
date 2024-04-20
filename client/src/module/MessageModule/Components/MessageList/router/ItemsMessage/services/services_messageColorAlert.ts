@@ -1,5 +1,5 @@
 import React from "react";
-import { Type_for_newMesssageFrom_DB } from "../../MessageList";
+import { Type_for_newMesssageFrom_DB } from "../../../types";
 
 export type Type_for_services_messageColorAlert = {
     itemMessageData: Type_for_newMesssageFrom_DB

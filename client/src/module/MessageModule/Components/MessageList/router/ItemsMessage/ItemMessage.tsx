@@ -1,8 +1,8 @@
-import { Type_for_newMesssageFrom_DB } from "../MessageList";
+import { Type_for_newMesssageFrom_DB } from "../../types";
 import React from "react";
 import { Type_for_ItemMessage, services_messageColorAlert } from "../";
-import { Container } from "../../../ContainerModule";
-import { deleteData_API } from "../../../apis/index.";
+import { Container } from "../../../../../ContainerModule";
+import { deleteData_API } from "../../../../../apis/index.";
 
 
 function ItemMessage(props: Type_for_ItemMessage): JSX.Element {
@@ -17,6 +17,7 @@ function ItemMessage(props: Type_for_ItemMessage): JSX.Element {
                 end_message: new Date(props.itemData.end_message),
                 title_message: props.itemData.title_message,
                 content_message: props.itemData.content_message,
+                status: props.itemData.status
             });
         };
     }, [JSON.stringify(props.itemData)]);
@@ -59,7 +60,7 @@ function ItemMessage(props: Type_for_ItemMessage): JSX.Element {
     return (
         <div
             key={props.keyType}
-            className=" w-[100%] h-[100%] flex justify-center items-center flex-row ">
+            className=" w-[100%] h-[100%] flex justify-center items-center flex-row   ">
             <div className=" w-[100%] h-[100%] flex items-center justify-center flex-col">
                 {/* tittle */}
                 <div className=" w-[100%] h-[30%] flex flex-row justify-start items-center">

@@ -40,6 +40,7 @@ module.exports = {
           newMessageForm_Background: "var(--newMessageForm_Background)",
           itemHeader_Background: "var(--itemHeader_Background)",
           item_Background: "var(--item_Background)",
+          currentMessCount_Background: "var(--currentMessCount_Background)",
 
 
         },

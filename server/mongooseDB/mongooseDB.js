@@ -28,7 +28,8 @@ const userSchema = new mongoose.Schema({
                 start_message: Date,
                 end_message: Date,
                 title_message: String,
-                content_message: String
+                content_message: String,
+                status: Boolean
             },
         ],
     }

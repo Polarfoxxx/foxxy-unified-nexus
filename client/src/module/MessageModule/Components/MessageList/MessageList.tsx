@@ -8,7 +8,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Type_for_newEventFor_API } from "../../../CalendarModule";
 import { Type_for_newMesssageFrom_DB, Type_for_newMessageFor_API } from "./types";
-import { ItemMessage } from "../ItemsMessage";
+import { ValidMessageList, InvalidMessageList } from "./router";
+import { Route, Routes, Link } from "react-router-dom";
 
 function MessageList(): JSX.Element {
     const [messageList, setMessageList] = React.useState<Type_for_newMesssageFrom_DB[]>([]);
@@ -53,7 +54,7 @@ function MessageList(): JSX.Element {
             console.log(error);
         };
     }
-    console.log(appData.allMessage)
+
 
     return (
         <div className="w-full h-auto flex items-center justify-center flex-col">
@@ -74,11 +75,13 @@ function MessageList(): JSX.Element {
                     <div className="w-full h-full flex justify-center items-center flex-row gap-2 ">
                         <div className="w-[300px] h-[100%] flex justify-center items-center flex-col">
                             <div className=" w-[100%] h-[20%] flex justify-center items-center">
-                                <h3>The title for new message</h3>
+                                <h3 className=" text-thems-defaultTextColor">
+                                    The title for new message
+                                    </h3>
                             </div>
-                            <div className=" w-[100%] h-[100%] flex justify-center items-center bg-slate-300">
+                            <div className=" w-[100%] h-[100%] flex justify-center items-center">
                                 <input
-                                    className=" w-[300px] h-[35px] text-center pl-2 pr-2 rounded-lg"
+                                    className=" w-[300px] h-[30px] text-center pl-2 pr-2 rounded-lg"
                                     placeholder="Title message"
                                     name="message"
                                     type="text" />
@@ -86,11 +89,13 @@ function MessageList(): JSX.Element {
                         </div>
                         <div className="w-[850px] h-[100%] flex justify-center items-center flex-col">
                             <div className=" w-[100%] h-[20%] flex justify-center items-center">
-                                <h3>The content for new message</h3>
+                                <h3 className=" text-thems-defaultTextColor">
+                                    The content for new message
+                                    </h3>
                             </div>
                             <div className=" w-[100%] h-[100%] flex justify-center items-center">
                                 <input
-                                    className=" w-[100%] h-[35px] text-center pl-2 pr-2 rounded-lg"
+                                    className=" w-[100%] h-[30px] text-center pl-2 pr-2 rounded-lg"
                                     placeholder="Message"
                                     name="message"
                                     type="text" />
@@ -98,11 +103,11 @@ function MessageList(): JSX.Element {
                         </div>
                         <div className="w-[300px] h-[100%] flex justify-center items-center flex-col">
                             <div className=" w-[100%] h-[20%] flex justify-center items-center">
-                                <h3>
+                                <h3 className=" text-thems-defaultTextColor">
                                     Last termin
                                 </h3>
                             </div>
-                            <div className=" w-[100%] h-[100%] flex justify-center items-center bg-slate-400">
+                            <div className=" w-[100%] h-[100%] flex justify-center items-center">
                                 <DatePicker
                                     autoComplete="false"
                                     showTimeSelect
@@ -111,7 +116,7 @@ function MessageList(): JSX.Element {
                                     timeCaption="Čas"
                                     dateFormat="dd.MM.yyyy HH:mm"
                                     name="startDate"
-                                    className=" w-[300px] h-[35px] rounded-lg pl-2 pr-2 text-center border border-thems-inputBorder "
+                                    className=" w-[300px] h-[30px] rounded-lg pl-2 pr-2 text-center border border-thems-inputBorder "
                                     placeholderText="Due Date"
                                     selected={newMessage.start}
                                     onChange={(start) => setNewMessage({ ...newMessage, start })} />
@@ -119,42 +124,58 @@ function MessageList(): JSX.Element {
                         </div>
                     </div>
                     <div className="w-full h-full flex justify-center items-center flex-row">
-                        <div className="w-full h-full flex justify-start items-center">
+                        <div className="w-full h-full flex justify-center items-center">
                             <button
                                 className=" w-[280px] h-[30px] border border-thems-minBackg_content rounded-xl bg-thems-background_button text-thems-defaultTextColorDark hover:bg-thems-background_button_hover"
                                 type="submit">
                                 Create new message
                             </button>
                         </div>
-                        <div className="w-[20%] h-full flex justify-center items-center flex-row bg-thems-minBackg_content rounded-lg">
-                            <div className="w-[100%] h-[100%] flex justify-center items-center">
-                                <h2 className=" text-thems-defaultTextColor">
-                                    Message count:
-                                </h2>
+                        <div className=" w-full h-full flex items-center justify-around bg-thems-newMessageForm_Background">
+                            <Link
+                                className="m-2 flex justify-center items-center w-[220px] h-[30px] border border-thems-minBackg_content rounded-xl bg-thems-background_button text-thems-defaultTextColorDark hover:bg-thems-background_button_hover"
+                                to="ValidMessageList">
+                                Your note
+                            </Link>
+                            <Link
+                                className=" m-2 flex justify-center items-center w-[220px] h-[30px] border border-thems-minBackg_content rounded-xl bg-thems-background_button text-thems-defaultTextColorDark hover:bg-thems-background_button_hover"
+                                to="InvalidMessageList"
+                            >Fulfilled note
+                            </Link>
+                        </div>
+                        <div className="w-full h-full flex justify-center items-center ">
+                            <div className="w-[50%] h-full flex justify-center items-center flex-row bg-thems-minBackg_content rounded-lg gap-6">
+                                <div className="w-[100%] h-[100%] flex justify-end items-center">
+                                    <h2 className=" text-thems-defaultTextColor">
+                                        All message count:
+                                    </h2>
+                                </div>
+                                <div className="w-[30%] h-[100%] flex justify-start items-center">
+                                    <h1 className=" text-[20px] text-thems-defaultTextColor">
+                                        {appData.allMessage.length}
+                                    </h1>
+                                </div>
                             </div>
-                            <div className="w-[100%] h-[100%] flex justify-center items-center">
-                                <h1 className=" text-[20px] text-thems-defaultTextColor">
-                                    {appData.allMessage.length}
-                                </h1>
-                            </div>
+
                         </div>
                     </div>
                 </form>
             </div>
+
             <div className=" w-full h-[700px] h-max-[700px] overflow-x-auto min-h-[500px] flex items-start justify-center" >
-                <div className=" w-[100%] h-auto flex  justify-center items-start gap-2 flex-col bg-thems-calendarContent_background p-6 rounded-br-[10px] rounded-bl-[10px]">
-                    {
-                        messageList.map((item, key) =>
-                            <div
-                                style={key === 0 ? { borderRadius: "20px 20px 0 0" } : key === messageList.length - 1 ? { borderRadius: "0 0 20px 20px" } : { borderRadius: "0px" }}
-                                className=" w-[80%] h-[120px] rounded-tr-[0px] bg-thems-item_Background cursor-pointer overflow-hidden flex"
-                                key={key}>
-                                <ItemMessage
-                                    keyType={key}
-                                    itemData={item} />
-                            </div>
-                        )
-                    }
+                <div className=" w-[100%] h-[100%] flex justify-center items-center  bg-thems-calendarContent_background rounded-br-[10px] rounded-bl-[10px]">
+                    <Routes>
+                        <Route
+                            path="ValidMessageList/*"
+                            element={<ValidMessageList
+                                messageList={messageList} />}
+                        />
+                        <Route
+                            path="InvalidMessageList"
+                            element={<InvalidMessageList
+                                messageList={messageList} />}
+                        />
+                    </Routes>
                 </div>
             </div>
         </div>
