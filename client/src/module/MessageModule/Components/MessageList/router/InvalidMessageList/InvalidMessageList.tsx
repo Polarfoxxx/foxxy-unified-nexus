@@ -52,9 +52,10 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
 
     return (
         <div className=" w-[100%] h-[100%] flex justify-start items-center gap-1 flex-col">
-            <div className="w-[100%] h-[7%] flex justify-end items-center bg-thems-currentMessCount_Background pl-5 pr-5 gap-4">
-                <div>
+            <div className="w-[100%] h-[7%] flex justify-between items-center bg-thems-currentMessCount_Background pl-5 pr-5">
+                <div className="w-[600px] h-[100%]  flex justify-center items-center ">
                     <form
+                        className="w-[100%] h-[100%]  flex justify-center items-center flex-row gap-5"
                         onSubmit={(e) => handleSubmit(e, submit)}>
                         <div>
                             <input
@@ -67,9 +68,14 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
                                 Apply filter
                             </button>
                         </div>
+                        <div>
+                            <button type="submit">
+                                Reset filter
+                            </button>
+                        </div>
                     </form>
                 </div>
-                <div>
+                <div className="w-[600px] h-[100%] flex justify-center items-center  gap-4">
                     <h2 className=" text-thems-defaultTextColor">
                         Current message in linst:
                     </h2>
@@ -86,9 +92,11 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
                                 borderRadius: key === 0 ? "10px 10px 0 0" : key === invalidList.length - 1 ? "0 0 10px 10px" : "0px",
                                 ...animationStyles[key] // Apply animation styles
                             }}
-                            className="relative left-[100%] w-[80%] h-[120px] min-h-[120px] rounded-tr-[0px] bg-thems-item_Background cursor-pointer overflow-hidden flex border-2 border-t-indigo-900"
+                            className="relative left-[100%] w-[80%] h-[100px] cursor-pointer overflow-hidden "
                             key={key}>
-                            <ItemMessage keyType={key} itemData={item} />
+                            <ItemMessage
+                                keyType={key}
+                                itemData={item} />
                         </div>
                     ))
                 }

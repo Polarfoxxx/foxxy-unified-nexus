@@ -54,7 +54,7 @@ function ValidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.Ele
                                 borderRadius: key === 0 ? "10px 10px 0 0" : key === validList.length - 1 ? "0 0 10px 10px" : "0px",
                                 ...animationStyles[key] // Apply animation styles
                             }}
-                            className="relative left-[100%] w-[80%] h-[120px] min-h-[120px] rounded-tr-[0px] bg-thems-item_Background cursor-pointer overflow-hidden  border-2 border-t-indigo-900"
+                            className="relative left-[100%] w-[80%] h-[100px]  cursor-pointer overflow-hidden "
                             key={key}>
                             <ItemMessage
                                 keyType={key}

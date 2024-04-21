@@ -79,9 +79,9 @@ function MessageList(): JSX.Element {
                                     The title for new message
                                 </h3>
                             </div>
-                            <div className=" w-[100%] h-[100%] flex justify-center items-center">
+                            <div className=" w-[100%] h-[100%] flex justify-center items-center ">
                                 <input
-                                    className=" w-[300px] h-[30px] text-center pl-2 pr-2 rounded-lg"
+                                    className=" w-[300px] h-[25px] text-center pl-2 pr-2 rounded-lg text-[14px]"
                                     placeholder="Title message"
                                     name="message"
                                     type="text" />
@@ -95,7 +95,7 @@ function MessageList(): JSX.Element {
                             </div>
                             <div className=" w-[100%] h-[100%] flex justify-center items-center">
                                 <input
-                                    className=" w-[100%] h-[30px] text-center pl-2 pr-2 rounded-lg"
+                                    className=" w-[100%] h-[25px] text-center pl-2 pr-2 rounded-lg text-[14px]"
                                     placeholder="Message"
                                     name="message"
                                     type="text" />
@@ -116,7 +116,7 @@ function MessageList(): JSX.Element {
                                     timeCaption="Čas"
                                     dateFormat="dd.MM.yyyy HH:mm"
                                     name="startDate"
-                                    className=" w-[300px] h-[30px] rounded-lg pl-2 pr-2 text-center border border-thems-inputBorder "
+                                    className=" w-[300px] h-[25px] rounded-lg pl-2 pr-2 text-center border border-thems-inputBorder text-[14px]"
                                     placeholderText="Due Date"
                                     selected={newMessage.start}
                                     onChange={(start) => setNewMessage({ ...newMessage, start })} />
@@ -126,14 +126,14 @@ function MessageList(): JSX.Element {
                     <div className="w-full h-full flex justify-center items-center flex-row">
                         <div className="w-full h-full flex justify-center items-center">
                             <button
-                                className=" w-[280px] h-[30px] border border-thems-minBackg_content rounded-xl bg-thems-background_button text-thems-defaultTextColorDark hover:bg-thems-background_button_hover"
+                                className=" w-[280px] h-[36px] border border-thems-minBackg_content rounded-xl bg-thems-background_button text-thems-defaultTextColorDark hover:bg-thems-background_button_hover"
                                 type="submit">
                                 Create new message
                             </button>
                         </div>
                         <div className=" w-full h-full flex items-center justify-around bg-thems-newMessageForm_Background">
                             <NavLink
-                                className="m-2 flex justify-center items-center  w-[220px] h-[30px] border border-thems-minBackg_content rounded-xl  hover:bg-thems-background_button_hover"
+                                className="m-2 flex justify-center items-center text-[14px] w-[220px] h-[25px] border border-thems-minBackg_content rounded-xl  hover:bg-thems-background_button_hover"
                                 style={({ isActive }) => ({
                                     backgroundColor: isActive ? 'var(--minBackg_content)' : 'var(--background_button)',
                                     color: isActive ? 'var(--defaultTextColor)' : 'var(--defaultTextColorDark)',
@@ -142,7 +142,7 @@ function MessageList(): JSX.Element {
                                 Your note
                             </NavLink>
                             <NavLink
-                                className="m-2 flex justify-center items-center w-[220px] h-[30px] border border-thems-minBackg_content rounded-xl hover:bg-thems-background_button_hover"
+                                className="m-2 flex justify-center items-center text-[14px] w-[220px] h-[25px] border border-thems-minBackg_content rounded-xl hover:bg-thems-background_button_hover"
                                 style={({ isActive }) => ({
                                     backgroundColor: isActive ? 'var(--minBackg_content)' : 'var(--background_button)',
                                     color: isActive ? 'var(--defaultTextColor)' : 'var(--defaultTextColorDark)',
@@ -154,12 +154,12 @@ function MessageList(): JSX.Element {
                         <div className="w-full h-full flex justify-center items-center ">
                             <div className="w-[50%] h-full flex justify-center items-center flex-row bg-thems-minBackg_content rounded-lg gap-6">
                                 <div className="w-[100%] h-[100%] flex justify-end items-center">
-                                    <h2 className=" text-thems-defaultTextColor">
+                                    <h2 className=" text-thems-defaultTextColor text-[14px]">
                                         All message count:
                                     </h2>
                                 </div>
-                                <div className="w-[30%] h-[100%] flex justify-start items-center">
-                                    <h1 className=" text-[20px] text-thems-defaultTextColor">
+                                <div className="w-[30%] h-[25px] flex justify-start items-center">
+                                    <h1 className=" text-[17px] text-thems-defaultTextColor">
                                         {appData.allMessage.length}
                                     </h1>
                                 </div>
