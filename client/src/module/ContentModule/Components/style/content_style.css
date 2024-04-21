@@ -14,7 +14,7 @@ div[data-theme="light"] {
     --background_content: white;
     --background_newEventContent: rgb(179, 179, 179);
     --background_App: url('/public/image/appBcgLight.jpg');
-    --calendarContent_background:  rgba(57, 40, 185, 0.712);
+    --calendarContent_background:  rgba(189, 189, 189, 0.808);
     --InvalidDay_Background: rgba(0, 0, 0, 0.507);
     --newMessageForm_Background: rgb(143, 142, 142);
     --item_Background: rgb(221, 221, 221);

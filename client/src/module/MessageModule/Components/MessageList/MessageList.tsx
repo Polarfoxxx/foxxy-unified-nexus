@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Type_for_newEventFor_API } from "../../../CalendarModule";
 import { Type_for_newMesssageFrom_DB, Type_for_newMessageFor_API } from "./types";
 import { ValidMessageList, InvalidMessageList } from "./router";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, NavLink } from "react-router-dom";
 
 function MessageList(): JSX.Element {
     const [messageList, setMessageList] = React.useState<Type_for_newMesssageFrom_DB[]>([]);
@@ -77,7 +77,7 @@ function MessageList(): JSX.Element {
                             <div className=" w-[100%] h-[20%] flex justify-center items-center">
                                 <h3 className=" text-thems-defaultTextColor">
                                     The title for new message
-                                    </h3>
+                                </h3>
                             </div>
                             <div className=" w-[100%] h-[100%] flex justify-center items-center">
                                 <input
@@ -91,7 +91,7 @@ function MessageList(): JSX.Element {
                             <div className=" w-[100%] h-[20%] flex justify-center items-center">
                                 <h3 className=" text-thems-defaultTextColor">
                                     The content for new message
-                                    </h3>
+                                </h3>
                             </div>
                             <div className=" w-[100%] h-[100%] flex justify-center items-center">
                                 <input
@@ -132,16 +132,24 @@ function MessageList(): JSX.Element {
                             </button>
                         </div>
                         <div className=" w-full h-full flex items-center justify-around bg-thems-newMessageForm_Background">
-                            <Link
-                                className="m-2 flex justify-center items-center w-[220px] h-[30px] border border-thems-minBackg_content rounded-xl bg-thems-background_button text-thems-defaultTextColorDark hover:bg-thems-background_button_hover"
+                            <NavLink
+                                className="m-2 flex justify-center items-center  w-[220px] h-[30px] border border-thems-minBackg_content rounded-xl  hover:bg-thems-background_button_hover"
+                                style={({ isActive }) => ({
+                                    backgroundColor: isActive ? 'var(--minBackg_content)' : 'var(--background_button)',
+                                    color: isActive ? 'var(--defaultTextColor)' : 'var(--defaultTextColorDark)',
+                                })}
                                 to="ValidMessageList">
                                 Your note
-                            </Link>
-                            <Link
-                                className=" m-2 flex justify-center items-center w-[220px] h-[30px] border border-thems-minBackg_content rounded-xl bg-thems-background_button text-thems-defaultTextColorDark hover:bg-thems-background_button_hover"
+                            </NavLink>
+                            <NavLink
+                                className="m-2 flex justify-center items-center w-[220px] h-[30px] border border-thems-minBackg_content rounded-xl hover:bg-thems-background_button_hover"
+                                style={({ isActive }) => ({
+                                    backgroundColor: isActive ? 'var(--minBackg_content)' : 'var(--background_button)',
+                                    color: isActive ? 'var(--defaultTextColor)' : 'var(--defaultTextColorDark)',
+                                })}
                                 to="InvalidMessageList"
                             >Fulfilled note
-                            </Link>
+                            </NavLink>
                         </div>
                         <div className="w-full h-full flex justify-center items-center ">
                             <div className="w-[50%] h-full flex justify-center items-center flex-row bg-thems-minBackg_content rounded-lg gap-6">

@@ -6,6 +6,7 @@ import { Type_for_newMesssageFrom_DB } from "../../types";
 
 function ValidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.Element {
     const [validList, setValidList] = React.useState<Type_for_newMesssageFrom_DB[]>([]);
+    const [animationStyles, setAnimationStyles] = React.useState<React.CSSProperties[]>([]);
 
     React.useEffect(() => {
         if (props.messageList.length > 0) {
@@ -13,8 +14,26 @@ function ValidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.Ele
                 return item.status === true;
             });
             setValidList(INV_DATA);
+            // Apply animation effect when the list updates
+            applyAnimationEffect(INV_DATA);
         };
     }, [props.messageList]);
+
+
+    const applyAnimationEffect = async (list: Type_for_newMesssageFrom_DB[]) => {
+        const NEW_ANIMATION: React.CSSProperties[] = [];
+        await Promise.all(list.map(async (_, index) => {
+            // Delay each animation based on index
+            await new Promise(resolve => setTimeout(resolve, (index + 1) * 300));
+            // Apply the animation styles
+            NEW_ANIMATION.push({  // Přidání nového objektu do pole NEW_ANIMATION
+                transition: "left 1s",
+                position: "relative",
+                left: "0px",
+            });
+            setAnimationStyles([...NEW_ANIMATION]); // Update the animation styles
+        }));
+    };
 
 
     return (
@@ -27,13 +46,15 @@ function ValidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.Ele
                     {validList.length}
                 </span>
             </div>
-            <div className=" w-[100%] h-[100%] flex justify-start items-center gap-1 flex-col  p-6 ">
+            <div className=" w-[100%] h-[100%] flex justify-start items-center gap-1 flex-col p-6 relative overflow-x-hidden overflow-y-scroll">
                 {
                     validList.map((item, key) =>
                         <div
-                            style={key === 0 ? { borderRadius: "20px 20px 0 0" } : key === validList.length - 1 ?
-                                { borderRadius: "0 0 20px 20px" } : { borderRadius: "0px" }}
-                            className=" w-[80%] h-[120px] rounded-tr-[0px] bg-thems-item_Background cursor-pointer overflow-hidden  border-2 border-t-indigo-900"
+                            style={{
+                                borderRadius: key === 0 ? "10px 10px 0 0" : key === validList.length - 1 ? "0 0 10px 10px" : "0px",
+                                ...animationStyles[key] // Apply animation styles
+                            }}
+                            className="relative left-[100%] w-[80%] h-[120px] min-h-[120px] rounded-tr-[0px] bg-thems-item_Background cursor-pointer overflow-hidden  border-2 border-t-indigo-900"
                             key={key}>
                             <ItemMessage
                                 keyType={key}
