@@ -13,7 +13,7 @@ div[data-theme="light"] {
     --minBackg_Two_content: rgb(195, 121, 230);
     --background_content: white;
     --background_newEventContent: rgb(179, 179, 179);
-    --background_App: url('/public/image/appBcgLight.jpg');
+    --background_App: url('/public/image/lightAppBacgr.jpg');
     --calendarContent_background:  rgba(95, 106, 190, 0.808);
     --InvalidDay_Background: rgba(0, 0, 0, 0.507);
     --newMessageForm_Background: rgb(143, 142, 142);

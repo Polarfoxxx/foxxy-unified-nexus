@@ -1,13 +1,14 @@
 import React from "react";
 import "./style/content_style.css";
 import { servicesJWTdecodeAndValidity } from "../../utils";
-import { useNavigate } from "react-router-dom";
+import { Routes, useNavigate } from "react-router-dom";
 import { LogOut, ColorSwitcher, TittleBar } from "../../HeaderModule";
 import { Calendar } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
 import { SubtText, Clock, CurrentAllEvent } from "../../SubtitleModule";
 import { Container } from "../../ContainerModule";
 import { readData_API } from "../../apis/index.";
+import { NavLink, Route } from "react-router-dom";
 
 function Content(): JSX.Element {
     const { appData, setAppData } = React.useContext(Container.Context)
@@ -35,13 +36,13 @@ function Content(): JSX.Element {
                 const LOAD_DATA = await readData_API(USER_NAME);
                 if (LOAD_DATA) {
                     setAppData(prevAppData => ({
-                        ...prevAppData, 
+                        ...prevAppData,
                         userLogData: {
                             userName: USER_NAME,
-                            appTheme: LOAD_DATA.data.theme 
+                            appTheme: LOAD_DATA.data.theme
                         },
-                        allEvents: LOAD_DATA.data.events, 
-                        allMessage: LOAD_DATA.data.messages 
+                        allEvents: LOAD_DATA.data.events,
+                        allMessage: LOAD_DATA.data.messages
                     }));
                 };
             } catch (error) {
@@ -56,9 +57,62 @@ function Content(): JSX.Element {
     return (
         <div
             ref={themedDivRef}
-            data-theme=""
-            className=" w-full h-full flex bg-white flex-col justify-center items-center bg-background_App bg-fullApp bg-no-repeat">
-            <header className=" w-full h-28  bg-transparent flex flex-col justify-center items-center ">
+            data-theme="light"
+            className=" w-full h-screen flex flex-col justify-center items-center bg-background_App bg-fullApp">
+            <header className=" w-full h-[5%] flex items-center justify-center  bg-slate-200">
+                <div className=" w-full h-full flex items-center justify-center ">
+                    <LogOut />
+                </div>
+            </header>
+            <section className="w-full h-screen flex items-start justify-start bg-slate-400 p-3">
+                <div className="w-full flex items-start justify-start flex-wrap gap-3">
+                    <div className="w-[500px] h-[300px] rounded-[30px] bg-white border border-black relative overflow-hidden">
+                        <NavLink
+                            className=" absolute w-full h-full bg-transparent cursor-pointer z-50 "
+                            to="Calendar">
+                        </NavLink>
+                        <Calendar />
+                    </div>
+                    <div className="w-[500px] h-[250px] rounded-[30px] bg-white border border-black relative overflow-hidden">
+                        <NavLink
+                            className=" absolute w-full h-full bg-transparent cursor-pointer z-50"
+                            to="MessageList">
+                        </NavLink>
+                        <MessageList />
+                    </div>
+                    <div className="w-[300px] h-[200px] rounded-[30px] bg-white border border-black">
+
+                    </div>
+                    <div className="w-[500px] h-[300px] rounded-[30px] bg-white border border-black">
+
+                    </div>
+                    <div className="w-[500px] h-[300px] rounded-[30px] bg-white border border-black">
+
+                    </div>
+                    <div className="w-[500px] h-[300px] rounded-[30px] bg-white border border-black">
+
+                    </div>
+                </div>
+            </section>
+            <div className=" w-auto h-auto">
+                <Routes>
+                    <Route path="Calendar" element={<Calendar />} />
+                    <Route path="MessageList" element={<MessageList />} />
+                </Routes>
+            </div>
+            <footer className=" w-full h-[5%] flex items-center justify-center bg-slate-300 ">
+
+            </footer>
+        </div>
+    )
+};
+
+export default Content;
+
+
+
+
+/*    <header className=" w-full h-28  bg-transparent flex flex-col justify-center items-center ">
                 <div className=" w-full h-full flex flex-row ">
                     <div className=" w-full min-w-64 h-full flex items-center justify-center ">
                         <LogOut />
@@ -91,10 +145,4 @@ function Content(): JSX.Element {
                 <div className=" w-[90%] h-auto min-h-[600px] flex justify-center items-center">
                     <MessageList />
                 </div>
-            </footer>
-        </div>
-    )
-};
-
-export default Content;
-
+            </footer> */

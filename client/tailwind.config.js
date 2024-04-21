@@ -8,7 +8,7 @@ module.exports = {
         'cover': 'cover',
         'contain': 'contain',
         'fullNewEvent': '1000px',
-        "fullApp": "1920px",
+        "fullApp": "100vw",
       },
       backgroundImage: {
         'loginBackg': "url('/public/image/loginimg.jpg')",

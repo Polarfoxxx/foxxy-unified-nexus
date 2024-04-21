@@ -19,7 +19,7 @@ function App() {
 
 
   return (
-    <div className="w-full flex items-center justify-center h-auto bg-slate-500">
+    <div className="w-full flex items-center justify-center h-auto">
       <Container.Provider>
         <Routes>
           <Route path="LoginPage" element={<LoginPage />} />
