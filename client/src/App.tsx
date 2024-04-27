@@ -17,7 +17,6 @@ function App() {
     };
 }, [NAVIGATE]);
 
-
   return (
     <div className="w-full flex items-center justify-center h-auto">
       <Container.Provider>

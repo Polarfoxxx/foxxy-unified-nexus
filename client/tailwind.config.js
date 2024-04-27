@@ -3,6 +3,9 @@ module.exports = {
     "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js"],
   theme: {
     extend: {
+      boxShadow: {
+        'miniApp': '1px 0px 39px -8px rgba(0,0,0,0.75) inset',
+      },
       backgroundSize: {
         'auto': 'auto',
         'cover': 'cover',
@@ -20,13 +23,12 @@ module.exports = {
           background_button: 'var(--background_button)',
           color_button: 'var(--color_button)',
           background_button_hover: "var(--background_button_hover)",
-          /* textColor */
-          defaultTextColor: 'var(--defaultTextColor)',
-          defaultTextColorDark: 'var(--defaultTextColorDark)',
-          current_day: "var(--current_day)",
-          /* inputStyle */
-          inputBorder: "var(--inputBorder)",
-          /* backgroundCont */
+
+          /* appBackGround */
+          background_content: "var(--background_content)",
+          background_content_header: "var(--background_content_header)",
+
+          /* CalendarBackGround */
           calendarContent_background: "var(--calendarContent_background)",
           dayBackground_hover: "var(--dayBackground_hover)",
           eventBackground: "var(--eventBackground)",
@@ -37,10 +39,23 @@ module.exports = {
           minBackg_Two_content: "var(--minBackg_Two_content)",
           background_newEventContent: "var(--background_newEventContent)",
           InvalidDay_Background: "var(--InvalidDay_Background)",
+
+          /* messageBackGround */
+          messageContent_background: "var(--messageContent_background)",
           newMessageForm_Background: "var(--newMessageForm_Background)",
           itemHeader_Background: "var(--itemHeader_Background)",
           item_Background: "var(--item_Background)",
           currentMessCount_Background: "var(--currentMessCount_Background)",
+
+          /* textColor */
+          defaultTextColor: 'var(--defaultTextColor)',
+          defaultTextColorDark: 'var(--defaultTextColorDark)',
+          current_day: "var(--current_day)",
+
+          /* inputStyle */
+          inputBorder: "var(--inputBorder)",
+
+
 
 
         },

@@ -9,6 +9,7 @@ import { SubtText, Clock, CurrentAllEvent } from "../../SubtitleModule";
 import { Container } from "../../ContainerModule";
 import { readData_API } from "../../apis/index.";
 import { NavLink, Route } from "react-router-dom";
+import { ParentAllMiniContent } from "../../Shared";
 
 function Content(): JSX.Element {
     const { appData, setAppData } = React.useContext(Container.Context)
@@ -53,35 +54,54 @@ function Content(): JSX.Element {
 
 
 
-
     return (
         <div
             ref={themedDivRef}
             data-theme="light"
-            className=" w-full h-screen flex flex-col justify-center items-center bg-background_App bg-fullApp">
-            <header className=" w-full h-[5%] flex items-center justify-center  bg-slate-200">
-                <div className=" w-full h-full flex items-center justify-center ">
-                    <LogOut />
+            className=" w-full h-screen flex flex-col justify-center items-center bg-thems-background_content bg-fullApp">
+            <header className=" w-full h-[8%] flex items-center justify-center  p-2">
+                <div className=" w-full h-full flex items-center justify-between bg-thems-background_content_header rounded-[15px] ">
+                    <div className=" w-[100%] h-[100%] flex items-center justify-center">
+                        <LogOut />
+                    </div>
+                    <div className=" w-[100%] h-[100%] flex items-center justify-center">
+                        <TittleBar />
+                    </div>
+                    <div className=" w-[100%] h-[100%] flex items-center justify-center">
+                        <Clock />
+                    </div>
+                    <div className=" w-[100%] h-[100%] flex items-center justify-center">
+                        <ColorSwitcher
+                            themedDivRef={themedDivRef} />
+                    </div>
                 </div>
             </header>
-            <section className="w-full h-screen flex items-start justify-start bg-slate-400 p-3">
+            <nav className="w-full h-screen flex items-start justify-start p-3">
                 <div className="w-full flex items-start justify-start flex-wrap gap-3">
-                    <div className="w-[500px] h-[300px] rounded-[30px] bg-white border border-black relative overflow-hidden">
+                    {/* calendar----------------------------------------------------------------- */}
+                    <div className="w-[25%] h-[300px] rounded-[15px] bg-white border-2 border-white relative overflow-hidden shadow-miniApp">
                         <NavLink
-                            className=" absolute w-full h-full bg-transparent cursor-pointer z-50 "
+                            className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                             to="Calendar">
                         </NavLink>
                         <Calendar />
                     </div>
-                    <div className="w-[500px] h-[250px] rounded-[30px] bg-white border border-black relative overflow-hidden">
+                    {/* messageList------------------------------------------------------------------ */}
+                    <div className="w-[35%] h-[300px] rounded-[15px] bg-white border-2 border-white relative overflow-hidden shadow-miniApp">
+                    
                         <NavLink
-                            className=" absolute w-full h-full bg-transparent cursor-pointer z-50"
+                            className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                             to="MessageList">
                         </NavLink>
                         <MessageList />
                     </div>
-                    <div className="w-[300px] h-[200px] rounded-[30px] bg-white border border-black">
+                    <div className="w-[38%] h-[300px] flex flex-col justify-between items-center gap-3">
+                        <div className="w-[100%] h-[145px] rounded-[15px] bg-white border border-black">
 
+                        </div>
+                        <div className="w-[100%] h-[145px] rounded-[15px] bg-white border border-black">
+
+                        </div>
                     </div>
                     <div className="w-[500px] h-[300px] rounded-[30px] bg-white border border-black">
 
@@ -93,14 +113,26 @@ function Content(): JSX.Element {
 
                     </div>
                 </div>
-            </section>
-            <div className=" w-auto h-auto">
+            </nav>
+            <section className=" w-auto h-auto">
                 <Routes>
-                    <Route path="Calendar" element={<Calendar />} />
-                    <Route path="MessageList" element={<MessageList />} />
+                    <Route
+                        path="Calendar"
+                        element={
+                            <ParentAllMiniContent>
+                                <Calendar />
+                            </ParentAllMiniContent>
+                        } />
+                    <Route
+                        path="MessageList/*"
+                        element={
+                            <ParentAllMiniContent>
+                                <MessageList />
+                            </ParentAllMiniContent>
+                        } />
                 </Routes>
-            </div>
-            <footer className=" w-full h-[5%] flex items-center justify-center bg-slate-300 ">
+            </section>
+            <footer className=" w-full h-[8%] flex items-center justify-center ">
 
             </footer>
         </div>

@@ -3,27 +3,36 @@ div[data-theme="light"] {
     --background_button: rgb(245, 245, 245);
     --background_button_hover: rgb(195, 172, 208);
     --color_button: rgb(0, 0, 0);
+
     /* appBackGround */
+    --background_content: rgb(219, 219, 219);
+    --background_content_header: rgb(255, 255, 255);
+    --background_App: url('/public/image/lightAppBacgr.jpg');
+
+    /* CalendarBackGround */
     --dayBackground_hover: black;
-    --dayBackground_header: rgb(40, 40, 40);
+    --dayBackground_header: rgb(255, 255, 255);
     --current_time_line: rgb(255, 0, 0);
     --eventBackground: rgb(49, 162, 34);
     --eventBackground_selected: rgb(12, 100, 0);
     --minBackg_content: rgb(182, 50, 223);
     --minBackg_Two_content: rgb(195, 121, 230);
-    --background_content: white;
     --background_newEventContent: rgb(179, 179, 179);
-    --background_App: url('/public/image/lightAppBacgr.jpg');
-    --calendarContent_background:  rgba(95, 106, 190, 0.808);
+    --calendarContent_background:  rgb(255, 255, 255);
     --InvalidDay_Background: rgba(0, 0, 0, 0.507);
+
+    /* messageBackGround */
+    --messageContent_background: white;
     --newMessageForm_Background: rgb(143, 142, 142);
-    --item_Background: rgba(219, 208, 224, 0.679);
+    --item_Background: rgba(218, 218, 218, 0.679);
     --itemHeader_Background: rgb(179, 95, 218);
     --currentMessCount_Background: rgba(70, 70, 70, 0.507);
+
     /* textColor */
     --defaultTextColor: rgb(255, 255, 255);
     --defaultTextColorDark: rgb(0, 0, 0);
     --current_day: rgb(157, 255, 46);
+    
     /* inputStyle */
     --inputBorder: purple;
 }

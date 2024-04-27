@@ -12,6 +12,8 @@ import { Container } from '../../../ContainerModule';
 import { Type_for_newEventFrom_DB } from '../NewEvent/type';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import miniContentStyle from './style/minContent_style';
 
 interface MyEvent extends Event {
   title: string;
@@ -49,6 +51,7 @@ function CalendarMod(): JSX.Element {
   const { appData } = React.useContext(Container.Context);
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
   const [allEvents, setAllEvents] = React.useState<Type_for_newEventFrom_DB[]>([]);
+  const NAVIGATE = useNavigate();
 
   React.useEffect(() => {
     if (appData.allEvents.length > 0) {
@@ -67,67 +70,83 @@ function CalendarMod(): JSX.Element {
   };
 
   const handleClickNewEvent = () => {
-    setNewEventContent(<NewEvent setNewEventContent={setNewEventContent} />);
+    setNewEventContent(<NewEvent
+      setNewEventContent={
+        setNewEventContent
+      } />);
   };
 
+
   /* casove overovanie platnosti udalosti a alert */
-/*   React.useEffect(() => {
-    let timeInterval = setInterval(() => {
-      const ALL_EVENTS = appData.allEvents;
-      const CURRENT_TIME = new Date();
+  /*   React.useEffect(() => {
+      let timeInterval = setInterval(() => {
+        const ALL_EVENTS = appData.allEvents;
+        const CURRENT_TIME = new Date();
+  
+        ALL_EVENTS.forEach((item) => {
+          const START_EVENT = item.start
+          if (START_EVENT.getFullYear() === CURRENT_TIME.getFullYear() &&
+            START_EVENT.getMonth() === CURRENT_TIME.getMonth() &&
+            START_EVENT.getDate() === CURRENT_TIME.getDate() &&
+            START_EVENT.getHours() === CURRENT_TIME.getHours() &&
+            START_EVENT.getMinutes() === CURRENT_TIME.getMinutes()) {
+            toast(`Event time ${item.title} comment ${item.comment} at ${item.start.getHours()}`);
+          };
+        });
+      }, 60000);
+  
+      return (() => {
+        clearInterval(timeInterval)
+      })
+    }, [appData.allEvents.length]); */
 
-      ALL_EVENTS.forEach((item) => {
-        const START_EVENT = item.start
-        if (START_EVENT.getFullYear() === CURRENT_TIME.getFullYear() &&
-          START_EVENT.getMonth() === CURRENT_TIME.getMonth() &&
-          START_EVENT.getDate() === CURRENT_TIME.getDate() &&
-          START_EVENT.getHours() === CURRENT_TIME.getHours() &&
-          START_EVENT.getMinutes() === CURRENT_TIME.getMinutes()) {
-          toast(`Event time ${item.title} comment ${item.comment} at ${item.start.getHours()}`);
-        };
-      });
-    }, 60000);
-
-    return (() => {
-      clearInterval(timeInterval)
-    })
-  }, [appData.allEvents.length]); */
-
+    /* mini style */
+    React.useEffect(() => {
+      miniContentStyle()
+    },[])
 
   return (
-    <div className=' w-full h-full flex items-center justify-center relative flex-col gap-5'>
-      <div className='sticky top-3 w-full h-9 flex justify-end items-center  z-50'>
-        <div className='relative left-[90px] bg-thems-minBackg_content w-[250px] h-full flex justify-center items-center rounded-[25px]'>
-          <button
-            className=' w-48 h-[25px] text-thems-color_button border border-slate-400 bg-thems-background_button flex justify-center items-center hover:bg-thems-background_button_hover rounded-[20px]'
-            onClick={handleClickNewEvent}>
-            New event
-          </button>
+    <div className='w-full h-full flex items-center justify-center'>
+      <div className='w-full h-full flex items-center justify-center flex-col gap-5 bg-thems-calendarContent_background  p-4'>
+        <div
+          id='calendarNewEvent'
+          className='relative top-3 w-full h-9 flex justify-end items-center'>
+          <div className='relative bg-thems-minBackg_content w-[250px] h-full flex justify-center items-center rounded-[25px]'>
+            <button
+              className=' w-48 h-[25px] text-thems-color_button border border-slate-400 bg-thems-background_button flex justify-center items-center hover:bg-thems-background_button_hover rounded-[20px]'
+              onClick={handleClickNewEvent}>
+              New event
+            </button>
+          </div>
         </div>
+        <Calendar
+          formats={formats}
+          localizer={localizer}
+          startAccessor="start"
+          endAccessor="end"
+          events={allEvents}
+          style={{ height: 650, width: "100%" }}
+          className="hover-effect-calendar"
+          onSelectEvent={handleEventClick} />
+        {/* -------- */}
+        {newEventContent}
+        <ToastContainer
+          position="top-right"
+          autoClose={60000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light" />
+        {/* -------- */}
       </div>
-      <Calendar
-        formats={formats}
-        localizer={localizer}
-        startAccessor="start"
-        endAccessor="end"
-        events={allEvents}
-        style={{ height: 650, width: "100%"}}
-        className="hover-effect-calendar"
-        onSelectEvent={handleEventClick} />
-      {/* -------- */}
-      {newEventContent}
-      <ToastContainer
-        position="top-right"
-        autoClose={60000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light" />
-      {/* -------- */}
     </div>
+
+
+
+
 
   )
 
