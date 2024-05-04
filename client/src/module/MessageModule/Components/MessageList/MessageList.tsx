@@ -3,59 +3,56 @@ import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { createData_API } from "../../../apis/index.";
 import { NewRequest } from "../../../utils";
-import { Container } from "../../../ContainerModule";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Type_for_newEventFor_API } from "../../../CalendarModule";
-import { Type_for_newMesssageFrom_DB, Type_for_newMessageFor_API } from "./types";
+import { Type_for_newMessageFor_API, Type_forMessageList, Type_for_newMesssageFrom_DB } from "./types";
 import { ValidMessageList, InvalidMessageList } from "./router";
-import { Route, Routes, Link, NavLink, Navigate, useNavigate } from "react-router-dom";
+import { Route, Routes, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { Type_RootState, setAllMessages, Type_forSetAllMessage } from "../../../../redux";
+import { Dispatch } from "redux";
 
-function MessageList(): JSX.Element {
-    const [messageList, setMessageList] = React.useState<Type_for_newMesssageFrom_DB[]>([]);
+function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageList): JSX.Element {
     const [newMessage, setNewMessage] = React.useState<any>({ start: "", end: "" });
     const [contentSize, setContetntSize] = React.useState<boolean>();
     const { handleSubmit, reset } = useInputValue();
-    const { appData, setAppData } = React.useContext(Container.Context);
     const divRef = React.useRef<HTMLDivElement>(null)
 
-    React.useEffect(() => {
-        if (appData.allMessage.length > 0) {
-            setMessageList(appData.allMessage)
-        };
-    }, [JSON.stringify(appData.allMessage), appData.allMessage.length]);
 
-
-    const submit = (v: TypeForInputsObject["v"]): void => {
+    const submit = async (v: TypeForInputsObject["v"]): Promise<void> => {
         const NEW_REQ = new NewRequest({
             startDate_message: new Date(),
             title_message: v[0].inputValues.toString(),
             content_Message: v[1].inputValues.toString(),
             endDate_message: v[2].inputValues.toString()
         });
-        const CREATE_DATA: Type_for_newEventFor_API | Type_for_newMessageFor_API | string = NEW_REQ.create();
-        if (typeof CREATE_DATA !== "string" && "message" in CREATE_DATA) {
-            createAsyncData(CREATE_DATA); reset();
-            setAppData(prevAppData => ({
-                ...prevAppData,
-                allMessage: [...prevAppData.allMessage, CREATE_DATA.message]
-            }));
+        const create_data: Type_for_newEventFor_API | Type_for_newMessageFor_API | string = NEW_REQ.create();
+        if (typeof create_data !== "string" && "message" in create_data) {
+            const messageData = create_data.message as Type_for_newMesssageFrom_DB;
+            const loginUserName = userName;
+            try {
+                const createMessage = await createData_API({ loginUserName, create_data });
+                console.log(createMessage);
+                if (createMessage?.status === 201) {
+                    setAllMessages({
+                        data:messageData,
+                        typeEvent: "add_message"
+                    });
+                }
+            }
+            catch (error) {
+                console.log(error);
+            };
+            reset(); // vymazanie form
         } else {
-            alert(CREATE_DATA)
+            alert(create_data)
         };
     };
 
-    async function createAsyncData(CREATE_DATA: Type_for_newMessageFor_API) {
-        const USER_NAME = appData.userLogData.userName;
-        try {
-            const CREATE = await createData_API({ USER_NAME, CREATE_DATA });
-            console.log(CREATE);
-        }
-        catch (error) {
-            console.log(error);
-        };
-    };
+console.log(allMessages);
 
+    /* css for mini components*/
     React.useEffect(() => {
         const updateWidth = () => {
             if (divRef.current) {
@@ -204,7 +201,7 @@ function MessageList(): JSX.Element {
                                     </div>
                                     <div className="w-[30%] h-[25px] flex justify-start items-center">
                                         <h1 className=" text-[17px] text-thems-defaultTextColor">
-                                            {appData.allMessage.length}
+                                            {allMessages.length}
                                         </h1>
                                     </div>
                                 </div>
@@ -221,7 +218,7 @@ function MessageList(): JSX.Element {
                                 </h2>
                                 <h1 className=" text-[20px] text-thems-defaultTextColorDark">
                                     {
-                                        appData.allMessage.filter(item => item.status === true).length
+                                        allMessages.filter(item => item.status === true).length
                                     }
                                 </h1>
                             </div>
@@ -236,21 +233,34 @@ function MessageList(): JSX.Element {
                                 path="ValidMessageList"
                                 element={
                                     <ValidMessageList
-                                        messageList={messageList} />}
+                                        allMessages={allMessages} />}
                             />
                             <Route
                                 path="InvalidMessageList"
                                 element={
                                     <InvalidMessageList
-                                        messageList={messageList} />}
+                                        allMessages={allMessages} />}
                             />
                         </Routes>
                     </div>
                 </div>
             </div>
         </div>
-
     );
 };
 
-export default MessageList;
+
+
+const mapStateToProps = (state: Type_RootState) => ({
+    allMessages: state.allMessages,
+    userName: state.userLogData.userName,
+});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    setAllMessages: (props: Type_forSetAllMessage) => dispatch(
+        setAllMessages({
+            data: props.data,
+            typeEvent: props.typeEvent
+        })),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageList);

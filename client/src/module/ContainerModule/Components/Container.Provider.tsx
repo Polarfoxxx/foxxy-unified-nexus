@@ -1,38 +1,16 @@
 import React from "react";
-import { Type_forContext, Type_forProvider,Type_for_appDataFromProvider } from "./types";
+import { Type_forProvider } from "./types";
+import { Provider } from 'react-redux';
+import store from "../../../redux/store/store";
 
-const Context = React.createContext<Type_forContext>({
-    appData: {
-        userLogData: {
-            userName: "",
-            appTheme: ""
-        },
-        allEvents: [],
-        allMessage:[]
-    },
-    setAppData: () => { },
-});
 
-function Provider({ children }: Type_forProvider): JSX.Element {
-    const [appData, setAppData] = React.useState<Type_for_appDataFromProvider>({
-        userLogData: {
-            userName: "",
-            appTheme: ""
-        },
-        allEvents: [],
-        allMessage: []
-    });
+function Container({ children }: Type_forProvider): JSX.Element {
 
     return (
-        <Context.Provider value={{ appData, setAppData }}>
+        <Provider store={store}>
             {children}
-        </Context.Provider>
+        </Provider>
     );
-};
-
-const Container = {
-    Provider,
-    Context
 };
 
 export default Container;

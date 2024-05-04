@@ -1,12 +1,16 @@
 import { Type_for_newMesssageFrom_DB } from "../../types";
 import React from "react";
 import { Type_for_ItemMessage, services_messageColorAlert } from "../";
-import { Container } from "../../../../../ContainerModule";
 import { deleteData_API } from "../../../../../apis/index.";
+import { Type_forMessageList } from "../../types";
+import { Type_RootState } from "../../../../../../redux";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { setAllMessages } from "../../../../../../redux";
+import { Type_SetMessageDataAction,Type_forSetAllMessage } from "../../../../../../redux";
 
 
-function ItemMessage(props: Type_for_ItemMessage): JSX.Element {
-    const { appData, setAppData } = React.useContext(Container.Context);
+function ItemMessage(props: Type_for_ItemMessage, { allMessages, userName, setAllMessages }: Type_forMessageList): JSX.Element {
     const [itemMessageData, setItemMessageData] = React.useState<Type_for_newMesssageFrom_DB>();
     const [colorAlert, setColorAlert] = React.useState<React.CSSProperties>();
 
@@ -35,26 +39,23 @@ function ItemMessage(props: Type_for_ItemMessage): JSX.Element {
     }, [itemMessageData?.end_message]);
 
 
-    const handleClickDeleteItem = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClickDeleteItem = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         const { itemData } = props;
-        deleteAsyncData(itemData);
-    };
-
-    async function deleteAsyncData(DELETE_DATA: Type_for_newMesssageFrom_DB) {
-        const USER_NAME = appData.userLogData.userName;
+            const loginUserName = userName;
         try {
-            const DELETE = await deleteData_API({ USER_NAME, DELETE_DATA });
-            if (DELETE?.updateMessages) {
-                setAppData(prevAppData => ({
+            const deleteItem = await deleteData_API({ loginUserName, itemData });
+            if (deleteItem?.updateMessages) {
+                /* setAppData(prevAppData => ({
                     ...prevAppData,
                     allMessage: DELETE.updateMessages
-                }));
+                })); */
             };
         }
         catch (error) {
             console.log(error);
         };
-    };
+    }
+
 
 
     return (
@@ -117,4 +118,12 @@ function ItemMessage(props: Type_for_ItemMessage): JSX.Element {
     );
 };
 
-export default ItemMessage;
+const mapStateToProps = (state: Type_RootState) => ({
+    allMessages: state.allMessages,
+    userName: state.userLogData.userName,
+});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    setAllMessages: (props: Type_forSetAllMessage) => dispatch(setAllMessages({data:props.data, typeEvent: props.typeEvent})),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemMessage);

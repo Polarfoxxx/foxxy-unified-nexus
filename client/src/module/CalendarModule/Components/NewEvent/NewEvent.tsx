@@ -8,11 +8,9 @@ import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { createData_API } from "../../../apis/crudApi";
 import { Type_for_NewEvent, Type_for_newEventFor_API } from "./type";
 import { Type_for_newMessageFor_API } from "../../../MessageModule/Components/MessageList/types";
-import { Container } from "../../../ContainerModule";
 import { NewRequest } from "../../../utils";
 
 function NewEvent(props: Type_for_NewEvent): JSX.Element {
-    const { appData, setAppData } = React.useContext(Container.Context);
     const [newEvent, setNewEvent] = React.useState<any>({ title: "", comment: "", start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
 
@@ -32,10 +30,7 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
         const CREATE_DATA: Type_for_newMessageFor_API | Type_for_newEventFor_API | string = NEW_REQ.create();
         if (typeof CREATE_DATA !== "string" && "event" in CREATE_DATA) {
             createAsyncData(CREATE_DATA); reset(); props.setNewEventContent(null);
-            setAppData(prevAppData => ({
-                ...prevAppData,
-                allEvents: [...appData.allEvents, CREATE_DATA.event]
-            }));
+          
         } else {
             alert(CREATE_DATA)
         };
@@ -43,9 +38,8 @@ function NewEvent(props: Type_for_NewEvent): JSX.Element {
 
 
     async function createAsyncData(CREATE_DATA: Type_for_newEventFor_API) {
-        const USER_NAME = appData.userLogData.userName;
         try {
-            const CREATE = await createData_API({ USER_NAME, CREATE_DATA });
+           /*  const CREATE = await createData_API({ USER_NAME, CREATE_DATA }); */
         }
         catch (error) {
             console.log(error);

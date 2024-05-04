@@ -19,12 +19,12 @@ function App() {
 
   return (
     <div className="w-full flex items-center justify-center h-auto">
-      <Container.Provider>
+      <Container>
         <Routes>
           <Route path="LoginPage" element={<LoginPage />} />
-          <Route path="Content/*" element={<Content />} />
+          <Route path="Content/*" element={<Content />} /> 
         </Routes>
-      </Container.Provider>
+      </Container>
     </div>
   );
 }

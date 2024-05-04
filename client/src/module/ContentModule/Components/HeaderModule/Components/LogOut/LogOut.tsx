@@ -1,9 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Container } from "../../../ContainerModule";
 
 function LogOut(): JSX.Element {
-    const { appData } = React.useContext(Container.Context);
     const NAVIGATE = useNavigate();
 
     const handleClickLogOut = () => {

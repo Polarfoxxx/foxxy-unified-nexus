@@ -4,18 +4,18 @@ import { Type_for_deleteData_forAPI, Type_from_returned_delete_API } from "./typ
 
 
 async function deleteData_API(props: Type_for_deleteData_forAPI): Promise<Type_from_returned_delete_API | undefined> {
-    if (props.DELETE_DATA) {
-        const DATA_FOR_API = {
-            userName: props.USER_NAME,
-            delete_Data: props.DELETE_DATA,
+    if (props.itemData) {
+        const data_forApi = {
+            userName: props.loginUserName,
+            delete_Data: props.itemData,
         };
         try {
-            const RESPO_DATA = await axios.delete(`${BASE_URL}delete/data`, {
-                params: DATA_FOR_API,
+            const respo_data = await axios.delete(`${BASE_URL}delete/data`, {
+                params: data_forApi,
             });
             return {
-                status: RESPO_DATA.status,
-                updateMessages: RESPO_DATA.data.updateMessages
+                status: respo_data.status,
+                updateMessages: respo_data.data.updateMessages
             };
         } catch (error) {
             console.log(error);

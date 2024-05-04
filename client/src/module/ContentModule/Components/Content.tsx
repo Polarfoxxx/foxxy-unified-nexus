@@ -1,29 +1,28 @@
 import React from "react";
 import "./style/content_style.css";
 import { servicesJWTdecodeAndValidity } from "../../utils";
-import { Routes, useNavigate } from "react-router-dom";
-import { LogOut, ColorSwitcher, TittleBar } from "../../HeaderModule";
+import { Routes, useNavigate, NavLink, Route } from "react-router-dom";
+import { LogOut, ColorSwitcher, TittleBar, Clock, Type_for_Content } from "../";
 import { Calendar } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
-import { SubtText, Clock, CurrentAllEvent } from "../../SubtitleModule";
-import { Container } from "../../ContainerModule";
-import { readData_API } from "../../apis/index.";
-import { NavLink, Route } from "react-router-dom";
 import { ParentAllMiniContent } from "../../Shared";
+import { readData_API } from "../../apis/index.";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { Type_forSetAllMessage, setAllMessages } from "../../../redux";
 
-function Content(): JSX.Element {
-    const { appData, setAppData } = React.useContext(Container.Context)
-    const NAVIGATE = useNavigate();
+function Content({ setAllMessages }: Type_for_Content): JSX.Element {
+    const navigate = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
     React.useEffect(() => {
         const JWT = localStorage.getItem("JWT");
         if (JWT !== null) {
-            !servicesJWTdecodeAndValidity(JWT) && NAVIGATE("/LoginPage")
+            !servicesJWTdecodeAndValidity(JWT) && navigate("/LoginPage")
         } else {
-            NAVIGATE("/LoginPage")
+            navigate("/LoginPage")
         };
-    }, [NAVIGATE]);
+    }, [navigate]);
 
 
     React.useEffect(() => {
@@ -31,25 +30,20 @@ function Content(): JSX.Element {
     }, []);
 
     async function loadDataAPI() {
-        const USER_NAME = localStorage.getItem("USER_NAME");
-        if (USER_NAME !== null) {
+        const userName = localStorage.getItem("USER_NAME");
+        if (userName !== null) {
             try {
-                const LOAD_DATA = await readData_API(USER_NAME);
-                if (LOAD_DATA) {
-                    setAppData(prevAppData => ({
-                        ...prevAppData,
-                        userLogData: {
-                            userName: USER_NAME,
-                            appTheme: LOAD_DATA.data.theme
-                        },
-                        allEvents: LOAD_DATA.data.events,
-                        allMessage: LOAD_DATA.data.messages
-                    }));
+                const load_data = await readData_API(userName);
+                if (load_data) {
+                    setAllMessages({
+                        data: load_data.data.messages,
+                        typeEvent: "setAll_message"
+                    }) //natavenie redux
                 };
             } catch (error) {
                 console.log("Chyba pri načítavaní udalostí:", error);
             };
-        }
+        };
     };
 
 
@@ -88,7 +82,7 @@ function Content(): JSX.Element {
                     </div>
                     {/* messageList------------------------------------------------------------------ */}
                     <div className="w-[35%] h-[300px] rounded-[15px] bg-white border-2 border-white relative overflow-hidden shadow-miniApp">
-                    
+
                         <NavLink
                             className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                             to="MessageList">
@@ -138,43 +132,19 @@ function Content(): JSX.Element {
         </div>
     )
 };
+/* set state for redux */
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    setAllMessages: (props: Type_forSetAllMessage) => dispatch(
+        setAllMessages({
+            data: props.data,
+            typeEvent: props.typeEvent
+        })),
+});
 
-export default Content;
+export default connect(null, mapDispatchToProps)(Content);
 
 
 
 
-/*    <header className=" w-full h-28  bg-transparent flex flex-col justify-center items-center ">
-                <div className=" w-full h-full flex flex-row ">
-                    <div className=" w-full min-w-64 h-full flex items-center justify-center ">
-                        <LogOut />
-                    </div>
-                    <div className=" w-[30%] min-w-[300px] min-h-full flex items-center justify-center ">
-                        <TittleBar />
-                    </div>
-                    <div className="w-[30%] min-w-64 min-h-full flex items-center justify-center">
-                        <ColorSwitcher themedDivRef={themedDivRef} />
-                    </div>
-                </div>
-                <div className="w-full h-1/2 flex flex-row justify-between items-center pl-6 pr-6 ">
-                    <div className=" w-[100%] min-w-[300px] h-full flex justify-center items-center pr-4 ">
-                        <SubtText />
-                    </div>
-                    <div className=" w-[5%] min-w-[200px] rounded-l-3xl h-full flex justify-end items-center  border-b-2 border-purple-300 ">
-                        <CurrentAllEvent />
-                    </div>
-                    <div className=" w-[15%] min-w-[200px] h-full flex justify-end items-center  border-b-2 border-purple-300">
-                        <Clock />
-                    </div>
-                </div>
-            </header>
-            <article className=" w-full h-auto p-5 bg-transparent  flex justify-center items-center">
-                <div className=" w-[90%] h-auto flex justify-center items-center">
-                    <Calendar />
-                </div>
-            </article>
-            <footer className=" w-full h-auto flex justify-center items-center p-5">
-                <div className=" w-[90%] h-auto min-h-[600px] flex justify-center items-center">
-                    <MessageList />
-                </div>
-            </footer> */
+
+

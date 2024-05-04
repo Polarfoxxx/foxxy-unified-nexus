@@ -1,66 +1,58 @@
 import React from "react";
+import { connect } from "react-redux";
 import { useInputValue } from "foxxy_input_value";
-import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { AUTHENTIFICATION_API } from "../../apis/index.";
 import { useNavigate } from "react-router-dom";
-import { Container } from "../../ContainerModule";
-import { Type_for_LoginUser } from "./types";
-import { LoadingFeedback } from "../../Shared";
+import { setUserLogData } from "../../../redux";
+import { Dispatch } from "redux";
+import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
+import { Type_for_data, Type_for_loginPage } from "./types";
 
-
-function LoginPage(): JSX.Element {
-    const NAVIGATE = useNavigate();
-    const { setAppData } = React.useContext(Container.Context);
+function LoginPage({ setUserLogData }: Type_for_loginPage): JSX.Element {
+    const navigate = useNavigate();
     const { handleSubmit, reset } = useInputValue();
     const [loadingFeedbackStats, setLoadingFeedbackStats] = React.useState<{ respo_status: number, loadON: boolean }>({
         respo_status: 0,
         loadON: false
     });
 
-    const submit = (v: TypeForInputsObject["v"]): void => {
-        const LOGIN_DATA = {
+    const submit = async (v: TypeForInputsObject["v"]): Promise<void> => {
+        const login_data = {
             userNames: v[0].inputValues.toString(),
             password: v[1].inputValues.toString()
-        }
+        };
         reset();
-        LoginUser(LOGIN_DATA);
         setLoadingFeedbackStats({
             respo_status: 10,
             loadON: true
         });
-    };
-
-    async function LoginUser(loginData: Type_for_LoginUser) {
         try {
-            const LOGIN = await AUTHENTIFICATION_API.loginUser_API(loginData);
-            if (LOGIN?.jwt) {
-                setAppData(prevAppData => ({
-                    ...prevAppData,
-                    userLogData: {
-                        ...prevAppData.userLogData,
-                        userName: LOGIN.userName
-                    }
-                }));
-                localStorage.setItem("JWT", LOGIN.jwt);
-                localStorage.setItem("USER_NAME", LOGIN.userName);
-                NAVIGATE("/Content");
+            const login = await AUTHENTIFICATION_API.loginUser_API(login_data);
+            if (login?.jwt) {
+                setUserLogData({
+                    userName: login.userName,
+                    appTheme: login.theme
+                }); // Použití akce setUserLogData
+
+                localStorage.setItem("JWT", login.jwt);
+                localStorage.setItem("USER_NAME", login.userName);
+                navigate("/Content");
             };
-            if (LOGIN?.status) {
+            if (login?.status) {
                 setLoadingFeedbackStats({
-                    respo_status: LOGIN.status,
+                    respo_status: login.status,
                     loadON: true
                 });
             };
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
-        };
+        }
     };
 
     return (
         <div className=" w-full h-screen flex flex-col bg-loginBackg">
             <div className=" w-full h-1/4 relative">
-                <LoadingFeedback loadstatus={loadingFeedbackStats} />
+                {/* LoadingFeedback */}
             </div>
             <div className="w-full h-full flex justify-center items-center">
                 <div className=" min-w-80 w-2/6  h-72 p-2 border-black border flex justify-center items-center flex-col bg-opacity-45 bg-slate-100"  >
@@ -99,4 +91,8 @@ function LoginPage(): JSX.Element {
     );
 };
 
-export default LoginPage;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data))
+});
+
+export default connect(null, mapDispatchToProps)(LoginPage);

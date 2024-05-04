@@ -48,12 +48,10 @@ const events: MyEvent[] = [
 
 
 function CalendarMod(): JSX.Element {
-  const { appData } = React.useContext(Container.Context);
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
   const [allEvents, setAllEvents] = React.useState<Type_for_newEventFrom_DB[]>([]);
-  const NAVIGATE = useNavigate();
 
-  React.useEffect(() => {
+ /*  React.useEffect(() => {
     if (appData.allEvents.length > 0) {
       const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = appData.allEvents.map(item => {
         const START_DATE = new Date(item.start);
@@ -62,7 +60,7 @@ function CalendarMod(): JSX.Element {
       });
       setAllEvents(TRANSLATE_DATA)
     };
-  }, [JSON.stringify(appData.allEvents)]);
+  }, [JSON.stringify(appData.allEvents)]); */
 
 
   const handleEventClick = (event: MyEvent) => {

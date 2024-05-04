@@ -36,7 +36,7 @@ async function loginUser_API(loginData: type_for_loginUser_API): Promise<type_fr
       userName: RESPO_DATA.data.username,
       status: RESPO_DATA.status,
       jwt: RESPO_DATA.data.token,
-      theme: RESPO_DATA.data.returned_theme
+      theme: RESPO_DATA.data.theme
     };
   } catch (error) {
     console.log(error);

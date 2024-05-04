@@ -13,15 +13,15 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
     const { handleSubmit, reset } = useInputValue();
 
     React.useEffect(() => {
-        if (props.messageList.length > 0) {
-            const INV_DATA = props.messageList.filter((item) => {
+        if (props.allMessages.length > 0) {
+            const INV_DATA = props.allMessages.filter((item) => {
                 return item.status !== true;
             });
             setInvalidList(INV_DATA);
             // Apply animation effect when the list updates
             applyAnimationEffect(INV_DATA);
         };
-    }, [props.messageList]);
+    }, [props.allMessages]);
 
 
     const applyAnimationEffect = async (list: Type_for_newMesssageFrom_DB[]) => {
@@ -92,7 +92,7 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
                                 borderRadius: key === 0 ? "10px 10px 0 0" : key === invalidList.length - 1 ? "0 0 10px 10px" : "0px",
                                 ...animationStyles[key] // Apply animation styles
                             }}
-                            className="relative left-[100%] w-[80%] h-[100px] cursor-pointer overflow-hidden "
+                            className="relative left-[100%] w-[80%] h-[70px] min-h-[70px]  cursor-pointer overflow-hidden "
                             key={key}>
                             <ItemMessage
                                 keyType={key}
