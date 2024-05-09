@@ -23,6 +23,6 @@ export type Type_SetUserLogDataAction = {
 
 // types pre userMessageList
 export type Type_SetMessageDataAction = {
-  type: "setAll_message" | "add_message" | "delete_message";
-  payload: Type_for_newMesssageFrom_DB[] | Type_for_newMesssageFrom_DB;
+  type: "setAll_message" ;
+  payload: Type_for_newMesssageFrom_DB[];
 };

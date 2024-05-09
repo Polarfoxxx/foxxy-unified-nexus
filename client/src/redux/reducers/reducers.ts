@@ -19,17 +19,11 @@ const userLogDataReducer = (state = defaultValueforUserData, action: Type_SetUse
   };
 };
 
-// Reduktor pre pridanie všetkých správ do stavu
+// Reduktor pre pridanie všetkých message do stavu
 const defaultValueforMessage: Type_for_newMesssageFrom_DB[] = []
 const allMessagesReducer = (state = defaultValueforMessage, action: Type_SetMessageDataAction) => {
   switch (action.type) {
     case 'setAll_message':
-      console.log(action.payload);
-      
-      return action.payload;
-    case 'add_message':
-      return [...state, action.payload];
-    case 'delete_message':
       return action.payload;
     default:
       return state;

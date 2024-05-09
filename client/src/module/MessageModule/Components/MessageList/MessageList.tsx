@@ -20,6 +20,7 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
     const divRef = React.useRef<HTMLDivElement>(null)
 
 
+    //function add a new messasge
     const submit = async (v: TypeForInputsObject["v"]): Promise<void> => {
         const NEW_REQ = new NewRequest({
             startDate_message: new Date(),
@@ -29,17 +30,15 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
         });
         const create_data: Type_for_newEventFor_API | Type_for_newMessageFor_API | string = NEW_REQ.create();
         if (typeof create_data !== "string" && "message" in create_data) {
-            const messageData = create_data.message as Type_for_newMesssageFrom_DB;
             const loginUserName = userName;
             try {
                 const createMessage = await createData_API({ loginUserName, create_data });
-                console.log(createMessage);
                 if (createMessage?.status === 201) {
                     setAllMessages({
-                        data:messageData,
-                        typeEvent: "add_message"
+                        data: createMessage.updateMessage,
+                        typeEvent: "setAll_message"
                     });
-                }
+                };
             }
             catch (error) {
                 console.log(error);
@@ -50,7 +49,6 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
         };
     };
 
-console.log(allMessages);
 
     /* css for mini components*/
     React.useEffect(() => {
@@ -109,7 +107,7 @@ console.log(allMessages);
                     <form
                         className={
                             contentSize
-                                ? "w-full h-[100%] p-2 flex justify-center rounded-tr-[10px] items-center flex-col gap-5 bg-thems-newMessageForm_Background"
+                                ? "w-full h-[100%] p-2 flex justify-center items-center flex-col gap-5 bg-thems-newMessageForm_Background"
                                 : " hidden"
                         }
                         onSubmit={(e) => handleSubmit(e, submit)}>

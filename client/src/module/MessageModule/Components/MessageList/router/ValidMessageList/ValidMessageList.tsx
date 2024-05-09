@@ -24,7 +24,7 @@ function ValidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.Ele
         const NEW_ANIMATION: React.CSSProperties[] = [];
         await Promise.all(list.map(async (_, index) => {
             // Delay each animation based on index
-            await new Promise(resolve => setTimeout(resolve, (index + 1) * 300));
+            await new Promise(resolve => setTimeout(resolve, (index + 1) * 100));
             // Apply the animation styles
             NEW_ANIMATION.push({  // Přidání nového objektu do pole NEW_ANIMATION
                 transition: "left 1s",
@@ -54,7 +54,7 @@ function ValidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.Ele
                                 borderRadius: key === 0 ? "10px 10px 0 0" : key === validList.length - 1 ? "0 0 10px 10px" : "0px",
                                 ...animationStyles[key] // Apply animation styles
                             }}
-                            className="relative left-[100%] w-[80%] h-[70px] min-h-[70px]  cursor-pointer overflow-hidden "
+                            className="relative left-[100%] w-[90%] min-h-[70px] cursor-pointer overflow-hidden "
                             key={key}>
                             <ItemMessage
                                 keyType={key}

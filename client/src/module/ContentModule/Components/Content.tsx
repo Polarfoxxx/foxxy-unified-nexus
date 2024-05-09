@@ -14,7 +14,6 @@ import { Type_forSetAllMessage, setAllMessages } from "../../../redux";
 function Content({ setAllMessages }: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
-
     React.useEffect(() => {
         const JWT = localStorage.getItem("JWT");
         if (JWT !== null) {
@@ -28,7 +27,6 @@ function Content({ setAllMessages }: Type_for_Content): JSX.Element {
     React.useEffect(() => {
         loadDataAPI()
     }, []);
-
     async function loadDataAPI() {
         const userName = localStorage.getItem("USER_NAME");
         if (userName !== null) {

@@ -22,7 +22,10 @@ router.post('/data', async (req, res) => {
             } else if (save_Data.message) {
                 user.data.messages.push(save_Data.message);
                 await user.save();
-                res.status(201).json({ message: "message saved" });
+                res.status(201).json({ 
+                    message: "message saved",
+                    updateAllMessasge: user.data.messages
+                 });
             } else {
                 res.status(500).send('Internal Server Error');
             };

@@ -7,6 +7,7 @@ import { setUserLogData } from "../../../redux";
 import { Dispatch } from "redux";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { Type_for_data, Type_for_loginPage } from "./types";
+import { LoadingFeedback, settingCookies } from "../../Shared";
 
 function LoginPage({ setUserLogData }: Type_for_loginPage): JSX.Element {
     const navigate = useNavigate();
@@ -29,10 +30,10 @@ function LoginPage({ setUserLogData }: Type_for_loginPage): JSX.Element {
         try {
             const login = await AUTHENTIFICATION_API.loginUser_API(login_data);
             if (login?.jwt) {
-                setUserLogData({
+                setUserLogData({  // Použití akce setUserLogData
                     userName: login.userName,
                     appTheme: login.theme
-                }); // Použití akce setUserLogData
+                });
 
                 localStorage.setItem("JWT", login.jwt);
                 localStorage.setItem("USER_NAME", login.userName);
@@ -52,7 +53,11 @@ function LoginPage({ setUserLogData }: Type_for_loginPage): JSX.Element {
     return (
         <div className=" w-full h-screen flex flex-col bg-loginBackg">
             <div className=" w-full h-1/4 relative">
-                {/* LoadingFeedback */}
+                {
+                    <LoadingFeedback
+                        loadstatus={loadingFeedbackStats}
+                    />
+                }
             </div>
             <div className="w-full h-full flex justify-center items-center">
                 <div className=" min-w-80 w-2/6  h-72 p-2 border-black border flex justify-center items-center flex-col bg-opacity-45 bg-slate-100"  >

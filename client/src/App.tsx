@@ -6,23 +6,25 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { servicesJWTdecodeAndValidity } from './module/utils';
 
 function App() {
-  const NAVIGATE = useNavigate();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const JWT = localStorage.getItem("JWT");
     if (JWT !== null) {
-        !servicesJWTdecodeAndValidity(JWT) && NAVIGATE("/LoginPage")
+        !servicesJWTdecodeAndValidity(JWT) && navigate("/LoginPage")
     } else {
-        NAVIGATE("/LoginPage")
+      navigate("/LoginPage")
     };
-}, [NAVIGATE]);
+  }, [navigate]);
+
+  
 
   return (
     <div className="w-full flex items-center justify-center h-auto">
       <Container>
         <Routes>
           <Route path="LoginPage" element={<LoginPage />} />
-          <Route path="Content/*" element={<Content />} /> 
+          <Route path="Content/*" element={<Content />} />
         </Routes>
       </Container>
     </div>

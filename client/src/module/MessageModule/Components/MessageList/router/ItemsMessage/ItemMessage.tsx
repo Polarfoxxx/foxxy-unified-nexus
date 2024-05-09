@@ -1,19 +1,20 @@
 import { Type_for_newMesssageFrom_DB } from "../../types";
 import React from "react";
 import { Type_for_ItemMessage, services_messageColorAlert } from "../";
-import { deleteData_API } from "../../../../../apis/index.";
+import { deleteData_API, updateData_API } from "../../../../../apis/index.";
 import { Type_forMessageList } from "../../types";
-import { Type_RootState } from "../../../../../../redux";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { setAllMessages } from "../../../../../../redux";
-import { Type_SetMessageDataAction,Type_forSetAllMessage } from "../../../../../../redux";
+import { setAllMessages, Type_forSetAllMessage, Type_RootState } from "../../../../../../redux";
 
 
-function ItemMessage(props: Type_for_ItemMessage, { allMessages, userName, setAllMessages }: Type_forMessageList): JSX.Element {
+function ItemMessage(props: Type_forMessageList & Type_for_ItemMessage): JSX.Element {
     const [itemMessageData, setItemMessageData] = React.useState<Type_for_newMesssageFrom_DB>();
     const [colorAlert, setColorAlert] = React.useState<React.CSSProperties>();
+    const [colorUpdateAndDelete, setColorUpdateAndDelete] = React.useState<React.CSSProperties>();
+    const { userName, setAllMessages } = props;
 
+    //set item data
     React.useEffect(() => {
         if (props.itemData.content_message) {
             setItemMessageData({
@@ -26,7 +27,7 @@ function ItemMessage(props: Type_for_ItemMessage, { allMessages, userName, setAl
         };
     }, [JSON.stringify(props.itemData)]);
 
-
+    //color alert in message item
     React.useEffect(() => {
         const updateColorAlert = (): void => {
             if (itemMessageData) {
@@ -38,30 +39,65 @@ function ItemMessage(props: Type_for_ItemMessage, { allMessages, userName, setAl
         return () => clearInterval(intervalId);
     }, [itemMessageData?.end_message]);
 
-
+    //delete message item
     const handleClickDeleteItem = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         const { itemData } = props;
-            const loginUserName = userName;
+        const loginUserName = userName;
+
         try {
             const deleteItem = await deleteData_API({ loginUserName, itemData });
             if (deleteItem?.updateMessages) {
-                /* setAppData(prevAppData => ({
-                    ...prevAppData,
-                    allMessage: DELETE.updateMessages
-                })); */
+                setColorUpdateAndDelete({
+                    backgroundColor: "red"
+                })
+                setTimeout(() => {
+                    setAllMessages({
+                        data: deleteItem.updateMessages,
+                        typeEvent: "setAll_message"
+                    })
+                    setColorUpdateAndDelete({
+                        backgroundColor: "rgba(218, 218, 218, 0.679)"
+                    })
+                }, 2000);
             };
         }
         catch (error) {
             console.log(error);
         };
-    }
+    };
 
+    //update, change to invalid
+    const handleClickCompleteMessage = async () => {
+        const { itemData } = props;
+        const loginUserName = userName;
+        try {
+            const update_Item = await updateData_API({ loginUserName, itemData });
+            if (update_Item?.updateMessages) {
+                setColorUpdateAndDelete({
+                    backgroundColor: "green"
+                })
+                setTimeout(() => {
+                    setAllMessages({
+                        data: update_Item.updateMessages,
+                        typeEvent: "setAll_message"
+                    }) //natavenie redux
+                    setColorUpdateAndDelete({
+                        backgroundColor: "rgba(218, 218, 218, 0.679)"
+                    })
+                }, 2000);
 
+            };
+        }
+        catch (error) {
+            console.log(error);
+        };
+    };
 
     return (
         <div
+            style={colorUpdateAndDelete}
             key={props.keyType}
-            className=" w-[100%] h-[100px] flex justify-center items-center flex-row  bg-thems-item_Background  ">
+            className=" w-[100%] h-[100px] max-h-[70px] flex justify-center items-center flex-row  bg-thems-item_Background  ">
             <div className=" w-[100%] h-[100%] flex items-center justify-center flex-col">
                 {/* tittle */}
                 <div className=" w-[100%] h-[30%] flex flex-row justify-start items-center">
@@ -89,30 +125,39 @@ function ItemMessage(props: Type_for_ItemMessage, { allMessages, userName, setAl
                 </div>
             </div>
             <div className=" w-[20%] h-[100%] flex items-center justify-center flex-col">
-                <div className=" w-[100%] h-[100%] flex items-center justify-center flex-row">
+
+                <div className=" w-[100%] h-[80%] flex items-center justify-center flex-row ">
                     <div className=" w-[100%] h-[100%] flex items-center justify-center text-[14px]">
-                        <button onClick={handleClickDeleteItem}>
+                        <button
+                            className=" w-[80%] h-[80%] bg-slate-100 rounded-lg hover:bg-red-500"
+                            onClick={handleClickDeleteItem}>
                             delete
                         </button>
                     </div>
                     <div className=" w-[100%] h-[100%] flex items-center justify-center text-[14px]">
-                        <button >
+                        <button
+                            className=" w-[80%] h-[80%] bg-slate-100 rounded-lg hover:bg-green-500"
+                            onClick={handleClickCompleteMessage}>
                             complete
                         </button>
                     </div>
                 </div>
-                <div className=" w-[100%] h-[100%] flex items-center justify-center">
-                    <div
-                        className=" w-[100%] h-[100%] flex items-center justify-center">
+                <div
+                    style={colorAlert}
+                    className=" w-[100%] h-[10px]">
+                    {/* element color alert */}
+                </div>
+                <div className=" w-[100%] h-[100%] flex items-center justify-center ">
+                    <div className=" w-[100%] h-[100%] flex items-center justify-center ">
                         <div
-                            style={colorAlert}
-                            className=" w-[150px] h-[30px] flex items-center justify-center rounded-2xl text-[14px]">
+                            className=" w-[100%] h-[100%] flex items-center justify-center text-[14px]">
                             <h1 className="text-[14px]">
                                 {itemMessageData?.end_message.toLocaleDateString()}
                             </h1>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     );
@@ -122,8 +167,13 @@ const mapStateToProps = (state: Type_RootState) => ({
     allMessages: state.allMessages,
     userName: state.userLogData.userName,
 });
+
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    setAllMessages: (props: Type_forSetAllMessage) => dispatch(setAllMessages({data:props.data, typeEvent: props.typeEvent})),
+    setAllMessages: (props: Type_forSetAllMessage) => dispatch(
+        setAllMessages({
+            data: props.data,
+            typeEvent: props.typeEvent
+        })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemMessage);

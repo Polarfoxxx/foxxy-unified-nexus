@@ -28,7 +28,7 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
         const NEW_ANIMATION: React.CSSProperties[] = [];
         await Promise.all(list.map(async (_, index) => {
             // Delay each animation based on index
-            await new Promise(resolve => setTimeout(resolve, (index + 1) * 300));
+            await new Promise(resolve => setTimeout(resolve, (index + 1) * 100));
             // Apply the animation styles
 
             NEW_ANIMATION.push({  // Přidání nového objektu do pole NEW_ANIMATION
@@ -40,8 +40,11 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
         }));
     };
 
-    const submit = (v: TypeForInputsObject["v"]): void => {
-        const TYPE_FILTER = v[0].inputValues as string;
+
+    const handleChangeFilter = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        const TYPE_FILTER = e.currentTarget.value as string;
+        console.log(TYPE_FILTER);
+        
         const MESSAGE_DATA = invalidList;
 
         setInvalidList(
@@ -55,19 +58,15 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
             <div className="w-[100%] h-[7%] flex justify-between items-center bg-thems-currentMessCount_Background pl-5 pr-5">
                 <div className="w-[600px] h-[100%]  flex justify-center items-center ">
                     <form
-                        className="w-[100%] h-[100%]  flex justify-center items-center flex-row gap-5"
-                        onSubmit={(e) => handleSubmit(e, submit)}>
+                        className="w-[100%] h-[100%]  flex justify-center items-center flex-row gap-5">
                         <div>
                             <input
+                            onChange={e => handleChangeFilter(e)}
                                 name="filter"
                                 className=""
                                 type="text" />
                         </div>
-                        <div>
-                            <button type="submit">
-                                Apply filter
-                            </button>
-                        </div>
+                       
                         <div>
                             <button type="submit">
                                 Reset filter
@@ -92,7 +91,7 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
                                 borderRadius: key === 0 ? "10px 10px 0 0" : key === invalidList.length - 1 ? "0 0 10px 10px" : "0px",
                                 ...animationStyles[key] // Apply animation styles
                             }}
-                            className="relative left-[100%] w-[80%] h-[70px] min-h-[70px]  cursor-pointer overflow-hidden "
+                            className="relative left-[100%] w-[90%] min-h-[70px] cursor-pointer overflow-hidden "
                             key={key}>
                             <ItemMessage
                                 keyType={key}
