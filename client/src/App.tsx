@@ -3,21 +3,19 @@ import "./App.css"
 import { Container, Content } from './module';
 import { LoginPage } from './module/AuthentificationModule';
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { servicesJWTdecodeAndValidity } from './module/utils';
+import { cookie } from './module/apis/cookie';
 
-function App() {
+function App(): JSX.Element {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    const JWT = localStorage.getItem("JWT");
-    if (JWT !== null) {
-        !servicesJWTdecodeAndValidity(JWT) && navigate("/LoginPage")
-    } else {
-      navigate("/LoginPage")
-    };
+    sendCookie()
   }, [navigate]);
 
-  
+  async function sendCookie() {
+    const cookieIsValid = await cookie();   //volanie pre zistenie a nasledne odoslanie cookie
+    cookieIsValid && navigate("/Content")
+  };
 
   return (
     <div className="w-full flex items-center justify-center h-auto">

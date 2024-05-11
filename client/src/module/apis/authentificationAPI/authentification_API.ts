@@ -1,13 +1,11 @@
 import { type_for_loginUser_API, type_from_loginUser_API_returned } from "./types";
 import axios from "axios";
 import { BASE_URL } from "../BASE_URL";
-import { createCookie } from "../cookie";
 
 const AUTHENTIFICATION_API = {
   loginUser_API,
 };
 export default AUTHENTIFICATION_API;
-
 
 /* async function registerNewUser_API() {
   try {
@@ -22,7 +20,6 @@ export default AUTHENTIFICATION_API;
 };
  */
 /* --------------------------------------------------------------------------------------- */
-axios.defaults.withCredentials = true;
 async function loginUser_API(loginData: type_for_loginUser_API): Promise<type_from_loginUser_API_returned | undefined> {
   const LOGIN_DATA = {
     username: loginData.userNames,
@@ -30,12 +27,12 @@ async function loginUser_API(loginData: type_for_loginUser_API): Promise<type_fr
   };
   try {
     const response = await axios.post(`${BASE_URL}login/user`, LOGIN_DATA, {
+     withCredentials: true ,
       headers: {
         "Content-Type": "application/json",
       },
     });
-    
-   /*  createCookie()  */  //volanie funkcie ktora vola cookie z vlatneho api pre cookie  
+
     return {
       userName: response.data.username,
       status: response.status,

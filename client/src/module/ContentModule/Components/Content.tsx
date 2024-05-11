@@ -1,6 +1,5 @@
 import React from "react";
 import "./style/content_style.css";
-import { servicesJWTdecodeAndValidity } from "../../utils";
 import { Routes, useNavigate, NavLink, Route } from "react-router-dom";
 import { LogOut, ColorSwitcher, TittleBar, Clock, Type_for_Content } from "../";
 import { Calendar } from "../../CalendarModule";
@@ -14,19 +13,11 @@ import { Type_forSetAllMessage, setAllMessages } from "../../../redux";
 function Content({ setAllMessages }: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
-    React.useEffect(() => {
-        const JWT = localStorage.getItem("JWT");
-        if (JWT !== null) {
-            !servicesJWTdecodeAndValidity(JWT) && navigate("/LoginPage")
-        } else {
-            navigate("/LoginPage")
-        };
-    }, [navigate]);
-
 
     React.useEffect(() => {
         loadDataAPI()
     }, []);
+    
     async function loadDataAPI() {
         const userName = localStorage.getItem("USER_NAME");
         if (userName !== null) {

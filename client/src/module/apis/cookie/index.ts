@@ -1,4 +1,4 @@
 
 export {
-    default as createCookie
-} from "./create_cookie"
+    default as cookie
+} from "./cookie"

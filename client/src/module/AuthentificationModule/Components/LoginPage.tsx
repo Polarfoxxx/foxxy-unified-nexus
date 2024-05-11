@@ -7,7 +7,7 @@ import { setUserLogData } from "../../../redux";
 import { Dispatch } from "redux";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { Type_for_data, Type_for_loginPage } from "./types";
-import { LoadingFeedback, settingCookies } from "../../Shared";
+import { LoadingFeedback } from "../../Shared";
 
 function LoginPage({ setUserLogData }: Type_for_loginPage): JSX.Element {
     const navigate = useNavigate();

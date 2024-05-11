@@ -6,6 +6,8 @@ const crypto = require("crypto");
 
 router.post("/user", async (req, res) => {
     const { username, password } = req.body;
+    const reqCookie = req.cookies;
+    console.log(reqCookie);
     const oneHour = 3600000; // 1 hodina v milisekundách
     const expirationDate = new Date(Date.now() + oneHour);
 
