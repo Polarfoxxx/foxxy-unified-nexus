@@ -4,7 +4,8 @@ const post_createData = require("./CRUD/post_createData");
 const get_readData = require("./CRUD/get_readData");
 const delete_deleteData = require("./CRUD/delete_deleteData");
 const update_putData = require("./CRUD/put_updateData");
-const cookies = require("./cookie/cookie")
+const readExpExistingCookie = require("./cookie/readExpiredExisting_cookie");
+const deleteCookie = require("./cookie/deleteCookie");
 const cookieParser = require('cookie-parser');
 const express = require("express");
 const app = express();
@@ -20,6 +21,7 @@ app.use(cookieParser());
 
 
 
+
 // CRUD Endpoints
 app.use('/register', post_Register); // register POST method
 app.use('/login', post_Login); // Login POST method
@@ -27,6 +29,10 @@ app.use('/create', post_createData); // save POST method
 app.use('/read', get_readData); // readData GET method
 app.use('/delete', delete_deleteData); // deleteData DELETE method
 app.use('/update', update_putData); // updateData PUT method
-app.use('/cookies', cookies); // cookies POST method
+//cookies
+app.use('/cookies-exp', readExpExistingCookie); // cookies read and control expiration
+app.use('/cookies-delete', deleteCookie); // cookies delete after logout
 
+
+// run server
 app.listen(Port, () => console.log(`connect to port ${Port}`));

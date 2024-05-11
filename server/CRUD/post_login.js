@@ -24,7 +24,16 @@ router.post("/user", async (req, res) => {
                     const token = jwt.sign({ username }, "secret", { expiresIn: "2h" });
                     const theme = user.custom.theme
 
-                    res.cookie(username, token, {
+                    // Vytvoření objektu s více hodnotami
+                    const cookieData = {
+                        token: token,
+                        colorTheme: theme
+                    };
+
+                    // Serializace dat do JSON řetězce
+                    const cookieValue = JSON.stringify(cookieData);
+
+                    res.cookie(username, cookieValue, {
                         httpOnly: true,
                         expires: expirationDate
                     });

@@ -1,4 +1,2 @@
-
-export {
-    default as cookie
-} from "./cookie"
+export * from "./readExistingExpiredCookie";
+export * from "./deleteCookie";

@@ -3,18 +3,18 @@ import "./App.css"
 import { Container, Content } from './module';
 import { LoginPage } from './module/AuthentificationModule';
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { cookie } from './module/apis/cookie';
+import { readExistingExpCookie } from './module/apis/cookie';
 
 function App(): JSX.Element {
   const navigate = useNavigate();
 
   React.useEffect(() => {
     sendCookie()
-  }, [navigate]);
+  }, []);
 
   async function sendCookie() {
-    const cookieIsValid = await cookie();   //volanie pre zistenie a nasledne odoslanie cookie
-    cookieIsValid && navigate("/Content")
+    const cookieIsValid = await readExistingExpCookie();   //volanie pre zistenie a nasledne odoslanie cookie
+    cookieIsValid ? navigate("/Content") : navigate("/LoginPage")
   };
 
   return (

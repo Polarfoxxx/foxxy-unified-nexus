@@ -1,15 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { deleteCookie } from "../../../../../apis/cookie";
 
 function LogOut(): JSX.Element {
-    const NAVIGATE = useNavigate();
+    const navigate = useNavigate();
 
     const handleClickLogOut = () => {
-        localStorage.removeItem("JWT")
-        localStorage.removeItem("USER_NAME")
-        NAVIGATE("/LoginPage");
+      deleteCookie();
+        navigate("/LoginPage");
     };
-
 
     return (
         <div className=" w-full h-full flex items-center justify-start  p-2 pl-8 ">
