@@ -4,6 +4,7 @@ const post_createData = require("./CRUD/post_createData");
 const get_readData = require("./CRUD/get_readData");
 const delete_deleteData = require("./CRUD/delete_deleteData");
 const update_putData = require("./CRUD/put_updateData");
+const updateCookie = require("./cookie/updateCookie");
 const readExpExistingCookie = require("./cookie/readExpiredExisting_cookie");
 const deleteCookie = require("./cookie/deleteCookie");
 const cookieParser = require('cookie-parser');
@@ -32,6 +33,7 @@ app.use('/update', update_putData); // updateData PUT method
 //cookies
 app.use('/cookies-exp', readExpExistingCookie); // cookies read and control expiration
 app.use('/cookies-delete', deleteCookie); // cookies delete after logout
+app.use('/cookies-update', updateCookie); // cookies update
 
 
 // run server

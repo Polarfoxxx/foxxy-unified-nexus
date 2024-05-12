@@ -9,13 +9,17 @@ function App(): JSX.Element {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    sendCookie()
+    existAndValidCookie();
+    async function existAndValidCookie() {
+      const cookieIsValid = await readExistingExpCookie();   //volanie pre zistenie a nasledne odoslanie cookie
+      if (cookieIsValid?.isValid) {
+        navigate("/Content");
+      } else {
+        navigate("/LoginPage");
+      }
+    };
   }, []);
 
-  async function sendCookie() {
-    const cookieIsValid = await readExistingExpCookie();   //volanie pre zistenie a nasledne odoslanie cookie
-    cookieIsValid ? navigate("/Content") : navigate("/LoginPage")
-  };
 
   return (
     <div className="w-full flex items-center justify-center h-auto">

@@ -15,8 +15,16 @@ router.get('/read_Exp_Existing_Cookie', (req, res) => {
     } else {
       const parseValue = JSON.parse(myCookie[cookieName]); // Nastavíme hodnotu tokenu na prázdný řetězec
       const token = parseValue.token;
+      const theme = parseValue.colorTheme;
       const cookieExp = verifyJWTToken(token)
-      res.send(cookieExp);
+      // Vytvorenie objektu s hodnotami, ktoré chcete poslať
+      const responseData = {
+        cookieExp: cookieExp,
+        theme: theme,
+        userName: cookieName
+      };
+      // Poslanie odpovede s objektom responseData
+      res.send(responseData);
     }
   } catch (err) {
     console.log(err);

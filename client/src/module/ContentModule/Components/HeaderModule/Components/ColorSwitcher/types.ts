@@ -7,5 +7,6 @@ export type Type_for_saveDataTheme = {
 
 /* types */
 export type Type_for_colorSwitcher = {
-    themedDivRef: React.MutableRefObject<HTMLDivElement | null>
+    themedDivRef: React.MutableRefObject<HTMLDivElement | null>,
+    appTheme: string
 };

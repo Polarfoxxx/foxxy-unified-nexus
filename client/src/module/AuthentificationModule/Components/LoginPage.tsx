@@ -9,7 +9,7 @@ import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { Type_for_data, Type_for_loginPage } from "./types";
 import { LoadingFeedback } from "../../Shared";
 
-function LoginPage({ setUserLogData }: Type_for_loginPage): JSX.Element {
+function LoginPage(): JSX.Element {
     const navigate = useNavigate();
     const { handleSubmit, reset } = useInputValue();
     const [loadingFeedbackStats, setLoadingFeedbackStats] = React.useState<{ respo_status: number, loadON: boolean }>({
@@ -30,13 +30,6 @@ function LoginPage({ setUserLogData }: Type_for_loginPage): JSX.Element {
         try {
             const login = await AUTHENTIFICATION_API.loginUser_API(login_data);
             if (login?.jwt) {
-                setUserLogData({  // Použití akce setUserLogData
-                    userName: login.userName,
-                    appTheme: login.theme
-                });
-
-                localStorage.setItem("JWT", login.jwt);
-                localStorage.setItem("USER_NAME", login.userName);
                 navigate("/Content");
             };
             if (login?.status) {
@@ -96,8 +89,4 @@ function LoginPage({ setUserLogData }: Type_for_loginPage): JSX.Element {
     );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data))
-});
-
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default LoginPage;

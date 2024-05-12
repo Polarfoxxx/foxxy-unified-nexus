@@ -1,9 +1,8 @@
 import axios from "axios";
 import { BASE_URL } from "../../BASE_URL";
+import { Type_for_readExistingExpCookie_returned } from "../";
 
-
-async function readExistingExpCookie(): Promise<boolean> {
-
+async function readExistingExpCookie(): Promise<Type_for_readExistingExpCookie_returned | undefined> {
     try {
         const cookieExpired = await axios.get(`${BASE_URL}cookies-exp/read_Exp_Existing_Cookie`, {
             withCredentials: true,
@@ -11,14 +10,19 @@ async function readExistingExpCookie(): Promise<boolean> {
                 "Content-Type": "application/json",
             }
         });
-        const isValid = cookieExpired.data.valid;
-        return isValid
+        const cookieData = {
+            isValid: cookieExpired.data.cookieExp.valid,
+            cookie_data: {
+                appTheme: cookieExpired.data.theme,
+                userName: cookieExpired.data.userName
+            }
+        };
+        return cookieData
     }
     catch (error) {
         console.log(error);
     };
-    return false
+    return undefined
 };
-
 
 export default readExistingExpCookie;

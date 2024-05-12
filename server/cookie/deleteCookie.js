@@ -10,7 +10,6 @@ router.use('/clear-cookie', (req, res) => {
 
     const parseValue = JSON.parse(cookies[cookieName]); // Nastavíme hodnotu tokenu na prázdný řetězec
     const appTheme = parseValue.colorTheme
-    console.log(parseValue);
 
     const deleletoToken = {
         token: "",

@@ -6,7 +6,7 @@ import { BASE_URL } from "../../BASE_URL";
 async function deleteCookie(): Promise<boolean> {
 
     try {
-        const cookiedeleted = await axios.get(`${BASE_URL}cookies-delete/clear-cookie`, {
+        await axios.get(`${BASE_URL}cookies-delete/clear-cookie`, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",

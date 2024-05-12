@@ -1,39 +1,38 @@
 import React from 'react';
 import { createData_API } from '../../../../../apis/crudApi';
 import { Type_for_saveDataTheme, Type_for_colorSwitcher } from './types';
+import { updateCookie } from '../../../../../apis/cookie';
+import { connect } from 'react-redux';
+import { Type_RootState } from '../../../../../../redux';
 
-
-function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
+function ColorSwitcher({themedDivRef, appTheme}: Type_for_colorSwitcher): JSX.Element {
     const [app_theme, setApp_theme] = React.useState("");
 
     /* nacitanie nstavej farby z db */
     React.useEffect(() => {
-        const LOAD_THEME = ""
-        LOAD_THEME &&
-            props.themedDivRef.current?.setAttribute("data-theme", LOAD_THEME);
-        setApp_theme(LOAD_THEME)
-    }, []);
+        const load_theme = appTheme;
+        console.log(load_theme);
+        
+        load_theme &&
+            themedDivRef.current?.setAttribute("data-theme", load_theme);
+        setApp_theme(load_theme)
+    }, [appTheme]);
 
-    const handleColorChange = (selectTheme: string) => {
-        props.themedDivRef.current?.setAttribute("data-theme", selectTheme);
+
+    const handleColorChange = async (selectTheme: string) => {
+        themedDivRef.current?.setAttribute("data-theme", selectTheme);
         setApp_theme(selectTheme);
-        /*    createAsynctheme(selectTheme); */
-    };
 
-    async function createAsynctheme(selectTheme: string) {
-        const loginUserName = ""
-        const create_data: Type_for_saveDataTheme = {
-            custom: {
-                theme: selectTheme
-            },
-        };
         try {
-            const create = await createData_API({ loginUserName, create_data });
+            const create = await updateCookie(selectTheme);
+            console.log(selectTheme);
+
             console.log('Result:', create);
         } catch (error) {
             console.error('Error:', error);
         };
     };
+
 
     return (
         <div className=' w-full h-full flex flex-row items-center gap-3 justify-end p-2 pr-8 bg-transparent'>
@@ -54,4 +53,9 @@ function ColorSwitcher(props: Type_for_colorSwitcher): JSX.Element {
     );
 };
 
-export default ColorSwitcher;
+const mapStateToProps = (state: Type_RootState) => ({
+    appTheme: state.userLogData.appTheme,
+});
+
+export default connect(mapStateToProps)(ColorSwitcher);
+

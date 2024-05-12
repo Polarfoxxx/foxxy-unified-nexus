@@ -8,39 +8,58 @@ import { ParentAllMiniContent } from "../../Shared";
 import { readData_API } from "../../apis/index.";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { Type_forSetAllMessage, setAllMessages } from "../../../redux";
+import { Type_forSetAllMessage, setAllMessages, setUserLogData } from "../../../redux";
+import { readExistingExpCookie } from "../../apis/index.";
+import { Type_for_data } from "../../AuthentificationModule";
 
-function Content({ setAllMessages }: Type_for_Content): JSX.Element {
+function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
     React.useEffect(() => {
-        loadDataAPI()
+        existAndValidCookie()
+        async function existAndValidCookie() {
+            const cookieIsValid = await readExistingExpCookie();   //volanie pre zistenie a nasledne odoslanie cookie
+            if (!cookieIsValid?.isValid) {
+                navigate("/LoginPage")
+            } else {
+                setUserLogData({  // Použití akce setUserLogData
+                    userName: cookieIsValid.cookie_data.userName,
+                    appTheme: cookieIsValid.cookie_data.appTheme
+                });
+            }
+        };
     }, []);
-    
-    async function loadDataAPI() {
-        const userName = localStorage.getItem("USER_NAME");
-        if (userName !== null) {
-            try {
-                const load_data = await readData_API(userName);
-                if (load_data) {
-                    setAllMessages({
-                        data: load_data.data.messages,
-                        typeEvent: "setAll_message"
-                    }) //natavenie redux
+
+
+    React.useEffect(() => {
+        loadDataAPI();
+        async function loadDataAPI() {
+            const userName = localStorage.getItem("USER_NAME");
+            if (userName !== null) {
+                try {
+                    const load_data = await readData_API(userName);
+                    if (load_data) {
+                        setAllMessages({
+                            data: load_data.data.messages,
+                            typeEvent: "setAll_message"
+                        }) //natavenie redux
+                    };
+                } catch (error) {
+                    console.log("Chyba pri načítavaní udalostí:", error);
                 };
-            } catch (error) {
-                console.log("Chyba pri načítavaní udalostí:", error);
             };
         };
-    };
+    }, []);
+
+
 
 
 
     return (
         <div
             ref={themedDivRef}
-            data-theme="light"
+            data-theme=""
             className=" w-full h-screen flex flex-col justify-center items-center bg-thems-background_content bg-fullApp">
             <header className=" w-full h-[8%] flex items-center justify-center  p-2">
                 <div className=" w-full h-full flex items-center justify-between bg-thems-background_content_header rounded-[15px] ">
@@ -128,6 +147,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
             data: props.data,
             typeEvent: props.typeEvent
         })),
+    setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data))
 });
 
 export default connect(null, mapDispatchToProps)(Content);

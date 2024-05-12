@@ -11,8 +11,8 @@ mongoose
 const userSchema = new mongoose.Schema({
     username: String,
     password: String,
-    custom: {
-        theme: String
+    login: {
+        state: Boolean
     },
     data: {
         events: [

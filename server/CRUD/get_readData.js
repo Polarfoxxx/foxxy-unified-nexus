@@ -13,11 +13,9 @@ router.get('/data', async (req, res) => {
         } else {
             const events = user.data.events;
             const messages = user.data.messages;
-            const theme = user.custom.theme;
             return res.status(201).json({
                 events: events,
                 message: messages,
-                theme: theme
             })
         };
     } catch
