@@ -11,8 +11,6 @@ function ColorSwitcher({themedDivRef, appTheme}: Type_for_colorSwitcher): JSX.El
     /* nacitanie nstavej farby z db */
     React.useEffect(() => {
         const load_theme = appTheme;
-        console.log(load_theme);
-        
         load_theme &&
             themedDivRef.current?.setAttribute("data-theme", load_theme);
         setApp_theme(load_theme)
@@ -21,13 +19,13 @@ function ColorSwitcher({themedDivRef, appTheme}: Type_for_colorSwitcher): JSX.El
 
     const handleColorChange = async (selectTheme: string) => {
         themedDivRef.current?.setAttribute("data-theme", selectTheme);
-        setApp_theme(selectTheme);
 
         try {
-            const create = await updateCookie(selectTheme);
-            console.log(selectTheme);
-
-            console.log('Result:', create);
+            const resp_updateCookie = await updateCookie(selectTheme);
+                if(resp_updateCookie === 200) {
+                    setApp_theme(selectTheme);
+                };
+          
         } catch (error) {
             console.error('Error:', error);
         };

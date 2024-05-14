@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useInputValue } from "foxxy_input_value";
-import { AUTHENTIFICATION_API } from "../../apis/index.";
+import { logInUser_API } from "../../apis/authentificationAPI";
 import { useNavigate } from "react-router-dom";
 import { setUserLogData } from "../../../redux";
 import { Dispatch } from "redux";
@@ -28,7 +28,7 @@ function LoginPage(): JSX.Element {
             loadON: true
         });
         try {
-            const login = await AUTHENTIFICATION_API.loginUser_API(login_data);
+            const login = await logInUser_API(login_data);
             if (login?.jwt) {
                 navigate("/Content");
             };

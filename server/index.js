@@ -1,4 +1,5 @@
-const post_Login = require('./CRUD/post_login');
+const post_LogIn = require('./CRUD/post_login');
+const post_LogOut = require('./CRUD/post_LogOut');
 const post_Register = require("./CRUD/post_register");
 const post_createData = require("./CRUD/post_createData");
 const get_readData = require("./CRUD/get_readData");
@@ -25,7 +26,8 @@ app.use(cookieParser());
 
 // CRUD Endpoints
 app.use('/register', post_Register); // register POST method
-app.use('/login', post_Login); // Login POST method
+app.use('/logIn', post_LogIn); // Login POST method
+app.use('/logOut', post_LogOut); // Login POST method
 app.use('/create', post_createData); // save POST method
 app.use('/read', get_readData); // readData GET method
 app.use('/delete', delete_deleteData); // deleteData DELETE method

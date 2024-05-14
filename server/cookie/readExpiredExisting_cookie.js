@@ -18,6 +18,11 @@ router.get('/read_Exp_Existing_Cookie', (req, res) => {
       const theme = parseValue.colorTheme;
       const cookieExp = verifyJWTToken(token)
       // Vytvorenie objektu s hodnotami, ktoré chcete poslať
+      if(!cookieExp.valid) {
+        req.url = '/logOut/user';
+        req.method = 'POST'; // Assuming logout route requires a POST request
+        router.handle(req, res);
+      }
       const responseData = {
         cookieExp: cookieExp,
         theme: theme,

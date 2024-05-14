@@ -5,8 +5,9 @@ const Joi = require("joi");
 const crypto = require('crypto');
 
 router.post('/newUser', async (req, res) => {
-  const { username, password } = req.body;
     try {
+        const { username, password } = req.body;
+
         // Validácia vstupu
         const validateUser = Joi.object({
             username: Joi.string().min(3).required(),

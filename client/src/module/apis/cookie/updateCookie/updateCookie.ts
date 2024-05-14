@@ -2,7 +2,10 @@ import axios from "axios";
 import { BASE_URL } from "../../BASE_URL";
 
 
-async function updateCookie(theme: string): Promise<string | undefined> {
+async function updateCookie(theme: string): Promise<number> {
+
+
+
     try {
         const cookieUpdate = await axios.get(`${BASE_URL}cookies-update/update_Cookie`, {
             params: { theme }, // Poslanie dát cez parametre URL
@@ -11,14 +14,12 @@ async function updateCookie(theme: string): Promise<string | undefined> {
                 "Content-Type": "application/json",
             }
         });
-        
-        console.log(cookieUpdate);
-
+        return cookieUpdate.status
     }
     catch (error) {
         console.log(error);
+        return 0
     };
-    return undefined
 };
 
 export default updateCookie;

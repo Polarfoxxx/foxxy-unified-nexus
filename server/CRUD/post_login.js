@@ -5,11 +5,17 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
 router.post("/user", async (req, res) => {
-    const { username, password } = req.body;
-    const oneMonth = 30 * 24 * 60 * 60 * 1000; // 1 mesiac v milisekundách
-    const expirationDate = new Date(Date.now() + oneMonth);
-
     try {
+        const { username, password } = req.body;
+        const oneMonth = 30 * 24 * 60 * 60 * 1000; // 1 mesiac v milisekundách
+        const expirationDate = new Date(Date.now() + oneMonth);
+        const cookies = req.cookies;
+
+        // Získání názvu cookie, kterou chcete ponechat
+        const cookieName = Object.keys(cookies)[0];
+        const parseValue = JSON.parse(cookies[cookieName]);
+        const appTheme = parseValue.colorTheme
+
         // Hľadanie používateľa 
         const user = await User.findOne({ username });
         setTimeout(() => {
@@ -24,7 +30,7 @@ router.post("/user", async (req, res) => {
                     // Vytvoření objektu s více hodnotami
                     const cookieData = {
                         token: token,
-                        colorTheme: defaultTheme
+                        colorTheme: appTheme ? appTheme : defaultTheme
                     };
                     // Serializace dat do JSON řetězce
                     const cookieValue = JSON.stringify(cookieData);

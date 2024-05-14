@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteCookie } from "../../../../../apis/cookie";
+import { logOutUser_API } from "../../../../../apis/authentificationAPI";
 
 function LogOut(): JSX.Element {
     const navigate = useNavigate();
 
     const handleClickLogOut = () => {
-      deleteCookie();
+        deleteCookie();
+        logOutUser_API()
         navigate("/LoginPage");
     };
 
@@ -19,7 +21,7 @@ function LogOut(): JSX.Element {
                     Log out
                 </button>
             </div>
-           
+
         </div>
     );
 };
