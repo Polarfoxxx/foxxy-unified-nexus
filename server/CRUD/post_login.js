@@ -5,17 +5,11 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
 router.post("/user", async (req, res) => {
-    try {
         const { username, password } = req.body;
         const oneMonth = 30 * 24 * 60 * 60 * 1000; // 1 mesiac v milisekundách
         const expirationDate = new Date(Date.now() + oneMonth);
         const cookies = req.cookies;
-
-        // Získání názvu cookie, kterou chcete ponechat
-        const cookieName = Object.keys(cookies)[0];
-        const parseValue = JSON.parse(cookies[cookieName]);
-        const appTheme = parseValue.colorTheme
-
+        try {
         // Hľadanie používateľa 
         const user = await User.findOne({ username });
         setTimeout(() => {
@@ -28,19 +22,31 @@ router.post("/user", async (req, res) => {
                     const token = jwt.sign({ username }, "secret", { expiresIn: "2h" });
                     const defaultTheme = "dark"
                     // Vytvoření objektu s více hodnotami
-                    const cookieData = {
-                        token: token,
-                        colorTheme: appTheme ? appTheme : defaultTheme
-                    };
-                    // Serializace dat do JSON řetězce
-                    const cookieValue = JSON.stringify(cookieData);
-                    res.cookie(username, cookieValue, {
-                        httpOnly: true,
-                        expires: expirationDate
-                    });
+                        
+                        const cookieName = Object.keys(cookies)[0];
+                        let appTheme = defaultTheme;
+
+                        if (cookieName !== undefined) {
+                            const parseValue = JSON.parse(cookies[cookieName]);
+                            appTheme = parseValue.colorTheme || defaultTheme;
+                        }
+                        
+                        const cookieData = {
+                            token: token,
+                            colorTheme: appTheme
+                        };
+                        
+                        // Serializace dat do JSON řetězce
+                        const cookieValue = JSON.stringify(cookieData);
+                        
+                        res.cookie(username, cookieValue, {
+                            httpOnly: true,
+                            expires: expirationDate
+                        });
+                        
                     user.login.state = true;
                     user.save();
-                    res.status(200).json({ username, token, defaultTheme });
+                    res.status(200).json();
                 } else {
                     res.status(401).json({ message: "Incorrect password" });
                 }

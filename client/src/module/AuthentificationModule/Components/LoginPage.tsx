@@ -29,7 +29,7 @@ function LoginPage(): JSX.Element {
         });
         try {
             const login = await logInUser_API(login_data);
-            if (login?.jwt) {
+            if (login?.status === 200) {
                 navigate("/Content");
             };
             if (login?.status) {

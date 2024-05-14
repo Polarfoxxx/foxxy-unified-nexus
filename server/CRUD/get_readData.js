@@ -4,9 +4,8 @@ const User = require("../mongooseDB/mongooseDB");
 
 
 router.get('/data', async (req, res) => {
-    try {
         const { userName } = req.query
-
+        try {
         /* hladanie uzivatela*/
         const user = await User.findOne({ username: userName });
         if (!user) {
