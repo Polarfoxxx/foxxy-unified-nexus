@@ -1,26 +1,12 @@
 import axios from "axios";
 import { BASE_URL } from "../../BASE_URL";
-import { Type_for_newEventFrom_DB } from "../../../CalendarModule";
-import { Type_for_newMesssageFrom_DB } from "../../../MessageModule/Components/MessageList/types";
+import { Type_for_readData_API } from "./types";
 
-export type Type_for_readData_API = {
-    status: number,
-    data: {
-        events: Type_for_newEventFrom_DB[],
-        messages: Type_for_newMesssageFrom_DB[],
-        theme: string
-    }
-};
-
-
-
-async function readData_API(user: string): Promise<Type_for_readData_API | undefined> {
+async function readData_API(): Promise<Type_for_readData_API | undefined> {
 
     try {
         const LOAD_DATA = await axios.get(`${BASE_URL}read/data`, {
-            params: {
-                userName: user
-            }
+            withCredentials: true
         });
         return {
             status: LOAD_DATA.status,
@@ -31,7 +17,6 @@ async function readData_API(user: string): Promise<Type_for_readData_API | undef
             }
         };
     } catch (error) {
-        console.error(error);
         return undefined;
     };
 };

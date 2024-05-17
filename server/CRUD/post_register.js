@@ -7,7 +7,7 @@ const crypto = require('crypto');
 router.post('/newUser', async (req, res) => {
         const { username, password } = req.body;
         try {
-        // Validácia vstupu
+        //! Validácia vstupu
         const validateUser = Joi.object({
             username: Joi.string().min(3).required(),
             password: Joi.string().min(4).required(),
@@ -15,17 +15,15 @@ router.post('/newUser', async (req, res) => {
         const validation = validateUser.validate({ username, password });
         if (validation.error) {
             return res.status(400).json({ message: "Registration error" });
-        }
-
-        // Hashovanie hesla pomocou crypto modulu
+        };
+        //! Hashovanie hesla pomocou crypto modulu
         const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
-
-        // Vytvorenie nového používateľa s hashovaným heslom
+        //! Vytvorenie nového používateľa s hashovaným heslom
         const newUser = {
             username: username,
             password: hashedPassword,
-            custom: {
-                theme: ""
+            login: {
+                status: ""
             },
             data: {
                 events: [],
@@ -33,7 +31,7 @@ router.post('/newUser', async (req, res) => {
             }
         };
 
-        // Uloženie používateľa do databázy
+        //! Uloženie používateľa do databázy
         await User.create(newUser);
         res.status(201).json({ message: "Registration successful" });
     } catch (error) {

@@ -23,7 +23,7 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
             if (!cookieIsValid?.isValid) {
                 navigate("/LoginPage")
             } else {
-                setUserLogData({  // Použití akce setUserLogData
+                setUserLogData({  //! Použití akce setUserLogData
                     userName: cookieIsValid.cookie_data.userName,
                     appTheme: cookieIsValid.cookie_data.appTheme
                 });
@@ -35,21 +35,18 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
     React.useEffect(() => {
         loadDataAPI();
         async function loadDataAPI() {
-            const userName = localStorage.getItem("USER_NAME");
-            if (userName !== null) {
                 try {
-                    const load_data = await readData_API(userName);
+                    const load_data = await readData_API();
                     if (load_data) {
                         setAllMessages({
                             data: load_data.data.messages,
                             typeEvent: "setAll_message"
-                        }) //natavenie redux
+                        }) 
                     };
                 } catch (error) {
                     console.log("Chyba pri načítavaní udalostí:", error);
                 };
             };
-        };
     }, []);
 
 

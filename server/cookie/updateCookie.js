@@ -4,29 +4,31 @@ const router = express.Router();
 // Route to set a cookie
 router.get('/update_Cookie', (req, res) => {
   try {
+    //!ziskanie apptemy z frondendu
     const request_update = req.query;
     const color = request_update.theme;
+    
     const myCookie = req.cookies;
     const cookieName = Object.keys(myCookie)[0];
     
-    // Získanie hodnôt tokenu a farby témy z cookies
+    //! Získanie hodnôt tokenu a farby témy z cookies
     const parseValue = JSON.parse(myCookie[cookieName]);
     const token = parseValue.token;
     const theme = parseValue.colorTheme;
      
-    // Aktualizácia farby témy
+    //! Aktualizácia farby témy
     const updatedCookie = {
       token: token,
       colorTheme: color
     }
 
-    // Serializácia aktualizovaných údajov do JSON reťazca
+    //! Serializácia aktualizovaných údajov do JSON reťazca
     const cookieValue = JSON.stringify(updatedCookie);
 
-    // Nastavenie aktualizovaných cookies späť v odpovedi
+    //! Nastavenie aktualizovaných cookies späť v odpovedi
     res.cookie(cookieName, cookieValue);
 
-    // Odpoveď s potvrdením aktualizácie
+    //! Odpoveď s potvrdením aktualizácie
     res.status(200).send('Cookie updated successfully');
   } catch (err) {
     console.log(err);

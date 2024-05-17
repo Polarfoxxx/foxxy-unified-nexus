@@ -1,12 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 import { useInputValue } from "foxxy_input_value";
 import { logInUser_API } from "../../apis/authentificationAPI";
 import { useNavigate } from "react-router-dom";
-import { setUserLogData } from "../../../redux";
-import { Dispatch } from "redux";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
-import { Type_for_data, Type_for_loginPage } from "./types";
 import { LoadingFeedback } from "../../Shared";
 
 function LoginPage(): JSX.Element {
@@ -23,6 +19,7 @@ function LoginPage(): JSX.Element {
             password: v[1].inputValues.toString()
         };
         reset();
+        //! set display stat on loading it is 10
         setLoadingFeedbackStats({
             respo_status: 10,
             loadON: true
@@ -31,8 +28,7 @@ function LoginPage(): JSX.Element {
             const login = await logInUser_API(login_data);
             if (login?.status === 200) {
                 navigate("/Content");
-            };
-            if (login?.status) {
+                //! set display stat by login.status
                 setLoadingFeedbackStats({
                     respo_status: login.status,
                     loadON: true
@@ -47,6 +43,7 @@ function LoginPage(): JSX.Element {
         <div className=" w-full h-screen flex flex-col bg-loginBackg">
             <div className=" w-full h-1/4 relative">
                 {
+                    //!loading display status
                     <LoadingFeedback
                         loadstatus={loadingFeedbackStats}
                     />
