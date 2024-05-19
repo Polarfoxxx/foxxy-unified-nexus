@@ -6,7 +6,7 @@ import { NewRequest } from "../../../utils";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Type_for_newEventFor_API } from "../../../CalendarModule";
-import { Type_for_newMessageFor_API, Type_forMessageList, Type_for_newMesssageFrom_DB } from "./types";
+import { Type_for_newMessageFor_API, Type_forMessageList } from "./types";
 import { ValidMessageList, InvalidMessageList } from "./router";
 import { Route, Routes, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
@@ -15,7 +15,6 @@ import { Dispatch } from "redux";
 
 function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageList): JSX.Element {
     const [newMessage, setNewMessage] = React.useState<any>({ start: "", end: "" });
-    const [contentSize, setContetntSize] = React.useState<boolean>();
     const { handleSubmit, reset } = useInputValue();
     const divRef = React.useRef<HTMLDivElement>(null)
 
@@ -43,31 +42,12 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
             catch (error) {
                 console.log(error);
             };
-            reset(); // vymazanie form
+           //! vymazanie form
+            reset(); 
         } else {
             alert(create_data)
         };
     };
-
-
-    /* css for mini components*/
-    React.useEffect(() => {
-        const updateWidth = () => {
-            if (divRef.current) {
-                if (divRef.current.offsetHeight < 600) {
-                    setContetntSize(false)
-                } else {
-                    setContetntSize(true)
-                };
-            };
-        };
-        updateWidth();
-        window.addEventListener('resize', updateWidth);
-        return () => {
-            window.removeEventListener('resize', updateWidth);
-        };
-    }, []);
-
 
 
     return (
@@ -75,41 +55,17 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
             ref={divRef}
             id="messageContent"
             className='w-full h-full flex items-center justify-center'>
-            <div className={
-                contentSize
-                    ? "w-full h-full flex items-center justify-start flex-col bg-thems-messageContent_background"
-                    : "w-full h-full flex items-center justify-start flex-col bg-thems-messageContent_background p-4"
-            }>
-                <div className={
-                    contentSize
-                        ? "  w-full h-[10%] min-h-[80px] flex items-center justify-between flex-row"
-                        : "  w-full min-h-[70%] flex items-center justify-between flex-row"
-                }>
-                    <div className={
-                        contentSize
-                            ? " w-[100%] h-[100%] bg-thems-minBackg_content flex items-center justify-center rounded-tl-[10px] rounded-tr-[10px]"
-                            : " w-[100%] h-[100%] bg-thems-minBackg_content flex items-center justify-center  rounded-tl-[10px] rounded-tr-[10px]"
-                    }>
-                        <h2 className={
-                            contentSize
-                                ? "text-[25px] text-thems-defaultTextColor"
-                                : "text-[30px] text-thems-defaultTextColor"
-                        }>
+            <div className="w-full h-full flex items-center justify-start flex-col bg-thems-messageContent_background">
+                <div className="  w-full h-[10%] min-h-[80px] flex items-center justify-between flex-row">
+                    <div className=" w-[100%] h-[100%] bg-thems-minBackg_content flex items-center justify-center  rounded-tl-[10px] rounded-tr-[10px]">
+                        <h2 className="text-[25px] text-thems-defaultTextColor">
                             Message
                         </h2>
                     </div>
                 </div>
-                <div className={
-                    contentSize
-                        ? " w-full h-[18%] flex items-center justify-center"
-                        : "w-full min-h-[30%] flex items-center justify-center"
-                }>
+                <div className=" w-full h-[18%] flex items-center justify-center">
                     <form
-                        className={
-                            contentSize
-                                ? "w-full h-[100%] p-2 flex justify-center items-center flex-col gap-5 bg-thems-newMessageForm_Background"
-                                : " hidden"
-                        }
+                        className="w-full h-[100%] p-2 flex justify-center items-center flex-col gap-5 bg-thems-newMessageForm_Background"
                         onSubmit={(e) => handleSubmit(e, submit)}>
                         <div className="w-full h-full flex justify-center items-center flex-row gap-2 ">
                             <div className="w-[300px] h-[100%] flex justify-center items-center flex-col">
@@ -206,24 +162,7 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
                             </div>
                         </div>
                     </form>
-                    {
-                        /* mini content--------------------------------------------------------- */
-                        !contentSize &&
-                        <div className="w-full h-[100%] flex justify-center items-center relative ">
-                            <div className="w-[100%] h-[100%] flex justify-center items-center flex-row bg-thems-item_Background rounded-bl-[10px] rounded-br-[10px] gap-6">
-                                <h2 className=" text-thems-defaultTextColorDark text-[16px]">
-                                    All message count:
-                                </h2>
-                                <h1 className=" text-[20px] text-thems-defaultTextColorDark">
-                                    {
-                                        allMessages.filter(item => item.status === true).length
-                                    }
-                                </h1>
-                            </div>
-                        </div>
-                    }
                 </div>
-
                 <div className=" w-full h-[700px] h-max-[700px] overflow-x-auto min-h-[500px] flex items-start justify-center" >
                     <div className=" w-[100%] h-[100%] flex justify-center items-center  bg-thems-calendarContent_background rounded-br-[10px] rounded-bl-[10px]">
                         <Routes>

@@ -11,6 +11,7 @@ import { Dispatch } from "redux";
 import { Type_forSetAllMessage, setAllMessages, setUserLogData } from "../../../redux";
 import { readExistingExpCookie } from "../../apis/index.";
 import { Type_for_data } from "../../AuthentificationModule";
+import { LittleCalendar, LittleMessage } from "../../LittleAppComponents";
 
 function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
@@ -83,16 +84,15 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
                             className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                             to="Calendar">
                         </NavLink>
-                        <Calendar />
+                        <LittleCalendar />
                     </div>
                     {/* messageList------------------------------------------------------------------ */}
                     <div className="w-[35%] h-[300px] rounded-[15px] bg-white border-2 border-white relative overflow-hidden shadow-miniApp">
-
                         <NavLink
                             className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                             to="MessageList">
                         </NavLink>
-                        <MessageList />
+                        <LittleMessage />
                     </div>
                     <div className="w-[38%] h-[300px] flex flex-col justify-between items-center gap-3">
                         <div className="w-[100%] h-[145px] rounded-[15px] bg-white border border-black">
