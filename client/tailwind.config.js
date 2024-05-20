@@ -19,16 +19,16 @@ module.exports = {
       },
       colors: {
         thems: {
-          /* buttonStyle*/
+          //! buttonStyle
           background_button: 'var(--background_button)',
           color_button: 'var(--color_button)',
           background_button_hover: "var(--background_button_hover)",
 
-          /* appBackGround */
+          //! appBackGround 
           background_content: "var(--background_content)",
           background_content_header: "var(--background_content_header)",
 
-          /* CalendarBackGround */
+          //! CalendarBackGround
           calendarContent_background: "var(--calendarContent_background)",
           dayBackground_hover: "var(--dayBackground_hover)",
           eventBackground: "var(--eventBackground)",
@@ -40,23 +40,21 @@ module.exports = {
           background_newEventContent: "var(--background_newEventContent)",
           InvalidDay_Background: "var(--InvalidDay_Background)",
 
-          /* messageBackGround */
+          //! MessageBackGround
           messageContent_background: "var(--messageContent_background)",
           newMessageForm_Background: "var(--newMessageForm_Background)",
           itemHeader_Background: "var(--itemHeader_Background)",
           item_Background: "var(--item_Background)",
           currentMessCount_Background: "var(--currentMessCount_Background)",
+          littleComponent_Background: "var(--littleComponent_Background)",
 
-          /* textColor */
+          //! textColor
           defaultTextColor: 'var(--defaultTextColor)',
           defaultTextColorDark: 'var(--defaultTextColorDark)',
           current_day: "var(--current_day)",
 
-          /* inputStyle */
+          //! inputStyle
           inputBorder: "var(--inputBorder)",
-
-
-
 
         },
       },

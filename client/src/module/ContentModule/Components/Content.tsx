@@ -60,7 +60,7 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
             data-theme=""
             className=" w-full h-screen flex flex-col justify-center items-center bg-thems-background_content bg-fullApp">
             <header className=" w-full h-[8%] flex items-center justify-center  p-2">
-                <div className=" w-full h-full flex items-center justify-between bg-thems-background_content_header rounded-[15px] ">
+                <div className=" w-full h-full flex items-center justify-between bg-thems-littleComponent_Background rounded-[15px] ">
                     <div className=" w-[100%] h-[100%] flex items-center justify-center">
                         <LogOut />
                     </div>
@@ -79,7 +79,7 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
             <nav className="w-full h-screen flex items-start justify-start p-3">
                 <div className="w-full flex items-start justify-start flex-wrap gap-3">
                     {/* calendar----------------------------------------------------------------- */}
-                    <div className="w-[25%] h-[300px] rounded-[15px] bg-white border-2 border-white relative overflow-hidden shadow-miniApp">
+                    <div className="w-[25%] h-[300px] rounded-[15px] bg-white border-2 border-white relative transition-transform duration-2000 overflow-hidden shadow-miniApp hover:scale-[1.02]">
                         <NavLink
                             className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                             to="Calendar">
@@ -137,7 +137,7 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
         </div>
     )
 };
-/* set state for redux */
+//! set state for redux
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     setAllMessages: (props: Type_forSetAllMessage) => dispatch(
         setAllMessages({
