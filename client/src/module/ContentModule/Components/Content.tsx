@@ -8,13 +8,14 @@ import { ParentAllMiniContent } from "../../Shared";
 import { readData_API } from "../../apis/index.";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { Type_forSetAllMessage, setAllMessages, setUserLogData } from "../../../redux";
+import { Type_forSetAllMessage, setAllMessages, setUserLogData, setWeatherData } from "../../../redux";
 import { readExistingExpCookie } from "../../apis/index.";
 import { Type_for_data } from "../../AuthentificationModule";
 import { LittleCalendar, LittleMessage } from "../../LittleAppComponents";
 import { openWeatherAPI } from "../../apis/index.";
+import { Type_for_WeatherData } from "../";
 
-function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Element {
+function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -59,14 +60,13 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
             try {
                 const load_data = await openWeatherAPI();
                 if (load_data) {
-                    console.log(load_data);
-
+                    setWeatherData(load_data)
                 };
             } catch (error) {
                 console.log("Chyba pri načítavaní udalostí:", error);
             };
         };
-    }, [])
+    }, []);
 
 
     return (
@@ -159,7 +159,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
             data: props.data,
             typeEvent: props.typeEvent
         })),
-    setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data))
+    setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data)),
+    setWeatherData: (data: Type_for_WeatherData) => dispatch(setWeatherData(data)),
+    
 });
 
 export default connect(null, mapDispatchToProps)(Content);

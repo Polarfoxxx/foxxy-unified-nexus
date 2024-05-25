@@ -1,7 +1,8 @@
 // setstate
 export {
     setUserLogData,
-    setAllMessages
+    setAllMessages,
+    setWeatherData
 } from "./actions";
 
 //types

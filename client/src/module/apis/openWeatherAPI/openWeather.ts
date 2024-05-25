@@ -1,11 +1,11 @@
 import axios from "axios";
-import { Type_for_WeatherData } from "./types";
+import { Type_for_WeatherData } from "../../ContentModule";
 
 
 
 async function openWeatherAPI(): Promise<Type_for_WeatherData | undefined> {
     const baseUrl = "http://api.openweathermap.org/data/2.5";
-    const key = "key";
+    const key = "e74ccb71bf61f72e43debb6f7e5adfab";
     const city = "Skalica";
     const kelvin = 273.15;
 
@@ -27,7 +27,7 @@ async function openWeatherAPI(): Promise<Type_for_WeatherData | undefined> {
             timezone: data.data.timezone,
             visibility: data.data.visibility,
             description: data.data.weather[0].description,
-            icon: data.data.weather[0].icon,
+            icon: `https://openweathermap.org/img/wn/${data.data.weather[0].icon}@2x.png`,
             main: data.data.weather[0].main,
             deg: data.data.wind.deg,
             gust: data.data.wind.gust,
@@ -48,29 +48,4 @@ export default openWeatherAPI;
 
 
 
-const defaultWeatherData = {
-    clouds: 0,
-    feels_like: 0,
-    humidity: 0,
-    pressure: 0,
-    temp: 0,
-    temp_max: 0,
-    temp_min: 0,
-    name: "",
-    country: "",
-    sunrise: 0,
-    sunset: 0,
-    timezone: 0,
-    visibility: 0,
-    description: "",
-    icon: "",
-    main: "",
-    deg: 0,
-    gust: 0,
-    speed: 0,
-    lon: 0,
-    lat: 0,
-    id: 0,
-    weather: ""
-}
 

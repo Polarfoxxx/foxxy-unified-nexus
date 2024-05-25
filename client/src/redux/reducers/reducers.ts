@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
 import { Type_SetUserLogDataAction, Type_SetMessageDataAction } from '..';
-import {defaultValueforUserData, defaultValueforMessage} from './defaultValue';
+import {
+  defaultValueforUserData,
+  defaultValueforMessage,
+  defaultWeatherData
+} from './defaultValue';
 
 
 
@@ -29,17 +33,7 @@ const allEventsReducer = (state = [], action: any) => {
 };
 
 //! Reduktor pre pridanie všetkých message
- const allMessagesReducer = (state = defaultValueforMessage, action: Type_SetMessageDataAction) => {
-  switch (action.type) {
-    case 'setAll_message':
-      return action.payload;
-    default:
-      return state;
-  }
-}; 
-
-//! Reduktor pre pridanie weather dat
-/* const weatherReducer = (state = defaultValueFor_reducer.defaultValueforMessage, action: Type_SetMessageDataAction) => {
+const allMessagesReducer = (state = defaultValueforMessage, action: Type_SetMessageDataAction) => {
   switch (action.type) {
     case 'setAll_message':
       return action.payload;
@@ -47,20 +41,25 @@ const allEventsReducer = (state = [], action: any) => {
       return state;
   }
 };
- */
+
+//! Reduktor pre pridanie weather dat
+const weatherReducer = (state = defaultWeatherData, action: Type_SetMessageDataAction) => {
+  switch (action.type) {
+    case 'setAll_message':
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
 
 
-
-
-
-
-
-// Kombinácia všetkých reduktorov do koreňového reduktora
+//! Kombinácia všetkých reduktorov do koreňového reduktora
 const rootReducer = combineReducers({
   userLogData: userLogDataReducer,
   allEvents: allEventsReducer,
   allMessages: allMessagesReducer,
+  weatherData: weatherReducer
 });
 
 export default rootReducer;
