@@ -12,11 +12,13 @@ import { Type_forSetAllMessage, setAllMessages, setUserLogData } from "../../../
 import { readExistingExpCookie } from "../../apis/index.";
 import { Type_for_data } from "../../AuthentificationModule";
 import { LittleCalendar, LittleMessage } from "../../LittleAppComponents";
+import { openWeatherAPI } from "../../apis/index.";
 
 function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
+    //! existin and validate cookie and set user data
     React.useEffect(() => {
         existAndValidCookie()
         async function existAndValidCookie() {
@@ -32,26 +34,39 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
         };
     }, []);
 
-
+    //! message an event load data
     React.useEffect(() => {
         loadDataAPI();
         async function loadDataAPI() {
-                try {
-                    const load_data = await readData_API();
-                    if (load_data) {
-                        setAllMessages({
-                            data: load_data.data.messages,
-                            typeEvent: "setAll_message"
-                        }) 
-                    };
-                } catch (error) {
-                    console.log("Chyba pri načítavaní udalostí:", error);
+            try {
+                const load_data = await readData_API();
+                if (load_data) {
+                    setAllMessages({
+                        data: load_data.data.messages,
+                        typeEvent: "setAll_message"
+                    })
                 };
+            } catch (error) {
+                console.log("Chyba pri načítavaní udalostí:", error);
             };
+        };
     }, []);
 
+    //! weather data
+    React.useEffect(() => {
+        loadWeathetAPI();
+        async function loadWeathetAPI() {
+            try {
+                const load_data = await openWeatherAPI();
+                if (load_data) {
+                    console.log(load_data);
 
-
+                };
+            } catch (error) {
+                console.log("Chyba pri načítavaní udalostí:", error);
+            };
+        };
+    }, [])
 
 
     return (
@@ -60,17 +75,17 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
             data-theme=""
             className=" w-full h-screen flex flex-col justify-center items-center bg-thems-background_content bg-fullApp">
             <header className=" w-full h-[8%] flex items-center justify-center  p-2">
-                <div className=" w-full h-full flex items-center justify-between bg-thems-littleComponent_Background rounded-[15px] ">
-                    <div className=" w-[100%] h-[100%] flex items-center justify-center">
+                <div className=" w-full h-full flex items-center justify-between bg-thems-background_content_header rounded-[5px] ">
+                    <div className=" w-[10%] h-[100%] flex items-center justify-center">
                         <LogOut />
                     </div>
                     <div className=" w-[100%] h-[100%] flex items-center justify-center">
                         <TittleBar />
                     </div>
-                    <div className=" w-[100%] h-[100%] flex items-center justify-center">
+                    <div className=" w-[15%] h-[100%] flex items-center justify-center ">
                         <Clock />
                     </div>
-                    <div className=" w-[100%] h-[100%] flex items-center justify-center">
+                    <div className=" w-[16%] h-[100%] flex items-center justify-center ">
                         <ColorSwitcher
                             themedDivRef={themedDivRef} />
                     </div>
@@ -87,7 +102,7 @@ function Content({ setAllMessages, setUserLogData }: Type_for_Content): JSX.Elem
                         <LittleCalendar />
                     </div>
                     {/* messageList------------------------------------------------------------------ */}
-                    <div className="w-[35%] h-[300px] rounded-[15px] bg-white border-2 border-white relative overflow-hidden shadow-miniApp">
+                    <div className="w-[35%] h-[300px] rounded-[15px] bg-white border-2 border-white relative transition-transform duration-2000 overflow-hidden shadow-miniApp hover:scale-[1.02]">
                         <NavLink
                             className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                             to="MessageList">

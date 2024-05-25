@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
 import { Type_SetUserLogDataAction, Type_SetMessageDataAction } from '..';
-import { Type_for_newMesssageFrom_DB } from '../../module/MessageModule';
+import {defaultValueforUserData, defaultValueforMessage} from './defaultValue';
 
-//! Reduktor pre aktualizáciu údajov o prihlásení používateľa
-const defaultValueforUserData = {
-  userName: '',
-  appTheme: ''
-};
+
+
+//! Reduktor údajov o prihlásení používateľa
 const userLogDataReducer = (state = defaultValueforUserData, action: Type_SetUserLogDataAction) => {
   switch (action.type) {
     case 'setUser_userName':
@@ -20,7 +18,7 @@ const userLogDataReducer = (state = defaultValueforUserData, action: Type_SetUse
 };
 
 
-//! Reduktor pre pridanie všetkých udalostí do stavu
+//! Reduktor pre pridanie všetkých eventov calendar
 const allEventsReducer = (state = [], action: any) => {
   switch (action.type) {
     case 'ALL_EVENTS':
@@ -30,9 +28,18 @@ const allEventsReducer = (state = [], action: any) => {
   }
 };
 
-//! Reduktor pre pridanie všetkých message do stavu
-const defaultValueforMessage: Type_for_newMesssageFrom_DB[] = []
-const allMessagesReducer = (state = defaultValueforMessage, action: Type_SetMessageDataAction) => {
+//! Reduktor pre pridanie všetkých message
+ const allMessagesReducer = (state = defaultValueforMessage, action: Type_SetMessageDataAction) => {
+  switch (action.type) {
+    case 'setAll_message':
+      return action.payload;
+    default:
+      return state;
+  }
+}; 
+
+//! Reduktor pre pridanie weather dat
+/* const weatherReducer = (state = defaultValueFor_reducer.defaultValueforMessage, action: Type_SetMessageDataAction) => {
   switch (action.type) {
     case 'setAll_message':
       return action.payload;
@@ -40,6 +47,9 @@ const allMessagesReducer = (state = defaultValueforMessage, action: Type_SetMess
       return state;
   }
 };
+ */
+
+
 
 
 

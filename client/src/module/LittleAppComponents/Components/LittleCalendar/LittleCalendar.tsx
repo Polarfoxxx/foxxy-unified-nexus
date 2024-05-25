@@ -6,29 +6,25 @@ import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
+import { miniContentStyle } from "./services";
 
 
 function LittleCalendar(): JSX.Element {
     const [currentDate, setCurrentDate] = React.useState("");
-
 
     React.useEffect(() => {
         const date = new Date();
         const day = date.getDate();
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
-
         const dateFormat = `${day}. ${month}. ${year}`;
         setCurrentDate(dateFormat);
     }, [])
 
 
-
-
     const locales = {
         'sk': skSK, // Použití slovenské lokalizace
     };
-
     const localizer: DateLocalizer = dateFnsLocalizer({
         format,
         parse,
@@ -36,6 +32,12 @@ function LittleCalendar(): JSX.Element {
         getDay,
         locales,
     });
+
+    //! mini style 
+    React.useEffect(() => {
+        miniContentStyle()
+    }, [])
+
 
 
     return (
@@ -45,8 +47,15 @@ function LittleCalendar(): JSX.Element {
                     YOU CALENDAR EVENT
                 </h1>
             </div>
-            <div className=" w-full h-[20%] flex items-center justify-center">
-                {currentDate}
+            <div className=" w-full h-[20%] flex items-center justify-center flex-row">
+                <div className=" w-full h-full flex items-center justify-center">
+
+                </div>
+                <div className=" w-full h-full flex items-center justify-center">
+                    <h2 className=" text-white font-bold text-[20px] font-oswald">
+                    {currentDate}
+                    </h2>
+                </div>
             </div>
             <div className=" w-full h-[100%] flex items-center justify-center">
                 <Calendar
@@ -54,7 +63,8 @@ function LittleCalendar(): JSX.Element {
                     startAccessor="start"
                     endAccessor="end"
                     style={{ height: "100%", width: "100%" }}
-                    className="hover-effect-calendar"></Calendar>
+                    className="miniCalendar">
+                </Calendar>
             </div>
         </div>
     );

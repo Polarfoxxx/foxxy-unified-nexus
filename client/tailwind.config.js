@@ -3,6 +3,12 @@ module.exports = {
     "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js"],
   theme: {
     extend: {
+      fontFamily: {
+        anta: ['Anta', 'sans-serif'],      // Pridajte písmo Anta
+        oswald: ['Oswald', 'sans-serif'],  // Pridajte písmo Oswald
+        libre: ['Libre Baskerville', 'sans-serif'],  // Pridajte písmo Oswald
+
+      },
       boxShadow: {
         'miniApp': '1px 0px 39px -8px rgba(0,0,0,0.75) inset',
       },

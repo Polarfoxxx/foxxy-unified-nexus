@@ -8,12 +8,9 @@ import getDay from 'date-fns/getDay'
 import React from 'react'
 import NewEvent from '../NewEvent/NewEvent';
 import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
-import { Container } from '../../../ContainerModule';
 import { Type_for_newEventFrom_DB } from '../NewEvent/type';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
-import miniContentStyle from './style/minContent_style';
 
 interface MyEvent extends Event {
   title: string;
@@ -51,16 +48,16 @@ function CalendarMod(): JSX.Element {
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
   const [allEvents, setAllEvents] = React.useState<Type_for_newEventFrom_DB[]>([]);
 
- /*  React.useEffect(() => {
-    if (appData.allEvents.length > 0) {
-      const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = appData.allEvents.map(item => {
-        const START_DATE = new Date(item.start);
-        const END_DATE = new Date(item.end);
-        return { start: START_DATE, end: END_DATE, title: item.title, comment: item.comment };
-      });
-      setAllEvents(TRANSLATE_DATA)
-    };
-  }, [JSON.stringify(appData.allEvents)]); */
+  /*  React.useEffect(() => {
+     if (appData.allEvents.length > 0) {
+       const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = appData.allEvents.map(item => {
+         const START_DATE = new Date(item.start);
+         const END_DATE = new Date(item.end);
+         return { start: START_DATE, end: END_DATE, title: item.title, comment: item.comment };
+       });
+       setAllEvents(TRANSLATE_DATA)
+     };
+   }, [JSON.stringify(appData.allEvents)]); */
 
 
   const handleEventClick = (event: MyEvent) => {
@@ -69,9 +66,7 @@ function CalendarMod(): JSX.Element {
 
   const handleClickNewEvent = () => {
     setNewEventContent(<NewEvent
-      setNewEventContent={
-        setNewEventContent
-      } />);
+      setNewEventContent={setNewEventContent} />);
   };
 
 
@@ -98,10 +93,6 @@ function CalendarMod(): JSX.Element {
       })
     }, [appData.allEvents.length]); */
 
-    /* mini style */
-    React.useEffect(() => {
-      miniContentStyle()
-    },[])
 
   return (
     <div className='w-full h-full flex items-center justify-center'>
