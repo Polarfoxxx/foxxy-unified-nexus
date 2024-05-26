@@ -74,7 +74,7 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
             ref={themedDivRef}
             data-theme=""
             className=" w-full h-screen flex flex-col justify-center items-center bg-thems-background_content bg-fullApp">
-            <header className=" w-full h-[8%] flex items-center justify-center  p-2">
+            <header className=" w-full h-[8%] max-h-[76px] flex items-center justify-center  p-2">
                 <div className=" w-full h-full flex items-center justify-between bg-thems-background_content_header rounded-[5px] ">
                     <div className=" w-[10%] h-[100%] flex items-center justify-center">
                         <LogOut />
@@ -85,7 +85,7 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
                     <div className=" w-[15%] min-w-[210px] h-[100%] flex items-center justify-center ">
                         <WeatherInfo />
                     </div>
-                    <div className=" w-[15%] min-w-[210px] h-[100%] flex items-center justify-center ">
+                    <div className=" bg-slate-800 w-[10%] min-w-[100px] h-[100%] flex items-center justify-center ">
                         <Clock />
                     </div>
                     <div className=" w-[16%] min-w-[210px] h-[100%] flex items-center justify-center ">

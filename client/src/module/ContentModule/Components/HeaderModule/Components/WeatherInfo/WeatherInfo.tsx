@@ -5,22 +5,20 @@ import { connect } from "react-redux";
 
 function WeatherInfo({ weatherData }: Type_for_weatherInfo): JSX.Element {
 
-    console.log(weatherData);
-
     return (
         <div className=" w-full h-[80%] flex items-center justify-center text-thems-defaultTextColor">
             <div className=" w-[100%] h-[100%] flex items-center justify-center">
-                <h1  className=" text-[18px]">
+                <h1 className=" text-[18px]">
                     {weatherData.name}
-                    </h1>
+                </h1>
             </div>
             <div className=" w-[100%] h-[100%] flex items-center justify-end flex-row">
                 <h1 className=" text-[22px] font-bold">
                     {weatherData.temp}
-                    </h1>
-                <span  className=" text-[22px]">
+                </h1>
+                <span className=" text-[22px]">
                     °C
-                    </span>
+                </span>
             </div>
             <div className=" w-[100%] h-[100%] flex items-center justify-start">
                 <img

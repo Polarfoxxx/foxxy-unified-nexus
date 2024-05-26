@@ -9,8 +9,8 @@ function TittleBar({ userName }: Type_tittleBar): JSX.Element {
     return (
         <div className="w-full h-full flex justify-center items-center">
             <div>
-                <h1 className=" text-[25px]  text-thems-defaultTextColor">
-                    Welcome back {userName} je pitok the meniny ma michal
+                <h1 className=" text-[40px] font-dancing  text-thems-defaultTextColor">
+                    Welcome back {userName} 
                 </h1>
             </div>
         </div>

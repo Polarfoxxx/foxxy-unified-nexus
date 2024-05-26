@@ -5,8 +5,9 @@ module.exports = {
     extend: {
       fontFamily: {
         anta: ['Anta', 'sans-serif'],      // Pridajte písmo Anta
-        oswald: ['Oswald', 'sans-serif'],  // Pridajte písmo Oswald
-        libre: ['Libre Baskerville', 'sans-serif'],  // Pridajte písmo Oswald
+        oswald: ['Oswald', 'sans-serif'],  
+        libre: ['Libre Baskerville', 'sans-serif'],  
+        dancing: ['"Dancing Script"', 'cursive'], 
 
       },
       boxShadow: {
