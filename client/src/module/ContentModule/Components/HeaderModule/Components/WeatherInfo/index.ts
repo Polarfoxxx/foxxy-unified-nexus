@@ -5,5 +5,6 @@ export {
 
 //! types
 export type {
-    Type_for_WeatherData
+    Type_for_WeatherData,
+    Type_for_weatherInfo
 } from "./types"

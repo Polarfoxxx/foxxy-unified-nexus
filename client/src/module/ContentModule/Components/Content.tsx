@@ -13,7 +13,7 @@ import { readExistingExpCookie } from "../../apis/index.";
 import { Type_for_data } from "../../AuthentificationModule";
 import { LittleCalendar, LittleMessage } from "../../LittleAppComponents";
 import { openWeatherAPI } from "../../apis/index.";
-import { Type_for_WeatherData } from "../";
+import { Type_for_WeatherData,WeatherInfo } from "../";
 
 function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
@@ -82,10 +82,13 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
                     <div className=" w-[100%] h-[100%] flex items-center justify-center">
                         <TittleBar />
                     </div>
-                    <div className=" w-[15%] h-[100%] flex items-center justify-center ">
+                    <div className=" w-[15%] min-w-[210px] h-[100%] flex items-center justify-center ">
+                        <WeatherInfo />
+                    </div>
+                    <div className=" w-[15%] min-w-[210px] h-[100%] flex items-center justify-center ">
                         <Clock />
                     </div>
-                    <div className=" w-[16%] h-[100%] flex items-center justify-center ">
+                    <div className=" w-[16%] min-w-[210px] h-[100%] flex items-center justify-center ">
                         <ColorSwitcher
                             themedDivRef={themedDivRef} />
                     </div>
@@ -161,7 +164,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
         })),
     setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data)),
     setWeatherData: (data: Type_for_WeatherData) => dispatch(setWeatherData(data)),
-    
+
 });
 
 export default connect(null, mapDispatchToProps)(Content);

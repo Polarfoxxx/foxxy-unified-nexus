@@ -24,3 +24,7 @@ export type Type_for_WeatherData = {
     id: number;
     weather: string;
 };
+
+export type Type_for_weatherInfo = {
+    weatherData: Type_for_WeatherData
+};

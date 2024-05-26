@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { Type_SetUserLogDataAction, Type_SetMessageDataAction } from '..';
+import { Type_SetUserLogDataAction, Type_SetMessageDataAction, Type_SetWeatherDataAction } from '..';
 import {
   defaultValueforUserData,
   defaultValueforMessage,
@@ -43,9 +43,9 @@ const allMessagesReducer = (state = defaultValueforMessage, action: Type_SetMess
 };
 
 //! Reduktor pre pridanie weather dat
-const weatherReducer = (state = defaultWeatherData, action: Type_SetMessageDataAction) => {
+const weatherReducer = (state = defaultWeatherData, action: Type_SetWeatherDataAction) => {
   switch (action.type) {
-    case 'setAll_message':
+    case 'setWeatherData':
       return action.payload;
     default:
       return state;
