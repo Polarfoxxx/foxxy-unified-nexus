@@ -5,12 +5,12 @@ import { Type_for_WeatherData } from "../../ContentModule";
 
 async function openWeatherAPI(): Promise<Type_for_WeatherData | undefined> {
     const baseUrl = "http://api.openweathermap.org/data/2.5";
-    const key = "e74ccb71bf61f72e43debb6f7e5adfab";
+    const apiKey = process.env.REACT_APP_API_KEY_FOR_WEATHER_API;
     const city = "Skalica";
     const kelvin = 273.15;
 
     try {
-        const data = await axios.get(`${baseUrl}/weather?q=${city}&appid=${key}`);
+        const data = await axios.get(`${baseUrl}/weather?q=${city}&appid=${apiKey}`);
 
         const returnedData = {
             clouds: data.data.clouds.all,
