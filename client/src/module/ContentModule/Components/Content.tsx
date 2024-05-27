@@ -11,9 +11,10 @@ import { Dispatch } from "redux";
 import { Type_forSetAllMessage, setAllMessages, setUserLogData, setWeatherData } from "../../../redux";
 import { readExistingExpCookie } from "../../apis/index.";
 import { Type_for_data } from "../../AuthentificationModule";
-import { LittleCalendar, LittleMessage } from "../../LittleAppComponents";
+import { LittleCalendar, LittleMessage, LittleWeather } from "../../LittleAppComponents";
 import { openWeatherAPI } from "../../apis/index.";
-import { Type_for_WeatherData,WeatherInfo } from "../";
+import { Type_for_WeatherData, WeatherInfo } from "../";
+import { Weather } from "../../WeatherModule";
 
 function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
@@ -112,13 +113,19 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
                         </NavLink>
                         <LittleMessage />
                     </div>
+                    {/* weather--------------------------------------------------------------------- */}
                     <div className="w-[38%] h-[300px] flex flex-col justify-between items-center gap-3">
-                        <div className="w-[100%] h-[145px] rounded-[15px] bg-white border border-black">
-
+                        <div className="w-[100%] h-[145px] rounded-[15px]  bg-white border-2 border-white relative transition-transform duration-2000 overflow-hidden shadow-miniApp hover:scale-[1.02]">
+                            <NavLink
+                                className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
+                                to="Weather">
+                            </NavLink>
+                            <LittleWeather />
                         </div>
                         <div className="w-[100%] h-[145px] rounded-[15px] bg-white border border-black">
 
                         </div>
+
                     </div>
                     <div className="w-[500px] h-[300px] rounded-[30px] bg-white border border-black">
 
@@ -130,7 +137,7 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
 
                     </div>
                 </div>
-            </nav>
+            </nav >
             <section className=" w-auto h-auto">
                 <Routes>
                     <Route
@@ -147,12 +154,19 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
                                 <MessageList />
                             </ParentAllMiniContent>
                         } />
+                    <Route
+                        path="Weather"
+                        element={
+                            <ParentAllMiniContent>
+                                <Weather />
+                            </ParentAllMiniContent>
+                        } />
                 </Routes>
             </section>
             <footer className=" w-full h-[8%] flex items-center justify-center ">
 
             </footer>
-        </div>
+        </div >
     )
 };
 //! set state for redux
