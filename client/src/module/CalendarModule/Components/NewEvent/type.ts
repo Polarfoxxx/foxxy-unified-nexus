@@ -15,7 +15,3 @@ export type Type_for_newEventFrom_DB = {
     comment: string;
 };
 
-export type Type_for_NewEvent = {
-    setNewEventContent: React.Dispatch<React.SetStateAction<JSX.Element | null>>
-};
-

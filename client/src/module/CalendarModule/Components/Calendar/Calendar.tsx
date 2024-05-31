@@ -64,11 +64,6 @@ function CalendarMod(): JSX.Element {
     console.log(event);
   };
 
-  const handleClickNewEvent = () => {
-    setNewEventContent(<NewEvent
-      setNewEventContent={setNewEventContent} />);
-  };
-
 
   /* casove overovanie platnosti udalosti a alert */
   /*   React.useEffect(() => {
@@ -95,19 +90,18 @@ function CalendarMod(): JSX.Element {
 
 
   return (
-    <div className='w-full h-full flex items-center justify-center'>
-      <div className='w-full h-full flex items-center justify-center flex-col gap-5 bg-thems-calendarContent_background  p-4'>
-        <div
-          id='calendarNewEvent'
-          className='relative top-3 w-full h-9 flex justify-end items-center'>
-          <div className='relative bg-thems-minBackg_content w-[250px] h-full flex justify-center items-center rounded-[25px]'>
-            <button
-              className=' w-48 h-[25px] text-thems-color_button border border-slate-400 bg-thems-background_button flex justify-center items-center hover:bg-thems-background_button_hover rounded-[20px]'
-              onClick={handleClickNewEvent}>
-              New event
-            </button>
-          </div>
+    <div className='w-full h-full flex flex-row items-center justify-center'>
+      <div className=' w-full h-full bg-white flex justify-center items-center flex-col '>
+        <div className=' w-full h-[10%] flex items-center justify-start pl-7'>
+          <h1 className=' text-[40px]'>
+            Calendar
+          </h1>
         </div>
+        <div className=' w-full h-[100%]'>
+          <NewEvent />
+        </div>
+      </div>
+      <div className='w-full h-full flex items-center justify-center flex-col gap-5 bg-thems-calendarContent_background  p-4'>
         <Calendar
           formats={formats}
           localizer={localizer}
@@ -132,13 +126,7 @@ function CalendarMod(): JSX.Element {
         {/* -------- */}
       </div>
     </div>
-
-
-
-
-
   )
-
 }
 
 export default CalendarMod;

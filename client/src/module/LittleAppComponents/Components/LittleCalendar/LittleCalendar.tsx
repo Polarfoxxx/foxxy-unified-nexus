@@ -43,7 +43,7 @@ function LittleCalendar(): JSX.Element {
     return (
         <div className=" w-full h-full bg-thems-littleComponent_Background flex items-center justify-center flex-col">
             <div className=" w-full h-[20%] flex items-center justify-center">
-                <h1 className=" text-[30px]">
+                <h1 className=" text-[30px] text-thems-defaultTextColor">
                     YOU CALENDAR EVENT
                 </h1>
             </div>
