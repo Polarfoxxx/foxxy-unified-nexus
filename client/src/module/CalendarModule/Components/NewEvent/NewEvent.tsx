@@ -53,7 +53,7 @@ function NewEvent(): JSX.Element {
                 onSubmit={(e) => handleSubmit(e, submit)}
                 className=" w-full h-full flex justify-center items-center flex-col">
                 <div className=" w-[80%] h-full flex justify-center items-start flex-col ">
-                    <div className="w-full h-[100%] flex justify-center items-center flex-col gap-1">
+                    <div className="w-full h-[100%] flex justify-center items-start flex-col gap-1">
                         <div className=" w-[60%] h-auto">
                             <h4 className=" text-[20px]">
                                 Set start event:
@@ -68,13 +68,14 @@ function NewEvent(): JSX.Element {
                                 timeCaption="Čas"
                                 dateFormat="dd.MM.yyyy HH:mm"
                                 name="startDate"
-                                className=" w-[400px] h-[30px]pl-3 pr-3 text-center border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
+                                className=" w-[400px] h-[40px] bg-purple-600 bg-opacity-10 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
                                 placeholderText="Start Date"
                                 selected={newEvent.start}
                                 onChange={(start) => setNewEvent({ ...newEvent, start })} />
                         </div>
                     </div>
-                    <div className="w-full h-[100%] flex justify-center items-center flex-col">
+
+                    <div className="w-full h-[100%] flex justify-center items-start flex-col">
                         <div className=" w-[60%] h-auto">
                             <h4 className=" text-[20px]">
                                 Set end event:
@@ -89,7 +90,7 @@ function NewEvent(): JSX.Element {
                                 timeCaption="Čas"
                                 dateFormat="dd.MM.yyyy HH:mm"
                                 name="endDate"
-                                className=" w-[400px] h-[30px] rounded pl-3 pr-3 text-center border border-thems-inputBorder "
+                                className=" w-[400px] h-[40px] pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
                                 placeholderText="End Date"
                                 selected={newEvent.end}
                                 onChange={(end) => setNewEvent({ ...newEvent, end })} />

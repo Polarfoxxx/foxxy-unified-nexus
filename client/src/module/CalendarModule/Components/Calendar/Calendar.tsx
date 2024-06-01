@@ -91,16 +91,21 @@ function CalendarMod(): JSX.Element {
 
   return (
     <div className='w-full h-full flex flex-row items-center justify-center'>
-      <div className=' w-full h-full bg-white flex justify-center items-center flex-col '>
-        <div className=' w-full h-[10%] flex items-center justify-start pl-7'>
+      {/* event----------------------------------------------------------------------- */}
+      <div className=' w-full h-full bg-thems-calendarContent_background flex justify-center items-center flex-col '>
+        <div className=' w-full h-[10%] flex items-center justify-start pl-7 gap-1'>
+          <span className=' w-auto  h-[55px] bg-thems-minBackg_content text-thems-defaultTextColor font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
+            YOU
+          </span>
           <h1 className=' text-[40px]'>
-            Calendar
+            calendar
           </h1>
         </div>
         <div className=' w-full h-[100%]'>
           <NewEvent />
         </div>
       </div>
+      {/* calendar--------------------------------------------------------------------- */}
       <div className='w-full h-full flex items-center justify-center flex-col gap-5 bg-thems-calendarContent_background  p-4'>
         <Calendar
           formats={formats}
