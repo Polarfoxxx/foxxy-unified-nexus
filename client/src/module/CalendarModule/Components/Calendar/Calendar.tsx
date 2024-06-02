@@ -90,23 +90,28 @@ function CalendarMod(): JSX.Element {
 
 
   return (
-    <div className='w-full h-full flex flex-row items-center justify-center'>
+    <div className='w-full h-full flex flex-row items-center justify-center  bg-thems-calendarContent_background shadow-miniApp '>
       {/* event----------------------------------------------------------------------- */}
-      <div className=' w-full h-full bg-thems-calendarContent_background flex justify-center items-center flex-col '>
+      <div className=' w-full h-full bg-transparent flex justify-center items-center flex-col '>
         <div className=' w-full h-[10%] flex items-center justify-start pl-7 gap-1'>
-          <span className=' w-auto  h-[55px] bg-thems-minBackg_content text-thems-defaultTextColor font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
+          <span className=' w-auto h-[55px] bg-thems-minBackg_content text-white font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
             YOU
           </span>
           <h1 className=' text-[40px]'>
             calendar
           </h1>
         </div>
-        <div className=' w-full h-[100%]'>
+        <div className=' w-full h-[100%] '>
           <NewEvent />
+        </div>
+        <div className=' relative w-full h-full '>
+          <img
+            className=' w-[40%] absolute right-[30px] bottom-[50px]'
+            src="/image/calendar.png" alt="" />
         </div>
       </div>
       {/* calendar--------------------------------------------------------------------- */}
-      <div className='w-full h-full flex items-center justify-center flex-col gap-5 bg-thems-calendarContent_background  p-4'>
+      <div className='w-full h-full flex items-center justify-center flex-col gap-5 bg-transparen  p-4 '>
         <Calendar
           formats={formats}
           localizer={localizer}

@@ -43,19 +43,19 @@ function NewEvent(): JSX.Element {
     };
 
     return (
-        <div className=" w-full h-full flex items-start justify-center flex-col">
-            <div className=" w-full min-h-[50px] flex justify-center items-center bg-thems-minBackg_content">
+        <div className=" w-full h-full flex items-center justify-start flex-col">
+            <div className=" w-full min-h-[50px] flex justify-center items-center bg-thems-minBackg_content rounded-tr-[5px] rounded-br-[5px]">
                 <h2 className=" text-[22px] text-white ">
                     Set new event
                 </h2>
             </div>
             <form
                 onSubmit={(e) => handleSubmit(e, submit)}
-                className=" w-full h-full flex justify-center items-center flex-col">
-                <div className=" w-[80%] h-full flex justify-center items-start flex-col ">
+                className=" w-full h-[100%] flex justify-center items-center flex-col bg-white rounded-br-[20px]">
+                <div className=" w-[80%] h-[100%]  flex justify-center items-start flex-col ">
                     <div className="w-full h-[100%] flex justify-center items-start flex-col gap-1">
                         <div className=" w-[60%] h-auto">
-                            <h4 className=" text-[20px]">
+                            <h4 className=" text-[15px]">
                                 Set start event:
                             </h4>
                         </div>
@@ -68,7 +68,7 @@ function NewEvent(): JSX.Element {
                                 timeCaption="Čas"
                                 dateFormat="dd.MM.yyyy HH:mm"
                                 name="startDate"
-                                className=" w-[400px] h-[40px] bg-purple-600 bg-opacity-10 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
+                                className=" w-[400px] h-[30px]  bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
                                 placeholderText="Start Date"
                                 selected={newEvent.start}
                                 onChange={(start) => setNewEvent({ ...newEvent, start })} />
@@ -77,7 +77,7 @@ function NewEvent(): JSX.Element {
 
                     <div className="w-full h-[100%] flex justify-center items-start flex-col">
                         <div className=" w-[60%] h-auto">
-                            <h4 className=" text-[20px]">
+                            <h4 className=" text-[15px]">
                                 Set end event:
                             </h4>
                         </div>
@@ -90,39 +90,48 @@ function NewEvent(): JSX.Element {
                                 timeCaption="Čas"
                                 dateFormat="dd.MM.yyyy HH:mm"
                                 name="endDate"
-                                className=" w-[400px] h-[40px] pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
+                                className=" w-[400px] h-[30px] bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
                                 placeholderText="End Date"
                                 selected={newEvent.end}
                                 onChange={(end) => setNewEvent({ ...newEvent, end })} />
                         </div>
                     </div>
                 </div>
-                <div className=" w-full h-full flex flex-col justify-center items-center gap-5 p-3 border-t-2">
-                    <div className="w-3/4 flex items-center justify-center flex-col gap-1">
-                        <h4>
-                            Set Name event for easy indetification.
-                        </h4>
-                        <input
-                            name="name event"
-                            type="text"
-                            placeholder="Add Title"
-                            className=" w-56 h-7 rounded pl-3 pr-3 text-center  border border-thems-inputBorder" />
+
+                <div className=" w-[80%] h-full flex flex-col justify-center items-center gap-1">
+                    <div className="w-full h-full flex items-start justify-center flex-col gap-1">
+                        <div className=" w-[60%] h-auto">
+                            <h4 className=" text-[15px]">
+                                Set Name event for easy indetification.
+                            </h4>
+                        </div>
+                        <div>
+                            <input
+                                name="name event"
+                                type="text"
+                                placeholder="Add Title"
+                                className=" w-[400px] h-[30px]  bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
+                        </div>
                     </div>
-                    <div className="w-3/4 flex items-center justify-center flex-col gap-1">
-                        <h4>
-                            Set comment for event.
-                        </h4>
-                        <input
-                            name="name event"
-                            type="text"
-                            placeholder="Comment"
-                            className=" w-3/4 h-7 rounded pl-3 pr-3 text-center  border border-thems-inputBorder" />
+                    <div className="w-full  h-full flex items-start justify-center flex-col gap-1">
+                        <div className=" w-[60%] h-auto">
+                            <h4 className=" text-[15px]">
+                                Set comment for event.
+                            </h4>
+                        </div>
+                        <div>
+                            <input
+                                name="name event"
+                                type="text"
+                                placeholder="Comment"
+                                className=" w-[400px] h-[30px]  bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
+                        </div>
                     </div>
                 </div>
-                <div className=" w-full h-full flex justify-center items-center">
+                <div className=" w-[80%] h-full flex justify-start items-center">
                     <button
                         type="submit"
-                        className="  w-32 h-6 rounded-md flex items-center justify-center bg-thems-background_button hover:bg-thems-background_button_hover">
+                        className="  w-[200px] h-[30px] rounded-md flex items-center justify-center bg-thems-background_button hover:bg-thems-background_button_hover">
                         Add Event
                     </button>
                 </div>

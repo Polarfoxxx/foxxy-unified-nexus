@@ -17,8 +17,8 @@ function ParentAllMiniContent(props: Type_for_ParentAllMiniContent): JSX.Element
     return (
         <div
             onClick={handleClickHomePage}
-            className='absolute w-screen h-screen bg-slate-50 bg-opacity-70  left-0 top-0 z-[998] flex items-center justify-center'>
-            <div className=" w-[95%] h-[95%] border-2 border-black shadow-miniApp rounded-[30px] overflow-hidden">
+            className='absolute w-screen h-screen bg-slate-50 bg-opacity-70  left-0 top-0 z-[998] flex items-center justify-center shadow-miniApp'>
+            <div className=" w-[90%] h-[90%] border-2 border-black rounded-[30px] overflow-hidden">
                 {
                     props.children
                 }

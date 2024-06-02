@@ -75,8 +75,8 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
             ref={themedDivRef}
             data-theme=""
             className=" w-full h-screen flex flex-col justify-center items-center bg-thems-background_content bg-fullApp">
-            <header className=" w-full h-[8%] max-h-[76px] flex items-center justify-center  p-2">
-                <div className=" w-full h-full flex items-center justify-between bg-thems-background_content_header rounded-[5px] ">
+            <header className=" w-full h-[8%] max-h-[76px] flex items-center justify-center p-2 ">
+                <div className=" w-full h-full flex items-center justify-between bg-thems-littleComponent_Background  shadow-miniApp border border-thems-littleComponent_border rounded-[5px] ">
                     <div className=" w-[10%] h-[100%] flex items-center justify-center">
                         <LogOut />
                     </div>
@@ -86,7 +86,7 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
                     <div className=" w-[15%] min-w-[210px] h-[100%] flex items-center justify-center ">
                         <WeatherInfo />
                     </div>
-                    <div className=" bg-slate-800 w-[10%] min-w-[100px] h-[100%] flex items-center justify-center ">
+                    <div className=" w-[10%] min-w-[100px] h-[100%] flex items-center justify-center ">
                         <Clock />
                     </div>
                     <div className=" w-[16%] min-w-[210px] h-[100%] flex items-center justify-center ">
@@ -98,7 +98,7 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
             <nav className="w-full h-screen flex items-start justify-start p-3">
                 <div className="w-full flex items-start justify-start flex-wrap gap-3">
                     {/* calendar----------------------------------------------------------------- */}
-                    <div className="w-[25%] h-[300px] rounded-[15px] bg-white border-2 border-white relative transition-transform duration-2000 overflow-hidden shadow-miniApp hover:scale-[1.02]">
+                    <div className="w-[25%] h-[300px] rounded-[15px] border border-thems-littleComponent_border relative overflow-hidden shadow-miniApp">
                         <NavLink
                             className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                             to="Calendar">
@@ -106,7 +106,7 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
                         <LittleCalendar />
                     </div>
                     {/* messageList------------------------------------------------------------------ */}
-                    <div className="w-[35%] h-[300px] rounded-[15px] bg-white border-2 border-white relative transition-transform duration-2000 overflow-hidden shadow-miniApp hover:scale-[1.02]">
+                    <div className="w-[35%] h-[300px] rounded-[15px] border border-thems-littleComponent_border relative  overflow-hidden">
                         <NavLink
                             className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                             to="MessageList">
@@ -115,7 +115,7 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
                     </div>
                     {/* weather--------------------------------------------------------------------- */}
                     <div className="w-[38%] h-[300px] flex flex-col justify-between items-center gap-3">
-                        <div className="w-[100%] h-[145px] rounded-[15px]  bg-white border-2 border-white relative transition-transform duration-2000 overflow-hidden shadow-miniApp hover:scale-[1.02]">
+                        <div className="w-[100%] h-[145px] rounded-[15px] border border-thems-littleComponent_border relative overflow-hidden shadow-miniApp">
                             <NavLink
                                 className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
                                 to="Weather">

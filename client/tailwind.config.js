@@ -5,13 +5,14 @@ module.exports = {
     extend: {
       fontFamily: {
         anta: ['Anta', 'sans-serif'],      // Pridajte písmo Anta
-        oswald: ['Oswald', 'sans-serif'],  
-        libre: ['Libre Baskerville', 'sans-serif'],  
-        dancing: ['"Dancing Script"', 'cursive'], 
+        oswald: ['Oswald', 'sans-serif'],
+        libre: ['Libre Baskerville', 'sans-serif'],
+        dancing: ['"Dancing Script"', 'cursive'],
 
       },
       boxShadow: {
-        'miniApp': '1px 0px 39px -8px rgba(0,0,0,0.75) inset',
+        'miniApp': '1px 0px 39px -20px rgba(0,0,0,0.75) inset',
+        'minContent': '0px 0px 30px -10px rgba(0,0,0,0.75) inset',
       },
       backgroundSize: {
         'auto': 'auto',
@@ -47,13 +48,16 @@ module.exports = {
           background_newEventContent: "var(--background_newEventContent)",
           InvalidDay_Background: "var(--InvalidDay_Background)",
 
+          //! littleComponent
+          littleComponent_Background: "var(--littleComponent_Background)",
+          littleComponent_border: "var(--littleComponent_border)",
+
           //! MessageBackGround
           messageContent_background: "var(--messageContent_background)",
           newMessageForm_Background: "var(--newMessageForm_Background)",
           itemHeader_Background: "var(--itemHeader_Background)",
           item_Background: "var(--item_Background)",
           currentMessCount_Background: "var(--currentMessCount_Background)",
-          littleComponent_Background: "var(--littleComponent_Background)",
 
           //! textColor
           defaultTextColor: 'var(--defaultTextColor)',

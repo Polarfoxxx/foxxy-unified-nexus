@@ -8,7 +8,7 @@ function LittleMessage({ allMessages }: Type_for_LittleMessage): JSX.Element {
 
     
     return (
-        <div className=" w-[100%] h-[100%] flex items-center justify-center flex-row bg-thems-littleComponent_Background">
+        <div className=" w-[100%] h-[100%] flex items-center justify-center flex-row bg-thems-littleComponent_Background  shadow-miniApp">
             <div className="w-[100%] h-[100%] flex items-center justify-center flex-col">
                 <div className=" w-full h-auto flex items-center justify-center">
                     <h1 className=" text-[35px] text-thems-defaultTextColor">

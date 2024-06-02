@@ -35,7 +35,7 @@ function ColorSwitcher({themedDivRef, appTheme}: Type_for_colorSwitcher): JSX.El
     return (
         <div className=' w-full h-full flex flex-row items-center gap-3 justify-end p-2 pr-8 bg-transparent'>
             <label
-                className=' text-thems-defaultTextColorDark text-[15px] text-white'
+                className=' text-thems-defaultTextColorDark text-[15px]'
                 htmlFor="colorSwitcher">
                 Color theme:
             </label>

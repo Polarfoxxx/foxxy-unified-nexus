@@ -5,8 +5,8 @@ div[data-theme="light"] {
     --color_button: rgb(0, 0, 0);
 
     /*! appBackGround */
-    --background_content: rgb(238, 238, 238);
-    --background_content_header: rgba(70, 70, 70, 0.507);
+    --background_content: rgb(251, 251, 251);
+    --background_content_header: rgba(63, 56, 191, 0.507);
     --background_App: url('/public/image/lightAppBacgr.jpg');
 
     /*! CalendarBackGround */
@@ -15,14 +15,15 @@ div[data-theme="light"] {
     --current_time_line: rgb(255, 0, 0);
     --eventBackground: rgb(49, 162, 34);
     --eventBackground_selected: rgb(12, 100, 0);
-    --minBackg_content: rgb(182, 50, 223);
+    --minBackg_content: rgb(123, 32, 188);
     --minBackg_Two_content: rgb(195, 121, 230);
-    --background_newEventContent: rgb(179, 179, 179);
-    --calendarContent_background: rgb(218, 211, 255);
+    --background_newEventContent: rgb(160, 160, 160);
+    --calendarContent_background: rgb(228, 228, 228);
     --InvalidDay_Background: rgba(0, 0, 0, 0.507);
 
     /*! littleComponents */
-    --littleComponent_Background: rgba(70, 70, 70, 0.507);
+    --littleComponent_Background: rgb(232, 232, 232);
+    --littleComponent_border: rgb(113, 113, 113);
 
     /*! MessageBackGround */
     --messageContent_background: white;
@@ -32,7 +33,7 @@ div[data-theme="light"] {
     --currentMessCount_Background: rgba(70, 70, 70, 0.507);
 
     /*! textColor */
-    --defaultTextColor: rgb(255, 255, 255);
+    --defaultTextColor: rgb(0, 0, 0);
     --defaultTextColorDark: rgb(0, 0, 0);
     --current_day: rgb(157, 255, 46);
 
