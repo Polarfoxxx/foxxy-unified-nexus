@@ -11,6 +11,7 @@ import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
 import { Type_for_newEventFrom_DB } from '../NewEvent/type';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { dayAndHoliday } from '../../../apis/ninjasAPIS/dayAndHolidaysAPI';
 
 interface MyEvent extends Event {
   title: string;
@@ -64,6 +65,9 @@ function CalendarMod(): JSX.Element {
     console.log(event);
   };
 
+  React.useEffect(() => {
+    dayAndHoliday()
+  },[])
 
   /* casove overovanie platnosti udalosti a alert */
   /*   React.useEffect(() => {
@@ -94,7 +98,7 @@ function CalendarMod(): JSX.Element {
       {/* event----------------------------------------------------------------------- */}
       <div className=' w-full h-full bg-transparent flex justify-center items-center flex-col '>
         <div className=' w-full h-[10%] flex items-center justify-start pl-7 gap-1'>
-          <span className=' w-auto h-[55px] bg-thems-minBackg_content text-white font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
+          <span className=' w-auto h-[55px] bg-thems-minBackg_content rounded-[10px] text-white font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
             YOU
           </span>
           <h1 className=' text-[40px]'>

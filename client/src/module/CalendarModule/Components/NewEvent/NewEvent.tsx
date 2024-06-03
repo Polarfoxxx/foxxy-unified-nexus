@@ -68,7 +68,7 @@ function NewEvent(): JSX.Element {
                                 timeCaption="Čas"
                                 dateFormat="dd.MM.yyyy HH:mm"
                                 name="startDate"
-                                className=" w-[400px] h-[30px]  bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
+                                className=" w-[400px] h-[30px] text-[14px] bg-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
                                 placeholderText="Start Date"
                                 selected={newEvent.start}
                                 onChange={(start) => setNewEvent({ ...newEvent, start })} />
@@ -90,7 +90,7 @@ function NewEvent(): JSX.Element {
                                 timeCaption="Čas"
                                 dateFormat="dd.MM.yyyy HH:mm"
                                 name="endDate"
-                                className=" w-[400px] h-[30px] bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
+                                className=" w-[400px] h-[30px] text-[14px] bg-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
                                 placeholderText="End Date"
                                 selected={newEvent.end}
                                 onChange={(end) => setNewEvent({ ...newEvent, end })} />
@@ -110,7 +110,7 @@ function NewEvent(): JSX.Element {
                                 name="name event"
                                 type="text"
                                 placeholder="Add Title"
-                                className=" w-[400px] h-[30px]  bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
+                                className=" w-[400px] h-[30px] text-[14px] ml-3 bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
                         </div>
                     </div>
                     <div className="w-full  h-full flex items-start justify-center flex-col gap-1">
@@ -124,7 +124,7 @@ function NewEvent(): JSX.Element {
                                 name="name event"
                                 type="text"
                                 placeholder="Comment"
-                                className=" w-[400px] h-[30px]  bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
+                                className=" w-[400px] h-[30px] text-[14px] ml-3 bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
                         </div>
                     </div>
                 </div>
