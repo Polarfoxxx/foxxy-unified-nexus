@@ -12,6 +12,7 @@ import { Type_for_newEventFrom_DB } from '../NewEvent/type';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { dayAndHoliday } from '../../../apis/ninjasAPIS/dayAndHolidaysAPI';
+import { Holiday } from '../Holiday';
 
 interface MyEvent extends Event {
   title: string;
@@ -65,9 +66,6 @@ function CalendarMod(): JSX.Element {
     console.log(event);
   };
 
-  React.useEffect(() => {
-    dayAndHoliday()
-  },[])
 
   /* casove overovanie platnosti udalosti a alert */
   /*   React.useEffect(() => {
@@ -109,9 +107,7 @@ function CalendarMod(): JSX.Element {
           <NewEvent />
         </div>
         <div className=' relative w-full h-full '>
-          <img
-            className=' w-[40%] absolute right-[30px] bottom-[50px]'
-            src="/image/calendar.png" alt="" />
+          <Holiday />
         </div>
       </div>
       {/* calendar--------------------------------------------------------------------- */}

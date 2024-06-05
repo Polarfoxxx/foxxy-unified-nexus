@@ -12,7 +12,7 @@ import { Type_forSetAllMessage, setAllMessages, setUserLogData, setWeatherData }
 import { readExistingExpCookie } from "../../apis/index.";
 import { Type_for_data } from "../../AuthentificationModule";
 import { LittleCalendar, LittleMessage, LittleWeather } from "../../LittleAppComponents";
-import { openWeatherAPI } from "../../apis/index.";
+import { openWeatherAPI, dayAndHoliday } from "../../apis/index.";
 import { Type_for_WeatherData, WeatherInfo } from "../";
 import { Weather } from "../../WeatherModule";
 
@@ -36,8 +36,8 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
         };
     }, []);
 
-    //! message an event load data
     React.useEffect(() => {
+        //! load message data
         loadDataAPI();
         async function loadDataAPI() {
             try {
@@ -52,10 +52,8 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
                 console.log("Chyba pri načítavaní udalostí:", error);
             };
         };
-    }, []);
 
-    //! weather data
-    React.useEffect(() => {
+        //! weather data
         loadWeathetAPI();
         async function loadWeathetAPI() {
             try {
@@ -66,6 +64,20 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
             } catch (error) {
                 console.log("Chyba pri načítavaní udalostí:", error);
             };
+        };
+
+        //! dayHoliday
+        loadDayHoliday();
+        async function loadDayHoliday() {
+            try {
+                const data = await dayAndHoliday();
+                if (data) {
+                    console.log(data);
+
+                }
+            } catch (error) {
+                console.log("Chyba pri načítavaní holiday:", error);
+            }
         };
     }, []);
 

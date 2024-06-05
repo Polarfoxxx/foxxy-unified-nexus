@@ -1,6 +1,7 @@
 import { Type_for_data } from "../../module/AuthentificationModule";
 import { Type_forSetAllMessage } from "./types";
 import { Type_for_WeatherData } from "../../module";
+import { Type_for_dayAndHoliday } from "../../module/CalendarModule";
 
 //! nastavenie pre authentificaton 
 export const setUserLogData = (data: Type_for_data) => {
@@ -19,7 +20,6 @@ export const setAllMessages = (props: Type_forSetAllMessage) => {
     };
 };
 
-
 //! nastavenie pre weather 
 export const setWeatherData = (data: Type_for_WeatherData) => {
     return {
@@ -27,6 +27,16 @@ export const setWeatherData = (data: Type_for_WeatherData) => {
         payload: data
     };
 };
+
+//! nastavenie pre weather 
+export const setAllHoliday = (data: Type_for_dayAndHoliday[]) => {
+    return {
+        type: "setHoliday",
+        payload: data
+    };
+};
+
+
 
 
 

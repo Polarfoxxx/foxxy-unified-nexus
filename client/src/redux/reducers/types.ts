@@ -1,5 +1,6 @@
 import { Type_for_newMesssageFrom_DB } from "../../module/MessageModule";
 import { Type_for_WeatherData } from "../../module/ContentModule";
+import { Type_for_dayAndHoliday } from "../../module/CalendarModule";
 
 //! types pre mapStateToProps pre ponuknutie stavu universalne------------
 export type Type_RootState = {
@@ -9,7 +10,8 @@ export type Type_RootState = {
   };
   allEvents: any,
   allMessages: Type_for_newMesssageFrom_DB[];
-  weatherData: Type_for_WeatherData
+  weatherData: Type_for_WeatherData;
+  allHoliday: Type_for_dayAndHoliday[]
 };
 
 
@@ -33,4 +35,10 @@ export type Type_SetMessageDataAction = {
 export type Type_SetWeatherDataAction = {
   type: "setWeatherData";
   payload: Type_for_WeatherData;
+};
+
+//! types pre holidays
+export type Type_SetHolidayDataAction = {
+  type: "setHoliday";
+  payload: Type_for_dayAndHoliday[];
 };
