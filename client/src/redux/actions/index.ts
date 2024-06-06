@@ -2,7 +2,8 @@
 export {
     setUserLogData,
     setAllMessages,
-    setWeatherData
+    setWeatherData,
+    setAllHoliday
 } from "./actions";
 
 //types

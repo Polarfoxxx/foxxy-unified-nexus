@@ -8,15 +8,28 @@ import { ParentAllMiniContent } from "../../Shared";
 import { readData_API } from "../../apis/index.";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { Type_forSetAllMessage, setAllMessages, setUserLogData, setWeatherData } from "../../../redux";
 import { readExistingExpCookie } from "../../apis/index.";
 import { Type_for_data } from "../../AuthentificationModule";
 import { LittleCalendar, LittleMessage, LittleWeather } from "../../LittleAppComponents";
 import { openWeatherAPI, dayAndHoliday } from "../../apis/index.";
 import { Type_for_WeatherData, WeatherInfo } from "../";
 import { Weather } from "../../WeatherModule";
+import { Type_for_dayAndHoliday } from "../../CalendarModule";
+import {
+    Type_forSetAllMessage,
+    setAllMessages,
+    setUserLogData,
+    setWeatherData,
+    setAllHoliday
+} from "../../../redux";
 
-function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Content): JSX.Element {
+
+function Content({
+    setAllMessages,
+    setUserLogData,
+    setWeatherData,
+    setAllHoliday
+}: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -72,9 +85,8 @@ function Content({ setAllMessages, setUserLogData, setWeatherData }: Type_for_Co
             try {
                 const data = await dayAndHoliday();
                 if (data) {
-                    console.log(data);
-
-                }
+                    setAllHoliday(data);
+                };
             } catch (error) {
                 console.log("Chyba pri načítavaní holiday:", error);
             }
@@ -190,7 +202,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
         })),
     setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data)),
     setWeatherData: (data: Type_for_WeatherData) => dispatch(setWeatherData(data)),
-
+    setAllHoliday: (data: Type_for_dayAndHoliday[]) => dispatch(setAllHoliday(data))
 });
 
 export default connect(null, mapDispatchToProps)(Content);

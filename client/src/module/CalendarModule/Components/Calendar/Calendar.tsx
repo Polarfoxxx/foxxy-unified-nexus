@@ -103,11 +103,14 @@ function CalendarMod(): JSX.Element {
             calendar
           </h1>
         </div>
-        <div className=' w-full h-[100%] '>
+        <div className=' w-full h-full '>
           <NewEvent />
         </div>
-        <div className=' relative w-full h-full '>
+        <div className=' w-full h-[30%] overflow-hidden p-4'>
           <Holiday />
+        </div>
+        <div className=' w-full h-[30%]'>
+
         </div>
       </div>
       {/* calendar--------------------------------------------------------------------- */}
