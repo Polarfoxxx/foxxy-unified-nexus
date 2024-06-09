@@ -95,18 +95,20 @@ function CalendarMod(): JSX.Element {
     <div className='w-full h-full flex flex-row items-center justify-center  bg-thems-calendarContent_background shadow-miniApp '>
       {/* event----------------------------------------------------------------------- */}
       <div className=' w-full h-full bg-transparent flex justify-center items-center flex-col '>
-        <div className=' w-full h-[10%] flex items-center justify-start pl-7 gap-1'>
-          <span className=' w-auto h-[55px] bg-thems-minBackg_content rounded-[10px] text-white font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
-            YOU
-          </span>
-          <h1 className=' text-[40px]'>
-            calendar
-          </h1>
+        <div className=' w-full h-[15%] flex items-center justify-center pl-[100px]'>
+          <div className=' w-full h-full flex gap-1 justify-start items-center'>
+            <span className=' w-auto h-[55px] bg-thems-minBackg_content rounded-[10px] text-white font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
+              YOU
+            </span>
+            <h1 className=' text-[40px]'>
+              calendar
+            </h1>
+          </div>
         </div>
         <div className=' w-full h-full '>
           <NewEvent />
         </div>
-        <div className=' w-full h-[30%] overflow-hidden p-4'>
+        <div className=' w-full h-[30%] overflow-hidden'>
           <Holiday />
         </div>
         <div className=' w-full h-[30%]'>

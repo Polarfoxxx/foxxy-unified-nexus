@@ -1,7 +1,7 @@
 
 export type Type_for_dayAndHoliday = {
     country: string,
-    date: string,
+    date: string | Date,
     day: string,
     name: string
 };
