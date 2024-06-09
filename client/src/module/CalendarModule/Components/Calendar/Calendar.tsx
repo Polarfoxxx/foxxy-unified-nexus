@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { dayAndHoliday } from '../../../apis/ninjasAPIS/dayAndHolidaysAPI';
 import { Holiday } from '../Holiday';
+import { CalEvents } from '../CalEvents';
 
 interface MyEvent extends Event {
   title: string;
@@ -92,12 +93,12 @@ function CalendarMod(): JSX.Element {
 
 
   return (
-    <div className='w-full h-full flex flex-row items-center justify-center  bg-thems-calendarContent_background shadow-miniApp '>
+    <div className='w-full h-full flex flex-row items-center justify-center  bg-thems-calendarContent_background shadow-miniApp'>
       {/* event----------------------------------------------------------------------- */}
-      <div className=' w-full h-full bg-transparent flex justify-center items-center flex-col '>
+      <div className=' w-full h-full bg-transparent flex justify-center items-center flex-col gap-1'>
         <div className=' w-full h-[15%] flex items-center justify-center pl-[100px]'>
           <div className=' w-full h-full flex gap-1 justify-start items-center'>
-            <span className=' w-auto h-[55px] bg-thems-minBackg_content rounded-[10px] text-white font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
+            <span className=' w-auto h-[55px] bg-thems-minBackg_content rounded-[10px] text-thems-defaultTextColor font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
               YOU
             </span>
             <h1 className=' text-[40px]'>
@@ -108,15 +109,15 @@ function CalendarMod(): JSX.Element {
         <div className=' w-full h-full '>
           <NewEvent />
         </div>
-        <div className=' w-full h-[30%] overflow-hidden'>
+        <div className=' w-full h-[30%]'>
           <Holiday />
         </div>
         <div className=' w-full h-[30%]'>
-
+          <CalEvents />
         </div>
       </div>
       {/* calendar--------------------------------------------------------------------- */}
-      <div className='w-full h-full flex items-center justify-center flex-col gap-5 bg-transparen  p-4 '>
+      <div className='w-full h-full flex items-center justify-center flex-col gap-5 p-4 '>
         <Calendar
           formats={formats}
           localizer={localizer}

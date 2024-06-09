@@ -1,6 +1,6 @@
 div[data-theme="light"] {
     /*! buttonStyle */
-    --background_button: rgb(245, 245, 245);
+    --background_button: rgb(121, 121, 121);
     --background_button_hover: rgb(195, 172, 208);
     --color_button: rgb(0, 0, 0);
 
@@ -10,16 +10,16 @@ div[data-theme="light"] {
     --background_App: url('/public/image/lightAppBacgr.jpg');
 
     /*! CalendarBackGround */
-    --dayBackground_hover: black;
+    --dayBackground_hover: rgb(123, 32, 188);
     --dayBackground_header: rgb(255, 255, 255);
     --current_time_line: rgb(255, 0, 0);
     --eventBackground: rgb(49, 162, 34);
     --eventBackground_selected: rgb(12, 100, 0);
     --minBackg_content: rgb(123, 32, 188);
     --minBackg_Two_content: rgb(195, 121, 230);
-    --background_newEventContent: rgb(160, 160, 160);
-    --calendarContent_background: rgb(228, 228, 228);
-    --InvalidDay_Background: rgba(0, 0, 0, 0.507);
+    --background_block: rgb(255, 255, 255);
+    --calendarContent_background: rgb(243, 243, 243);
+    --InvalidDay_Background: rgba(0, 0, 0, 0.644);
 
     /*! littleComponents */
     --littleComponent_Background: rgb(232, 232, 232);
@@ -33,9 +33,9 @@ div[data-theme="light"] {
     --currentMessCount_Background: rgba(70, 70, 70, 0.507);
 
     /*! textColor */
-    --defaultTextColor: rgb(0, 0, 0);
-    --defaultTextColorDark: rgb(0, 0, 0);
-    --current_day: rgb(157, 255, 46);
+    --defaultTextColor: rgb(255, 255, 255);
+    --defaultTextColorTwo: rgb(0, 0, 0);
+    --current_day: rgb(123, 32, 188);
 
     /*! inputStyle */
     --inputBorder: rgba(128, 0, 128, 0.438);

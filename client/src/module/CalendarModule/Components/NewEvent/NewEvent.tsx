@@ -42,99 +42,104 @@ function NewEvent(): JSX.Element {
     };
 
     return (
-        <div className=" w-full h-full flex items-center justify-start flex-col">
-            <div className=" w-full min-h-[50px] flex justify-center items-center bg-thems-minBackg_content rounded-tr-[5px] rounded-br-[5px]">
-                <h2 className=" text-[22px] text-white ">
-                    Set new event
-                </h2>
+        <div className=" w-full h-full relative">
+            <div className=" w-full h-full flex items-center justify-start flex-col ">
+                <div className=" w-full min-h-[50px] flex justify-center items-center bg-thems-minBackg_content rounded-tr-[5px] rounded-br-[5px]">
+                    <h2 className=" text-[22px] text-thems-defaultTextColor">
+                        Set new event
+                    </h2>
+                </div>
+                <form
+                    onSubmit={(e) => handleSubmit(e, submit)}
+                    className=" w-full h-[100%] flex justify-center items-center flex-col bg-thems-background_block  ">
+                    <div className=" w-[80%] h-[100%]  flex justify-center items-start flex-col ">
+                        <div className="w-full h-[100%] flex justify-center items-start flex-col gap-1">
+                            <div className=" w-[60%] h-auto">
+                                <h4 className=" text-[15px]">
+                                    Set start event:
+                                </h4>
+                            </div>
+                            <div>
+                                <DatePicker
+                                    autoComplete="false"
+                                    showTimeSelect
+                                    timeFormat="HH:mm"
+                                    timeIntervals={15}
+                                    timeCaption="Čas"
+                                    dateFormat="dd.MM.yyyy HH:mm"
+                                    name="startDate"
+                                    className=" w-[400px] h-[30px] text-[14px] bg-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
+                                    placeholderText="Start Date"
+                                    selected={newEvent.start}
+                                    onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                            </div>
+                        </div>
+
+                        <div className="w-full h-[100%] flex justify-center items-start flex-col">
+                            <div className=" w-[60%] h-auto">
+                                <h4 className=" text-[15px]">
+                                    Set end event:
+                                </h4>
+                            </div>
+                            <div>
+                                <DatePicker
+                                    autoComplete="false"
+                                    showTimeSelect
+                                    timeFormat="HH:mm"
+                                    timeIntervals={15}
+                                    timeCaption="Čas"
+                                    dateFormat="dd.MM.yyyy HH:mm"
+                                    name="endDate"
+                                    className=" w-[400px] h-[30px] text-[14px] bg-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
+                                    placeholderText="End Date"
+                                    selected={newEvent.end}
+                                    onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className=" w-[80%] h-full flex flex-col justify-center items-center gap-1">
+                        <div className="w-full h-full flex items-start justify-center flex-col gap-1">
+                            <div className=" w-[60%] h-auto">
+                                <h4 className=" text-[15px]">
+                                    Set Name event for easy indetification.
+                                </h4>
+                            </div>
+                            <div>
+                                <input
+                                    name="name event"
+                                    type="text"
+                                    placeholder="Add Title"
+                                    className=" w-[400px] h-[30px] text-[14px] ml-3 bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
+                            </div>
+                        </div>
+                        <div className="w-full  h-full flex items-start justify-center flex-col gap-1">
+                            <div className=" w-[60%] h-auto">
+                                <h4 className=" text-[15px]">
+                                    Set comment for event.
+                                </h4>
+                            </div>
+                            <div>
+                                <input
+                                    name="name event"
+                                    type="text"
+                                    placeholder="Comment"
+                                    className=" w-[400px] h-[30px] text-[14px] ml-3 bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className=" w-[80%] h-full flex justify-start items-center">
+                        <button
+                            type="submit"
+                            className="  w-[200px] h-[30px] text-thems-defaultTextColor rounded-md flex items-center justify-center bg-thems-background_button hover:bg-thems-background_button_hover">
+                            Add Event
+                        </button>
+                    </div>
+                </form>
             </div>
-            <form
-                onSubmit={(e) => handleSubmit(e, submit)}
-                className=" w-full h-[100%] flex justify-center items-center flex-col bg-white rounded-br-[20px]">
-                <div className=" w-[80%] h-[100%]  flex justify-center items-start flex-col ">
-                    <div className="w-full h-[100%] flex justify-center items-start flex-col gap-1">
-                        <div className=" w-[60%] h-auto">
-                            <h4 className=" text-[15px]">
-                                Set start event:
-                            </h4>
-                        </div>
-                        <div>
-                            <DatePicker
-                                autoComplete="false"
-                                showTimeSelect
-                                timeFormat="HH:mm"
-                                timeIntervals={15}
-                                timeCaption="Čas"
-                                dateFormat="dd.MM.yyyy HH:mm"
-                                name="startDate"
-                                className=" w-[400px] h-[30px] text-[14px] bg-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
-                                placeholderText="Start Date"
-                                selected={newEvent.start}
-                                onChange={(start) => setNewEvent({ ...newEvent, start })} />
-                        </div>
-                    </div>
-
-                    <div className="w-full h-[100%] flex justify-center items-start flex-col">
-                        <div className=" w-[60%] h-auto">
-                            <h4 className=" text-[15px]">
-                                Set end event:
-                            </h4>
-                        </div>
-                        <div>
-                            <DatePicker
-                                autoComplete="false"
-                                showTimeSelect
-                                timeFormat="HH:mm"
-                                timeIntervals={15}
-                                timeCaption="Čas"
-                                dateFormat="dd.MM.yyyy HH:mm"
-                                name="endDate"
-                                className=" w-[400px] h-[30px] text-[14px] bg-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
-                                placeholderText="End Date"
-                                selected={newEvent.end}
-                                onChange={(end) => setNewEvent({ ...newEvent, end })} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className=" w-[80%] h-full flex flex-col justify-center items-center gap-1">
-                    <div className="w-full h-full flex items-start justify-center flex-col gap-1">
-                        <div className=" w-[60%] h-auto">
-                            <h4 className=" text-[15px]">
-                                Set Name event for easy indetification.
-                            </h4>
-                        </div>
-                        <div>
-                            <input
-                                name="name event"
-                                type="text"
-                                placeholder="Add Title"
-                                className=" w-[400px] h-[30px] text-[14px] ml-3 bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
-                        </div>
-                    </div>
-                    <div className="w-full  h-full flex items-start justify-center flex-col gap-1">
-                        <div className=" w-[60%] h-auto">
-                            <h4 className=" text-[15px]">
-                                Set comment for event.
-                            </h4>
-                        </div>
-                        <div>
-                            <input
-                                name="name event"
-                                type="text"
-                                placeholder="Comment"
-                                className=" w-[400px] h-[30px] text-[14px] ml-3 bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
-                        </div>
-                    </div>
-                </div>
-                <div className=" w-[80%] h-full flex justify-start items-center">
-                    <button
-                        type="submit"
-                        className="  w-[200px] h-[30px] rounded-md flex items-center justify-center bg-thems-background_button hover:bg-thems-background_button_hover">
-                        Add Event
-                    </button>
-                </div>
-            </form>
+            <div className=" absolute w-[250px] h-[250px]  right-[30px] bottom-[50px]">
+                <img src="/image/calendar.png" alt="" />
+            </div>
         </div>
     );
 };

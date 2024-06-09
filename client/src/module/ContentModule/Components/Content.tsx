@@ -41,7 +41,7 @@ function Content({
             if (!cookieIsValid?.isValid) {
                 navigate("/LoginPage")
             } else {
-                setUserLogData({  //! Použití akce setUserLogData
+                setUserLogData({ 
                     userName: cookieIsValid.cookie_data.userName,
                     appTheme: cookieIsValid.cookie_data.appTheme
                 });

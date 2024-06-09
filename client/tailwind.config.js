@@ -45,7 +45,7 @@ module.exports = {
           eventBackground_selected: "var(--eventBackground_selected)",
           current_time_line: "var(--current_time_line)",
           minBackg_Two_content: "var(--minBackg_Two_content)",
-          background_newEventContent: "var(--background_newEventContent)",
+          background_block: "var(--background_block)",
           InvalidDay_Background: "var(--InvalidDay_Background)",
 
           //! littleComponent

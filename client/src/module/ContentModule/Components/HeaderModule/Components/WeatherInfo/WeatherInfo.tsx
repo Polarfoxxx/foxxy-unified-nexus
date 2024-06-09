@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 function WeatherInfo({ weatherData }: Type_for_weatherInfo): JSX.Element {
 
     return (
-        <div className=" w-full h-[80%] flex items-center justify-center text-thems-defaultTextColor">
+        <div className=" w-full h-[80%] flex items-center justify-center  text-thems-defaultTextColorDark">
             <div className=" w-[100%] h-[100%] flex items-center justify-center">
                 <h1 className=" text-[18px]">
                     {weatherData.name}
