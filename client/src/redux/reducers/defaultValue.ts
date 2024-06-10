@@ -1,9 +1,12 @@
 import { Type_for_newMesssageFrom_DB } from "../../module/MessageModule";
+import { Type_for_newEventFrom_DB } from "../../module/CalendarModule";
 
 export const defaultValueforUserData = {
     userName: '',
     appTheme: ''
 };
+
+export const defaultValueForCalendarEvent: Type_for_newEventFrom_DB[] = [];
 
 export const defaultValueforMessage: Type_for_newMesssageFrom_DB[] = [];
 

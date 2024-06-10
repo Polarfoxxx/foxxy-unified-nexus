@@ -1,6 +1,7 @@
 import { Type_for_newMesssageFrom_DB } from "../../module/MessageModule";
 import { Type_for_WeatherData } from "../../module/ContentModule";
 import { Type_for_dayAndHoliday } from "../../module/CalendarModule";
+import { Type_for_newEventFrom_DB } from "../../module/CalendarModule";
 
 //! types pre mapStateToProps pre ponuknutie stavu universalne------------
 export type Type_RootState = {
@@ -8,7 +9,7 @@ export type Type_RootState = {
     userName: string;
     appTheme: string;
   };
-  allEvents: any,
+  allEvents: Type_for_newEventFrom_DB[],
   allMessages: Type_for_newMesssageFrom_DB[];
   weatherData: Type_for_WeatherData;
   allHoliday: Type_for_dayAndHoliday[]
@@ -24,6 +25,12 @@ export type Type_SetUserLogDataAction = {
     appTheme: string;
   };
 };
+
+//! types pre userEvent
+export type Type_SetEventDataAction = {
+  type: "setAll_event";
+  payload: Type_for_newEventFrom_DB[];
+}
 
 //! types pre userMessageList
 export type Type_SetMessageDataAction = {

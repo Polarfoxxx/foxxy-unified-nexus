@@ -3,13 +3,15 @@ import {
   Type_SetUserLogDataAction,
   Type_SetMessageDataAction,
   Type_SetWeatherDataAction,
-  Type_SetHolidayDataAction
+  Type_SetHolidayDataAction,
+  Type_SetEventDataAction
 } from '..';
 import {
   defaultValueforUserData,
   defaultValueforMessage,
   defaultWeatherData,
-  defaultAllHolidayData
+  defaultAllHolidayData,
+  defaultValueForCalendarEvent
 } from './defaultValue';
 
 
@@ -29,9 +31,9 @@ const userLogDataReducer = (state = defaultValueforUserData, action: Type_SetUse
 
 
 //? Reduktor pre pridanie eventov calendar
-const allEventsReducer = (state = [], action: any) => {
+const allEventsReducer = (state = defaultValueForCalendarEvent, action: Type_SetEventDataAction) => {
   switch (action.type) {
-    case 'ALL_EVENTS':
+    case 'setAll_event':
       return action.payload;
     default:
       return state;

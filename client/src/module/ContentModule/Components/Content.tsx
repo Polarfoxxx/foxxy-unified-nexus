@@ -15,12 +15,14 @@ import { openWeatherAPI, dayAndHoliday } from "../../apis/index.";
 import { Type_for_WeatherData, WeatherInfo } from "../";
 import { Weather } from "../../WeatherModule";
 import { Type_for_dayAndHoliday } from "../../CalendarModule";
+import { Type_for_newEventFrom_DB } from "../../CalendarModule";
 import {
     Type_forSetAllMessage,
     setAllMessages,
     setUserLogData,
     setWeatherData,
-    setAllHoliday
+    setAllHoliday,
+    setAllEvent
 } from "../../../redux";
 
 
@@ -28,7 +30,8 @@ function Content({
     setAllMessages,
     setUserLogData,
     setWeatherData,
-    setAllHoliday
+    setAllHoliday,
+    setAllEvent
 }: Type_for_Content): JSX.Element {
     const navigate = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
@@ -41,7 +44,7 @@ function Content({
             if (!cookieIsValid?.isValid) {
                 navigate("/LoginPage")
             } else {
-                setUserLogData({ 
+                setUserLogData({
                     userName: cookieIsValid.cookie_data.userName,
                     appTheme: cookieIsValid.cookie_data.appTheme
                 });
@@ -50,7 +53,7 @@ function Content({
     }, []);
 
     React.useEffect(() => {
-        //! load message data
+        //! load message event data
         loadDataAPI();
         async function loadDataAPI() {
             try {
@@ -59,7 +62,8 @@ function Content({
                     setAllMessages({
                         data: load_data.data.messages,
                         typeEvent: "setAll_message"
-                    })
+                    });
+                    setAllEvent(load_data.data.events);
                 };
             } catch (error) {
                 console.log("Chyba pri načítavaní udalostí:", error);
@@ -202,7 +206,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
         })),
     setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data)),
     setWeatherData: (data: Type_for_WeatherData) => dispatch(setWeatherData(data)),
-    setAllHoliday: (data: Type_for_dayAndHoliday[]) => dispatch(setAllHoliday(data))
+    setAllHoliday: (data: Type_for_dayAndHoliday[]) => dispatch(setAllHoliday(data)),
+    setAllEvent: (data: Type_for_newEventFrom_DB[]) => dispatch(setAllEvent(data)),
 });
 
 export default connect(null, mapDispatchToProps)(Content);

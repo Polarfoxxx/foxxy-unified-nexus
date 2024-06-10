@@ -8,8 +8,13 @@ import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { Type_for_newEventFor_API } from "./type";
 import { Type_for_newMessageFor_API } from "../../../MessageModule/Components/MessageList/types";
 import { NewRequest } from "../../../utils";
+import { createData_API } from "../../../apis/userDataCRUD_API";
 
-function NewEvent(): JSX.Element {
+type Type_forNewEvent ={
+    userName: string
+}
+
+function NewEvent(props: Type_forNewEvent): JSX.Element {
     const [newEvent, setNewEvent] = React.useState<any>({ title: "", comment: "", start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
 
@@ -21,20 +26,23 @@ function NewEvent(): JSX.Element {
             comment_Event: v[3].inputValues.toString(),
         });
 
-        const CREATE_DATA: Type_for_newMessageFor_API | Type_for_newEventFor_API | string = NEW_REQ.create();
-        if (typeof CREATE_DATA !== "string" && "event" in CREATE_DATA) {
-            createAsyncData(CREATE_DATA);
+        const create_data: Type_for_newMessageFor_API | Type_for_newEventFor_API | string = NEW_REQ.create();
+        if (typeof create_data !== "string" && "event" in create_data) {
+            createAsyncData(create_data);
             reset();
 
         } else {
-            alert(CREATE_DATA)
+            alert(create_data)
         };
     };
 
 
-    async function createAsyncData(CREATE_DATA: Type_for_newEventFor_API) {
+    async function createAsyncData(create_data: Type_for_newEventFor_API) {
+        const loginUserName = props.userName
         try {
-            /*  const CREATE = await createData_API({ USER_NAME, CREATE_DATA }); */
+              const create_event = await createData_API({ loginUserName, create_data});
+              console.log(create_event);
+              
         }
         catch (error) {
             console.log(error);

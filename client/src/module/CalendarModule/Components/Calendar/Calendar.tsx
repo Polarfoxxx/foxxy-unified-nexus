@@ -11,10 +11,11 @@ import skSK from 'date-fns/locale/sk'; // Import slovenské lokalizace
 import { Type_for_newEventFrom_DB } from '../NewEvent/type';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { dayAndHoliday } from '../../../apis/ninjasAPIS/dayAndHolidaysAPI';
 import { Holiday } from '../Holiday';
 import { CalEvents } from '../CalEvents';
-
+import { Type_forCalendarMod } from './types';
+import { Type_RootState } from '../../../../redux';
+import { connect } from 'react-redux';
 interface MyEvent extends Event {
   title: string;
   start: Date;
@@ -46,21 +47,20 @@ const events: MyEvent[] = [
   }
 ];
 
-
-function CalendarMod(): JSX.Element {
+function CalendarMod({allEvents, userName}: Type_forCalendarMod): JSX.Element {
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
-  const [allEvents, setAllEvents] = React.useState<Type_for_newEventFrom_DB[]>([]);
+  const [LocalAllEvent, setLocalAllEvent] = React.useState<Type_for_newEventFrom_DB[]>([]);
 
-  /*  React.useEffect(() => {
-     if (appData.allEvents.length > 0) {
-       const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = appData.allEvents.map(item => {
+    React.useEffect(() => {
+     if (allEvents.length > 0) {
+       const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = allEvents.map(item => {
          const START_DATE = new Date(item.start);
          const END_DATE = new Date(item.end);
          return { start: START_DATE, end: END_DATE, title: item.title, comment: item.comment };
        });
-       setAllEvents(TRANSLATE_DATA)
+       setLocalAllEvent(TRANSLATE_DATA)
      };
-   }, [JSON.stringify(appData.allEvents)]); */
+   }, [JSON.stringify(allEvents)]); 
 
 
   const handleEventClick = (event: MyEvent) => {
@@ -91,6 +91,10 @@ function CalendarMod(): JSX.Element {
       })
     }, [appData.allEvents.length]); */
 
+    React.useEffect(() => {
+      console.log(allEvents);
+      
+    },[])
 
   return (
     <div className='w-full h-full flex flex-row items-center justify-center  bg-thems-calendarContent_background shadow-miniApp'>
@@ -107,7 +111,8 @@ function CalendarMod(): JSX.Element {
           </div>
         </div>
         <div className=' w-full h-full '>
-          <NewEvent />
+          <NewEvent 
+           userName= {userName}/>
         </div>
         <div className=' w-full h-[30%]'>
           <Holiday />
@@ -123,7 +128,7 @@ function CalendarMod(): JSX.Element {
           localizer={localizer}
           startAccessor="start"
           endAccessor="end"
-          events={allEvents}
+          events={LocalAllEvent}
           style={{ height: 650, width: "100%" }}
           className="hover-effect-calendar"
           onSelectEvent={handleEventClick} />
@@ -143,6 +148,12 @@ function CalendarMod(): JSX.Element {
       </div>
     </div>
   )
-}
+};
 
-export default CalendarMod;
+
+const mapStateToProps = (state: Type_RootState) => ({
+  allEvents: state.allEvents,
+  userName: state.userLogData.userName
+});
+
+export default connect(mapStateToProps)(CalendarMod);

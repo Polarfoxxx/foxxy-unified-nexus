@@ -10,6 +10,7 @@ export type {
     Type_SetUserLogDataAction,
     Type_SetMessageDataAction,
     Type_SetWeatherDataAction,
-    Type_SetHolidayDataAction
+    Type_SetHolidayDataAction,
+    Type_SetEventDataAction
 } from "./types";
 
