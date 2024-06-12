@@ -99,7 +99,7 @@ function CalendarMod({ allEvents, userName }: Type_forCalendarMod): JSX.Element 
   return (
     <div className='w-full h-full flex flex-row items-center justify-center  bg-thems-calendarContent_background shadow-miniApp'>
       {/* event----------------------------------------------------------------------- */}
-      <div className=' w-full h-full bg-transparent flex justify-center items-center flex-row'>
+      <div className=' w-[80%] h-full bg-transparent flex justify-center items-center flex-row'>
         <div className=' w-[10%] h-full bg-thems-minBackg_content'>
 
         </div>
@@ -114,14 +114,14 @@ function CalendarMod({ allEvents, userName }: Type_forCalendarMod): JSX.Element 
               </h1>
             </div>
           </div>
-          <div className=' w-full h-full '>
+          <div className=' w-full h-full rounded-tr-[10px] rounded-br-[10px]  overflow-hidden'>
             <NewEvent
               userName={userName} />
           </div>
-          <div className=' w-full h-[30%]'>
+          <div className=' w-full h-[20%] rounded-tr-[10px] rounded-br-[10px] overflow-hidden'>
             <Holiday />
           </div>
-          <div className=' w-full h-[30%]'>
+          <div className=' w-full h-[40%] rounded-tr-[10px] overflow-hidden'>
             <CalEvents
               allEvents={allEvents} />
           </div>

@@ -18,7 +18,7 @@ div[data-theme="light"] {
     --minBackg_content: rgb(123, 32, 188);
     --minBackg_Two_content: rgb(195, 121, 230);
     --background_block: rgb(255, 255, 255);
-    --calendarContent_background: rgb(243, 243, 243);
+    --calendarContent_background: rgb(218, 218, 218);
     --InvalidDay_Background: rgba(0, 0, 0, 0.644);
 
     /*! littleComponents */
