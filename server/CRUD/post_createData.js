@@ -14,7 +14,10 @@ router.post('/data', async (req, res) => {
                 case save_Data.event !== undefined:
                     user.data.events.push(save_Data.event);
                     await user.save();
-                    res.status(201).json({ message: "event saved" });
+                    res.status(201).json({
+                         message: "event saved", 
+                         updateAllMessasge: user.data.events 
+                        });
                     break;
                 case save_Data.custom !== undefined:
                     user.custom = save_Data.custom;

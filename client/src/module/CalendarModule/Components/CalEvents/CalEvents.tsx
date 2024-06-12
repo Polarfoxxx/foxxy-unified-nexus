@@ -1,5 +1,9 @@
+import { Type_forCalEvents } from "./types";
 
-function CalEvents(): JSX.Element {
+
+function CalEvents(props: Type_forCalEvents): JSX.Element {
+   
+   
     return (
         <div className=" w-full h-full flex items-center justify-center">
             <div className=" w-full h-full bg-thems-background_block flex justify-start items-start flex-col">
@@ -18,10 +22,16 @@ function CalEvents(): JSX.Element {
                         </h1>
                     </div>
                 </div>
-                <div className=" w-full h-auto flex items-start justify-start p-4">
-                    <div>
-                        <h1>
-                        </h1>
+                <div className=" w-full h-auto flex items-start justify-start p-4 overflow-y-scroll">
+                    <div className=" w-full h-[100%] bg-slate-500">
+                        {
+                            props.allEvents.map((item, key) => 
+                                <div key={key}>
+                                    <h1>{item.title}</h1>
+                                </div>
+                            )
+                        }
+                        
                     </div>
                 </div>
             </div>

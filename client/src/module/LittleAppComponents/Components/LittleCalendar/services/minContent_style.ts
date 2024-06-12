@@ -1,7 +1,6 @@
 
  function miniContentStyle() {
     const CALENDAR_NAV_PANEL = document.querySelector(".rbc-toolbar");
-    console.log(CALENDAR_NAV_PANEL);
 
     if (CALENDAR_NAV_PANEL instanceof HTMLElement) {
       const width = CALENDAR_NAV_PANEL.offsetWidth;

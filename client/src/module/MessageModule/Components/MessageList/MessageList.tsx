@@ -12,6 +12,7 @@ import { Route, Routes, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { Type_RootState, setAllMessages, Type_forSetAllMessage } from "../../../../redux";
 import { Dispatch } from "redux";
+import { Type_for_newMesssageFrom_DB } from "./types";
 
 function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageList): JSX.Element {
     const [newMessage, setNewMessage] = React.useState<any>({ start: "", end: "" });
@@ -31,10 +32,12 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
         if (typeof create_data !== "string" && "message" in create_data) {
             const loginUserName = userName;
             try {
+
                 const createMessage = await createData_API({ loginUserName, create_data });
-                if (createMessage?.status === 201) {
+                if (createMessage) {
+                    const upd_data = createMessage.updateMessage as Type_for_newMesssageFrom_DB[]
                     setAllMessages({
-                        data: createMessage.updateMessage,
+                        data: upd_data,
                         typeEvent: "setAll_message"
                     });
                 };
@@ -42,8 +45,8 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
             catch (error) {
                 console.log(error);
             };
-           //! vymazanie form
-            reset(); 
+            //! vymazanie form
+            reset();
         } else {
             alert(create_data)
         };

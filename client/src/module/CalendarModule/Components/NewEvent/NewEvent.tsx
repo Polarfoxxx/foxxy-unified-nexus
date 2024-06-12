@@ -9,12 +9,18 @@ import { Type_for_newEventFor_API } from "./type";
 import { Type_for_newMessageFor_API } from "../../../MessageModule/Components/MessageList/types";
 import { NewRequest } from "../../../utils";
 import { createData_API } from "../../../apis/userDataCRUD_API";
+import { setAllEvent } from "../../../../redux";
+import { Type_for_newEventFrom_DB } from "./type";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 
-type Type_forNewEvent ={
-    userName: string
+
+type Type_forNewEvent = {
+    userName: string,
+    setAllEvent: (data: Type_for_newEventFrom_DB[]) => void;
 }
 
-function NewEvent(props: Type_forNewEvent): JSX.Element {
+function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
     const [newEvent, setNewEvent] = React.useState<any>({ title: "", comment: "", start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
 
@@ -38,11 +44,13 @@ function NewEvent(props: Type_forNewEvent): JSX.Element {
 
 
     async function createAsyncData(create_data: Type_for_newEventFor_API) {
-        const loginUserName = props.userName
+        const loginUserName = userName
         try {
-              const create_event = await createData_API({ loginUserName, create_data});
-              console.log(create_event);
-              
+            const create_event = await createData_API({ loginUserName, create_data });
+            if (create_event) {
+                const pdateMessage = create_event.updateMessage as Type_for_newEventFrom_DB[];
+                setAllEvent(pdateMessage);
+            };
         }
         catch (error) {
             console.log(error);
@@ -145,11 +153,12 @@ function NewEvent(props: Type_forNewEvent): JSX.Element {
                     </div>
                 </form>
             </div>
-            <div className=" absolute w-[250px] h-[250px]  right-[30px] bottom-[50px]">
-                <img src="/image/calendar.png" alt="" />
-            </div>
         </div>
     );
 };
 
-export default NewEvent;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    setAllEvent: (data: Type_for_newEventFrom_DB[]) => dispatch(setAllEvent(data)),
+});
+
+export default connect(null, mapDispatchToProps)(NewEvent);

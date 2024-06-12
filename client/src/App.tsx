@@ -11,7 +11,7 @@ function App(): JSX.Element {
   React.useEffect(() => {
     existAndValidCookie();
     async function existAndValidCookie() {
-      const cookieIsValid = await readExistingExpCookie();   //volanie pre zistenie a nasledne odoslanie cookie
+      const cookieIsValid = await readExistingExpCookie();   //! volanie pre zistenie a nasledne odoslanie cookie
       if (cookieIsValid && cookieIsValid.isValid) {  //! respo is isValid = false or cookieIsValid = undefined
         navigate("/Content");
       } else {

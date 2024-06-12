@@ -47,20 +47,20 @@ const events: MyEvent[] = [
   }
 ];
 
-function CalendarMod({allEvents, userName}: Type_forCalendarMod): JSX.Element {
+function CalendarMod({ allEvents, userName }: Type_forCalendarMod): JSX.Element {
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
   const [LocalAllEvent, setLocalAllEvent] = React.useState<Type_for_newEventFrom_DB[]>([]);
 
-    React.useEffect(() => {
-     if (allEvents.length > 0) {
-       const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = allEvents.map(item => {
-         const START_DATE = new Date(item.start);
-         const END_DATE = new Date(item.end);
-         return { start: START_DATE, end: END_DATE, title: item.title, comment: item.comment };
-       });
-       setLocalAllEvent(TRANSLATE_DATA)
-     };
-   }, [JSON.stringify(allEvents)]); 
+  React.useEffect(() => {
+    if (allEvents.length > 0) {
+      const TRANSLATE_DATA: Type_for_newEventFrom_DB[] = allEvents.map(item => {
+        const START_DATE = new Date(item.start);
+        const END_DATE = new Date(item.end);
+        return { start: START_DATE, end: END_DATE, title: item.title, comment: item.comment };
+      });
+      setLocalAllEvent(TRANSLATE_DATA)
+    };
+  }, [JSON.stringify(allEvents)]);
 
 
   const handleEventClick = (event: MyEvent) => {
@@ -91,34 +91,40 @@ function CalendarMod({allEvents, userName}: Type_forCalendarMod): JSX.Element {
       })
     }, [appData.allEvents.length]); */
 
-    React.useEffect(() => {
-      console.log(allEvents);
-      
-    },[])
+  React.useEffect(() => {
+    console.log(allEvents);
+
+  }, [])
 
   return (
     <div className='w-full h-full flex flex-row items-center justify-center  bg-thems-calendarContent_background shadow-miniApp'>
       {/* event----------------------------------------------------------------------- */}
-      <div className=' w-full h-full bg-transparent flex justify-center items-center flex-col gap-1'>
-        <div className=' w-full h-[15%] flex items-center justify-center pl-[100px]'>
-          <div className=' w-full h-full flex gap-1 justify-start items-center'>
-            <span className=' w-auto h-[55px] bg-thems-minBackg_content rounded-[10px] text-thems-defaultTextColor font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
-              YOU
-            </span>
-            <h1 className=' text-[40px]'>
-              calendar
-            </h1>
+      <div className=' w-full h-full bg-transparent flex justify-center items-center flex-row'>
+        <div className=' w-[10%] h-full bg-thems-minBackg_content'>
+
+        </div>
+        <div className='w-full h-full bg-transparent flex justify-center items-center flex-col gap-1'>
+          <div className=' w-full h-[15%] flex items-center justify-center pl-[100px]'>
+            <div className=' w-full h-full flex gap-1 justify-start items-center'>
+              <span className=' w-auto h-[55px] bg-thems-minBackg_content rounded-[10px] text-thems-defaultTextColor font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
+                YOU
+              </span>
+              <h1 className=' text-[40px]'>
+                calendar
+              </h1>
+            </div>
           </div>
-        </div>
-        <div className=' w-full h-full '>
-          <NewEvent 
-           userName= {userName}/>
-        </div>
-        <div className=' w-full h-[30%]'>
-          <Holiday />
-        </div>
-        <div className=' w-full h-[30%]'>
-          <CalEvents />
+          <div className=' w-full h-full '>
+            <NewEvent
+              userName={userName} />
+          </div>
+          <div className=' w-full h-[30%]'>
+            <Holiday />
+          </div>
+          <div className=' w-full h-[30%]'>
+            <CalEvents
+              allEvents={allEvents} />
+          </div>
         </div>
       </div>
       {/* calendar--------------------------------------------------------------------- */}
