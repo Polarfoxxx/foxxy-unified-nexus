@@ -1,27 +1,13 @@
-import { type_for_loginUser_API, type_from_loginUser_API_returned } from "./types";
 import axios from "axios";
 import { BASE_URL } from "../../BASE_URL";
+import { type_for_loginUser_API, type_from_loginUser_API_returned } from "./types";
 
-
-/* async function registerNewUser_API() {
-  try {
-    const RESPO_DATA = await axios.post(`${BASE_URL}register/newUser`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  } catch (error) {
-    console.log(error);
-  };
-};
- */
-
-/* --------------------------------------------------------------------------------------- */
 async function logInUser_API(loginData: type_for_loginUser_API): Promise<type_from_loginUser_API_returned | undefined> {
   const LOGIN_DATA = {
     username: loginData.userNames,
     password: loginData.password
   };
+
   try {
     const response = await axios.post(`${BASE_URL}logIn/user`, LOGIN_DATA, {
       withCredentials: true,
@@ -29,7 +15,8 @@ async function logInUser_API(loginData: type_for_loginUser_API): Promise<type_fr
         "Content-Type": "application/json",
       },
     });
-console.log(response);
+
+    console.log(response);
 
     return {
       userName: response.data.username,
@@ -38,11 +25,13 @@ console.log(response);
       theme: response.data.theme,
     };
   } catch (error) {
-    return undefined
-  };
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error: ", error.response?.data || error.message);
+    } else {
+      console.error("Unexpected error: ", error);
+    }
+    return undefined;
+  }
 };
 
 export default logInUser_API;
-
-
-
