@@ -1,3 +1,7 @@
+const express = require("express");
+const cookieParser = require('cookie-parser');
+const cors = require("cors");
+
 const post_LogIn = require('./CRUD/post_login');
 const post_LogOut = require('./CRUD/post_LogOut');
 const post_Register = require("./CRUD/post_register");
@@ -8,19 +12,25 @@ const update_putData = require("./CRUD/put_updateData");
 const updateCookie = require("./cookie/updateCookie");
 const readExpExistingCookie = require("./cookie/readExpiredExisting_cookie");
 const deleteCookie = require("./cookie/deleteCookie");
-const cookieParser = require('cookie-parser');
-const express = require("express");
+
 const app = express();
-const cors = require("cors");
 const Port = 5000;
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://666c8f0b19c45aad6a9330eb--famous-snickerdoodle-a9d9dd.netlify.app', // Vaše frontendová URL
     credentials: true
 }));
 app.use(cookieParser());
 
+// Middleware pro nastavení CORS hlaviček ručně
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://666c8f0b19c45aad6a9330eb--famous-snickerdoodle-a9d9dd.netlify.app");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
 
 //! CRUD Endpoints
 app.use('/register', post_Register); //! register POST method
@@ -34,7 +44,6 @@ app.use('/update', update_putData); //! updateData PUT method
 app.use('/cookies-exp', readExpExistingCookie); //! cookies read and control expiration
 app.use('/cookies-delete', deleteCookie); //! cookies delete after logout
 app.use('/cookies-update', updateCookie); //! cookies update
-
 
 //! run server
 app.listen(Port, () => console.log(`connect to port ${Port}`));

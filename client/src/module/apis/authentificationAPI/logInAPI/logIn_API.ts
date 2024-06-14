@@ -29,6 +29,7 @@ async function logInUser_API(loginData: type_for_loginUser_API): Promise<type_fr
         "Content-Type": "application/json",
       },
     });
+console.log(response);
 
     return {
       userName: response.data.username,

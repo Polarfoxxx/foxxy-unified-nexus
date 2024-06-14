@@ -28,20 +28,30 @@ function LoginPage(): JSX.Element {
             const login = await logInUser_API(login_data);
             if (login?.status === 200) {
                 navigate("/Content");
-                //! set display stat by login.status
+            } else {
+                //! handle unsuccessful login
                 setLoadingFeedbackStats({
-                    respo_status: login.status,
+                    respo_status: login?.status || 500,
                     loadON: true
                 });
-            };
+            }
         } catch (error) {
             console.log(error);
+            setLoadingFeedbackStats({
+                respo_status: 500,
+                loadON: false
+            });
+        } finally {
+            setLoadingFeedbackStats((prevState) => ({
+                ...prevState,
+                loadON: false
+            }));
         }
     };
 
     return (
-        <div className=" w-full h-screen flex flex-col bg-loginBackg">
-            <div className=" w-full h-1/4 relative">
+        <div className="w-full h-screen flex flex-col bg-loginBackg">
+            <div className="w-full h-1/4 relative">
                 {
                     //!loading display status
                     <LoadingFeedback
@@ -50,32 +60,31 @@ function LoginPage(): JSX.Element {
                 }
             </div>
             <div className="w-full h-full flex justify-center items-center">
-                <div className=" min-w-80 w-2/6  h-72 p-2 border-black border flex justify-center items-center flex-col bg-opacity-45 bg-slate-100"  >
-                    <div className=" w-full h-24 flex justify-center items-center">
-                        <h1 className=" text-4xl font-anta">
+                <div className="min-w-80 w-2/6 h-72 p-2 border-black border flex justify-center items-center flex-col bg-opacity-45 bg-slate-100">
+                    <div className="w-full h-24 flex justify-center items-center">
+                        <h1 className="text-4xl font-anta">
                             Sign in
                         </h1>
                     </div>
                     <form
-                        className="w-full h-full p-2 flex justify-center items-center  
-                                    flex-col gap-2 "
+                        className="w-full h-full p-2 flex justify-center items-center flex-col gap-2"
                         onSubmit={(e) => handleSubmit(e, submit)}>
                         <div className="w-full h-10 flex items-center justify-center">
                             <input
                                 placeholder="user name"
-                                className=" w-[80%] h-10 text-center pl-2 pr-2"
+                                className="w-[80%] h-10 text-center pl-2 pr-2"
                                 name="user"
                                 type="text" />
                         </div>
                         <div className="w-full h-10 flex items-center justify-center">
                             <input
                                 placeholder="password"
-                                className=" w-[80%] h-10 text-center pl-2 pr-2"
+                                className="w-[80%] h-10 text-center pl-2 pr-2"
                                 name="password"
                                 type="password" />
                         </div>
                         <button
-                            className=" w-24 h-8 mt-4 font-bold text-xl hover:text-blue-700"
+                            className="w-24 h-8 mt-4 font-bold text-xl hover:text-blue-700"
                             type='submit'>
                             Sign in
                         </button>
