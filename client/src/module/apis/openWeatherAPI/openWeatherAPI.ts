@@ -10,7 +10,7 @@ async function openWeatherAPI(): Promise<Type_for_WeatherData | undefined> {
     const kelvin = 273.15;
 
     try {
-        const data = await axios.get(`${baseUrl}/weather?q=${city}&appid=${apiKey}`);
+       /*  const data = await axios.get(`${baseUrl}/weather?q=${city}&appid=${apiKey}`);
 
         const returnedData = {
             clouds: data.data.clouds.all,
@@ -37,7 +37,7 @@ async function openWeatherAPI(): Promise<Type_for_WeatherData | undefined> {
             id: data.data.id,
             weather: data.data.weather[0].description
         }
-        return returnedData;
+        return returnedData; */
 
     } catch (error) {
         return undefined;

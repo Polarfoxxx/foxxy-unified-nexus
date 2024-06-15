@@ -1,18 +1,19 @@
 import React from 'react';
-import {  Type_for_colorSwitcher } from './types';
+import { Type_for_colorSwitcher } from './types';
 import { updateCookie } from '../../../../../apis/cookie';
 import { connect } from 'react-redux';
 import { Type_RootState } from '../../../../../../redux';
+import { setUserLogData } from '../../../../../../redux';
+import { Dispatch } from 'redux';
+import { Type_for_data } from '../../../../../AuthentificationModule';
 
-function ColorSwitcher({themedDivRef, appTheme}: Type_for_colorSwitcher): JSX.Element {
-    const [app_theme, setApp_theme] = React.useState("");
+function ColorSwitcher({ themedDivRef, appTheme, userName, setUserLogData }: Type_for_colorSwitcher): JSX.Element {
 
     //! nacitanie nstavej farby z db
     React.useEffect(() => {
         const load_theme_def = appTheme;
         load_theme_def &&
             themedDivRef.current?.setAttribute("data-theme", load_theme_def);
-        setApp_theme(load_theme_def)
     }, [appTheme]);
 
 
@@ -21,10 +22,13 @@ function ColorSwitcher({themedDivRef, appTheme}: Type_for_colorSwitcher): JSX.El
 
         try {
             const resp_updateCookie = await updateCookie(selectTheme);
-                if(resp_updateCookie === 200) {
-                    setApp_theme(selectTheme);
-                };
-          
+            if (resp_updateCookie === 200) {
+                setUserLogData({
+                    userName: userName,
+                    appTheme: selectTheme
+                });
+            };
+
         } catch (error) {
             console.error('Error:', error);
         };
@@ -41,7 +45,7 @@ function ColorSwitcher({themedDivRef, appTheme}: Type_for_colorSwitcher): JSX.El
             <select
                 className=' w-16 text-center rounded-md cursor-pointer'
                 id="colorSwitcher"
-                value={app_theme}
+                value={appTheme}
                 onChange={(e) => handleColorChange(e.target.value)}>
                 <option value="light">light</option>
                 <option value="dark">dark</option>
@@ -52,7 +56,14 @@ function ColorSwitcher({themedDivRef, appTheme}: Type_for_colorSwitcher): JSX.El
 
 const mapStateToProps = (state: Type_RootState) => ({
     appTheme: state.userLogData.appTheme,
+    userName: state.userLogData.userName
 });
 
-export default connect(mapStateToProps)(ColorSwitcher);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ColorSwitcher);
+
+
 

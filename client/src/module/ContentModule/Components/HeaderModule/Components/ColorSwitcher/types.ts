@@ -1,12 +1,14 @@
-/* components */
+import { Type_for_data } from "../../../../../AuthentificationModule";
+
 export type Type_for_saveDataTheme = {
     custom: {
         theme: string
     }
 };
 
-/* types */
 export type Type_for_colorSwitcher = {
     themedDivRef: React.MutableRefObject<HTMLDivElement | null>,
-    appTheme: string
+    appTheme: string,
+    userName: string,
+    setUserLogData: (data: Type_for_data) => void;
 };
