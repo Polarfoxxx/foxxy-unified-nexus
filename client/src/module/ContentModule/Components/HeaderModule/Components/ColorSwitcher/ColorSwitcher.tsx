@@ -1,6 +1,5 @@
 import React from 'react';
-import { createData_API } from '../../../../../apis/userDataCRUD_API';
-import { Type_for_saveDataTheme, Type_for_colorSwitcher } from './types';
+import {  Type_for_colorSwitcher } from './types';
 import { updateCookie } from '../../../../../apis/cookie';
 import { connect } from 'react-redux';
 import { Type_RootState } from '../../../../../../redux';
@@ -10,10 +9,10 @@ function ColorSwitcher({themedDivRef, appTheme}: Type_for_colorSwitcher): JSX.El
 
     //! nacitanie nstavej farby z db
     React.useEffect(() => {
-        const load_theme = appTheme;
-        load_theme &&
-            themedDivRef.current?.setAttribute("data-theme", load_theme);
-        setApp_theme(load_theme)
+        const load_theme_def = appTheme;
+        load_theme_def &&
+            themedDivRef.current?.setAttribute("data-theme", load_theme_def);
+        setApp_theme(load_theme_def)
     }, [appTheme]);
 
 

@@ -4,9 +4,9 @@ const router = express.Router();
 
 router.use(cookieParser());  // Middleware pro práci s cookies
 
-router.get('/update_Cookie', (req, res) => {
+router.post('/update_Cookie', (req, res) => {
   try {
-    const { theme } = req.query;
+    const { theme } = req.body;  // Přijetí theme z těla požadavku
     const myCookie = req.cookies;
     const cookieName = Object.keys(myCookie)[0];
 

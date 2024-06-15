@@ -3,8 +3,7 @@ import { BASE_URL } from "../../BASE_URL";
 
 async function updateCookie(theme: string): Promise<number> {
     try {
-        const response = await axios.get(`${BASE_URL}cookies-update/update_Cookie`, {
-            params: { theme },
+        const response = await axios.post(`${BASE_URL}cookies-update/update_Cookie`, { theme }, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
