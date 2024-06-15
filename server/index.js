@@ -1,5 +1,5 @@
 const post_LogIn = require('./CRUD/post_login');
-const post_LogOut = require('./CRUD/post_LogOut');
+const post_LogOut = require('./CRUD/post_LogOut'); // nebo './CRUD/post_LogOut.js'
 const post_Register = require("./CRUD/post_register");
 const post_createData = require("./CRUD/post_createData");
 const get_readData = require("./CRUD/get_readData");
@@ -16,14 +16,14 @@ const Port = 5000;
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000', // nebo 'https://dapper-genie-553425.netlify.app'
+    origin: 'https://zesty-cuchufli-29025b.netlify.app', // nebo 'https://dapper-genie-553425.netlify.app'
     credentials: true
 }));
 app.use(cookieParser());
 
 // Middleware pro nastavení CORS hlaviček ručně
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // nebo 'https://dapper-genie-553425.netlify.app'
+    res.header("Access-Control-Allow-Origin", "https://zesty-cuchufli-29025b.netlify.app"); // nebo 'https://dapper-genie-553425.netlify.app'
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Credentials", "true");
     next();
