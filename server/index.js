@@ -1,5 +1,5 @@
 const post_LogIn = require('./CRUD/post_login');
-const post_LogOut = require('./CRUD/post_LogOut'); // nebo './CRUD/post_LogOut.js'
+const post_LogOut = require('./CRUD/post_logout'); // nebo './CRUD/post_LogOut.js'
 const post_Register = require("./CRUD/post_register");
 const post_createData = require("./CRUD/post_createData");
 const get_readData = require("./CRUD/get_readData");
