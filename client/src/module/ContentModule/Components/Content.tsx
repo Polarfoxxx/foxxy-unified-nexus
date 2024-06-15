@@ -39,11 +39,10 @@ function Content({
     //! existin and validate cookie and set user data
     React.useEffect(() => {
         existAndValidCookie();
+
         async function existAndValidCookie() {
             const cookieIsValid = await readExistingExpCookie();   //volanie pre zistenie a nasledne odoslanie cookie
-            if (!cookieIsValid?.isValid) {
-                navigate("/LoginPage");
-            } else {
+            if (cookieIsValid) {
                 setUserLogData({
                     userName: cookieIsValid.cookie_data.userName,
                     appTheme: cookieIsValid.cookie_data.appTheme
@@ -101,7 +100,7 @@ function Content({
     return (
         <div
             ref={themedDivRef}
-            data-theme="light"
+            data-theme=""
             className=" w-full h-screen flex flex-col justify-center items-center bg-thems-background_content bg-fullApp">
             <header className=" w-full h-[8%] max-h-[76px] flex items-center justify-center p-2 ">
                 <div className=" w-full h-full flex items-center justify-between bg-thems-littleComponent_Background  shadow-miniApp border border-thems-littleComponent_border rounded-[5px] ">

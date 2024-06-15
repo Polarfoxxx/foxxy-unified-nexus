@@ -25,7 +25,9 @@ console.log(updatedCookie);
     const cookieValue = JSON.stringify(updatedCookie);
 
     //? Nastavenie aktualizovaných cookies späť v odpovedi
-    res.cookie(cookie_user_Name, cookieValue);
+    res.cookie(cookie_user_Name, cookieValue ,{
+      httpOnly: true,
+    });
 
     //? Odpoveď s potvrdením aktualizácie
     res.status(200).send('Cookie updated successfullys');
