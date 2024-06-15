@@ -9,6 +9,8 @@ async function updateCookie(theme: string): Promise<number> {
                 "Content-Type": "application/json",
             },
         });
+        console.log(response);
+        
         return response.status;
     } catch (error) {
         console.error("Error updating cookie:", error);
