@@ -6,56 +6,46 @@ const crypto = require("crypto");
 
 router.post("/user", async (req, res) => {
     const { username, password } = req.body;
-    const oneMonth = 30 * 24 * 60 * 60 * 1000; // 1 month in milliseconds
+    const oneMonth = 30 * 24 * 60 * 60 * 1000; // 1 mesiac v milisekundách
     const expirationDate = new Date(Date.now() + oneMonth);
     const cookies = req.cookies;
-
     try {
-        // Find the user
+        //! Hľadanie používateľa 
         const user = await User.findOne({ username });
-
-        // Simulate delay
         setTimeout(() => {
+            //! Kontrola existencie používateľa 
             if (user) {
-                // Hash the password using SHA-256
+                //! UnHashovanie hesla pomocou crypto
                 const unHashPassword = crypto.createHash('sha256').update(password).digest('hex');
-
-                if (unHashPassword === user.password) {  // Password matches
-                    // Generate JWT with expiration time
-                    const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: "2h" });
+                if (unHashPassword === user.password) {  //potvrdenie ze uživatel existuje aj pasuje heslo
+                    //! Generovanie JWT s časovou expiráciou
+                    const token = jwt.sign({ username }, "secret", { expiresIn: "2h" });
                     const defaultTheme = "dark";
 
                     const cookieName = Object.keys(cookies)[0];
                     let appTheme = defaultTheme;
-
-                    // Retrieve the app theme from the existing cookie
+                    //! ak je cookie definovane tak si zoberieme nastavenu app themu
                     if (cookieName !== undefined) {
                         const parseValue = JSON.parse(cookies[cookieName]);
                         appTheme = parseValue.colorTheme || defaultTheme;
-                    }
-
-                    // Create the cookie data object
+                    };
+                    //!vytvorime konečný objekt pre odoslanie bud nova thema alebo uložena
                     const cookieData = {
                         token: token,
                         colorTheme: appTheme
                     };
 
-                    // Serialize the cookie data to a JSON string
+                    //! Serializace dat do JSON řetězce
                     const cookieValue = JSON.stringify(cookieData);
 
                     res.cookie(username, cookieValue, {
                         httpOnly: true,
-                        expires: expirationDate,
-                        sameSite: 'None', // Use 'None' for cross-site cookies
-                        secure: true // Ensure the cookie is only sent over HTTPS
+                        expires: expirationDate
                     });
-
-                    // Set login state to true
+                    //! natsavenie statusu na true pri prihlaseni
                     user.login.state = true;
-
-                    // Save changes to the database
+                    //! ulozeni zmen do  db
                     user.save();
-
                     res.status(200).json();
                 } else {
                     res.status(401).json({ message: "Incorrect password" });

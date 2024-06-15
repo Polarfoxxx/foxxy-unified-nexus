@@ -18,11 +18,12 @@ async function logInUser_API(loginData: type_for_loginUser_API): Promise<type_fr
 
     console.log(response);
 
+    // Adjust the return statement to match your expected response structure
     return {
-      userName: response.data.username,
+      userName: response.data.username, // Ensure response.data has a username property
       status: response.status,
-      jwt: response.data.token,
-      theme: response.data.theme,
+      jwt: response.data.token, // Ensure response.data has a token property
+      theme: response.data.theme, // Ensure response.data has a theme property
     };
   } catch (error) {
     if (axios.isAxiosError(error)) {
