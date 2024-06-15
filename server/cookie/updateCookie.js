@@ -1,37 +1,37 @@
 const express = require("express");
+const cookieParser = require('cookie-parser');
 const router = express.Router();
 
-// Route to set a cookie
+router.use(cookieParser());  // Middleware pro práci s cookies
+
 router.get('/update_Cookie', (req, res) => {
   try {
-    //!ziskanie apptemy z frondendu
-    const request_update = req.query;
-    const color = request_update.theme;
-    
+    const { theme } = req.query;
     const myCookie = req.cookies;
     const cookieName = Object.keys(myCookie)[0];
-    
-    //! Získanie hodnôt tokenu a farby témy z cookies
-    const parseValue = JSON.parse(myCookie[cookieName]);
-    const token = parseValue.token;
-    const theme = parseValue.colorTheme;
-     
-    //! Aktualizácia farby témy
-    const updatedCookie = {
-      token: token,
-      colorTheme: color
+
+    if (!cookieName || !myCookie[cookieName]) {
+      return res.status(400).send('Cookie not found');
     }
 
-    //! Serializácia aktualizovaných údajov do JSON reťazca
+    const parseValue = JSON.parse(myCookie[cookieName]);
+    const token = parseValue.token;
+
+    const updatedCookie = {
+      token: token,
+      colorTheme: theme
+    };
+
     const cookieValue = JSON.stringify(updatedCookie);
 
-    //! Nastavenie aktualizovaných cookies späť v odpovedi
-    res.cookie(cookieName, cookieValue);
+    res.cookie(cookieName, cookieValue, {
+      httpOnly: true,
+      sameSite: 'strict'
+    });
 
-    //! Odpoveď s potvrdením aktualizácie
     res.status(200).send('Cookie updated successfully');
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).send('Error parsing and extracting cookie values');
   }
 });

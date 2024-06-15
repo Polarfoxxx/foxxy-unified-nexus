@@ -1,25 +1,20 @@
 import axios from "axios";
 import { BASE_URL } from "../../BASE_URL";
 
-
 async function updateCookie(theme: string): Promise<number> {
-
-
-
     try {
-        const cookieUpdate = await axios.get(`${BASE_URL}cookies-update/update_Cookie`, {
-            params: { theme }, // Poslanie dát cez parametre URL
+        const response = await axios.get(`${BASE_URL}cookies-update/update_Cookie`, {
+            params: { theme },
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
-            }
+            },
         });
-        return cookieUpdate.status
+        return response.status;
+    } catch (error) {
+        console.error("Error updating cookie:", error);
+        return 0;
     }
-    catch (error) {
-        console.log(error);
-        return 0
-    };
-};
+}
 
 export default updateCookie;
