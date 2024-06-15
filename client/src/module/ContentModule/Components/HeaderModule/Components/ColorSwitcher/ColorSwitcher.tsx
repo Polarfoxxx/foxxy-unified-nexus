@@ -14,7 +14,7 @@ function ColorSwitcher({ themedDivRef, appTheme, userName, setUserLogData }: Typ
         const load_theme_def = appTheme;
         load_theme_def &&
             themedDivRef.current?.setAttribute("data-theme", load_theme_def);
-    }, [appTheme]);
+    }, []);
 
 
     const handleColorChange = async (selectTheme: string) => {
