@@ -16,14 +16,14 @@ const Port = 5000;
 
 app.use(express.json());
 app.use(cors({
-    origin: 'https://foxxy-unified-nexus.netlify.app', // nebo 'https://foxxy-unified-nexus.netlify.app'
+    origin: 'http://localhost:3000', 
     credentials: true
 }));
 app.use(cookieParser());
 
 // Middleware pro nastavení CORS hlaviček ručně
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://foxxy-unified-nexus.netlify.app"); // nebo 'https://foxxy-unified-nexus.netlify.app'
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Credentials", "true");
     next();
