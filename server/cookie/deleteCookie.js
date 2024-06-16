@@ -6,6 +6,7 @@ router.use('/clear-cookie', (req, res) => {
         // Získání všech cookies ze zprávy
         const cookies = req.cookies;
 
+        
         // Získání názvu cookie, kterou chcete ponechat
         const cookieName = Object.keys(cookies)[0];
 
