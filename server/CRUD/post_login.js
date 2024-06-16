@@ -41,7 +41,7 @@ router.post("/user", async (req, res) => {
                     res.cookie(username, cookieValue, {
                         httpOnly: true,
                         secure: true, // Ensure the cookie is only sent over HTTPS
-                        sameSite: 'Strict',
+                        sameSite: 'None',
                         expires: expirationDate
                     });
                     //! natsavenie statusu na true pri prihlaseni

@@ -34,7 +34,7 @@ router.get('/read_Exp_Existing_Cookie', (req, res) => {
     res.cookie(cookieName, JSON.stringify(parseValue), {
       httpOnly: true,
       secure: true, // Ensure the cookie is only sent over HTTPS
-      sameSite: 'Strict'
+      sameSite: 'None',
     });
 
     res.json(responseData);
