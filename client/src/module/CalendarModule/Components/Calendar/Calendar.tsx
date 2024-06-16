@@ -103,7 +103,7 @@ function CalendarMod({ allEvents, userName }: Type_forCalendarMod): JSX.Element 
         <div className=' w-[10%] h-full bg-thems-minBackg_content'>
 
         </div>
-        <div className='w-full h-full bg-transparent flex justify-center items-center flex-col gap-1'>
+        <div className='w-full h-full bg-transparent flex justify-center items-center flex-col gap-1 pb-4'>
           <div className=' w-full h-[15%] flex items-center justify-center pl-[100px]'>
             <div className=' w-full h-full flex gap-1 justify-start items-center'>
               <span className=' w-auto h-[55px] bg-thems-minBackg_content rounded-[10px] text-thems-defaultTextColor font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
@@ -121,21 +121,21 @@ function CalendarMod({ allEvents, userName }: Type_forCalendarMod): JSX.Element 
           <div className=' w-full h-[20%] rounded-tr-[10px] rounded-br-[10px] overflow-hidden'>
             <Holiday />
           </div>
-          <div className=' w-full h-[40%] rounded-tr-[10px] overflow-hidden'>
+          <div className=' w-full h-[40%] rounded-tr-[10px] rounded-br-[10px] overflow-hidden'>
             <CalEvents
               allEvents={allEvents} />
           </div>
         </div>
       </div>
       {/* calendar--------------------------------------------------------------------- */}
-      <div className='w-full h-full flex items-center justify-center flex-col gap-5 p-4 '>
+      <div className='w-full h-full flex items-end justify-center p-4 '>
         <Calendar
           formats={formats}
           localizer={localizer}
           startAccessor="start"
           endAccessor="end"
           events={LocalAllEvent}
-          style={{ height: 650, width: "100%" }}
+          style={{ height: "95%", width: "100%" }}
           className="hover-effect-calendar"
           onSelectEvent={handleEventClick} />
         {/* -------- */}
