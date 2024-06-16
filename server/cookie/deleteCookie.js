@@ -20,7 +20,11 @@ router.use('/clear-cookie', (req, res) => {
         const cookieValue = JSON.stringify(deleletoToken);
 
         // Nastavení upravených cookies zpět do odpovědi
-        res.cookie(cookieName, cookieValue);
+        res.cookie(cookieName, cookieValue,{
+            httpOnly: true,
+            secure: true, // Ensure the cookie is only sent over HTTPS
+            sameSite: 'None',
+        });
 
         // Odpověď, že token v cookies byl úspěšně smazán
         res.send('Token v cookies byl úspěšně smazán');

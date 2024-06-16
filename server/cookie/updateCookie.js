@@ -27,6 +27,8 @@ console.log(updatedCookie);
     //? Nastavenie aktualizovaných cookies späť v odpovedi
     res.cookie(cookie_user_Name, cookieValue ,{
       httpOnly: true,
+      secure: true, // Ensure the cookie is only sent over HTTPS
+      sameSite: 'None',
     });
 
     //? Odpoveď s potvrdením aktualizácie
