@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
+require('dotenv').config();
 
 mongoose.set('strictQuery', false);
-const mongo = "mongodb+srv://suchovskymichal:z1PzyPDoR80XCXKN@cluster0.jhfpd8u.mongodb.net/Calendar?retryWrites=true&w=majority&appName=Cluster0";
+const mongo = process.env.REACT_APP_MONGO_DB;
+
 
 mongoose
     .connect(mongo, { useNewUrlParser: true })

@@ -59,7 +59,7 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
 
     return (
         <div className=" w-full h-full relative">
-            <div className=" w-full h-full flex items-center justify-start flex-col ">
+            <div className=" w-full h-full flex items-center justify-start flex-col">
                 <div className=" w-full min-h-[50px] flex justify-center items-center bg-thems-minBackg_content rounded-tr-[5px] rounded-br-[5px]">
                     <h2 className=" text-[22px] text-thems-defaultTextColor">
                         Set new event
@@ -67,7 +67,7 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
                 </div>
                 <form
                     onSubmit={(e) => handleSubmit(e, submit)}
-                    className=" w-full h-[100%] flex justify-center items-center flex-col bg-thems-background_block  ">
+                    className=" w-full h-[100%] shadow-maxShadow flex justify-center items-center flex-col bg-thems-background_block  ">
                     <div className=" w-[80%] h-[100%]  flex justify-center items-start flex-col ">
                         <div className="w-full h-[100%] flex justify-center items-start flex-col gap-1">
                             <div className=" w-[60%] h-auto">
@@ -145,11 +145,9 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
                         </div>
                     </div>
                     <div className=" w-[80%] h-full flex justify-start items-center">
-                        <button
-                            type="submit"
-                            className="  w-[200px] h-[30px] text-thems-defaultTextColor rounded-md flex items-center justify-center bg-thems-background_button hover:bg-thems-background_button_hover">
-                            Add Event
-                        </button>
+<button className="">
+    Create event
+</button>
                     </div>
                 </form>
             </div>

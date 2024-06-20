@@ -13,6 +13,7 @@ module.exports = {
       boxShadow: {
         'miniApp': '1px 0px 39px -20px rgba(0,0,0,0.75) inset',
         'minContent': '0px 0px 30px -10px rgba(0,0,0,0.75) inset',
+        "maxShadow":"0px 30px 40px -33px rgba(0,0,0,0.75) inset"
       },
       backgroundSize: {
         'auto': 'auto',
