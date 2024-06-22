@@ -13,6 +13,7 @@ import { setAllEvent } from "../../../../redux";
 import { Type_for_newEventFrom_DB } from "./type";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import { Button } from "../../../../bookComponents/Button";
 
 
 type Type_forNewEvent = {
@@ -145,9 +146,12 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
                         </div>
                     </div>
                     <div className=" w-[80%] h-full flex justify-start items-center">
-<button className="">
-    Create event
-</button>
+<Button
+className=""
+text="new event"
+styleButton="lightButton"
+/>
+    
                     </div>
                 </form>
             </div>
