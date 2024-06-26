@@ -25,10 +25,12 @@ console.log(updatedCookie);
     const cookieValue = JSON.stringify(updatedCookie);
 
     //? Nastavenie aktualizovaných cookies späť v odpovedi
+    const expirationDate = new Date(Date.now() + (30 * 24 * 60 * 60 * 1000));
     res.cookie(cookie_user_Name, cookieValue ,{
       httpOnly: true,
       secure: true, // Ensure the cookie is only sent over HTTPS
       sameSite: 'None',
+      expires: expirationDate
     });
 
     //? Odpoveď s potvrdením aktualizácie
