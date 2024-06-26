@@ -42,3 +42,7 @@
   box-shadow: #4b4b4b 0 3px 7px inset;
   transform: translateY(2px);
 }
+
+button :has("primary") {
+background-color: #ae11ce;
+}
