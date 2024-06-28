@@ -4,6 +4,7 @@ import { logInUser_API } from "../../apis/authentificationAPI";
 import { useNavigate } from "react-router-dom";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { LoadingFeedback } from "../../Shared";
+import { Input } from "../../../bookComponents/Input";
 
 function LoginPage(): JSX.Element {
     const navigate = useNavigate();
@@ -14,6 +15,8 @@ function LoginPage(): JSX.Element {
     });
 
     const submit = async (v: TypeForInputsObject["v"]): Promise<void> => {
+        console.log(v);
+        
         const login_data = {
             userNames: v[0].inputValues.toString(),
             password: v[1].inputValues.toString()
@@ -70,9 +73,10 @@ function LoginPage(): JSX.Element {
                         className="w-full h-full p-2 flex justify-center items-center flex-col gap-2"
                         onSubmit={(e) => handleSubmit(e, submit)}>
                         <div className="w-full h-10 flex items-center justify-center">
-                            <input
+                            <Input
                                 placeholder="user name"
-                                className="w-[80%] h-10 text-center pl-2 pr-2"
+                            styleInput="lightInput"
+                            secondStyle="primary"
                                 name="user"
                                 type="text" />
                         </div>

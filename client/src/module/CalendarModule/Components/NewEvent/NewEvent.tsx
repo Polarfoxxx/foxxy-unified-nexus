@@ -147,6 +147,8 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
                     </div>
                     <div className=" w-[80%] h-full flex justify-start items-center">
 <Button
+id=""
+secondStyle="primary"
 className=""
 text="new event"
 styleButton="lightButton"

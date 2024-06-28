@@ -1,4 +1,4 @@
-#lightButton {
+.lightButton {
   align-items: center;
   appearance: none;
   background-image: radial-gradient(100% 100% at 100% 0, #9e9e9e 0, #ae11ce 100%);
@@ -29,20 +29,28 @@
   font-size: 18px;
 }
 
-#lightButton:focus {
+.lightButton:focus {
   box-shadow: #414141 0 0 0 1.5px inset, rgba(102, 102, 102, 0.4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #313131 0 -3px 0 inset;
 }
 
-#lightButton:hover {
-  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #797979 0 -3px 0 inset;
+.lightButton:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #333333 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
-#lightButton:active {
+.lightButton:active {
   box-shadow: #4b4b4b 0 3px 7px inset;
   transform: translateY(2px);
 }
 
-button :has("primary") {
-background-color: #ae11ce;
+.lightButton.primary{
+  background-image: radial-gradient(100% 100% at 100% 0, #cecece 0, #aa0eaa 100%);
+}
+
+.lightButton.secondary{
+  background-image: radial-gradient(100% 100% at 100% 0, #cecece 0, rgb(70, 70, 250) 100%);
+}
+
+.lightButton.alert{
+  background-image: radial-gradient(100% 100% at 100% 0, #cecece 0, rgb(185, 0, 0) 100%);
 }

@@ -4,7 +4,6 @@ require('dotenv').config();
 mongoose.set('strictQuery', false);
 const mongo = process.env.REACT_APP_MONGO_DB;
 
-
 mongoose
     .connect(mongo, { useNewUrlParser: true })
     .then(() => console.log("Connected to MongoDB"))
