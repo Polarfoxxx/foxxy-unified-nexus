@@ -24,16 +24,16 @@ router.get('/read_Exp_Existing_Cookie', (req, res) => {
     const responseData = {
       cookieExp,      // true or false
       theme: colorTheme,
-      userName: cookieName
+      userName: cookie_userName
     };
 
     // Set the cookie with SameSite and Secure attributes
-   /* res.cookie(cookieName, JSON.stringify(parseValue), {
+   /*  res.cookie(cookie_userName, JSON.stringify(parseValue), {
       httpOnly: true,
       secure: true,
       sameSite: 'None',
-    });
-    */
+    }); */
+    
    
     res.json(responseData);
   } catch (err) {
