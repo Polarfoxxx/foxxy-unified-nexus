@@ -4,6 +4,7 @@ import { logInUser_API } from "../../apis/authentificationAPI";
 import { useNavigate } from "react-router-dom";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { LoadingFeedback } from "../../Shared";
+import { Input } from "../../../bookComponents";
 
 function LoginPage(): JSX.Element {
     const navigate = useNavigate();
@@ -70,18 +71,20 @@ function LoginPage(): JSX.Element {
                         className="w-full h-full p-2 flex justify-center items-center flex-col gap-2"
                         onSubmit={(e) => handleSubmit(e, submit)}>
                         <div className="w-full h-10 flex items-center justify-center">
-                            <input
+                            <Input
+                            styleInput="lightInput"
+                            secondStyle="primary"
                                 placeholder="user name"
-                                className="w-[80%] h-10 text-center pl-2 pr-2"
                                 name="user"
                                 type="text" />
                         </div>
                         <div className="w-full h-10 flex items-center justify-center">
-                            <input
-                                placeholder="password"
-                                className="w-[80%] h-10 text-center pl-2 pr-2"
-                                name="password"
-                                type="password" />
+                            <Input
+                                styleInput="lightInput"
+                                secondStyle="primary"
+                                    placeholder="user name"
+                                    name="user"
+                                    type="text" />
                         </div>
                         <button
                             className="w-24 h-8 mt-4 font-bold text-xl hover:text-blue-700"

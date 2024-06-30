@@ -4,17 +4,21 @@ import "./Button_style_light.css";
 import "./Button_style_dark.css";
 
 export interface Type_for_ButtonElement extends ButtonHTMLAttributes<HTMLButtonElement> {
-    className: string,
+    id?: string,
     text: string,
-    styleButton: "lightButton" | "darkButton"
+
+    styleButton: "lightButton" | "darkButton",
+    secondStyle: "primary" | "secondary" | "alert"
 };
 
 
-function Button({ className, text, styleButton, ...props }: Type_for_ButtonElement): JSX.Element {
+function Button({ id, text, styleButton, secondStyle, ...props }: Type_for_ButtonElement): JSX.Element {
+    const classStyle = `${styleButton} ${secondStyle}`;
+
     return (
-        <button 
-        id={styleButton}
-        className={className}
+        <button
+            id={id}
+            className={classStyle}
             {...props}>
             {text}
         </button>
