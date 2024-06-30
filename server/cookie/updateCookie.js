@@ -10,7 +10,6 @@ router.post('/update_Cookie', (req, res) => {
     const myCookie = req.cookies;
 
     const cookie_user_Name = Object.keys(myCookie)[0];
-
     //? Získanie hodnôt tokenu a farby témy z cookies
     const parseValue = JSON.parse(myCookie[cookie_user_Name]);
     const token = parseValue.token;
@@ -19,16 +18,18 @@ router.post('/update_Cookie', (req, res) => {
     const updatedCookie = {
       token: token,
       colorTheme: color
-    }
-console.log(updatedCookie);
+    };
+
     //? Serializácia aktualizovaných údajov do JSON reťazca
     const cookieValue = JSON.stringify(updatedCookie);
 
     //? Nastavenie aktualizovaných cookies späť v odpovedi
+    const expirationDate = new Date(Date.now() + (30 * 24 * 60 * 60 * 1000));
     res.cookie(cookie_user_Name, cookieValue ,{
       httpOnly: true,
       secure: true, // Ensure the cookie is only sent over HTTPS
       sameSite: 'None',
+      expires: expirationDate
     });
 
     //? Odpoveď s potvrdením aktualizácie
@@ -36,7 +37,7 @@ console.log(updatedCookie);
   } catch (err) {
     console.log(err);
     res.status(500).send('Error parsing and extracting cookie values');
-  }
+  };
 });
 
 module.exports = router;

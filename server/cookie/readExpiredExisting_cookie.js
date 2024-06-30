@@ -2,41 +2,39 @@ const express = require("express");
 const router = express.Router();
 const verifyJWTToken = require("./services/services_JWTexpired");
 
-
-
 router.get('/read_Exp_Existing_Cookie', (req, res) => {
   const myCookie = req.cookies;
 
   try {
     //! existing cookie ?
-    const cookieName = Object.keys(myCookie)[0];
-    if (!cookieName) {
+    const cookie_userName = Object.keys(myCookie)[0];
+    if (!cookie_userName) {
       return res.status(400).json({ valid: false, error: "no cookie" });
-    }
+    };
 
     //! existing token ?
-    const parseValue = JSON.parse(myCookie[cookieName]);
+    const parseValue = JSON.parse(myCookie[cookie_userName]);
     const { token, colorTheme } = parseValue;
     if (!token) {
       return res.status(400).json({ valid: false, error: "no token" });
-    }
+    };
 
     //! validity token ?
     const cookieExp = verifyJWTToken(token);
-
     const responseData = {
-      cookieExp,
+      cookieExp,      // true or false
       theme: colorTheme,
-      userName: cookieName
+      userName: cookie_userName
     };
 
     // Set the cookie with SameSite and Secure attributes
-    res.cookie(cookieName, JSON.stringify(parseValue), {
+   /*  res.cookie(cookie_userName, JSON.stringify(parseValue), {
       httpOnly: true,
-      secure: true, // Ensure the cookie is only sent over HTTPS
+      secure: true,
       sameSite: 'None',
-    });
-
+    }); */
+    
+   
     res.json(responseData);
   } catch (err) {
     res.status(500).send('Error parsing and extracting cookie values');

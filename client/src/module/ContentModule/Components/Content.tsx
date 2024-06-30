@@ -38,9 +38,9 @@ function Content({
 
     //! existin and validate cookie and set user data
     React.useEffect(() => {
-        existAndValidCookie();
+        readCookie();
 
-        async function existAndValidCookie() {
+        async function readCookie() {
             const cookieIsValid = await readExistingExpCookie();   //volanie pre zistenie a nasledne odoslanie cookie
             if (cookieIsValid) {
                 setUserLogData({
