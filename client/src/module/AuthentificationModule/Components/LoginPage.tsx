@@ -4,11 +4,7 @@ import { logInUser_API } from "../../apis/authentificationAPI";
 import { useNavigate } from "react-router-dom";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { LoadingFeedback } from "../../Shared";
-<<<<<<< HEAD
 import { Input } from "../../../bookComponents";
-=======
-import { Input } from "../../../bookComponents/Input";
->>>>>>> 86d8c2b0524cdb0e6b3b1584231e30e8e6ded8b3
 
 function LoginPage(): JSX.Element {
     const navigate = useNavigate();

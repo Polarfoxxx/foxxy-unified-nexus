@@ -23,9 +23,8 @@ function ParentAllMiniContent(props: Type_for_ParentAllMiniContent): JSX.Element
             <div className=" w-[90%] h-[90%] border-2 border-black rounded-[30px] overflow-hidden relative">
                 <div className=" w-auto h-auto absolute right-[40px] top-[15px]">
                     <Button 
-                    id=""
                     styleButton="lightButton"
-                    secondStyle="primary"
+                    secondStyle="alert"
                     text="Close"
                     onClick={handleClickHomePage}/>                     
                 </div>
