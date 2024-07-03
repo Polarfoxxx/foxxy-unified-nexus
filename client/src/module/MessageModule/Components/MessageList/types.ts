@@ -19,10 +19,3 @@ export type Type_for_newMesssageFrom_DB = {
     status: boolean
 };
 
-
-//component
-export type Type_forMessageList = {
-    allMessages: Type_for_newMesssageFrom_DB[],
-    userName: string,
-    setAllMessages: (props: Type_forSetAllMessage) => void
-}

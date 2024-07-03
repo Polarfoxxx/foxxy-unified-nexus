@@ -2,13 +2,12 @@ import { Type_for_newMesssageFrom_DB } from "../../types";
 import React from "react";
 import { Type_for_ItemMessage, services_messageColorAlert } from "../";
 import { deleteData_API, updateData_API } from "../../../../../apis/index.";
-import { Type_forMessageList } from "../../types";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { setAllMessages, Type_forSetAllMessage, Type_RootState } from "../../../../../../redux";
 
 
-function ItemMessage(props: Type_forMessageList & Type_for_ItemMessage): JSX.Element {
+function ItemMessage(props: any & Type_for_ItemMessage): JSX.Element {
     const [itemMessageData, setItemMessageData] = React.useState<Type_for_newMesssageFrom_DB>();
     const [colorAlert, setColorAlert] = React.useState<React.CSSProperties>();
     const [colorUpdateAndDelete, setColorUpdateAndDelete] = React.useState<React.CSSProperties>();

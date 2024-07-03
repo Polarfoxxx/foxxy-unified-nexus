@@ -13,9 +13,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Holiday } from '../Holiday';
 import { CalEvents } from '../CalEvents';
-import { Type_forCalendarMod } from './types';
 import { Type_RootState } from '../../../../redux';
-import { connect } from 'react-redux';
+import { NavigateBar } from '../NavigateBar';
+import { useSelector, useDispatch } from 'react-redux';
+
+
 interface MyEvent extends Event {
   title: string;
   start: Date;
@@ -47,9 +49,14 @@ const events: MyEvent[] = [
   }
 ];
 
-function CalendarMod({ allEvents, userName }: Type_forCalendarMod): JSX.Element {
+function CalendarMod(): JSX.Element {
   const [newEventContent, setNewEventContent] = React.useState<JSX.Element | null>(null);
   const [LocalAllEvent, setLocalAllEvent] = React.useState<Type_for_newEventFrom_DB[]>([]);
+  //?redux
+  const dispatch = useDispatch();
+  const allEvents = useSelector((state: Type_RootState) => state.allEvents);
+  const userName = useSelector((state: Type_RootState) => state.userLogData.userName);
+
 
   React.useEffect(() => {
     if (allEvents.length > 0) {
@@ -101,7 +108,7 @@ function CalendarMod({ allEvents, userName }: Type_forCalendarMod): JSX.Element 
       {/* event----------------------------------------------------------------------- */}
       <div className=' w-[80%] h-full bg-transparent flex justify-center items-center flex-row'>
         <div className=' w-[10%] h-full bg-thems-minBackg_content'>
-
+          <NavigateBar />
         </div>
         <div className='w-full h-full bg-transparent flex justify-center items-center flex-col gap-1 pb-4'>
           <div className=' w-full h-[15%] flex items-center justify-center pl-[100px]'>
@@ -157,9 +164,4 @@ function CalendarMod({ allEvents, userName }: Type_forCalendarMod): JSX.Element 
 };
 
 
-const mapStateToProps = (state: Type_RootState) => ({
-  allEvents: state.allEvents,
-  userName: state.userLogData.userName
-});
-
-export default connect(mapStateToProps)(CalendarMod);
+export default CalendarMod;

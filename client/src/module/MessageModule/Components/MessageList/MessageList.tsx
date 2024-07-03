@@ -6,21 +6,22 @@ import { NewRequest } from "../../../utils";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Type_for_newEventFor_API } from "../../../CalendarModule";
-import { Type_for_newMessageFor_API, Type_forMessageList } from "./types";
+import { Type_for_newMessageFor_API, Type_for_newMesssageFrom_DB } from "./types";
 import { ValidMessageList, InvalidMessageList } from "./router";
 import { Route, Routes, NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import { Type_RootState, setAllMessages, Type_forSetAllMessage } from "../../../../redux";
-import { Dispatch } from "redux";
-import { Type_for_newMesssageFrom_DB } from "./types";
+import { Type_RootState, setAllMessages } from "../../../../redux";
+import { useSelector, useDispatch } from 'react-redux';
 
-function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageList): JSX.Element {
+function MessageList(): JSX.Element {
     const [newMessage, setNewMessage] = React.useState<any>({ start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
-    const divRef = React.useRef<HTMLDivElement>(null)
+    const divRef = React.useRef<HTMLDivElement>(null);
+    //! redux
+    const dispatch = useDispatch();
+    const allMessages = useSelector((state: Type_RootState) => state.allMessages);
+    const userName = useSelector((state: Type_RootState) => state.userLogData.userName);
 
-
-    //function add a new messasge
+    //! function add a new messasge
     const submit = async (v: TypeForInputsObject["v"]): Promise<void> => {
         const NEW_REQ = new NewRequest({
             startDate_message: new Date(),
@@ -32,14 +33,13 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
         if (typeof create_data !== "string" && "message" in create_data) {
             const loginUserName = userName;
             try {
-
                 const createMessage = await createData_API({ loginUserName, create_data });
                 if (createMessage) {
                     const upd_data = createMessage.updateMessage as Type_for_newMesssageFrom_DB[]
-                    setAllMessages({
+                    dispatch(setAllMessages({
                         data: upd_data,
                         typeEvent: "setAll_message"
-                    });
+                    }))
                 };
             }
             catch (error) {
@@ -173,13 +173,15 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
                                 path="ValidMessageList"
                                 element={
                                     <ValidMessageList
-                                        allMessages={allMessages} />}
+                                        allMessages={allMessages} />
+                                }
                             />
                             <Route
                                 path="InvalidMessageList"
                                 element={
                                     <InvalidMessageList
-                                        allMessages={allMessages} />}
+                                        allMessages={allMessages} />
+                                }
                             />
                         </Routes>
                     </div>
@@ -190,17 +192,4 @@ function MessageList({ allMessages, userName, setAllMessages }: Type_forMessageL
 };
 
 
-
-const mapStateToProps = (state: Type_RootState) => ({
-    allMessages: state.allMessages,
-    userName: state.userLogData.userName,
-});
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    setAllMessages: (props: Type_forSetAllMessage) => dispatch(
-        setAllMessages({
-            data: props.data,
-            typeEvent: props.typeEvent
-        })),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MessageList);
+export default MessageList;
