@@ -16,7 +16,7 @@ function LoginPage(): JSX.Element {
 
     const submit = async (v: TypeForInputsObject["v"]): Promise<void> => {
         console.log(v);
-        
+
         const login_data = {
             userNames: v[0].inputValues.toString(),
             password: v[1].inputValues.toString()
@@ -74,19 +74,21 @@ function LoginPage(): JSX.Element {
                         onSubmit={(e) => handleSubmit(e, submit)}>
                         <div className="w-full h-10 flex items-center justify-center">
                             <Input
+                                widthInput={70}
                                 placeholder="user name"
-                            styleInput="lightInput"
-                            secondStyle="primary"
+                                styleInput="lightInput"
+                                secondStyle="secondary"
                                 name="user"
                                 type="text" />
                         </div>
                         <div className="w-full h-10 flex items-center justify-center">
                             <Input
+                                widthInput={70}
                                 styleInput="lightInput"
-                                secondStyle="primary"
-                                    placeholder="user name"
-                                    name="user"
-                                    type="text" />
+                                secondStyle="secondary"
+                                placeholder="user name"
+                                name="user"
+                                type="password" />
                         </div>
                         <button
                             className="w-24 h-8 mt-4 font-bold text-xl hover:text-blue-700"

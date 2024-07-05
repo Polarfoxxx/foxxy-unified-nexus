@@ -7,7 +7,7 @@ function CalEvents(props: Type_forCalEvents): JSX.Element {
 
     return (
         <div className=" w-full h-full flex items-center justify-center">
-            <div className=" w-full h-full bg-thems-background_block flex justify-start items-start flex-col shadow-maxShadow p-1">
+            <div className=" w-full h-full bg-transparent flex justify-start items-start flex-col shadow-maxShadow p-1">
                 <div className=" w-[auto] h-[40px] min-h-[40px] gap-0 flex flex-row border-b-2 border-b-slate-400 bg-transparent items-center justify-start pl-4">
                     <div className=" w-[110px] text-thems-defaultTextColor flex items-center justify-center bg-thems-minBackg_content rounded-[2px] font-oswald">
                         <h6>
@@ -39,7 +39,7 @@ function CalEvents(props: Type_forCalEvents): JSX.Element {
                                         <Button
                                             styleButton="lightButton"
                                             secondStyle="alert"
-                                            text="Logout" />
+                                            text="Delete" />
                                     </div>
                                 </div>
                             )

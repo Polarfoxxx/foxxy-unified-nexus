@@ -14,16 +14,18 @@ import { Type_for_newEventFrom_DB } from "./type";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { Button } from "../../../../bookComponents/Button";
+import { useSelector, useDispatch } from 'react-redux';
+import { Type_RootState } from "../../../../redux";
 
 
-type Type_forNewEvent = {
-    userName: string,
-    setAllEvent: (data: Type_for_newEventFrom_DB[]) => void;
-}
 
-function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
+function NewEvent(): JSX.Element {
     const [newEvent, setNewEvent] = React.useState<any>({ title: "", comment: "", start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
+    //?redux
+    const dispatch = useDispatch();
+    const userName = useSelector((state: Type_RootState) => state.userLogData.userName);
+
 
     const submit = (v: TypeForInputsObject["v"]): void => {
         const NEW_REQ = new NewRequest({
@@ -37,6 +39,12 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
         if (typeof create_data !== "string" && "event" in create_data) {
             createAsyncData(create_data);
             reset();
+            setNewEvent({
+                title: "",
+                comment: "",
+                start: "",
+                end: ""
+            })
 
         } else {
             alert(create_data)
@@ -50,7 +58,7 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
             const create_event = await createData_API({ loginUserName, create_data });
             if (create_event) {
                 const pdateMessage = create_event.updateMessage as Type_for_newEventFrom_DB[];
-                setAllEvent(pdateMessage);
+                dispatch(setAllEvent(pdateMessage));
             };
         }
         catch (error) {
@@ -61,18 +69,18 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
     return (
         <div className=" w-full h-full relative">
             <div className=" w-full h-full flex items-center justify-start flex-col">
-                <div className=" w-full min-h-[50px] flex justify-center items-center bg-thems-minBackg_content rounded-tr-[5px] rounded-br-[5px]">
+                <div className=" w-full min-h-[50px] flex justify-center items-center bg-thems-minBackg_content ">
                     <h2 className=" text-[22px] text-thems-defaultTextColor">
                         Set new event
                     </h2>
                 </div>
                 <form
                     onSubmit={(e) => handleSubmit(e, submit)}
-                    className=" w-full h-[100%] shadow-maxShadow flex justify-center items-center flex-col bg-thems-background_block  ">
+                    className=" w-full h-[100%] shadow-maxShadow flex justify-center items-center flex-col bg-transparent  ">
                     <div className=" w-[80%] h-[100%]  flex justify-center items-start flex-col ">
                         <div className="w-full h-[100%] flex justify-center items-start flex-col gap-1">
                             <div className=" w-[60%] h-auto">
-                                <h4 className=" text-[15px]">
+                            <h4 className=" text-[14px] font-bold">
                                     Set start event:
                                 </h4>
                             </div>
@@ -85,7 +93,7 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
                                     timeCaption="Čas"
                                     dateFormat="dd.MM.yyyy HH:mm"
                                     name="startDate"
-                                    className=" w-[400px] h-[30px] text-[14px] bg-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
+                                    className=" w-[400px] h-[30px] text-[14px] bg-transparent placeholder:text-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
                                     placeholderText="Start Date"
                                     selected={newEvent.start}
                                     onChange={(start) => setNewEvent({ ...newEvent, start })} />
@@ -94,7 +102,7 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
 
                         <div className="w-full h-[100%] flex justify-center items-start flex-col">
                             <div className=" w-[60%] h-auto">
-                                <h4 className=" text-[15px]">
+                            <h4 className=" text-[14px] font-bold">
                                     Set end event:
                                 </h4>
                             </div>
@@ -107,7 +115,7 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
                                     timeCaption="Čas"
                                     dateFormat="dd.MM.yyyy HH:mm"
                                     name="endDate"
-                                    className=" w-[400px] h-[30px] text-[14px] bg-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
+                                    className=" w-[400px] h-[30px] text-[14px] bg-transparent placeholder:text-white ml-3 pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent"
                                     placeholderText="End Date"
                                     selected={newEvent.end}
                                     onChange={(end) => setNewEvent({ ...newEvent, end })} />
@@ -118,21 +126,22 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
                     <div className=" w-[80%] h-full flex flex-col justify-center items-center gap-1">
                         <div className="w-full h-full flex items-start justify-center flex-col gap-1">
                             <div className=" w-[60%] h-auto">
-                                <h4 className=" text-[15px]">
+                                <h4 className=" text-[14px] font-bold">
                                     Set Name event for easy indetification.
                                 </h4>
                             </div>
                             <div>
+
                                 <input
                                     name="name event"
                                     type="text"
                                     placeholder="Add Title"
-                                    className=" w-[400px] h-[30px] text-[14px] ml-3 bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
+                                    className=" w-[400px] h-[30px] text-[14px] ml-3 placeholder:text-white bg-transparent pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
                             </div>
                         </div>
                         <div className="w-full  h-full flex items-start justify-center flex-col gap-1">
                             <div className=" w-[60%] h-auto">
-                                <h4 className=" text-[15px]">
+                            <h4 className=" text-[14px] font-bold">
                                     Set comment for event.
                                 </h4>
                             </div>
@@ -141,16 +150,16 @@ function NewEvent({ userName, setAllEvent }: Type_forNewEvent): JSX.Element {
                                     name="name event"
                                     type="text"
                                     placeholder="Comment"
-                                    className=" w-[400px] h-[30px] text-[14px] ml-3 bg-white pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
+                                    className=" w-[400px] h-[30px] text-[14px] ml-3 placeholder:text-white bg-transparent pl-3 pr-3 text-start border-b-2 border-thems-inputBorder focus:outline-none focus:border-transparent" />
                             </div>
                         </div>
                     </div>
                     <div className=" w-[80%] h-full flex justify-start items-center">
                         <Button
                             id=""
-                            secondStyle="secondary"
+                            secondStyle="primary"
                             text="new event"
-                            styleButton="lightButton"/>
+                            styleButton="lightButton" />
                     </div>
                 </form>
             </div>

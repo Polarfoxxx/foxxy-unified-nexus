@@ -127,7 +127,7 @@ function Content({
                     {/* calendar----------------------------------------------------------------- */}
                     <div className="w-[25%] h-[300px] rounded-[15px] border border-thems-littleComponent_border relative overflow-hidden shadow-miniApp">
                         <NavLink
-                            className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]"
+                            className=" absolute w-full h-full bg-transparent cursor-pointer z-[60]  hover:shadow-miniApp"
                             to="Calendar">
                         </NavLink>
                         <LittleCalendar />

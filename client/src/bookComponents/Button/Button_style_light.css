@@ -7,10 +7,10 @@
   box-shadow: rgba(77, 77, 77, 0.3) 0 2px 4px,rgba(77, 77, 77, 0.3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
   box-sizing: border-box;
   color: #fff;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
-  height: 30px;
+  height: 28px;
   justify-content: center;
   line-height: 1;
   list-style: none;
@@ -26,7 +26,7 @@
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow,transform;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .lightButton:focus {
@@ -43,14 +43,19 @@
   transform: translateY(2px);
 }
 
+
+/* ! secondaty style--------------------------- */
+/*? primary */
 .lightButton.primary{
-  background-image: radial-gradient(100% 100% at 100% 0, #cecece 0, #aa0eaa 100%);
+  background-image: radial-gradient(100% 100% at 100% 0, #a600ff 0, #641fb8 100%);
 }
 
+/*? secondary */
 .lightButton.secondary{
-  background-image: radial-gradient(100% 100% at 100% 0, #cecece 0, rgb(70, 70, 250) 100%);
+  background-image: radial-gradient(100% 100% at 100% 0, #cecece 0, rgb(44, 166, 175) 100%);
 }
 
+/*? alert */
 .lightButton.alert{
-  background-image: radial-gradient(100% 100% at 100% 0, #cecece 0, rgb(185, 0, 0) 100%);
+  background-image: radial-gradient(100% 100% at 100% 0, #f19191 0, rgb(185, 0, 0) 100%);
 }

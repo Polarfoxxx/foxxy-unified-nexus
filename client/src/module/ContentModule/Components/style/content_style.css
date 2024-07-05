@@ -1,11 +1,11 @@
 div[data-theme="light"] {
     /*! buttonStyle */
-    --background_button: rgb(121, 121, 121);
-    --background_button_hover: rgb(195, 172, 208);
+    --background_button: rgb(123, 32, 188);
+    --background_button_hover: rgb(220, 220, 220);
     --color_button: rgb(0, 0, 0);
 
     /*! appBackGround */
-    --background_content: rgb(251, 251, 251);
+    --background_content: rgb(255, 255, 255);
     --background_content_header: rgba(63, 56, 191, 0.507);
     --background_App: url('/public/image/lightAppBacgr.jpg');
 
@@ -13,17 +13,18 @@ div[data-theme="light"] {
     --dayBackground_hover: rgb(123, 32, 188);
     --dayBackground_header: rgb(255, 255, 255);
     --current_time_line: rgb(255, 0, 0);
-    --eventBackground: rgb(34, 100, 162);
+    --eventBackground: rgba(27, 136, 127, 0.808);
     --eventBackground_selected: rgb(12, 100, 0);
     --minBackg_content: rgb(123, 32, 188);
     --minBackg_Two_content: rgb(195, 121, 230);
     --background_block: rgb(255, 255, 255);
-    --calendarContent_background: rgb(224, 219, 219);
+    --calendarContent_background: rgb(255, 255, 255);
     --InvalidDay_Background: rgba(0, 0, 0, 0.644);
+    --drakInLightTheme: rgb(192, 176, 225);
 
     /*! littleComponents */
-    --littleComponent_Background: rgb(232, 232, 232);
-    --littleComponent_border: rgb(113, 113, 113);
+    --littleComponent_Background: rgb(246, 246, 246);
+    --littleComponent_border: rgba(164, 164, 164, 0.839);
 
     /*! MessageBackGround */
     --messageContent_background: white;

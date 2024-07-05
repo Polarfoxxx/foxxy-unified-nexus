@@ -13,7 +13,7 @@ module.exports = {
       boxShadow: {
         'miniApp': '1px 0px 39px -20px rgba(0,0,0,0.75) inset',
         'minContent': '0px 0px 30px -10px rgba(0,0,0,0.75) inset',
-        "maxShadow":"0px 30px 40px -33px rgba(0,0,0,0.75) inset"
+        "maxShadow":"50px 10px 85px -50px rgba(0,0,0,0.75) inset;"
       },
       backgroundSize: {
         'auto': 'auto',
@@ -48,6 +48,7 @@ module.exports = {
           minBackg_Two_content: "var(--minBackg_Two_content)",
           background_block: "var(--background_block)",
           InvalidDay_Background: "var(--InvalidDay_Background)",
+          drakInLightTheme: "var(--drakInLightTheme)",
 
           //! littleComponent
           littleComponent_Background: "var(--littleComponent_Background)",

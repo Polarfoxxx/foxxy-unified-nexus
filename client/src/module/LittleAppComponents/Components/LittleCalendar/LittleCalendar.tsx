@@ -41,9 +41,9 @@ function LittleCalendar(): JSX.Element {
 
 
     return (
-        <div className=" w-full h-full bg-thems-littleComponent_Background flex items-center justify-center flex-col  shadow-miniApp">
+        <div className=" w-full h-full bg-thems-littleComponent_Background flex items-center justify-center flex-col shadow-miniAp">
             <div className=" w-full h-[20%] flex items-center justify-center">
-                <h1 className=" text-[30px]  text-thems-defaultTextColorDark">
+                <h1 className=" text-[23px]  text-thems-minBackg_content font-bold">
                     YOU CALENDAR EVENT
                 </h1>
             </div>
@@ -53,7 +53,7 @@ function LittleCalendar(): JSX.Element {
                 </div>
                 <div className=" w-full h-full flex items-center justify-center">
                     <h2 className="  text-thems-defaultTextColorDark font-bold text-[20px] font-oswald">
-                    {currentDate}
+                        {currentDate}
                     </h2>
                 </div>
             </div>

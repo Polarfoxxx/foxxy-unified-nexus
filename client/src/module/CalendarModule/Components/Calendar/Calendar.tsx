@@ -106,11 +106,11 @@ function CalendarMod(): JSX.Element {
   return (
     <div className='w-full h-full flex flex-row items-center justify-center  bg-thems-calendarContent_background shadow-miniApp'>
       {/* event----------------------------------------------------------------------- */}
-      <div className=' w-[80%] h-full bg-transparent flex justify-center items-center flex-row'>
-        <div className=' w-[10%] h-full bg-thems-minBackg_content'>
+      <div className=' w-[60%] h-full bg-thems-drakInLightTheme flex justify-center items-center flex-row'>
+        <div className=' w-[10%] h-full bg-thems-minBackg_content flex items-center justify-center'>
           <NavigateBar />
         </div>
-        <div className='w-full h-full bg-transparent flex justify-center items-center flex-col gap-1 pb-4'>
+        <div className='w-full h-full bg-transparent flex justify-center items-center flex-col gap-1'>
           <div className=' w-full h-[15%] flex items-center justify-center pl-[100px]'>
             <div className=' w-full h-full flex gap-1 justify-start items-center'>
               <span className=' w-auto h-[55px] bg-thems-minBackg_content rounded-[10px] text-thems-defaultTextColor font-oswald text-[45px] p-4 leading-[55px] flex items-center justify-center'>
@@ -121,14 +121,13 @@ function CalendarMod(): JSX.Element {
               </h1>
             </div>
           </div>
-          <div className=' w-full h-full rounded-tr-[10px] rounded-br-[10px]  overflow-hidden'>
-            <NewEvent
-              userName={userName} />
+          <div className=' w-full h-full  overflow-hidden'>
+            <NewEvent/>
           </div>
-          <div className=' w-full h-[20%] rounded-tr-[10px] rounded-br-[10px] overflow-hidden'>
+          <div className=' w-full h-[20%] overflow-hidden'>
             <Holiday />
           </div>
-          <div className=' w-full h-[40%] rounded-tr-[10px] rounded-br-[10px] overflow-hidden'>
+          <div className=' w-full h-[40%] overflow-hidden'>
             <CalEvents
               allEvents={allEvents} />
           </div>

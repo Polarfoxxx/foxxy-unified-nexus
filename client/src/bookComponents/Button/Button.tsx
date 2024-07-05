@@ -6,6 +6,7 @@ import "./Button_style_dark.css";
 export interface Type_for_ButtonElement extends ButtonHTMLAttributes<HTMLButtonElement> {
     id?: string,
     text: string,
+
     styleButton: "lightButton" | "darkButton",
     secondStyle: "primary" | "secondary" | "alert"
 };
