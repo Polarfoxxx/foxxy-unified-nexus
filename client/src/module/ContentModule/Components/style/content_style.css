@@ -3,24 +3,29 @@ div[data-theme="light"] {
     --background_button: rgb(123, 32, 188);
     --background_button_hover: rgb(220, 220, 220);
     --color_button: rgb(0, 0, 0);
+    --miniNavigationButton: rgb(245, 245, 245);
 
     /*! appBackGround */
     --background_content: rgb(255, 255, 255);
     --background_content_header: rgba(63, 56, 191, 0.507);
     --background_App: url('/public/image/lightAppBacgr.jpg');
+    --parentComponentBackg: rgba(139, 139, 139, 0.778);
+    --parentComponentBorder: rgb(238, 238, 238);
 
     /*! CalendarBackGround */
-    --dayBackground_hover: rgb(123, 32, 188);
+    --dayBackground_hover: rgb(170, 170, 170);
     --dayBackground_header: rgb(255, 255, 255);
     --current_time_line: rgb(255, 0, 0);
-    --eventBackground: rgba(27, 136, 127, 0.808);
+    --eventBackground: rgb(27, 138, 129);
     --eventBackground_selected: rgb(12, 100, 0);
     --minBackg_content: rgb(123, 32, 188);
     --minBackg_Two_content: rgb(195, 121, 230);
     --background_block: rgb(255, 255, 255);
     --calendarContent_background: rgb(255, 255, 255);
-    --InvalidDay_Background: rgba(0, 0, 0, 0.644);
+    --InvalidDay_Background: rgba(201, 201, 201, 0.668);
     --drakInLightTheme: rgb(192, 176, 225);
+    --currentDayBlock: rgb(118, 54, 246);
+    --allEventsCalendarList: white;
 
     /*! littleComponents */
     --littleComponent_Background: rgb(246, 246, 246);
@@ -36,7 +41,8 @@ div[data-theme="light"] {
     /*! textColor */
     --defaultTextColor: rgb(255, 255, 255);
     --defaultTextColorTwo: rgb(0, 0, 0);
-    --current_day: rgb(123, 32, 188);
+    --current_day: rgb(172, 7, 255);
+    --miniNavigateBar: rgb(123, 32, 188);
 
     /*! inputStyle */
     --inputBorder: rgba(128, 0, 128, 0.438);

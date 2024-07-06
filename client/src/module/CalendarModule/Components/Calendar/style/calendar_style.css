@@ -1,5 +1,6 @@
-
-.rbc-month-view, .rbc-time-view, .rbc-agenda-view {
+.rbc-month-view,
+.rbc-time-view,
+.rbc-agenda-view {
     border-radius: 10px;
     overflow: hidden;
 }
@@ -8,30 +9,42 @@
 .rbc-day-bg {
     cursor: pointer;
     position: relative;
+
 }
 
-/* datum bunke */
 .rbc-date-cell {
     width: 100%;
     padding: 2px;
-    background-color: rgb(181, 181, 181);
-
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    color: rgb(0, 0, 0);
+    background-color: rgba(181, 181, 181, 0);
 }
+
 
 /* datum v bunke button*/
 .rbc-date-cell .rbc-button-link {
-    width: 100%;
-    height: 30px;
-    color: rgb(0, 0, 0);
-    border-radius: 5px ;
-    background-color: rgb(181, 181, 181);
-
+    width: 80%;
+    height: 100%;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: rgb(204, 204, 204);
+    border-radius: 10px;
 }
 
-.rbc-button-link:hover {
-    background-color: var(--dayBackground_hover);
+.rbc-date-cell .rbc-button-link:hover {
     color: var(--defaultTextColor);
 }
+
+.rbc-date-cell.rbc-now.rbc-current>button {
+    background-color: rgb(255, 255, 255);
+}
+
+.rbc-date-cell.rbc-now.rbc-current>button:hover {
+    color: rgb(0, 0, 0);
+}
+
 
 /*  neplatne dni */
 .rbc-day-bg.rbc-off-range-bg::before {
@@ -71,7 +84,8 @@
 .rbc-btn-group>button:hover {
     background-color: var(--background_button_hover);
 }
-.rbc-btn-group .rbc-active{
+
+.rbc-btn-group .rbc-active {
     color: black;
 }
 
@@ -101,8 +115,12 @@
     font-size: 20px;
 }
 
+.rbc-day-bg.rbc-today {
+    background-color: var(--currentDayBlock);
+}
+
 /* cas aktulône oznaceny */
-.rbc-current-time-indicator{
+.rbc-current-time-indicator {
     background-color: var(--current_time_line);
     height: 2px;
 }

@@ -32,10 +32,13 @@ module.exports = {
           background_button: 'var(--background_button)',
           color_button: 'var(--color_button)',
           background_button_hover: "var(--background_button_hover)",
+          miniNavigationButton: "var(--miniNavigationButton)",
+          parentComponentBorder: "var(--parentComponentBorder)",
 
           //! appBackGround 
           background_content: "var(--background_content)",
           background_content_header: "var(--background_content_header)",
+          parentComponentBackg: "var(--parentComponentBackg)",
 
           //! CalendarBackGround
           calendarContent_background: "var(--calendarContent_background)",
@@ -49,6 +52,8 @@ module.exports = {
           background_block: "var(--background_block)",
           InvalidDay_Background: "var(--InvalidDay_Background)",
           drakInLightTheme: "var(--drakInLightTheme)",
+          currentDayBlock: "var(--currentDayBlock)",
+          allEventsCalendarList: "var(--allEventsCalendarList)",
 
           //! littleComponent
           littleComponent_Background: "var(--littleComponent_Background)",
@@ -65,6 +70,7 @@ module.exports = {
           defaultTextColor: 'var(--defaultTextColor)',
           defaultTextColorDark: 'var(--defaultTextColorDark)',
           current_day: "var(--current_day)",
+          miniNavigateBar: "var(--miniNavigateBar)",
 
           //! inputStyle
           inputBorder: "var(--inputBorder)",

@@ -7,7 +7,7 @@ export const allApplication = [
     },
     {
         name: "MessageList",
-        icon: "Ml",
+        icon: "Me",
         route: "/Content/MessageList"
     },
     {

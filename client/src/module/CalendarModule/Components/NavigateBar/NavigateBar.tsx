@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import React from "react";
-import { Type_for_NavigateBar, Type_for_ApplicationBar } from "./types";
+import { Type_for_ApplicationBar } from "./types";
 import deletePatchForNaviBar_services from "./services/deletePatchForNaviBar_services";
 
 
@@ -17,10 +17,8 @@ function NavigateBar(): JSX.Element {
 
     const handleClick = (item: Type_for_ApplicationBar): void => {
         const setLocation = item.route;
-        navigate(setLocation)
+        navigate(setLocation);
     };
-
-
 
     return (
         <div className=" w-full h-auto p-2 flex flex-col justify-center items-center gap-4">
@@ -28,7 +26,7 @@ function NavigateBar(): JSX.Element {
                 allApplicationFordisplay.map((item, key) =>
                     <div
                         onClick={() => handleClick(item)}
-                        className=" w-[40px] h-[40px] bg-black text-white rounded-[50%] flex items-center justify-center cursor-pointer"
+                        className=" w-[40px] h-[40px] bg-thems-miniNavigationButton text-thems-miniNavigateBar font-bold rounded-[50%] flex items-center justify-center cursor-pointer hover:scale-[1.08]"
                         key={key}>
                         <h1> {item.icon}</h1>
                     </div>
