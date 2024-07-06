@@ -12,7 +12,7 @@ import { Type_for_newEventFrom_DB } from '../NewEvent/type';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Holiday } from '../Holiday';
-import { CalEvents } from '../CalEvents';
+import { CalendarEvents } from '../CalendarEvents';
 import { Type_RootState } from '../../../../redux';
 import { NavigateBar } from '../NavigateBar';
 import { useSelector, useDispatch } from 'react-redux';
@@ -128,7 +128,7 @@ function CalendarMod(): JSX.Element {
             <Holiday />
           </div>
           <div className=' w-full h-[40%] overflow-hidden'>
-            <CalEvents
+            <CalendarEvents
               allEvents={allEvents} />
           </div>
         </div>

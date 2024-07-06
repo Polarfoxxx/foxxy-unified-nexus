@@ -1,5 +1,5 @@
 const post_LogIn = require('./CRUD/post_login');
-const post_LogOut = require('./CRUD/post_logout'); // nebo './CRUD/post_LogOut.js'
+const post_LogOut = require('./CRUD/post_logout');
 const post_Register = require("./CRUD/post_register");
 const post_createData = require("./CRUD/post_createData");
 const get_readData = require("./CRUD/get_readData");
@@ -10,20 +10,23 @@ const readExpExistingCookie = require("./cookie/readExpiredExisting_cookie");
 const deleteCookie = require("./cookie/deleteCookie");
 const cookieParser = require('cookie-parser');
 const express = require("express");
+require('dotenv').config();
 const app = express();
 const cors = require("cors");
 const Port = 5000;
+const localhost = process.env.REACT_APP_LOCALHOST;
+const publicSite = process.env.REACT_APP_PUPLIC;
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000', 
+    origin: 'http://localhost:3000',
     credentials: true
 }));
 app.use(cookieParser());
 
-// Middleware pro nastavení CORS hlaviček ručně
+//! Middleware pro nastavení CORS hlaviček ručně
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); 
+    res.header("Access-Control-Allow-Origin", localhost);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Credentials", "true");
     next();

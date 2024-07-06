@@ -29,6 +29,8 @@ function LoginPage(): JSX.Element {
         });
         try {
             const login = await logInUser_API(login_data);
+            console.log(login);
+            
             if (login?.status === 200) {
                 navigate("/Content");
             } else {
@@ -86,8 +88,8 @@ function LoginPage(): JSX.Element {
                                 widthInput={70}
                                 styleInput="lightInput"
                                 secondStyle="secondary"
-                                placeholder="user name"
-                                name="user"
+                                placeholder="password"
+                                name="password"
                                 type="password" />
                         </div>
                         <button
