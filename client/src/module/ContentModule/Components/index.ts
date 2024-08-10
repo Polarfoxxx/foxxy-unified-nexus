@@ -5,6 +5,3 @@ export {
 
 export * from "./HeaderModule";
 
-export type {
-    Type_for_Content
-} from "./types";

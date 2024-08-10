@@ -19,11 +19,12 @@ export type Type_for_CalEvents_for_display = {
 
 
 
-function CalendarEvents(props: Type_forCalendarEvents): JSX.Element {
+function CalendarEvents(
+    props: Type_forCalendarEvents
+): JSX.Element {
     const [allEventsForDisplay, setAllEventsForDisplay] = React.useState<Type_for_CalEvents_for_display[]>([]);
 
     React.useEffect(() => {
-
         const changeDateFormat: Type_for_CalEvents_for_display[] = props.allEvents.map((item) => {
             const date_start = new Date(item.start);
             const formattedDate_start = date_start.toLocaleDateString(); // Formátovaný dátum
@@ -46,7 +47,7 @@ function CalendarEvents(props: Type_forCalendarEvents): JSX.Element {
             };
         });
         setAllEventsForDisplay(changeDateFormat)
-    }, []);
+    }, [props.allEvents]);
 
 
     return (
@@ -73,7 +74,7 @@ function CalendarEvents(props: Type_forCalendarEvents): JSX.Element {
                         {
                             allEventsForDisplay.map((item, key) =>
                                 <div key={key}
-                                    className=" w-[90%] h-auto p-[5px] bg-thems-allEventsCalendarList rounded-xl flex items-start justify-around flex-row">
+                                    className=" w-[90%] h-[60px] p-[5px] bg-thems-allEventsCalendarList rounded-xl flex items-start justify-around flex-row">
                                     <div className=" w-full h-full flex items-center justify-center flex-col">
                                         <div className=" w-full h-full bg-slate-200">
                                             <h1 className="">
@@ -88,7 +89,7 @@ function CalendarEvents(props: Type_forCalendarEvents): JSX.Element {
                                     </div>
                                     <div className=" w-full h-full flex items-center justify-center flex-col">
                                         <div className=" w-full h-full bg-slate-500">
-                                            <h1>
+                                            <h1 className=" text-[15px]">
                                                 Event start
                                             </h1>
                                         </div>
@@ -126,7 +127,6 @@ function CalendarEvents(props: Type_forCalendarEvents): JSX.Element {
                                             secondStyle="alert"
                                             text="Delete" />
                                     </div>
-
                                 </div>
                             )
                         }

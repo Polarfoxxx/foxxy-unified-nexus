@@ -1,23 +1,18 @@
 import React from "react";
 import "./style/content_style.css";
 import { Routes, useNavigate, NavLink, Route } from "react-router-dom";
-import { LogOut, ColorSwitcher, TittleBar, Clock, Type_for_Content } from "../";
+import { LogOut, ColorSwitcher, TittleBar, Clock } from "../";
 import { Calendar } from "../../CalendarModule";
 import { MessageList } from "../../MessageModule";
 import { ParentAllMiniContent } from "../../Shared";
 import { readData_API } from "../../apis/index.";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
+import { useSelector, useDispatch } from 'react-redux';
 import { readExistingExpCookie } from "../../apis/index.";
-import { Type_for_data } from "../../AuthentificationModule";
 import { LittleCalendar, LittleMessage, LittleWeather } from "../../LittleAppComponents";
 import { openWeatherAPI, dayAndHoliday } from "../../apis/index.";
-import { Type_for_WeatherData, WeatherInfo } from "../";
+import { WeatherInfo } from "../";
 import { Weather } from "../../WeatherModule";
-import { Type_for_dayAndHoliday } from "../../CalendarModule";
-import { Type_for_newEventFrom_DB } from "../../CalendarModule";
 import {
-    Type_forSetAllMessage,
     setAllMessages,
     setUserLogData,
     setWeatherData,
@@ -26,69 +21,65 @@ import {
 } from "../../../redux";
 
 
-function Content({
-    setAllMessages,
-    setUserLogData,
-    setWeatherData,
-    setAllHoliday,
-    setAllEvent
-}: Type_for_Content): JSX.Element {
+function Content(): JSX.Element {
     const navigate = useNavigate();
     const themedDivRef = React.useRef<HTMLDivElement | null>(null);
+    //! redux.............................
+    const dispatch = useDispatch();
 
-    //! existin and validate cookie and set user data
+    //! existin and validate cookie and set user data..........
     React.useEffect(() => {
         readCookie();
 
         async function readCookie() {
             const cookieIsValid = await readExistingExpCookie();   //volanie pre zistenie a nasledne odoslanie cookie
             if (cookieIsValid) {
-                setUserLogData({
+                dispatch(setUserLogData({
                     userName: cookieIsValid.cookie_data.userName,
                     appTheme: cookieIsValid.cookie_data.appTheme
-                });
-            }
+                }));
+            };
         };
     }, []);
 
     React.useEffect(() => {
-        //! load message event data
+        //! load message event data.............................
         loadDataAPI();
         async function loadDataAPI() {
             try {
                 const load_data = await readData_API();
                 if (load_data) {
-                    setAllMessages({
+                    dispatch(setAllMessages({
                         data: load_data.data.messages,
                         typeEvent: "setAll_message"
-                    });
-                    setAllEvent(load_data.data.events);
+                    }));
+                    dispatch(setAllEvent(load_data.data.events));
                 };
             } catch (error) {
                 console.log("Chyba pri načítavaní udalostí:", error);
             };
         };
 
-        //! weather data
+        //! weather data..........................................
         loadWeathetAPI();
         async function loadWeathetAPI() {
             try {
                 const load_data = await openWeatherAPI();
                 if (load_data) {
-                    setWeatherData(load_data)
+                    dispatch(setWeatherData(load_data));
                 };
             } catch (error) {
                 console.log("Chyba pri načítavaní udalostí:", error);
             };
         };
 
-        //! dayHoliday
+        //! dayHoliday...........................................
         loadDayHoliday();
         async function loadDayHoliday() {
             try {
                 const data = await dayAndHoliday();
                 if (data) {
-                    setAllHoliday(data);
+                    dispatch(setAllHoliday(data));
                 };
             } catch (error) {
                 console.log("Chyba pri načítavaní holiday:", error);
@@ -191,25 +182,13 @@ function Content({
                 </Routes>
             </section>
             <footer className=" w-full h-[8%] flex items-center justify-center ">
-
+my footer
             </footer>
         </div >
     )
 };
-//! set state for redux
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    setAllMessages: (props: Type_forSetAllMessage) => dispatch(
-        setAllMessages({
-            data: props.data,
-            typeEvent: props.typeEvent
-        })),
-    setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data)),
-    setWeatherData: (data: Type_for_WeatherData) => dispatch(setWeatherData(data)),
-    setAllHoliday: (data: Type_for_dayAndHoliday[]) => dispatch(setAllHoliday(data)),
-    setAllEvent: (data: Type_for_newEventFrom_DB[]) => dispatch(setAllEvent(data)),
-});
 
-export default connect(null, mapDispatchToProps)(Content);
+export default Content;
 
 
 

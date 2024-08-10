@@ -22,7 +22,7 @@ import { Type_RootState } from "../../../../redux";
 function NewEvent(): JSX.Element {
     const [newEvent, setNewEvent] = React.useState<any>({ title: "", comment: "", start: "", end: "" });
     const { handleSubmit, reset } = useInputValue();
-    //?redux
+    //!redux
     const dispatch = useDispatch();
     const userName = useSelector((state: Type_RootState) => state.userLogData.userName);
 
@@ -167,8 +167,4 @@ function NewEvent(): JSX.Element {
     );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    setAllEvent: (data: Type_for_newEventFrom_DB[]) => dispatch(setAllEvent(data)),
-});
-
-export default connect(null, mapDispatchToProps)(NewEvent);
+export default NewEvent;
