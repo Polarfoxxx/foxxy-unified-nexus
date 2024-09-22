@@ -1,7 +1,6 @@
 import { Type_forCalendarEvents } from "./types";
-import { Button } from "../../../../bookComponents";
 import React from "react";
-
+import { ButtonComponent } from "foxxy-package/dist";
 
 
 export type Type_for_CalEvents_for_display = {
@@ -122,10 +121,12 @@ function CalendarEvents(
                                         </div>
                                     </div>
                                     <div className=" w-[50%] h-full flex items-center justify-center pr-[15px]">
-                                        <Button
-                                            styleButton="lightButton"
-                                            secondStyle="alert"
-                                            text="Delete" />
+                                    <ButtonComponent.ButtonBox>
+                                            <ButtonComponent.Button
+                                            button_text="delete" 
+                                            variant_btn="alertButton"
+                                            sm_button/>
+                                        </ButtonComponent.ButtonBox>
                                     </div>
                                 </div>
                             )

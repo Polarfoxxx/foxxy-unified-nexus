@@ -4,7 +4,9 @@ import { logInUser_API } from "../../apis/authentificationAPI";
 import { useNavigate } from "react-router-dom";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
 import { LoadingFeedback } from "../../Shared";
-import { Input } from "../../../bookComponents";
+import { ButtonComponent, FormComponent } from "foxxy-package";
+import "foxxy-package/dist/foxxy_package_dis.css"
+
 
 function LoginPage(): JSX.Element {
     const navigate = useNavigate();
@@ -22,19 +24,17 @@ function LoginPage(): JSX.Element {
             password: v[1].inputValues.toString()
         };
         reset();
-        //! set display stat on loading it is 10
+        //! set display stat on loading it is 10.................
         setLoadingFeedbackStats({
             respo_status: 10,
             loadON: true
         });
         try {
             const login = await logInUser_API(login_data);
-            console.log(login);
-            
             if (login?.status === 200) {
                 navigate("/Content");
             } else {
-                //! handle unsuccessful login
+                //! handle unsuccessful login..................
                 setLoadingFeedbackStats({
                     respo_status: login?.status || 500,
                     loadON: true
@@ -44,24 +44,18 @@ function LoginPage(): JSX.Element {
             console.log(error);
             setLoadingFeedbackStats({
                 respo_status: 500,
-                loadON: false
+                loadON: true
             });
-        } finally {
-            setLoadingFeedbackStats((prevState) => ({
-                ...prevState,
-                loadON: false
-            }));
-        }
+        } 
     };
 
     return (
         <div className="w-full h-screen flex flex-col bg-loginBackg">
             <div className="w-full h-1/4 relative">
                 {
-                    //!loading display status
+                    //!loading display status.....................
                     <LoadingFeedback
-                        loadstatus={loadingFeedbackStats}
-                    />
+                        loadstatus={loadingFeedbackStats} />
                 }
             </div>
             <div className="w-full h-full flex justify-center items-center">
@@ -71,33 +65,17 @@ function LoginPage(): JSX.Element {
                             Sign in
                         </h1>
                     </div>
-                    <form
-                        className="w-full h-full p-2 flex justify-center items-center flex-col gap-2"
-                        onSubmit={(e) => handleSubmit(e, submit)}>
-                        <div className="w-full h-10 flex items-center justify-center">
-                            <Input
-                                widthInput={70}
-                                placeholder="user name"
-                                styleInput="lightInput"
-                                secondStyle="secondary"
-                                name="user"
-                                type="text" />
-                        </div>
-                        <div className="w-full h-10 flex items-center justify-center">
-                            <Input
-                                widthInput={70}
-                                styleInput="lightInput"
-                                secondStyle="secondary"
-                                placeholder="password"
-                                name="password"
-                                type="password" />
-                        </div>
-                        <button
-                            className="w-24 h-8 mt-4 font-bold text-xl hover:text-blue-700"
-                            type='submit'>
-                            Sign in
-                        </button>
-                    </form>
+                    <FormComponent.Form
+                        custom_background_form="transparent"
+                        custom_width_form="100%"
+                        onSubmit={(e) => handleSubmit(e, submit)} >
+                        <FormComponent.FormHeader />
+                        <FormComponent.FormInputs name="userNames" />
+                        <FormComponent.FormInputs name="password" />
+                        <ButtonComponent.ButtonBox >
+                            <ButtonComponent.Button button_text="Sign in" />
+                        </ButtonComponent.ButtonBox>
+                    </FormComponent.Form>
                 </div>
             </div>
         </div>
@@ -105,3 +83,6 @@ function LoginPage(): JSX.Element {
 };
 
 export default LoginPage;
+
+
+

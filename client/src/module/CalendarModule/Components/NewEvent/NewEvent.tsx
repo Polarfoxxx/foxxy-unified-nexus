@@ -13,10 +13,10 @@ import { setAllEvent } from "../../../../redux";
 import { Type_for_newEventFrom_DB } from "./type";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { Button } from "../../../../bookComponents/Button";
 import { useSelector, useDispatch } from 'react-redux';
 import { Type_RootState } from "../../../../redux";
-
+import { ButtonComponent } from 'foxxy-package';
+import "foxxy-package/dist/foxxy_package_dis.css"
 
 
 function NewEvent(): JSX.Element {
@@ -155,11 +155,11 @@ function NewEvent(): JSX.Element {
                         </div>
                     </div>
                     <div className=" w-[80%] h-full flex justify-start items-center">
-                        <Button
-                            id=""
-                            secondStyle="primary"
-                            text="new event"
-                            styleButton="lightButton" />
+                    <ButtonComponent.ButtonBox>
+                    <ButtonComponent.Button
+                        button_text='my button'
+                        variant_btn='alertButton' />
+                </ButtonComponent.ButtonBox>
                     </div>
                 </form>
             </div>

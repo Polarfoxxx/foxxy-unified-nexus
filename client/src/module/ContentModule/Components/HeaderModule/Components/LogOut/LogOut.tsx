@@ -2,7 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteCookie } from "../../../../../apis/cookie";
 import { logOutUser_API } from "../../../../../apis/authentificationAPI";
-import { Button } from "../../../../../../bookComponents";
+import { ButtonComponent } from 'foxxy-package';
+import "foxxy-package/dist/foxxy_package_dis.css"
+
+
 
 function LogOut(): JSX.Element {
     const navigate = useNavigate();
@@ -16,11 +19,12 @@ function LogOut(): JSX.Element {
     return (
         <div className=" w-full h-full flex items-center justify-start  p-2 pl-8 ">
             <div>
-                <Button
-                    styleButton="lightButton"
-                    secondStyle="alert"
-                    text="Logout"
-                    onClick={handleClickLogOut} />
+                <ButtonComponent.ButtonBox>
+                    <ButtonComponent.Button
+                        button_text='my button'
+                        variant_btn='alertButton'
+                        onClick={handleClickLogOut} />
+                </ButtonComponent.ButtonBox>
             </div>
         </div>
     );

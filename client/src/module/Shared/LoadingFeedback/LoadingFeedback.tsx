@@ -3,6 +3,8 @@ import { servicesTypeResponseStatus, Type_for_LoadingFeedback } from "./";
 
 function LoadingFeedback(props: Type_for_LoadingFeedback): JSX.Element {
     const { respo_status, loadON } = props.loadstatus;
+    console.log(respo_status, loadON);
+    
     const loadTimerRef = React.useRef<NodeJS.Timeout | undefined>(undefined);
     const [respoStatus, setRespoStatus] = React.useState<{ fontAwesome: null | JSX.Element, statusRespo: string, load_ON: boolean }>({
         fontAwesome: null,
@@ -11,18 +13,18 @@ function LoadingFeedback(props: Type_for_LoadingFeedback): JSX.Element {
     });
 
     React.useEffect(() => {
-        if (props.loadstatus.loadON) {
+        if (loadON) {
             const { typeResponseText, fontAwensome } = servicesTypeResponseStatus({ respo_status });
             setRespoStatus({
                 fontAwesome: fontAwensome,
                 statusRespo: typeResponseText,
                 load_ON: true
             });
-            // Zrušit předchozí časovač, pokud existuje
+            //! Zrušit předchozí časovač, pokud existuje.........
             if (loadTimerRef.current) {
                 clearTimeout(loadTimerRef.current);
             }
-            // Vytvořit nový časovač
+            //! Vytvořit nový časovač..............................
             loadTimerRef.current = setTimeout(() => {
                 setRespoStatus(prevState => ({
                     ...prevState,
@@ -30,7 +32,7 @@ function LoadingFeedback(props: Type_for_LoadingFeedback): JSX.Element {
                 }));
             }, 4000);
         } else {
-            // Pokud loadON není true, zrušit časovač, pokud existuje
+            //! Pokud loadON není true, zrušit časovač, pokud existuje......................
             if (loadTimerRef.current) {
                 clearTimeout(loadTimerRef.current);
             };
@@ -40,7 +42,7 @@ function LoadingFeedback(props: Type_for_LoadingFeedback): JSX.Element {
                 clearTimeout(loadTimerRef.current);
             };
         };
-    }, [props.loadstatus]);
+    }, [props.loadstatus.respo_status]);
 
     return (
         <div className=" w-[220px] h-[100px] flex fixed items-center justify-center right-0">

@@ -15,10 +15,6 @@ async function logInUser_API(loginData: type_for_loginUser_API): Promise<type_fr
         "Content-Type": "application/json",
       },
     });
-
-    console.log(response);
-
-    // Adjust the return statement to match your expected response structure
     return {
       userName: response.data.username, // Ensure response.data has a username property
       status: response.status,
@@ -28,6 +24,13 @@ async function logInUser_API(loginData: type_for_loginUser_API): Promise<type_fr
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Axios error: ", error.response?.data || error.message);
+      return {
+        userName: "", // Ensure response.data has a username property
+        status: error.response?.status || 0,
+        jwt: "", // Ensure response.data has a token property
+        theme: "", // Ensure response.data has a theme property
+      };
+      
     } else {
       console.error("Unexpected error: ", error);
     }
