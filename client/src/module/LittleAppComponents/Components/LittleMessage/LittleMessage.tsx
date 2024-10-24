@@ -40,9 +40,7 @@ function LittleMessage({ allMessages }: Type_for_LittleMessage): JSX.Element {
             </div>
             <div className="w-[100%] h-[100%] flex items-center justify-center ">
                 <div className="w-[80%] h-[80%]">
-                    <img
-                    className=" w-full h-full"
-                    src="/image/task-list.png" alt="taskLogo" />
+                  
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Type_for_WeatherData } from "../../ContentModule";
+import { Type_for_WeatherData } from "../../HeaderModule";
 
 
 

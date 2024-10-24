@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Type_RootState } from "../../../../../../redux";
+import { Type_RootState } from "../../../../redux";
 import { Type_tittleBar } from "./types";
 
 

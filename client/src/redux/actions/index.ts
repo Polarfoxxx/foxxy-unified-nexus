@@ -1,4 +1,4 @@
-// setstate
+
 export {
     setUserLogData,
     setAllMessages,
@@ -7,7 +7,7 @@ export {
     setAllEvent
 } from "./actions";
 
-//types
+
 export type {
     Type_forSetAllMessage
 } from "./types";

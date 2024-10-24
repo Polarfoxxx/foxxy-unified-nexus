@@ -16,26 +16,26 @@ async function logInUser_API(loginData: type_for_loginUser_API): Promise<type_fr
       },
     });
     return {
-      userName: response.data.username, // Ensure response.data has a username property
+      userName: response.data.username,
       status: response.status,
-      jwt: response.data.token, // Ensure response.data has a token property
-      theme: response.data.theme, // Ensure response.data has a theme property
+      jwt: response.data.token,
+      theme: response.data.theme,
     };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Axios error: ", error.response?.data || error.message);
       return {
-        userName: "", // Ensure response.data has a username property
-        status: error.response?.status || 0,
-        jwt: "", // Ensure response.data has a token property
-        theme: "", // Ensure response.data has a theme property
+        userName: "",
+        status: error.response?.status || 500,
+        jwt: "",
+        theme: "",
       };
-      
+
     } else {
       console.error("Unexpected error: ", error);
-    }
+    };
     return undefined;
-  }
+  };
 };
 
 export default logInUser_API;

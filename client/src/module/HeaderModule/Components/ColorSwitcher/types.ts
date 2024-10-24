@@ -1,4 +1,4 @@
-import { Type_for_data } from "../../../../../AuthentificationModule";
+import { Type_for_data } from "../../../AuthentificationModule";
 
 export type Type_for_saveDataTheme = {
     custom: {

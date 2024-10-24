@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteCookie } from "../../../../../apis/cookie";
-import { logOutUser_API } from "../../../../../apis/authentificationAPI";
+import { deleteCookie } from "../../../APIs/cookie";
+import { logOutUser_API } from "../../../APIs/authentificationAPI";
 import { ButtonComponent } from 'foxxy-package';
 import "foxxy-package/dist/foxxy_package_dis.css"
 

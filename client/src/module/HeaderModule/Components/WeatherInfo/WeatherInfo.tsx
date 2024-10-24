@@ -1,5 +1,5 @@
 import React from "react";
-import { Type_RootState } from "../../../../../../redux";
+import { Type_RootState } from "../../../../redux";
 import { Type_for_weatherInfo } from "./types";
 import { connect } from "react-redux";
 

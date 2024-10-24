@@ -16,7 +16,7 @@ import {
 
 
 
-//? Reduktor údajov o prihlásení používateľa
+//! Reduktor for login user.................
 const userLogDataReducer = (state = defaultValueforUserData, action: Type_SetUserLogDataAction) => {
   switch (action.type) {
     case 'setUser_userName':
@@ -30,7 +30,7 @@ const userLogDataReducer = (state = defaultValueforUserData, action: Type_SetUse
 };
 
 
-//? Reduktor pre pridanie eventov calendar
+//! Reduktor for calendar...................
 const allEventsReducer = (state = defaultValueForCalendarEvent, action: Type_SetEventDataAction) => {
   switch (action.type) {
     case 'setAll_event':
@@ -40,7 +40,7 @@ const allEventsReducer = (state = defaultValueForCalendarEvent, action: Type_Set
   }
 };
 
-//? Reduktor pre pridanie message
+//! Reduktor for message.....................
 const allMessagesReducer = (state = defaultValueforMessage, action: Type_SetMessageDataAction) => {
   switch (action.type) {
     case 'setAll_message':
@@ -50,7 +50,7 @@ const allMessagesReducer = (state = defaultValueforMessage, action: Type_SetMess
   }
 };
 
-//? Reduktor pre pridanie weather dat
+//! Reduktor foor weather.....................
 const weatherReducer = (state = defaultWeatherData, action: Type_SetWeatherDataAction) => {
   switch (action.type) {
     case 'setWeatherData':
@@ -60,7 +60,7 @@ const weatherReducer = (state = defaultWeatherData, action: Type_SetWeatherDataA
   }
 };
 
-//? Reduktor pre pridanie holiday dat
+//! Reduktor for holiday.....................
 const holidayReducer = (state = defaultAllHolidayData, action: Type_SetHolidayDataAction) => {
   switch (action.type) {
     case 'setHoliday':
@@ -71,7 +71,7 @@ const holidayReducer = (state = defaultAllHolidayData, action: Type_SetHolidayDa
 };
 
 
-//! Kombinácia všetkých reduktorov do koreňového reduktora
+//! all reducers...............................
 const rootReducer = combineReducers({
   userLogData: userLogDataReducer,
   allEvents: allEventsReducer,

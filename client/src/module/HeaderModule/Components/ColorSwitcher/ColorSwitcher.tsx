@@ -1,11 +1,10 @@
 import React from 'react';
 import { Type_for_colorSwitcher } from './types';
-import { updateCookie } from '../../../../../apis/cookie';
+import { updateCookie } from '../../../APIs/cookie';
 import { connect } from 'react-redux';
-import { Type_RootState } from '../../../../../../redux';
-import { setUserLogData } from '../../../../../../redux';
+import { Type_RootState,setUserLogData } from '../../../../redux';
 import { Dispatch } from 'redux';
-import { Type_for_data } from '../../../../../AuthentificationModule';
+import { Type_for_data } from '../../../AuthentificationModule';
 
 function ColorSwitcher({ themedDivRef, appTheme, userName, setUserLogData }: Type_for_colorSwitcher): JSX.Element {
 

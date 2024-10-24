@@ -1,2 +1,2 @@
-export * from "./ContainerModule";
-export * from "./ContentModule";
+export * from "./CONTAINER";
+export * from "./CONTENT_MODULE";

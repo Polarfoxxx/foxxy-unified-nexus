@@ -3,7 +3,7 @@ import "./App.css"
 import { Container, Content } from './module';
 import { LoginPage } from './module/AuthentificationModule';
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { readExistingExpCookie } from './module/apis/cookie';
+import { readExistingExpCookie } from './module/APIs/cookie';
 
 
 function App(): JSX.Element {

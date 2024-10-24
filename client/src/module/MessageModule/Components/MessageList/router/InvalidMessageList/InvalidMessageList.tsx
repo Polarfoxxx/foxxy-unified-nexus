@@ -61,6 +61,7 @@ function InvalidMessageList(props: Type_for_valid_and_invalidMessageList): JSX.E
                         className="w-[100%] h-[100%]  flex justify-center items-center flex-row gap-5">
                         <div>
                             <input
+                            placeholder="fff"
                             onChange={e => handleChangeFilter(e)}
                                 name="filter"
                                 className=""

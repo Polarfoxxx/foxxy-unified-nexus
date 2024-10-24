@@ -22,6 +22,7 @@ module.exports = {
         'fullNewEvent': '1000px',
         "fullApp": "100vw",
       },
+      
       backgroundImage: {
         'loginBackg': "url('/public/image/loginimg.jpg')",
         'background_App': "var(--background_App)",

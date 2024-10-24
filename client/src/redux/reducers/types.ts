@@ -1,5 +1,5 @@
 import { Type_for_newMesssageFrom_DB } from "../../module/MessageModule";
-import { Type_for_WeatherData } from "../../module/ContentModule";
+import { Type_for_WeatherData } from "../../module/HeaderModule";
 import { Type_for_dayAndHoliday } from "../../module/CalendarModule";
 import { Type_for_newEventFrom_DB } from "../../module/CalendarModule";
 

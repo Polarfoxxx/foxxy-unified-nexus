@@ -1,7 +1,7 @@
 import React from "react";
 import { useInputValue } from "foxxy_input_value";
 import { TypeForInputsObject } from "foxxy_input_value/dist/hooks/types/types";
-import { createData_API } from "../../../apis/index.";
+import { createData_API } from "../../../APIs/index.";
 import { NewRequest } from "../../../utils";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
