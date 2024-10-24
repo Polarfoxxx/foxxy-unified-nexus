@@ -6,7 +6,6 @@ import { ButtonComponent } from 'foxxy-package';
 import "foxxy-package/dist/foxxy_package_dis.css"
 
 
-
 function LogOut(): JSX.Element {
     const navigate = useNavigate();
 
@@ -17,11 +16,12 @@ function LogOut(): JSX.Element {
     };
 
     return (
-        <div className=" w-full h-full flex items-center justify-start  p-2 pl-8 ">
-            <div>
+        <div className=" w-full h-full flex items-center justify-start">
+            <div className=" w-full h-full flex items-center justify-start">
                 <ButtonComponent.ButtonBox>
                     <ButtonComponent.Button
-                        button_text='my button'
+                        sm_button
+                        button_text='Logout'
                         variant_btn='alertButton'
                         onClick={handleClickLogOut} />
                 </ButtonComponent.ButtonBox>

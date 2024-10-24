@@ -22,13 +22,13 @@ function Clock(): JSX.Element {
     }, []);
 
     return (
-        <div className="w-auto h-[80%] flex flex-col items-center justify-center rounded-[8px]  text-thems-defaultTextColorDark">
-            <div className=" w-auto h-full flex items-start justify-center">
-                <h1 className="text-[20px]">
+        <div className="w-auto h-[70%] flex flex-col items-center justify-center text-thems-defaultTextColorDark">
+            <div className=" w-auto h-full flex items-center justify-center">
+                <h1 className="text-[16px]">
                     {time}
                 </h1>
             </div>
-            <div className=" w-auto h-full flex items-end justify-center">
+            <div className=" w-auto h-full flex items-center justify-center">
                 <h1 className="text-[13px]">
                     {date}
                 </h1>

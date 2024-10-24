@@ -14,6 +14,18 @@ import {
   defaultValueForCalendarEvent
 } from './defaultValue';
 
+//! REDUKOR FOR CONTROL APP.................
+const reducer_CONTROL_APP = (state = defaultValueforUserData, action: Type_SetUserLogDataAction) => {
+  switch (action.type) {
+    case 'setUser_userName':
+      return {
+        userName: action.payload.userName,
+        appTheme: action.payload.appTheme,
+      };
+    default:
+      return state;
+  };
+};
 
 
 //! Reduktor for login user.................

@@ -104,10 +104,10 @@ function CalendarMod(): JSX.Element {
   }, [])
 
   return (
-    <div className='w-full h-full flex flex-row items-center justify-center  bg-thems-calendarContent_background shadow-miniApp'>
+    <div className='w-full h-auto lg:h-full flex flex-col lg:flex-row  items-center justify-center  bg-thems-calendarContent_background shadow-miniApp'>
       {/* event----------------------------------------------------------------------- */}
-      <div className=' w-[60%] h-full bg-thems-drakInLightTheme flex justify-center items-center flex-row'>
-        <div className=' w-[10%] h-full bg-thems-minBackg_content flex items-center justify-center'>
+      <div className=' w-[100%] lg:order-1 order-2 lg:w-[60%] lg:h-full bg-thems-drakInLightTheme flex justify-center items-center flex-col lg:flex-row'>
+        <div className=' w-[100%] lg:[10%] h-full  bg-thems-minBackg_content items-center justify-center'>
           <NavigateBar />
         </div>
         <div className='w-full h-full bg-transparent flex justify-center items-center flex-col gap-1'>
@@ -134,14 +134,14 @@ function CalendarMod(): JSX.Element {
         </div>
       </div>
       {/* calendar--------------------------------------------------------------------- */}
-      <div className='w-full h-full flex items-end justify-center p-4 '>
+      <div className='w-full lg:h-full order-1 lg:order-2 h-[500px] flex items-end justify-center p-4 '>
         <Calendar
           formats={formats}
           localizer={localizer}
           startAccessor="start"
           endAccessor="end"
           events={LocalAllEvent}
-          style={{ height: "95%", width: "100%" }}
+          style={{ height: "95%", width: "100%"}}
           className="hover-effect-calendar"
           onSelectEvent={handleEventClick} />
         {/* -------- */}

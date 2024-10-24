@@ -1,33 +1,21 @@
 import React from 'react';
-import { Type_for_colorSwitcher } from './types';
 import { updateCookie } from '../../../APIs/cookie';
-import { connect } from 'react-redux';
-import { Type_RootState,setUserLogData } from '../../../../redux';
-import { Dispatch } from 'redux';
-import { Type_for_data } from '../../../AuthentificationModule';
+import { Type_RootState, setUserLogData } from '../../../../redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-function ColorSwitcher({ themedDivRef, appTheme, userName, setUserLogData }: Type_for_colorSwitcher): JSX.Element {
-
-    //! nacitanie nstavej farby z db
-    React.useEffect(() => {
-        const load_theme_def = appTheme;
-        load_theme_def &&
-            themedDivRef.current?.setAttribute("data-theme", load_theme_def);
-    }, [appTheme]);
-
+function ColorSwitcher(): JSX.Element {
+    const USER_DATA = useSelector((state: Type_RootState) => state.userLogData);
+    const dispatch = useDispatch()
 
     const handleColorChange = async (selectTheme: string) => {
-        themedDivRef.current?.setAttribute("data-theme", selectTheme);
-
         try {
             const resp_updateCookie = await updateCookie(selectTheme);
             if (resp_updateCookie === 200) {
-                setUserLogData({
-                    userName: userName,
+                dispatch(setUserLogData({
+                    ...USER_DATA,
                     appTheme: selectTheme
-                });
+                }))
             };
-
         } catch (error) {
             console.error('Error:', error);
         };
@@ -35,16 +23,16 @@ function ColorSwitcher({ themedDivRef, appTheme, userName, setUserLogData }: Typ
 
 
     return (
-        <div className=' w-full h-full flex flex-row items-center gap-3 justify-end p-2 pr-8 bg-transparent'>
+        <div className=' w-full h-full flex flex-col items-center justify-end bg-transparent p-2'>
             <label
-                className=' text-thems-defaultTextColorDark text-[15px]'
+                className=' text-thems-defaultTextColorDark text-[12px]'
                 htmlFor="colorSwitcher">
                 Color theme:
             </label>
             <select
                 className=' w-16 text-center rounded-md cursor-pointer'
                 id="colorSwitcher"
-                value={appTheme}
+                value={USER_DATA.appTheme}
                 onChange={(e) => handleColorChange(e.target.value)}>
                 <option value="light">light</option>
                 <option value="dark">dark</option>
@@ -53,16 +41,5 @@ function ColorSwitcher({ themedDivRef, appTheme, userName, setUserLogData }: Typ
     );
 };
 
-const mapStateToProps = (state: Type_RootState) => ({
-    appTheme: state.userLogData.appTheme,
-    userName: state.userLogData.userName
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    setUserLogData: (data: Type_for_data) => dispatch(setUserLogData(data)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ColorSwitcher);
-
-
+export default ColorSwitcher;
 
